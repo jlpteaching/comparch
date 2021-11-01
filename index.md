@@ -1,10 +1,12 @@
 ---
 layout: index
 published: true
-title: ECS 154B Materials
+title: Computer Architecture
 ---
 
-## Welcome to ECS 154B!
+## Welcome to Computer Architecture!
+
+** UC Davis: ECS 154B and ECS 201A**
 
 You will find all of the lecture videos, quizzes, and extra information here.
 
@@ -24,7 +26,9 @@ The class will generally be broken up into three parts, with more emphasis on th
 Each section will begin with the motivation for why you should care about this architectural component based on the performance or other metrics of the system.
 Then, after going through the design details, we will summarize with specific example from modern systems.
 
-Each section will have one or two project-based assignments (e.g., with the [DINO CPU](https://github.com/jlpteaching/dinocpu-wq21)) and end with an exam.
+Each section will have one or two project-based assignments.
+Those of you in ECS 154B will be using the [DINO CPU](https://github.com/jlpteaching/dinocpu-wq21), and those of you in ECS 201A will be using [gem5](https://www.gem5.org).
+Each section wil also have an exam at the end.
 
 ### [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}) (About one week: 1/4-1/11)
 
