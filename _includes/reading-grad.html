@@ -1,5 +1,5 @@
 
-<div class="reading">
+<div class="reading-grad">
 
 {% if include.optional %}
 <h3> *Optional* Reading </h3>
@@ -11,15 +11,9 @@
 {% if include.book %}
 <i>{{include.book}}</i>
 {% else %}
-<i> Computer Organization and Design </i>
+<i> Computer Architecture: A Quantitative Approach </i>
 {% endif %}
 </p>
 <p class="section"><b>{{ include.section }}</b></p>
-
-{% if include.ed1_section %}
-<p>
-    <i><b> Edition 1 </b></i>
-</p>
-<p class="section"><b>{{ include.ed1_section }}</b></p>
 
 </div>
