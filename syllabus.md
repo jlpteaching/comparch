@@ -94,26 +94,13 @@ However, if you submit after the deadline, the [late policy](#late-assignments) 
 
 ### Online discussions
 
-We will use [Discord](https://discord.com/) for class discussions outside of the classroom.
-After the pre-quarter survey, this was the most liked and least disliked option.
-If you, like me, haven't used Discord before, it's a essentially a place to hang out like a classroom or a lobby with both text and voice/video options.
+We will use [Campuswire](https://campuswire.com/c/G03D9D0A1/) for class discussions outside of the classroom.
+If your question is specific to either 201A or 154B please start the subject with `[ECS 201A]` or `[ECS 154B]` respectively.
 
-It's best to ask your questions on Discord.
+It's best to ask your questions on Campuswire.
 That way, all of your classmates can see the answer instead of emailing the TAs or me.
 Additionally, you might get a much faster response from one of your classmates!
 Through asking and answering questions on Discord, you improve your understanding of the material, and improve other students' understanding as well.
-
-#### Using Discord
-
-You should have received an email with an invite to our Discord server.
-If you did not receive the email, Canvas also has a link.
-
-There are a few steps to complete once you click the invite link for the server:
-
-1. Sign the Code of Conduct (required to see any channels)
-2. See the `#start-here` channel (which has this information)
-3. Send a message on the `#verify-email` channel with your email to register yourself. After this, you will be able to see all of the channels in the server.
-4. Sign up for a discussion section on the `#sign-up` channel.
 
 ### Regrade Requests
 
@@ -202,7 +189,7 @@ See also [student support](#student-support).
 | Participation | 20%        | Attend synchronous discussions, participating in discussion site, attending office hours |
 | Project (5x)  | 40%        | Gradescope will auto-grade most of the project |
 | Quizzes       | 20%        | Quizzes will be on canvas |
-| Tests         | 20%        | Tests will also be on canvas |
+| Tests         | 20%        | Take the test |
 
 #### ECS 201A Grading
 
@@ -211,7 +198,7 @@ See also [student support](#student-support).
 | Participation | 20%        | Attend synchronous discussions, participating in discussion site, attending office hours |
 | Project (5x)  | 40%        | Gradescope will auto-grade most of the project |
 | Quizzes       | 20%        | Quizzes will be on canvas |
-| Tests         | 20%        | Tests will also be on canvas |
+| Tests         | 20%        | Take the test |
 
 ### Participation
 
