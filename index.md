@@ -9,6 +9,10 @@ title: Computer Architecture
 **UC Davis: ECS 154B and ECS 201A**
 
 You will find all of the lecture videos, quizzes, and extra information here.
+Note that this website is a work-in-progress and information may change.
+The website is cloned from [last year](https://jlpteaching.github.io/ECS154B/) which was only 154B.
+Most of the asynchronous videos will be removed and will not be used in Winter 2022.
+Though we must be flexible, the current plan is everything in person after the first week.
 
 For more information on the class, see [the syllabus]({{'syllabus' | relative_url}}).
 
