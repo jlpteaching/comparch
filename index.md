@@ -39,7 +39,6 @@ There are due dates listed for the quizzes.
 However, for this first section *there will be no late penalty*.
 
 * [Introduction to the class]({% post_url /modules/Introduction/2000-02-01-intro %})
-* [Security and computer architecture]({% post_url /modules/Introduction/2000-03-01-security %})
 * [Current Computing Technology]({% post_url /modules/Introduction/2000-04-01-technology %})
 * [Computer System Evaluation]({% post_url /modules/Introduction/2000-05-01-evaluation %})
 
