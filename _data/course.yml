@@ -1,3 +1,3 @@
-title: "ECS 154B: Computer Architecture"
-description: "UC Davis Computer Architecture course offered by Jason Lowe-Power Winter Quarter 2021"
-modules: ["Introduction", "Processor Architecture", "Memory Architecture", "Parallel Architecture"]
+title: "ECS 154B/201A: Computer Architecture"
+description: "UC Davis Computer Architecture course offered by Jason Lowe-Power Winter Quarter 2022"
+modules: ["Introduction", "Processor Architecture", "Memory Architecture", "Parallel Architecture", "DINO CPU", "gem5"]
