@@ -107,7 +107,7 @@ In your report, answer: Which one should we go for? Provide statistical evidence
 ## Submission
 
 1. Create an archive (.zip, .gz, or .tgz) of the following files:
-    a. A file named daxpy.cpp which is used for testing. This file should also include the pseudo-instructions (m5_dump_reset_stats()) as asked in part 2.  Also provide a file daxpy.s with the fragment of the generated assembly code as asked for in [Step II](#step-ii).
+    a. A file named daxpy.cpp which is used for testing. This file should also include the pseudo-instructions (m5_dump_reset_stats()) as asked in [Step II](#step-ii).  Also provide a file daxpy.s with the fragment of the generated assembly code as asked for in [Step II](#step-ii).
     b. Any Python files you used to run your simulations.
     c. stats.txt and config.ini files for all the simulations, appropriately named to convey which file is from which run.
     d. The Makefile you used to compile your benchmark.
