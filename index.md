@@ -6,7 +6,7 @@ title: Computer Architecture
 
 ## Welcome to Computer Architecture!
 
-** UC Davis: ECS 154B and ECS 201A**
+**UC Davis: ECS 154B and ECS 201A**
 
 You will find all of the lecture videos, quizzes, and extra information here.
 
@@ -14,9 +14,10 @@ For more information on the class, see [the syllabus]({{'syllabus' | relative_ur
 
 The class is broken into four main components: [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}), [Processor Architecture]({{'modules/processor architecture/index/' | relative_url}}), [Memory Architecture]({{'modules/memory architecture/index/' | relative_url}}), and [Parallel Architecture]({{'modules/parallel architecture/index/' | relative_url}}).
 
-All lecture videos will be available on this website and on [Aggie video](https://video.ucdavis.edu/playlist/details/1_iv5c6wbw).
+Lecture will be *in-person* except for the first week, which will be on zoom.
+All lecture videos will be available on this website and on [Aggie video]().
 You are responsible for the information in both the videos and found in these pages.
-All notes can be found in the [One Note notebook](https://ucdavis365-my.sharepoint.com/:o:/g/personal/jlowepower_ucdavis_edu/EpvsyzTRfnpJoN8rUDnWDSIBTdZenG15a-gExSwGLLJliw?e=rcteh2).
+All notes can be found in the [One Note notebook]().
 
 The information here is subject to change, especially the parts later in the quarter.
 
@@ -50,7 +51,7 @@ However, for this first section *there will be no late penalty*.
 * [Instruction-level parallelism]({{"/modules/processor architecture/ilp/" | relative_url}})
 * [Processor architecture summary]({{"/modules/processor architecture/summary/" | relative_url}})
 
-**Test on 2/8**
+**Test on 2/4**
 
 ### [Memory System Architecture]({{"/modules/memory architecture/index/" | relative_url}}) (About three weeks: 2/10-3/3)
 
@@ -59,15 +60,15 @@ However, for this first section *there will be no late penalty*.
 * [Virtual memory]({{"/modules/memory architecture/virtual/" | relative_url}})
 * [Memory architecture summary]({{"/modules/memory architecture/summary/" | relative_url}}) ([Assignment 4](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-4.html) Due 2/28)
 
-**Test on 3/5**
-
 ### [Parallel Architectures]({{"/modules/parallel architecture/index/" | relative_url}}) (About two weeks: 3/5-3/12)
 
 * [Parallel systems' performance]({{"/modules/parallel architecture/performance/" | relative_url}})
 * [Parallel architectures and programming]({{"/modules/parallel architecture/architectures/" | relative_url}}) ([Assignment 5](https://jlpteaching.github.io/dinocpu-wq21/assignments/lab5/assignment5.html) Due 3/12)
 
+**Final exam on 3/14**
+
 ## Calendar
 
-Calendar view available [here](https://trello.com/b/BEmhWelG/ecs-154b-wq2021/calendar).
+Calendar view available [here](https://trello.com/b/STcHN7zh/ecs-154b-201a-wq22/calendar).
 
-<iframe class="trello" src="https://trello.com/b/BEmhWelG.html" height="800"></iframe>
+<iframe class="trello" src="https://trello.com/b/STcHN7zh.html" height="800"></iframe>
