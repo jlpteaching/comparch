@@ -10,16 +10,18 @@ toc: true
 
 ### Time and Location
 
-*Lecture*: **ONLINE**
+*Lecture*: Everson 176. M/W/F 10:00am - 10:50am.
 
-All lectures will be conducted asynchronously via recorded video.
-Videos for the next week will normally be available at the end of the previous week.
-See the [class materials]({{'/' | relative_url}}) for all of the lecture videos.
+*154B Discussion*: Wellman 202. Friday 11:00 - 11:50am.
 
-*Discussion*: **ONLINE**. See [Discussion](#discussion) for more information.
+*201A Discussion*: Hart 1150. Wednesday 11:00 - 11:50am.
 
-Discussion will take place online via Zoom.
-See the [Discussion section](#discussion) of the syllabus for more details.
+#### Online first week
+
+**For the first week** the class will be online.
+We will use the zoom room linked below.
+
+Zoom link: <https://ucdavis.zoom.us/j/97813864572>
 
 ### Instructor
 
@@ -34,15 +36,15 @@ For class-wide questions (e.g., anything more than one person might be intereste
 
 #### Office hours
 
-[*Office Hours*](https://discord.com/channels/791087361273757726/791101824496697375): Wednesdays from 9:30-10:30, or by appointment.
+*Office Hours*: Mondays 11:00 - 11:50am (in person) and Thursdays 4:10 - 5:00pm (Zoom).
+
+*Office Location*: Kemper 3049.
 
 These office hours can be used to discuss anything you would like.
 The discussion topic doesn't have to be class related or even computer architecture related.
 If you need to discuss something in private, let me know (e.g., via chat on zoom) and I can create a waiting room for others while we talk privately.
 
-*Office Location*: Kemper 3049.
-
-*Online office*: [Zoom link](https://ucdaviscoe.zoom.us/my/jlowepower) (<https://ucdaviscoe.zoom.us/my/jlowepower>).
+*Online office*: [Zoom link](https://ucdavis.zoom.us/my/jlowepower) (<https://ucdavis.zoom.us/my/jlowepower>).
 I'll be connected on Zoom during in person office hours.
 
 Please suggest a meeting time when you email me for an appointment.
@@ -66,25 +68,6 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 *Office Hours Time*:
 
 *Office Location*:
-
-### Discussion
-
-
-
-#### Discussion times and locations
-
-
-
-#### Discussion etiquette
-
-We've now all had some experience with participating in remote meetings.
-However, just as a quick reminder below are some common etiquette ideas that I've found work well when participating in remote meetings.
-
-* **Be patient.** Remote meetings introduce communication *latency* and *synchronization* issues (things we'll be learning about this this class, BTW). Please be patient with everyone. This often means pausing for longer than you think is necessary when talking, putting up with minor annoyances (e.g., someone interrupting you), and putting up with poor connections.
-* **Mute your microphone unless you are speaking.** All too often there is feedback between microphones and speakers. Often, you can't tell that it's your computer that's causing feedback issues for everyone else. Also, I've experienced other people in the local environment causing distractions when they don't mean (e.g., my cat likes to meow at me while I'm talking sometimes).
-* **(Try to) Enable video.** If your bandwidth supports it and you have a webcam, everyone will be more engaged if you can see each others' faces. Using the "gallery view" on zoom allows you to see everyone at once. The option is in the upper right (not speaker view). If you're experiencing lag or poor connection, you can disable video to try to improve your experience.
-* **Use the text channel.** If you find that you can't get a word in edgewise because others are dominating the conversation, then type it! I will be watching the chat whenever we're in discussions or office hours.
-* **Stay engaged.** Don't open up other programs/internet/reddit, etc.
 
 ## Class Resources
 
