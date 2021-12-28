@@ -1,6 +1,5 @@
 ---
 title: Current Computing Technology
-discussion: 791101292319735848
 ---
 
 ![XKCD comic](https://imgs.xkcd.com/comics/log_scale.png)
@@ -25,15 +24,6 @@ However, it's great overview of the past, present, and future of the field of co
 We will come back again and again to the themes presented in this lecture.
 
 <iframe width="608" height="402" src="https://www.youtube.com/embed/3LVeEjsn8Ts" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-{% include prompt.html content="
-What surprised you the most in the Turing Lecture?
-
-What questions do you have?
-The audience was mostly computer architecture researchers, so I'm sure there are many things that didn't make sense and/or didn't have enough context.
-I'm happy to go into more depth on anything!
-"
-%}
 
 ## Computing technology past to present
 
@@ -69,11 +59,6 @@ Now that we've discussed Moore's Law and Dennard Scaling, I want to call your at
 Hennessy talked about a paper called ["There's Plenty of Room at the Top"](https://science.sciencemag.org/content/368/6495/eaam9744).
 If you're interested to read more, you can download the [PDF](https://science.sciencemag.org/content/368/6495/eaam9744/tab-pdf) if you log into the Campus VPN.
 
-{% include prompt.html content="
-Why do you think Python matrix multiply is over 60,000x slower than it could be?
-Why would the Python developers do such a bad job?
-" %}
-
 ## Energy and Power of CMOS Devices
 
 {% include reading.html section="Sections 1.7, 1.8" %}
@@ -88,15 +73,6 @@ Now that we have an idea of what contributes to the power dissipation of devices
 This video talks about how power and energy relate, how transistors work, and brings in how this caused the end of Moore's Law
 
 {% include video.html id="1_tlwrtx1k" %}
-
-{% include prompt.html content="
-What is the number of cores and frequency of the chip in your laptop or phone?
-Is it 'faster' or 'slower' than the high-performance chips in 2010 with 8 cores and running at 3 GHz?
-
-What about today's highest performance chips?
-How do they compare?
-"
-%}
 
 ## **QUIZ** CMOS Energy, Power, and Moore's Law
 
