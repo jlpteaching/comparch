@@ -14,15 +14,17 @@ Modified for ECS 201A, Winter 2022.
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Step I](#step-i)
-* [Step II](#step-ii)
-* [Step III](#step-iii)
-* [Step IV](#step-iv)
-* [Submission](#submission)
-* [Grading](#grading)
-* [Academic misconduct reminder](#academic-misconduct-reminder)
-* [Hints](#hints)
+- [ASSIGNMENT 2 // DUE 11:59 PM SUNDAY, January 23RD 2022 (48 POINTS)](#assignment-2--due-1159-pm-sunday-january-23rd-2022-48-points)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Step I](#step-i)
+  - [Step II](#step-ii)
+  - [Step III](#step-iii)
+  - [Step IV](#step-iv)
+  - [Submission](#submission)
+  - [Grading](#grading)
+  - [Academic misconduct reminder](#academic-misconduct-reminder)
+  - [Hints](#hints)
 
 ## Introduction
 
@@ -66,10 +68,9 @@ int main()
 }
 ```
 
-Your first task is to compile this code statically and simulate it with gem5 using the *TimingSimple CPU. 
+Your first task is to compile this code statically and simulate it with gem5 using the *TimingSimple CPU*.
 
 In your report, report the breakup of instructions for different op classes -- and provide a brief analysis of the breakdown. For this, grep for statExecutedInstType in the stats.txt file (Note: there are also summary stats directly above the statExecutedInstType stats that you may find useful). You should also use the same two-level cache configuration as assignment1.
-
 
 ## Step II
 
@@ -81,12 +82,12 @@ Usually while carrying out experiments for evaluating a design, one would like t
 
 To learn how to reset the stats in gem5, you will edit the C++ code from the Step I to output and reset stats just before the start of the DAXPY loop and just after it. For this, include the file [m5op.h](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/include/gem5/m5ops.h) in the program (you will find this file in include/gem5/ directory of the gem5 repository). Use the function m5_dump_reset_stats() from this file in your program. This function outputs the statistical variables and then resets them. You can provide 0 as the value for both the delay and the period arguments. If you want to learn more about m5ops, [here](https://www.gem5.org/documentation/general_docs/m5ops/) is a good place to start. In particular, you will need to update your CFLAGS and LDFLAGS similarly to how the documentation does.
 
-Execute 'scons build/x86/out/m5' in the $GEM5_ROOT/util/m5/ directory. This will create a file named libm5.a (and a binary named m5) in $GEM5_ROOT/util/m5/build/x86/out. Link this library with the program for DAXPY (compile with g++, see above for CFLAGS and LDFLAGS updates). Now again simulate the program with the TimingSimple CPU. This time you should see three sets of statistics in the stats.txt file. 
+Execute `scons build/x86/out/m5` in the $GEM5_ROOT/util/m5/ directory. This will create a file named libm5.a (and a binary named m5) in $GEM5_ROOT/util/m5/build/x86/out. Link this library with the program for DAXPY (compile with g++, see above for CFLAGS and LDFLAGS updates). Now again simulate the program with the TimingSimple CPU. This time you should see three sets of statistics in the stats.txt file.
 
 In your report, report the breakup of instructions among different op classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to m5_dump_reset_stats() and ends with another call to m5_dump_reset_stats(), with the main DAXPY loop in between.
 
-
 ## Step III
+
 As the tutorial with assignment1 discussed, there are several different types of CPUs that gem5 supports: atomic, TimingSimple, out-of-order, in-order and KVM. Let's talk about the timing and in-order CPUs. The TimingSimple CPU executes each arithmetic instruction in a single cycle, but requires multiple cycles for memory accesses. Also, it is not pipelined. So only a single instruction is being worked upon at any time. The in-order CPU (also known as MinorCPU) executes instructions in a pipelined fashion with the following pipe stages: fetch1, fetch2, decode and execute. Remember, as discussed in assignment1, you must add MinorCPU to the command line to get it to compile.
 
 Especially if you didn't already for assignment1, take a look at the file MinorCPU.py. In the definition of MinorFU, the class for functional units, we define two quantities opLat and issueLat. From the comments provided in the file, understand how these two parameters are to be used. Also note the different functional units that are instantiated as defined in class MinorDefaultFUPool.
@@ -102,7 +103,6 @@ You can find a skeleton file that extends the minor CPU [here](http://pages.cs.w
 The Minor CPU has by default two integer functional units as defined in the file MinorCPU.py (ignore the Multiplication and the Division units). Assume our original Minor CPU design requires 2 cycles for integer functions and 4 cycles for floating point functions. In our upcoming Minor CPU, we can halve either of these latencies. 
 
 In your report, answer: Which one should we go for? Provide statistical evidence obtained through simulations.
-
 
 ## Submission
 
@@ -146,4 +146,3 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 * Start early! There is a learning curve for gem5, so start early and ask questions on Discord and in discussion.
 * If you need help, come to office hours for the TA, or post your questions on Campuswire.
-
