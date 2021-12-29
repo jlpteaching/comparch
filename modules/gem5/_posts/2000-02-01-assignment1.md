@@ -14,31 +14,33 @@ Modified for ECS 201A, Winter 2022.
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Step I: Compile gem5](#step-i-compile-gem5)
-* [Step II: gem5 book, Part I](#step-ii-gem5-book-part-i)
-* [Step III: Write an Interesting Application](#step-iii-write-an-interesting-application)
-* [Step IV: Using gem5](#step-iv-using-gem5)
-* [Step V: Analyzing Simulated Data](#step-v-analyzing-simulated-data)
-* [Submission](#submission)
-* [Grading](#grading)
-* [Academic misconduct reminder](#academic-misconduct-reminder)
-* [Hints](#hints)
+- [ASSIGNMENT 1 // DUE 11:59 PM SUNDAY, January 16TH 2022 (40 POINTS)](#assignment-1--due-1159-pm-sunday-january-16th-2022-40-points)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Step I: Compile gem5](#step-i-compile-gem5)
+  - [Step II: gem5 book, Part I](#step-ii-gem5-book-part-i)
+  - [Step III: Write an Interesting Application](#step-iii-write-an-interesting-application)
+  - [Step IV: Using gem5](#step-iv-using-gem5)
+  - [Step V: Analyzing Simulated Data](#step-v-analyzing-simulated-data)
+  - [Submission](#submission)
+  - [Grading](#grading)
+  - [Academic misconduct reminder](#academic-misconduct-reminder)
+  - [Hints](#hints)
 
 ## Introduction
 
-You should do this assignment on your own, although you are welcome to talk to classmates in person or on Campuswire about any issues you may have encountered. The standard late assignment policy applies -- you may submit up to 1 day late with a 10% penalty.
+You should do this assignment on your own, although you are welcome to talk to classmates in person or on Campuswire about any issues you may have encountered. The standard late assignment policy applies.
 
-For this assignment, you will go through the Learning gem5 book you were tasked to read the first three chapters of on Monday, 01/04/2022. This book and most of this assignment were written and designed by Prof. Jason Lowe-Power. Specifically, for this assignment you should only need Part I of the Learning gem5 book. Although the tutorial is a work-in-progress and constantly evolving, it has been tested fairly heavily by several collaborators. Nevertheless, if you believe you've found a bug or a typo, please post on Campuswire. You can ignore the ARM and default configuration script sub-sections if you would like to, although they may be useful for you for your course project, so it may be worth completing nonetheless.
+For this assignment, you will go through the Learning gem5 book you were tasked to read the first three chapters of on Wednesday, 01/11/2022. This book and most of this assignment were written and designed by Prof. Jason Lowe-Power. Specifically, for this assignment you should only need Part I of the Learning gem5 book. Although the tutorial is a work-in-progress and constantly evolving, it has been tested fairly heavily by several collaborators. Nevertheless, if you believe you've found a bug or a typo, please post on Campuswire. You can ignore the ARM and default configuration script sub-sections if you would like to, although they may be useful for you for future assignments.
 
 ## Step I: Compile gem5
-Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. We strongly suggest that you use Linux or the CSIF machines for this assignment. Furthermore, we strongly recommend you use the stable branch, as it is the most stable public branch of gem5.
+Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. We strongly suggest that you use Linux or the CSIF machines for this assignment. Furthermore, we strongly recommend you use the stable branch (v21.2), as it is the most stable public branch of gem5.
 
 **Note:** You do not need to use sudo to install git, scons, and other components like the tutorial does -- the CSIF machines should have all these installed already.
 
 **NOTE:** There are two small issues with the compilation command in the Learning gem5 book. First, the X86 build does not compile the MinorCPU model by default. Use the following command instead:
 ```
-python3 scons build/X86/gem5.opt -jX CPU_MODELS=AtomicSimpleCPU,TimingSimpleCPU,O3CPU,MinorCPU
+python3 scons build/X86/gem5.opt -j<X> CPU_MODELS=AtomicSimpleCPU,TimingSimpleCPU,O3CPU,MinorCPU
 ```
 
 Here we recommend setting X to the number of cores in your system plus one -- gem5 takes a long time to compile, so you should use as many threads as possible to speed up compilation!
@@ -59,20 +61,20 @@ For this assignment, the most important parts of the Learning gem5 book are:
 * adding some complexity to your first script by adding a two-level cache hierarchy, and
 * how to parse the gem5 output and understand the statistics.
 
-However, you should also go through the rest of Part I because it will provide you with valuable background information on how gem5 works and this information may prove useful later in the quarter (e.g., for your course project and later homework assignments). You may also find the [YouTube recording of Part I](https://www.youtube.com/watch?v=fD3hhNnfL6k) of the Learning gem5 tutorial useful. Additionally, although the tutorial has links to the final scripts at the end of each section, it's in your best interest to walk through the tutorial step-by-step and create the scripts yourself. Finally, note that the ticks you see for your "hello world" program should be different from what the tutorial shows -- for example, we got 56435000 ticks for the hello world application running with the default two level cache file.
+However, you should also go through the rest of Part I because it will provide you with valuable background information on how gem5 works and this information may prove useful later in the quarter (e.g., for later homework assignments). You may also find the [YouTube recording of Part I](https://www.youtube.com/watch?v=fD3hhNnfL6k) of the Learning gem5 tutorial useful. Additionally, although the tutorial has links to the final scripts at the end of each section, it's in your best interest to walk through the tutorial step-by-step and create the scripts yourself. Finally, note that the ticks you see for your "hello world" program should be different from what the tutorial shows -- for example, we got 56435000 ticks for the hello world application running with the default two level cache file.
 
 ## Step III: Write an Interesting Application
+
 Write a simple C++ program that implements the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) and outputs one single integer at the end: the number of prime numbers <= the input argument, which you will pass in on the command line. If you are unfamiliar with this algorithm, see the above link. Compile your program as a static binary. For example, if the input is 1,000,000 the output should be: 78498.
 
-
-
 ## Step IV: Using gem5
+
 Next, you will run your application in gem5 with the configuration script you made in the [Step II](#step-ii-gem5-book-part-i). In this step, you will change the CPU model, CPU frequency, and memory configuration while testing your sieve program. Moreover, you will also describe the changes in performance the difference configurations have.
 
 1. Run your sieve program in gem5
 
     Run your sieve program in gem5 instead of the 'hello' example. You will need to change the location of the binary in your configuration file from the location of the 'hello' binary to the location of your sieve binary. Do not use se.py or any of the other, existing configuration scripts. Use the one with two levels of cache that you made in Step 2. Each run of the simulator will produce a statistics file as an output -- save the statistics files generated from each run. 
-    
+
     **Warning: by default, gem5 will write the output file to the same folder (m5out) every time. Make sure to move your output file before each subsequent run.**
 
     **Choose an appropriate input size.** You should use something large enough that the application is interesting, but not too large that gem5 takes more than 10 minutes to execute a simulation. We found that an input size of 1,000,000 takes about 5 minutes, which is a reasonable compromise.
