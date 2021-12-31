@@ -19,11 +19,18 @@ For more information on the class, see [the syllabus]({{'syllabus' | relative_ur
 The class is broken into four main components: [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}), [Processor Architecture]({{'modules/processor architecture/index/' | relative_url}}), [Memory Architecture]({{'modules/memory architecture/index/' | relative_url}}), and [Parallel Architecture]({{'modules/parallel architecture/index/' | relative_url}}).
 
 Lecture will be *in-person* except for the first week, which will be on zoom.
-All lecture videos will be available on this website and on [Aggie video]().
+All lecture videos will be available on this website and on [Aggie video](https://video.ucdavis.edu/playlist/details/1_zzcb3dc7).
 You are responsible for the information in both the videos and found in these pages.
-All notes can be found in the [One Note notebook]().
+All notes can be found in the [One Note notebook](https://ucdavis365-my.sharepoint.com/:o:/g/personal/jlowepower_ucdavis_edu/Em7MhcRe-_1Gj-mFtdaMNFIBsZ0KXwJdT76WYsEu2ULQ1A?e=GlvRPY/).
 
 The information here is subject to change, especially the parts later in the quarter.
+
+## Important links
+
+* [Syllabus]({{'syllabus' | relative_url}})
+* [OneNote notebook with class notes](https://ucdavis365-my.sharepoint.com/:o:/g/personal/jlowepower_ucdavis_edu/Em7MhcRe-_1Gj-mFtdaMNFIBsZ0KXwJdT76WYsEu2ULQ1A?e=GlvRPY/)
+* [Campuswire discussions](https://campuswire.com/c/G03D9D0A1/)
+* [Lecture videos](https://video.ucdavis.edu/playlist/details/1_zzcb3dc7)
 
 ## Detailed Class Outline
 
