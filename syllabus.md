@@ -281,10 +281,7 @@ If you don't attempt the first try, you can make at most 80% of the points.
 (Note: I'm trying something new with Canvas here... hopefully it works out.)
 
 **ECS 201A**: Instead of quizzes you will write paper reviews.
-You will have a two day grace period to update or turn in the review.
-A review turned in late (not updating a previous submission) can get a maximum of 80%.
-An updated review can receive 100%.
-We will grade the last review you turned in.
+You will have a two day grace period to update or turn in the review with a 20% penalty.
 
 ### Tests
 
