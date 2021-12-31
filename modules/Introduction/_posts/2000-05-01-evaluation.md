@@ -31,12 +31,6 @@ Now, let's talk about the difference between latency and bandwidth a bit more.
 
 {% include video.html id="0_jhry1bp4" %}
 
-{% include prompt.html content="
-If latency is a fundamental physical constraint, how can we every make computers faster?!
-
-There are two things we can do, and this is what computer architecture is all about!
-" %}
-
 ## Explaining Computer System Performance
 
 {% include reading.html section="Section 1.6" %}
@@ -51,7 +45,9 @@ This video shows an example of running a benchmark and applying the Iron Law.
 
 {% include video.html id="0_f53fz5rk" %}
 
-{% include quiz.html id="105248" %}
+## **QUIZ**  Iron Law
+
+See canvas for the quiz!
 
 ## Comparing Systems with Speedup
 
@@ -59,12 +55,6 @@ This video describes how to compare systems by using the *speedup* metric.
 
 {% include video.html id="0_pvfjbkk5" %}
 
-{% include prompt.html content="
-Speedup is a metric to compare the *performance* of two systems, but there are other things we might want to compare as well.
-
-Can you think of other comparison metrics which compare things other than performance?
-"%}
-
 ## **QUIZ** Performance and Evaluation
 
-{% include quiz.html id="105390" %}
+See canvas for the quiz!

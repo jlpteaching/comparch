@@ -76,4 +76,4 @@ This video talks about how power and energy relate, how transistors work, and br
 
 ## **QUIZ** CMOS Energy, Power, and Moore's Law
 
-{% include quiz.html id="105243" %}
+See canvas for the quiz!
