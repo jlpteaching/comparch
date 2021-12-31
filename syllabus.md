@@ -186,20 +186,21 @@ See also [student support](#student-support).
 
 | Category      | Percentage | How to get points? |
 |---------------|------------|--------------------|
-| Participation | 20%        | Attend synchronous discussions, participating in discussion site, attending office hours |
 | Project (5x)  | 40%        | Gradescope will auto-grade most of the project |
-| Quizzes       | 20%        | Quizzes will be on canvas |
-| Tests         | 20%        | Take the test |
+| Quizzes       | 25%        | Quizzes will be on canvas. One per week. |
+| Test 1        | 15%        | Take the test |
+| Test 2 (final)| 20%        | Take the test |
 
 #### ECS 201A Grading
 
 | Category      | Percentage | How to get points? |
 |---------------|------------|--------------------|
-| Participation | 20%        | Attend synchronous discussions, participating in discussion site, attending office hours |
-| Project (5x)  | 40%        | Gradescope will auto-grade most of the project |
-| Quizzes       | 20%        | Quizzes will be on canvas |
-| Tests         | 20%        | Take the test |
+| Project (5x)  | 40%        | Project reports + gradescope autograding |
+| Paper reviews | 25%        | Reviews will be posted on canvas. One per week. |
+| Test 1        | 15%        | Take the test |
+| Test 2 (final)| 20%        | Take the test |
 
+{% comment %}
 ### Participation
 
 I want to encourage participation in my classes.
@@ -222,29 +223,40 @@ Each week a thread will be posted with a discussion topic to help generate subst
 Finally, you can also earn points by attending and participating in office hours.
 For each office hour you attend (and we have a substantive conversation), you can earn one participation point up to 5 points.
 
+{% endcomment %}
+
 ### Projects
 
 #### ECS 154B Project: DINO CPU
 
-You will complete five project-based assignments throughout this course.
+You will complete [five project-based assignments]({{"/modules/dino cpu/index/" | relative_url}}) throughout this course.
 The assignments can be found via the links below.
 All together, the labs are worth 40% of your final grade.
-Each lab is weighted based on the amount of time you are given to complete the lab.
 
 Labs are due at 11:59 PM on the date listed below.
 
-* [Assignment 1](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-1.html) (2 weeks, 8%). Due 1/18.
-* [Assignment 2](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-2.html) (1 weeks, 8%). Due 1/25.
-* [Assignment 3.1](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-3.html) (1 week, 4%). Due 2/5.
-* [Assignment 3.2](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-3.html#part-ii-implementing-forwarding) (2 week, 4%). Due 2/14.
-* [Assignment 4](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-4.html) (2 weeks, 8%). Due 2/28.
-* [Assignment 5](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-5.html) (2 weeks, 8%). Due 3/12.
+* [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/17.
+* [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due 1/23.
+* [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline** 1/30.
+* [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due 2/6.
+* [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due 2/21.
+* [Assignment 5]({{"/modules/dino cpu/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/6.
 
 #### ECS 201A Projects: gem5
 
-Fill this in!
+You will complete five project-based assignments throughout this course.
+The assignments can be found via the links below.
+All together, the labs are worth 40% of your final grade.
 
-#### Late Assignments
+Labs are due at 11:59 PM on the date listed below.
+
+* [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/17.
+* [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) (1 week,  8%). Due 1/23.
+* [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) (2 weeks, 8%). Due 2/6.
+* [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) (2 weeks, 8%). Due 2/21.
+* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/6.
+
+#### Late Projects
 
 If you turn in a project assignment late, you will lose points.
 The percentage of points you will lose is given by the equation below.
@@ -259,35 +271,27 @@ Rest assured, we will go through and double check all of the submission times ;)
 
 ### Quizzes
 
-There will be many quizzes throughout the quarter.
-The purpose of these quizzes is to make sure you are keeping up with the lectures and you are learning the key ideas.
-Roughly, there will be one after every video.
-Expect 2-4 quizzes per week.
+There will be one canvas quiz each week (except for the test week).
+Each quiz is worth 3% of your total grade.
+You'll have two chances on the quizzes: The first will be due before discussion and is worth 100%.
+The second chance is due 2 days later and you can retake the quiz to improve your score.
+If you take the first version of the quiz, then you can make 100% on the second try.
+If you don't attempt the first try, you can make at most 80% of the points.
 
-The quizzes are open book/notes/internet.
-However, you *must* take the quiz on your own, and you cannot work together on the quizzes.
+(Note: I'm trying something new with Canvas here... hopefully it works out.)
 
-You are allowed any number of attempts on the quiz, and you will see which questions you get wrong each time you take it.
-
-Quizzes are due about one week after the videos are released to give you ample time to watch the lecture video and take the quiz.
-They are due at the time I expect you will finish watching the videos.
-This is roughly when the lecture would have occurred if we were in person.
-
-Due to the extenuating circumstances of this entire quarter, there will be no late penalty for any quiz.
-However, submissions for quizzes will close one week after the due date.
-
-Grades for quizzes will be released at the due date, and you can resubmit any questions you got wrong for full credit.
-I strongly suggest taking the quiz before the due date and going back a couple of hours or days later to find out what you got wrong.
-This will help with your comprehension.
+**ECS 201A**: Instead of quizzes you will write paper reviews.
+You will have a two day grace period to update or turn in the review.
+A review turned in late (not updating a previous submission) can get a maximum of 80%.
+An updated review can receive 100%.
+We will grade the last review you turned in.
 
 ### Tests
 
-There will be two tests this quarter which together count for only 20% of your grade.
-The tests will be after each of the two main modules, [processor architecture](), [memory architecture](../materials/memory/index.md), and [parallel architecture](../materials/parallel/index.md).
+There will be two tests this quarter which together count for 35% of your grade.
+There will be a test after the [processor architecture]({{"/modules/processor architecture/index/" | relative_url}}) module and a final after the [memory architecture]({{"/modules/memory architecture/index/" | relative_url}}), and [parallel architecture]({{"/modules/parallel architecture/index/" | relative_url}}) modules.
 
-The tests will be administered online.
-You will be given a time limit of 2 hours to take the tests and a window of 1 day to take the test.
-If there is a major internet outage (more than 2 hours during the workday) within 24 hours before the test window or the 24 hours of the test window, the window will be *extended* by 24 hours.
+The tests will be administered *in person* (unless things change...).
 
 ## Textbooks
 
