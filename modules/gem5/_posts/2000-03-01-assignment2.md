@@ -144,5 +144,5 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 ## Hints
 
-* Start early! There is a learning curve for gem5, so start early and ask questions on Discord and in discussion.
+* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
 * If you need help, come to office hours for the TA, or post your questions on Campuswire.
