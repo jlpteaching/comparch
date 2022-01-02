@@ -34,16 +34,26 @@ You should do this assignment on your own, although you are welcome to talk to c
 For this assignment, you will go through the Learning gem5 book you were tasked to read the first three chapters of on Wednesday, 01/11/2022. This book and most of this assignment were written and designed by Prof. Jason Lowe-Power. Specifically, for this assignment you should only need Part I of the Learning gem5 book. Although the tutorial is a work-in-progress and constantly evolving, it has been tested fairly heavily by several collaborators. Nevertheless, if you believe you've found a bug or a typo, please post on Campuswire. You can ignore the ARM and default configuration script sub-sections if you would like to, although they may be useful for you for future assignments.
 
 ## Step I: Compile gem5
-Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. We strongly suggest that you use Linux or the CSIF machines for this assignment. Furthermore, we strongly recommend you use the stable branch (v21.2), as it is the most stable public branch of gem5.
+Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. Furthermore, we strongly recommend you use the stable branch (v21.2), as it is the most stable public branch of gem5. We strongly suggest that you use a local Linux machine or the CSIF machines for this assignment. If you use your personal Linux machine, you can go through the entire Getting Started pages of the Learning gem5 book to prepare all the dependencies required for gem5. 
 
-**Note:** You do not need to use sudo to install git, scons, and other components like the tutorial does -- the CSIF machines should have all these installed already.
+**IMPORTANT NOTE: If you decided to use the CSIF machines, please follow the steps descibed below.**
+
+You do not need to use sudo to install git, gcc, and other components like the tutorial does in [Building gem5, Requirements for gem5](https://www.gem5.org/documentation/learning_gem5/part1/building/) section. Among the non-optional components required by gem5, the CSIF machines have the git, gcc, python3 installed already. You are only required to install the `SCons` for the local user by this command:
+```
+python3 -m pip install scons
+```
+
+On CSIF machines a new pip package will be installed in `$HOME/.local`. Thus, once you successfully installed the `SCons` package for your user, everytime you needed to compile gem5 on a CSIF machine, you should use the following command:
+```
+python3 $HOME/.local/bin/scons build/X86/gem5.opt -j$(nproc)
+```
+
+Note that each CSIF machine has a different number of cores. Here we recommend using `-j$(nproc)` to use the total number of cores available in the machine you are connected to. gem5 takes a long time to compile, so you should use as many threads as possible to speed up compilation! It can take upto half an hour with 8 cores or 15 mins with 16 cores on CSIF machines.
 
 **NOTE:** There are two small issues with the compilation command in the Learning gem5 book. First, the X86 build does not compile the MinorCPU model by default. Use the following command instead:
 ```
-python3 scons build/X86/gem5.opt -j<X> CPU_MODELS=AtomicSimpleCPU,TimingSimpleCPU,O3CPU,MinorCPU
+python3 scons build/X86/gem5.opt -j$(nproc) CPU_MODELS=AtomicSimpleCPU,TimingSimpleCPU,O3CPU,MinorCPU
 ```
-
-Here we recommend setting X to the number of cores in your system plus one -- gem5 takes a long time to compile, so you should use as many threads as possible to speed up compilation!
 
 Second, you will need to uncomment the following system.workload line:
 
