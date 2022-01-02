@@ -55,11 +55,11 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 #### ECS 201A
 
-**\<name\>** (<email>)
+**Maryam Babaie** (<mbabaie@ucdavis.edu>)
 
-*Office Hours Time*:
+*Office Hours Time*: TBA
 
-*Office Location*:
+*Office Location*: TBA
 
 #### ECS 154B
 
