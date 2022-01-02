@@ -63,11 +63,11 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 #### ECS 154B
 
-**\<name\>** (<email>)
+**Hoa Nguyen** (<hoanguyen@ucdavis.edu>)
 
-*Office Hours Time*:
+*Office Hours Time*: TBD
 
-*Office Location*:
+*Office Location*: TBD
 
 ## Class Resources
 
