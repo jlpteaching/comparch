@@ -123,18 +123,18 @@ Next, you will run your application in gem5 with the configuration script you ma
     |                 |                     |                     |
     |-----------------|---------------------|---------------------|
     | CPU Model       | CPU Frequency (GHz) | Memory              |
-    | TimingSimpleCPU	| 1                   | DDR3_1600_8x8       |       
-    | TimingSimpleCPU	| 2	                  | DDR3_1600_8x8       |
-    | TimingSimpleCPU	| 4	                  | DDR3_1600_8x8       |
-    | MinorCPU        | 1	                  | DDR3_1600_8x8       |
-    | MinorCPU	      | 2	                  | DDR3_1600_8x8       |
-    | MinorCPU	      | 4	                  | DDR3_1600_8x8       |
-    | TimingSimpleCPU	| 4	                  | DDR3_2133_8x8       |
-    | TimingSimpleCPU	| 4	                  | LPDDR2_S4_1066_1x32 |
-    | TimingSimpleCPU	| 4	                  | HBM_1000_4H_1x64    |
-    | MinorCPU	      | 4	                  | DDR3_2133_8x8       |
-    | MinorCPU	      | 4	                  | LPDDR2_S4_1066_1x32 |
-    | MinorCPU	      | 4	                  | HBM_1000_4H_1x64    |
+    | TimingSimpleCPU | 1                   | DDR3_1600_8x8       |       
+    | TimingSimpleCPU | 2	                | DDR3_1600_8x8       |
+    | TimingSimpleCPU | 4	                | DDR3_1600_8x8       |
+    | MinorCPU        | 1	                | DDR3_1600_8x8       |
+    | MinorCPU	      | 2	                | DDR3_1600_8x8       |
+    | MinorCPU	      | 4	                | DDR3_1600_8x8       |
+    | TimingSimpleCPU | 4	                | DDR3_2133_8x8       |
+    | TimingSimpleCPU | 4	                | LPDDR2_S4_1066_1x32 |
+    | TimingSimpleCPU | 4	                | HBM_1000_4H_1x64    |
+    | MinorCPU	      | 4	                | DDR3_2133_8x8       |
+    | MinorCPU	      | 4	                | LPDDR2_S4_1066_1x32 |
+    | MinorCPU	      | 4	                | HBM_1000_4H_1x64    |
 
 
 ## Step V: Analyzing Simulated Data
