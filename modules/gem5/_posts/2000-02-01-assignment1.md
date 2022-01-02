@@ -67,11 +67,11 @@ system.workload = SEWorkload.init_compatible(binary)
 ## Step II: gem5 book, Part I
 For this assignment, the most important parts of the Learning gem5 book are:
 
-* downloading and building gem5,
-* creating a simple configuration script,
-* how to run gem5,
-* adding some complexity to your first script by adding a two-level cache hierarchy, and
-* how to parse the gem5 output and understand the statistics.
+* [downloading and building gem5](https://www.gem5.org/documentation/learning_gem5/part1/building/),
+* [creating a simple configuration script](https://www.gem5.org/documentation/learning_gem5/part1/simple_config/),
+* [how to run gem5](https://www.gem5.org/documentation/learning_gem5/part1/example_configs/),
+* [adding some complexity to your first script by adding a two-level cache hierarchy](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/), and
+* [how to parse the gem5 output and understand the statistics](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/).
 
 However, you should also go through the rest of Part I because it will provide you with valuable background information on how gem5 works and this information may prove useful later in the quarter (e.g., for later homework assignments). You may also find the [YouTube recording of Part I](https://www.youtube.com/watch?v=fD3hhNnfL6k) of the Learning gem5 tutorial useful. Additionally, although the tutorial has links to the final scripts at the end of each section, it's in your best interest to walk through the tutorial step-by-step and create the scripts yourself. Finally, note that the ticks you see for your "hello world" program should be different from what the tutorial shows -- for example, we got 56435000 ticks for the hello world application running with the default two level cache file.
 
