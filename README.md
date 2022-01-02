@@ -4,7 +4,7 @@
 
 This repository contains the materials and website source for [Jason Lowe-Power](https://faculty.engineering.ucdavis.edu/lowepower/)'s ECS 154B offerings.
 
-See <https://jlpteaching.github.io/ECS154B/> for the webpage.
+See <https://jlpteaching.github.io/comparch/> for the webpage.
 
 ## Building the web site for local development
 
