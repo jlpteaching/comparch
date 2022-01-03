@@ -42,7 +42,7 @@ You do not need to use sudo to install git, gcc, and other components like the t
 python3 -m pip install scons
 ```
 
-On CSIF machines a new pip package will be installed in `$HOME/.local`. Thus, once you successfully installed the `SCons` package for your user, **everytime you needed to use scons** on a CSIF machine, you should use this format: **$HOME/.local/bin/scons**. For instance, you should use the following command to compile gem5:
+On CSIF machines a new pip package will be installed in `$HOME/.local`. Thus, once you successfully installed the `SCons` package for your user, **everytime you needed to use scons on a CSIF machine**, you should use this format: **$HOME/.local/bin/scons**. For instance, you should use the following command to compile gem5:
 ```
 python3 $HOME/.local/bin/scons build/X86/gem5.opt -j$(nproc)
 ```
