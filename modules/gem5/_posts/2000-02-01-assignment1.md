@@ -13,8 +13,6 @@ Modified for ECS 201A, Winter 2022.
 **Due on 01/17/2022 11:59 pm (PST)**: See [Submission](#submission) for details
 
 ## Table of Contents
-
-- [ASSIGNMENT 1 // DUE 11:59 PM SUNDAY, January 16TH 2022 (40 POINTS)](#assignment-1--due-1159-pm-sunday-january-16th-2022-40-points)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Step I: Compile gem5](#step-i-compile-gem5)
