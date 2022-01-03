@@ -13,9 +13,6 @@ Modified for ECS 201A, Winter 2022.
 **Due on 01/23/2022 11:59 pm (PST)**: See [Submission](#submission) for details
 
 ## Table of Contents
-
-- [ASSIGNMENT 2 // DUE 11:59 PM SUNDAY, January 23RD 2022 (48 POINTS)](#assignment-2--due-1159-pm-sunday-january-23rd-2022-48-points)
-  - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Step I](#step-i)
   - [Step II](#step-ii)
