@@ -54,16 +54,9 @@ Go through the Introduction and Getting Started pages of the Learning gem5 book.
     Each CSIF machine has a different number of cores. Here we recommend using `-j$(nproc)` to use the total number of cores available in the machine you are connected to. gem5 takes a long time to compile, so you should use as many threads as possible to speed up compilation! It can take upto half an hour with 8 cores or 15 mins with 16 cores on CSIF machines.
 
 
-**NOTE:** There are two small issues with the compilation command in the Learning gem5 book. First, the X86 build does not compile the MinorCPU model by default. Use the following command instead:
+**NOTE:** There is a small issues with the compilation command in the Learning gem5 book. First, the X86 build does not compile the MinorCPU model by default. Use the following command instead:
 ```
 python3 scons build/X86/gem5.opt -j$(nproc) CPU_MODELS=AtomicSimpleCPU,TimingSimpleCPU,O3CPU,MinorCPU
-```
-
-Second, you will need to uncomment the following system.workload line:
-
-**NOTE:** for gem5 V21 and beyond, uncomment the following line
-```
-system.workload = SEWorkload.init_compatible(binary)
 ```
 
 ## Step II: gem5 book, Part I
