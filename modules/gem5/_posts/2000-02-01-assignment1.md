@@ -145,7 +145,7 @@ After collecting all of the data from the previous step, analyze the statistics 
 
 2. Additionally, separate from the above archive, create a file named report.pdf that contains a short report with your observations and conclusions from the experiment, including answers to the above questions.
 
-3. Submit your archive and report on Canvas.
+3. Submit your archive and report on Gradescope.
 
 
 ## Grading
