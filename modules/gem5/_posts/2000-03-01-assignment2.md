@@ -80,7 +80,7 @@ Optional: you may find -fverbose-asm useful to include in your Makefile for this
 
 Usually while carrying out experiments for evaluating a design, one would like to look only at statistics for the portion of the code that is most important. This part of the code is also known as the region of interest. To look only at the region of interest, typically programs are annotated so that the simulator, on reaching the beginning of an annotated portion of the code, will carry out functions like create a checkpoint, output, and reset statistical variables. By doing this, it ensures that our stats are representative for the region of the code we care about, instead of mixing these stats in with the stats for parts we aren't focused on (e.g., generating the vectors in DAXPY).
 
-To learn how to reset the stats in gem5, you will edit the C++ code from the Step I to output and reset stats just before the start of the DAXPY loop and just after it. For this, include the file [m5op.h](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/include/gem5/m5ops.h) in the program (you will find this file in include/gem5/ directory of the gem5 repository). Use the function m5_dump_reset_stats() from this file in your program. This function outputs the statistical variables and then resets them. You can provide 0 as the value for both the delay and the period arguments. If you want to learn more about m5ops, [here](https://www.gem5.org/documentation/general_docs/m5ops/) is a good place to start. In particular, you will need to update your CFLAGS and LDFLAGS similarly to how the documentation does.
+To learn how to reset the stats in gem5, you will edit the C++ code from the [Step I](#step-i) to output and reset stats just before the start of the DAXPY loop and just after it. For this, include the file [m5op.h](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/include/gem5/m5ops.h) in the program (you will find this file in include/gem5/ directory of the gem5 repository). Use the function m5_dump_reset_stats() from this file in your program. This function outputs the statistical variables and then resets them. You can provide 0 as the value for both the delay and the period arguments. If you want to learn more about m5ops, [here](https://www.gem5.org/documentation/general_docs/m5ops/) is a good place to start. In particular, you will need to update your CFLAGS and LDFLAGS similarly to how the documentation does.
 
 Execute `scons build/x86/out/m5` in the $GEM5_ROOT/util/m5/ directory. This will create a file named libm5.a (and a binary named m5) in $GEM5_ROOT/util/m5/build/x86/out. Link this library with the program for DAXPY (compile with g++, see above for CFLAGS and LDFLAGS updates). Now again simulate the program with the TimingSimple CPU. This time you should see three sets of statistics in the stats.txt file.
 
@@ -114,7 +114,7 @@ In your report, answer: Which one should we go for? Provide statistical evidence
 
 2. Additionally, separate from the above archive, create a file named report.pdf that contains a short report (400 words) with answers to the above questions.
 
-3. Submit your archive and report to Canvas.
+3. Submit your archive and report to Gradescope.
 
 
 ## Grading
