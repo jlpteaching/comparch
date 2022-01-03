@@ -37,18 +37,17 @@ Go through the Introduction and Getting Started pages of the Learning gem5 book.
 
 You can remotely connect to the [CSIF](http://csifdocs.cs.ucdavis.edu/) machines. The tutorial on how to use them remotely is available [here](http://csifdocs.cs.ucdavis.edu/about-us/csif-general-faq#TOC-Can-I-remotely-login-to-the-CSIF-computers-). Always use the machines with green status as shown [here](http://iceman.cs.ucdavis.edu/cgi-bin/nagios3/status.cgi?servicegroup=all&style=overview).
 
-    You do not need to use sudo to install git, gcc, and other components like the tutorial does in [Building gem5, Requirements for gem5](https://www.gem5.org/documentation/learning_gem5/part1/building/) section. Among the non-optional components required by gem5, the CSIF machines have the git, gcc, python3 installed already. You are only required to install the `SCons` for the local user by this command:
+You do not need to use sudo to install git, gcc, and other components like the tutorial does in [Building gem5, Requirements for gem5](https://www.gem5.org/documentation/learning_gem5/part1/building/) section. Among the non-optional components required by gem5, the CSIF machines have the git, gcc, python3 installed already. You are only required to install the `SCons` for the local user by this command:
 ```
-    python3 -m pip install scons
-```
-
-
-    On CSIF machines a new pip package will be installed in `$HOME/.local`. Thus, once you successfully installed the `SCons` package for your user, **everytime you needed to use scons** on a CSIF machine, you should use this format: **$HOME/.local/bin/scons**. For instance, you should use the following command to compile gem5:
-```
-    python3 $HOME/.local/bin/scons build/X86/gem5.opt -j$(nproc)
+python3 -m pip install scons
 ```
 
-    Each CSIF machine has a different number of cores. Here we recommend using `-j$(nproc)` to use the total number of cores available in the machine you are connected to. gem5 takes a long time to compile, so you should use as many threads as possible to speed up compilation! It can take upto half an hour with 8 cores or 15 mins with 16 cores on CSIF machines.
+On CSIF machines a new pip package will be installed in `$HOME/.local`. Thus, once you successfully installed the `SCons` package for your user, **everytime you needed to use scons** on a CSIF machine, you should use this format: **$HOME/.local/bin/scons**. For instance, you should use the following command to compile gem5:
+```
+python3 $HOME/.local/bin/scons build/X86/gem5.opt -j$(nproc)
+```
+
+Each CSIF machine has a different number of cores. Here we recommend using `-j$(nproc)` to use the total number of cores available in the machine you are connected to. gem5 takes a long time to compile, so you should use as many threads as possible to speed up compilation! It can take upto half an hour with 8 cores or 15 mins with 16 cores on CSIF machines.
 
 
 **NOTE:** There is a small issues with the compilation command in the Learning gem5 book. First, the X86 build does not compile the MinorCPU model by default. Use the following command instead:
