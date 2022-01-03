@@ -36,7 +36,7 @@ For this assignment, you will go through the Learning gem5 book you were tasked 
 ## Step I: Compile gem5
 Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. Furthermore, we strongly recommend you use the stable branch (v21.2), as it is the most stable public branch of gem5. We strongly suggest that you use a local Linux machine or the CSIF machines for this assignment. If you use your personal Linux machine, you can go through the entire Getting Started pages of the Learning gem5 book to prepare all the dependencies required for gem5. 
 
-**IMPORTANT NOTE: If you decided to use the CSIF machines, please follow the steps descibed below, otherwise continue the next NOTE.**
+**IMPORTANT NOTE: If you decided to use the CSIF machines, please follow the steps descibed below, otherwise jump to the next NOTE.**
 
     You can remotely connect to the [CSIF](http://csifdocs.cs.ucdavis.edu/) machines. The tutorial on how to use them remotely is available [here](http://csifdocs.cs.ucdavis.edu/about-us/csif-general-faq#TOC-Can-I-remotely-login-to-the-CSIF-computers-). Always use the machines with green status as shown [here](http://iceman.cs.ucdavis.edu/cgi-bin/nagios3/status.cgi?servicegroup=all&style=overview).
 
