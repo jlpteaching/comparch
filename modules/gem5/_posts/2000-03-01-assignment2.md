@@ -81,6 +81,8 @@ To learn how to reset the stats in gem5, you will edit the C++ code from the [St
 
 Execute `scons build/x86/out/m5` in the $GEM5_ROOT/util/m5/ directory. This will create a file named libm5.a (and a binary named m5) in $GEM5_ROOT/util/m5/build/x86/out. Link this library with the program for DAXPY (compile with g++, see above for CFLAGS and LDFLAGS updates). Now again simulate the program with the TimingSimple CPU. This time you should see three sets of statistics in the stats.txt file.
 
+**NOTE**: If you're using CSIF machines, do not forget to use this format: **$HOME/.local/bin/scons** for scons.
+
 In your report, report the breakup of instructions among different op classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to m5_dump_reset_stats() and ends with another call to m5_dump_reset_stats(), with the main DAXPY loop in between.
 
 ## Step III
