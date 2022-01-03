@@ -325,7 +325,7 @@ The goal of this part of the assignment is to allow you to design your hardware 
 
 To get an idea of how you are going to implement this, it's a good idea to first draw your design on a piece of paper.
 It's such a good idea that we're going to make it mandatory, and you'll need to turn it in as part of your assignment.
-We've provided you with a [blank circuit diagram](/img/dinocpu/assignment-1-worksheet.pdf).
+We've provided you with a [blank circuit diagram]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}).
 Draw all of the wires and label which bits are on each wire.
 There are a few components that are greyed out that you will not need to use for the R-type instructions (except for the Control Unit's `wordinst`).
 These will be used in [Assignment 2]({{'modules/DINO CPU/assignment2' | relative_url}}), but you can ignore them for now.
@@ -339,7 +339,7 @@ We will be grading this diagram and looking for the following things:
 Figure 4.15 from Computer Organization and Design below is an example of what we are looking for.
 Notice how the instruction wire is broken into sub-components.
 
-![Figure 4.15](/img/dinocpu/fig-4-15.svg)
+![Figure 4.15]({{'img/dinocpu/fig-4-15.svg' | relative_url}})
 
 **Important**: The book shows the answer for 64-bit RISC-V (rv64i) and a slightly different CPU design.
 We are creating a 64-bit RISC-V CPU (rv64i).
@@ -361,7 +361,7 @@ Now you're ready to implement your first instruction!
 For this part of the assignment, you will modify the `src/main/scala/single-cycle/cpu.scala` file.
 You are beginning to implement the DINO CPU!
 
-In the `src/main/scala/single-cycle/cpu.scala` file, you will find all of the components that are shown on the [blank circuit diagram](/img/dinocpu/assignment-1-worksheet.pdf).
+In the `src/main/scala/single-cycle/cpu.scala` file, you will find all of the components that are shown on the [blank circuit diagram]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}).
 The components are all instantiated Chisel `Module`s.
 
 Notice that in the template code all of the IO for each module is set to `DontCare`.
@@ -376,7 +376,7 @@ io.imem.address := pc
 
 This creates a wire from the PC to the instruction memory.
 
-![PC to inst mem](/img/dinocpu/pc-to-imem.svg)
+![PC to inst mem]({{'img/dinocpu/pc-to-imem.svg' | relative_url}})
 
 You should fill in the other wires (and instruction subsets) that are required to implement the `add` RISC-V instruction.
 You can find more details in the [Single Cycle CPU Design Module]({{'modules/Processor Architecture/single-cycle' | relative_url}}).
