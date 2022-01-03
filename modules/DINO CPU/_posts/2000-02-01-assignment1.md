@@ -174,7 +174,7 @@ The ALU control takes five inputs:
 * `funct7` and `funct3`, which come from the instruction
 
 In order to get `wordinst`, you can use the signal from the Control Unit.
-The [assignment 1 worksheet](./assignment-1-worksheet.pdf) contains the information on how to use the Control Unit for this assignment.
+The [assignment 1 worksheet]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}) contains the information on how to use the Control Unit for this assignment.
 You can ignore the `aluop` and `itype` for now.
 Assume both are always `0`.
 
