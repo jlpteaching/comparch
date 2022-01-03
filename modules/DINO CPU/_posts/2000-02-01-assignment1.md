@@ -34,7 +34,7 @@ Modified for ECS 154B Lab 1, Winter 2022.
 
 ## Introduction
 
-![Cute Dino](/img/dinocpu/dino-128.png)
+![Cute Dino]({{'img/dinocpu/dino-128.png' | relative_url}})
 
 In this assignment you will start implementing the DINO CPU (Davis IN-Order CPU).
 This is a simple in-order CPU design based closely on the CPU model in Patterson and Hennessey's Computer Organization and Design.
