@@ -13,7 +13,6 @@ Modified for ECS 201A, Winter 2022.
 **Due on 01/17/2022 11:59 pm (PST)**: See [Submission](#submission) for details
 
 ## Table of Contents
-  - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Step I: Compile gem5](#step-i-compile-gem5)
   - [Step II: gem5 book, Part I](#step-ii-gem5-book-part-i)
