@@ -328,7 +328,7 @@ It's such a good idea that we're going to make it mandatory, and you'll need to 
 We've provided you with a [blank circuit diagram]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}).
 Draw all of the wires and label which bits are on each wire.
 There are a few components that are greyed out that you will not need to use for the R-type instructions (except for the Control Unit's `wordinst`).
-These will be used in [Assignment 2]({{'modules/DINO CPU/2000-03-01-assignment2' | relative_url}}), but you can ignore them for now.
+These will be used in [Assignment 2]({{'modules/DINO CPU/assignment2' | relative_url}}), but you can ignore them for now.
 
 We will be grading this diagram and looking for the following things:
 
@@ -379,7 +379,7 @@ This creates a wire from the PC to the instruction memory.
 ![PC to inst mem]({{'img/dinocpu/pc-to-imem.svg' | relative_url}})
 
 You should fill in the other wires (and instruction subsets) that are required to implement the `add` RISC-V instruction.
-You can find more details in the [Single Cycle CPU Design Module]({{'modules/DINO CPU/2000-03-01-single-cycle' | relative_url}}).
+You can find more details in the [Single Cycle CPU Design Module]({{'modules/Processor Architecture/single-cycle' | relative_url}}).
 
 **Important**: You will not need to modify anything below the `Object to make it easier to print information about the CPU` line.
 This code should be kept the same for everyone.
