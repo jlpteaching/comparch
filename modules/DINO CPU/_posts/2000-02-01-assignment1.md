@@ -328,7 +328,7 @@ It's such a good idea that we're going to make it mandatory, and you'll need to 
 We've provided you with a [blank circuit diagram]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}).
 Draw all of the wires and label which bits are on each wire.
 There are a few components that are greyed out that you will not need to use for the R-type instructions (except for the Control Unit's `wordinst`).
-These will be used in [Assignment 2]({% post_url 2000-02-01-assignment2 %}), but you can ignore them for now.
+These will be used in [Assignment 2]({% post_url 2000-03-01-assignment2 %}), but you can ignore them for now.
 
 We will be grading this diagram and looking for the following things:
 
