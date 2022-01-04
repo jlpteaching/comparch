@@ -31,7 +31,7 @@ You should do this assignment on your own, although you are welcome to talk to c
 For this assignment, you will go through the Learning gem5 book you were tasked to read the first three chapters of on Wednesday, 01/11/2022. This book and most of this assignment were written and designed by Prof. Jason Lowe-Power. Specifically, for this assignment you should only need Part I of the Learning gem5 book. Although the tutorial is a work-in-progress and constantly evolving, it has been tested fairly heavily by several collaborators. Nevertheless, if you believe you've found a bug or a typo, please post on Campuswire. You can ignore the ARM and default configuration script sub-sections if you would like to, although they may be useful for you for future assignments.
 
 ## Step I: Compile gem5
-Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. Furthermore, we strongly recommend you use the stable branch (v21.2), as it is the most stable public branch of gem5. We strongly suggest that you use a local Linux machine or the CSIF machines for this assignment. If you use your personal Linux machine, you can go through the entire Getting Started pages of the Learning gem5 book to prepare all the dependencies required for gem5. 
+Go through the Introduction and Getting Started pages of the Learning gem5 book. Make sure to get your gem5 install working before moving onto the next step -- if it doesn't work, then the next steps will not work. Furthermore, we strongly recommend you use the stable branch (v21.2), as it is the most stable public branch of gem5. We strongly suggest that you use a local Linux machine or the CSIF machines for this assignment. If you use your personal Linux machine, you can go through the entire Getting Started pages of the Learning gem5 book to prepare all the dependencies required for gem5.
 
 **IMPORTANT NOTE: If you decided to use the CSIF machines, please follow the steps descibed below, otherwise jump to the next NOTE.**
 
@@ -76,7 +76,7 @@ Next, you will run your application in gem5 with the configuration script you ma
 
 1. Run your sieve program in gem5
 
-    Run your sieve program in gem5 instead of the 'hello' example. You will need to change the location of the binary in your configuration file from the location of the 'hello' binary to the location of your sieve binary. Do not use se.py or any of the other, existing configuration scripts. Use the one with two levels of cache that you made in Step 2. Each run of the simulator will produce a statistics file as an output -- save the statistics files generated from each run. 
+    Run your sieve program in gem5 instead of the 'hello' example. You will need to change the location of the binary in your configuration file from the location of the 'hello' binary to the location of your sieve binary. Do not use se.py or any of the other, existing configuration scripts. Use the one with two levels of cache that you made in Step 2. Each run of the simulator will produce a statistics file as an output -- save the statistics files generated from each run.
 
     **Warning: by default, gem5 will write the output file to the same folder (m5out) every time. Make sure to move your output file before each subsequent run.**
 
@@ -113,7 +113,7 @@ Next, you will run your application in gem5 with the configuration script you ma
 
     | CPU Model         | CPU Frequency (GHz)   | Memory              |
     |-------------------|-----------------------|---------------------|
-    | TimingSimpleCPU	  | 1                     | DDR3_1600_8x8       |       
+    | TimingSimpleCPU	  | 1                     | DDR3_1600_8x8       |
     | TimingSimpleCPU	  | 2	                    | DDR3_1600_8x8       |
     | TimingSimpleCPU	  | 4	                    | DDR3_1600_8x8       |
     | MinorCPU          | 1	                    | DDR3_1600_8x8       |
@@ -138,30 +138,32 @@ After collecting all of the data from the previous step, analyze the statistics 
 
 
 ## Submission
-1. Create an archive (.zip, .gz, or .tgz) of the following files:
-    a. A file named sieve.cpp with your implementation of the Sieve of Eratosthenes.
-    b. A file named sieve-config.py (and any other necessary files) that was used to run gem5.
-    c. All 12 statistics files (stats.txt) from your runs of your sieve program in gem5, appropriately named to convey which stats file is from which run.
 
-2. Additionally, separate from the above archive, create a file named report.pdf that contains a short report with your observations and conclusions from the experiment, including answers to the above questions.
+You will use [gradescope](https://www.gradescope.com/courses/343622) to submit your assignment.
+You will submit your sieve application, your gem5 runscript, and the stats files created from running gem5.
+Additionally, create a file named report.pdf that contains a short report with your observations and conclusions from the experiment, including answers to the above questions.
 
-3. Submit your archive and report on Gradescope.
+[Gradescope link for code.](https://www.gradescope.com/courses/343622/assignments/1744733)
+This will be autograded.
 
+[Gradescope link for report.](https://www.gradescope.com/courses/343622/assignments/1744750)
 
 ## Grading
+
 The grading breakdown for this assignment is as follows:
 
-Total Points: 40
+1. **Stats files (30 points total):** Each stats file is worth 2.5 point if it is submitted, 0 otherwise.
+2. **sieve.cpp (10 points)** This file should compile with GCC 9.0 (`g++ -static sieve.cpp`)
+3. **sieve-config.py (10 points)** This file will be checked to make sure it executes correctly in gem5.do
 
-1. **Stats files (12 points total):** Each stats file is worth 1 point if it is submitted, 0 otherwise.
-2. **sieve.cpp (4 points)**
-3. **sieve-config.py (4 points)**
-4. **Report (20 points):** Each of the 5 questions is worth 4 points. Partial credit will be given for answers that do not fully answer the question.
+[Gradescope link for code](https://www.gradescope.com/courses/343622/assignments/1744733)
 
+4. **Report (50 points):** Each of the 5 questions is worth 10 points. Partial credit will be given for answers that do not fully answer the question.
+
+[Gradescope link for report](https://www.gradescope.com/courses/343622/assignments/1744750)
 
 **Warning**: read the submission instructions carefully.
 Failure to adhere to the instructions will result in a loss of points.
-
 
 ## Academic misconduct reminder
 
