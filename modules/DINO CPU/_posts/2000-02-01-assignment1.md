@@ -62,7 +62,7 @@ There is a more detailed Chisel overview found under the [Chisel notes directory
 Before diving into this assignment, you are encouraged to go through the [Chisel notes](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/overview.md).
 You can find additional help and documentation on [Chisel's website](https://chisel.eecs.berkeley.edu/).
 
-Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document](../documentation/singularity.md).
+Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/singularity.md).
 
 ### Using the CSIF machines
 
@@ -454,7 +454,7 @@ This creates a `CPUTestCase` that:
 More information about `CPUTestCase` can be found in the code (`src/test/scala/cpu-tests/CPUTesterDriver.scala`, line 94), and in the [DINO CPU documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation//testing.md).
 
 You can also use the [single stepper](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation//single-stepping.md) to step through the execution one cycle at a time and print information as you go.
-Details on how to use the single stepper can be found in the [documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation//single-stepping.md).
+Details on how to use the single stepper can be found in the [documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md).
 An example on how to use it is shown below.
 
 First, you can start the single stepper program:
