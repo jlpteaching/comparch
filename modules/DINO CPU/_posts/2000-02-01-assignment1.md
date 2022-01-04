@@ -8,7 +8,7 @@ Originally from ECS 154B Lab 1, Winter 2019.
 
 Modified for ECS 154B Lab 1, Winter 2022.
 
-**Due on 1/16**: See [Submission](#submission) for details
+**Due on 1/17 11:59 pm (PST)**: See [Submission](#submission) for details
 
 ## Table of Contents
 
