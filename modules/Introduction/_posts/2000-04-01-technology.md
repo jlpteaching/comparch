@@ -8,9 +8,13 @@ This section give you some background on historic and modern computing technolog
 
 {% include reading.html section="Chapter 1" %}
 
+{% include reading-grad.html section="Chapter 1" %}
+
 ## Turing Lecture
 
 {% include reading.html section="Sections 1.1, 1.2, 1.3" %}
+
+{% include reading-grad.html section="Sections 1.1-1.4" %}
 
 Before diving into anything, I'd like you to take about an hour to watch the Turing Lecture given by John Hennessy and David Patterson.
 It's a relatively long video (and the longest I'll ask you to watch), but it's packed full of interesting historical information and future prognostications by two preeminent computer architecture researchers.
@@ -28,6 +32,8 @@ We will come back again and again to the themes presented in this lecture.
 ## Computing technology past to present
 
 {% include reading.html section="Sections 1.4, 1.5" %}
+
+{% include reading-grad.html section="Sections 1.5-1.7" %}
 
 Now, let's briefly look at computing architecture history and see how we got to where we are today.
 This video describes a brief history of computer architecture and modern process technology.
@@ -62,6 +68,8 @@ If you're interested to read more, you can download the [PDF](https://science.sc
 ## Energy and Power of CMOS Devices
 
 {% include reading.html section="Sections 1.7, 1.8" %}
+
+{% include reading-grad.html section="Sections 1.5" %}
 
 First, let's talk about how to reason about the energy and power of computer chips (also called [CMOS or complementary metal-oxide semiconductor](https://en.wikipedia.org/wiki/CMOS)).
 In this video, I talk about some of the key contributing factors to the energy and power of these devices.

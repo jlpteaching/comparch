@@ -34,6 +34,8 @@ Now, let's talk about the difference between latency and bandwidth a bit more.
 
 {% include reading.html section="Section 1.6" %}
 
+{% include reading-grad.html section="Section 1.9" %}
+
 The next video covers the Iron Law of performance and how to explain the performance of a processor.
 This breaks down the performance of a processor into three constituent parts.
 By breaking down the performance into these parts, we can think about how to optimize each component on its own which helps us focus our efforts in making processors more efficient.
@@ -49,6 +51,8 @@ This video shows an example of running a benchmark and applying the Iron Law.
 See canvas for the quiz!
 
 ## Comparing Systems with Speedup
+
+{% include reading-grad.html section="Section 1.8" %}
 
 This video describes how to compare systems by using the *speedup* metric.
 
