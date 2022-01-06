@@ -42,7 +42,7 @@ Each section will have one or two project-based assignments.
 Those of you in ECS 154B will be using the [DINO CPU](https://github.com/jlpteaching/dinocpu-wq21), and those of you in ECS 201A will be using [gem5](https://www.gem5.org).
 Each section wil also have an exam at the end.
 
-### [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}) (About one week: 1/4-1/11)
+### [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}) (About one week: 1/3-1/10)
 
 In the first section of the class we will cover some motivation for why you should care about computer architecture and general computer architecture principles.
 
@@ -50,31 +50,31 @@ This first section is going to be part of the "soft launch" or "transition perio
 There are due dates listed for the quizzes.
 However, for this first section *there will be no late penalty*.
 
-* [Introduction to the class]({{"/modules/Introduction/intro" | relative_rul }})
-* [Current Computing Technology]({{"/modules/Introduction/technology" | relative_rul }})
-* [Computer System Evaluation]({{"/modules/Introduction/evaluation" | relative_rul }})
+* [Introduction to the class]({{"modules/Introduction/intro" | relative_rul }})
+* [Current Computing Technology]({{"modules/Introduction/technology" | relative_rul }})
+* [Computer System Evaluation]({{"modules/Introduction/evaluation" | relative_rul }})
 
-### [Processor Architecture]({{"/modules/processor architecture/index/" | relative_url}}) (About four weeks: 1/13-2/8)
+### [Processor Architecture]({{"modules/processor architecture/index/" | relative_url}}) (About four weeks: 1/12-2/7)
 
-* [Instruction set architectures and RISC-V]({{"/modules/processor architecture/isa/" | relative_url}}) ([Assignment 1](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-1.html) Due 1/17)
-* [Single cycle CPU design]({{"/modules/processor architecture/single-cycle/" | relative_url}}) ([Assignment 2](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-2.html) Due 1/24)
-* [Pipelined CPU design]({{"/modules/processor architecture/pipelined/" | relative_url}}) ([Assignment 3.1](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-3.html) Part 1 Due 2/5 & Part 2 Due 2/14)
-* [Instruction-level parallelism]({{"/modules/processor architecture/ilp/" | relative_url}})
-* [Processor architecture summary]({{"/modules/processor architecture/summary/" | relative_url}})
+* [Instruction set architectures and RISC-V]({{"modules/processor architecture/isa/" | relative_url}}) ([DINO CPU Assignment 1]({{"modules/dino cpu/assignment1" | relative_rul }}) Due 1/17)
+* [Single cycle CPU design]({{"/modules/processor architecture/single-cycle/" | relative_url}}) ([DINO CPU Assignment 2]({{"modules/dino cpu/assignment2" | relative_rul }}) Due 1/23)
+* [Pipelined CPU design]({{"/modules/processor architecture/pipelined/" | relative_url}}) ([DINO CPU Assignment 3.1]({{"modules/dino cpu/assignment3" | relative_rul }}) Part 1 Due 1/30 & Part 2 Due 2/6)
+* [Instruction-level parallelism]({{"modules/processor architecture/ilp/" | relative_url}})
+* [Processor architecture summary]({{"modules/processor architecture/summary/" | relative_url}})
 
 **Test on 2/4**
 
-### [Memory System Architecture]({{"/modules/memory architecture/index/" | relative_url}}) (About three weeks: 2/10-3/3)
+### [Memory System Architecture]({{"modules/memory architecture/index/" | relative_url}}) (About three weeks: 2/9-2/28)
 
-* [Memory technology]({{"/modules/memory architecture/technology/" | relative_url}})
-* [Caches and memory hierarchy]({{"/modules/memory architecture/caches/" | relative_url}})
-* [Virtual memory]({{"/modules/memory architecture/virtual/" | relative_url}})
-* [Memory architecture summary]({{"/modules/memory architecture/summary/" | relative_url}}) ([Assignment 4](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-4.html) Due 2/28)
+* [Memory technology]({{"modules/memory architecture/technology/" | relative_url}})
+* [Caches and memory hierarchy]({{"modules/memory architecture/caches/" | relative_url}})
+* [Virtual memory]({{"modules/memory architecture/virtual/" | relative_url}})
+* [Memory architecture summary]({{"modules/memory architecture/summary/" | relative_url}}) (**Assignment 4 Due 2/21**)
 
-### [Parallel Architectures]({{"/modules/parallel architecture/index/" | relative_url}}) (About two weeks: 3/5-3/12)
+### [Parallel Architectures]({{"modules/parallel architecture/index/" | relative_url}}) (About two weeks: 3/2-3/11)
 
-* [Parallel systems' performance]({{"/modules/parallel architecture/performance/" | relative_url}})
-* [Parallel architectures and programming]({{"/modules/parallel architecture/architectures/" | relative_url}}) ([Assignment 5](https://jlpteaching.github.io/dinocpu-wq21/assignments/lab5/assignment5.html) Due 3/12)
+* [Parallel systems' performance]({{"modules/parallel architecture/performance/" | relative_url}})
+* [Parallel architectures and programming]({{"modules/parallel architecture/architectures/" | relative_url}}) (**Assignment 5 Due 3/12**)
 
 **Final exam on 3/14**
 
