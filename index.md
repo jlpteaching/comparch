@@ -50,9 +50,9 @@ This first section is going to be part of the "soft launch" or "transition perio
 There are due dates listed for the quizzes.
 However, for this first section *there will be no late penalty*.
 
-* [Introduction to the class]({{"modules/Introduction/intro" | relative_rul }})
-* [Current Computing Technology]({{"modules/Introduction/technology" | relative_rul }})
-* [Computer System Evaluation]({{"modules/Introduction/evaluation" | relative_rul }})
+* [Introduction to the class]({{"modules/introduction/intro" | relative_rul }})
+* [Current Computing Technology]({{"modules/introduction/technology" | relative_rul }})
+* [Computer System Evaluation]({{"modules/introduction/evaluation" | relative_rul }})
 
 ### [Processor Architecture]({{"modules/processor architecture/index/" | relative_url}}) (About four weeks: 1/12-2/7)
 
