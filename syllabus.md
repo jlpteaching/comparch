@@ -150,6 +150,17 @@ If you need additional accommodations due to these or other personal issues, don
 I cannot guarantee that I will be able to make accommodations.
 However, reaching out to me earlier will increase the likelihood that I can make accommodations.
 
+### What happens if I get a positive COVID test?
+
+**Do not come to class!**
+
+All classes will be recorded.
+The first four weeks will be mostly asynchronous (async lecture, synchronous discussion, though discussion is not required attendance).
+There will be at least one remote office hour per week which you can attend (do not come to in-person office hours).
+
+The only part of the course which may require in-person attendance is the final.
+The midterm will be online given the timing and the first part of the course is online.
+
 ## Prerequisites
 
 ### ECS 154B Prereqs
