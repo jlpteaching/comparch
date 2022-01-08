@@ -636,13 +636,13 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ### Code portion
 
-You will upload the two files that you changed to Gradescope on the [Lab 1](TODO: update link to gradescope) assignment.
+You will upload the two files that you changed to Gradescope on the [Lab 1](https://www.gradescope.com/courses/343623/assignments/1755181) assignment.
 
 * `src/main/scala/components/alucontrol.scala`
 * `src/main/scala/single-cycle/cpu.scala`
 
 Once uploaded, Gradescope will automatically download and run your code.
-This should take less than 5 minutes.
+This should take less than 10 minutes.
 For each part of the assignment, you will receive a grade.
 If all of your tests are passing locally, they should also pass on Gradescope unless you made changes to the I/O, **which you are not allowed to do**.
 
@@ -652,7 +652,7 @@ Either the test passes or it fails.
 
 ### Diagram
 
-Upload your diagram to this [Gradescope assignment](TODO: update link to gradescope).
+Upload your diagram to this [Gradescope assignment](https://www.gradescope.com/courses/343623/assignments/1755193).
 
 We will be grading this diagram and looking for the following things:
 
