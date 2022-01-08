@@ -1,5 +1,5 @@
 ---
-title: DINO CPU Assignments (for ECS 154B)
+title: DINO CPU Discussions (for ECS 154B)
 ---
 
 This is a page for materials discussed in the discussion sessions.
