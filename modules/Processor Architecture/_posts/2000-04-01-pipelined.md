@@ -88,7 +88,7 @@ Can you think of a metaphor with the laundry example above? Or maybe some other 
 "
 %}
 
-Note: these lectures will be useful when completing [Part II](https://github.com/jlpteaching/dinocpu-wq21/blob/master/assignments/assignment-3.md#part-ii-implementing-forwarding) of [assignment 3](https://github.com/jlpteaching/dinocpu-wq21/blob/master/assignments/assignment-3.md).
+Note: these lectures will be useful when completing [Part II]({{'modules/dino cpu/assignment3' | relative_url}}#part-ii-implementing-forwarding) of [assignment 3]({{'modules/dino cpu/assignment3' | relative_url}}).
 
 ### Limits of our basic pipelined design and data hazards
 
@@ -186,7 +186,7 @@ This video talks about how to handle exceptions/interrupts/errors in a pipelined
 {% include video.html id="1_ndgicts9" %}
 
 This video goes over an end-to-end example of the pipelined DINO CPU.
-This video should be helpful on [Assignment 3.2](https://github.com/jlpteaching/dinocpu-wq21/blob/master/assignments/assignment-3.md#part-ii-implementing-forwarding)
+This video should be helpful on [Assignment 3.2]({{'modules/dino cpu/assignment3' | relative_url}}#part-ii-implementing-forwarding)
 
 ### **QUIZ** Pipelining review
 

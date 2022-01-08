@@ -50,11 +50,11 @@ By splitting the hardware this way, we're able to use *one set of hardware* to e
 
 {% include video.html id="0_q2vuxnkt" %}
 
-Now, we can use the following design (what you will be implementing in [Assignment 2](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-2.html)) to run *any* RISC-V instruction with *one* set of hardware!
+Now, we can use the following design (what you will be implementing in [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}})) to run *any* RISC-V instruction with *one* set of hardware!
 
-![Single cycle DINO CPU design](https://jlpteaching.github.io/dinocpu-wq21/assignments/single-cycle-no-control.svg)
+![Single cycle DINO CPU design](https://jlpteaching.github.io/dinocpu-wq22/assignments/single-cycle-no-control.svg)
 
-In the next video, I go through a couple of example instructions with the datapath that you will be implementing in [Assignment 2](https://jlpteaching.github.io/dinocpu-wq21/assignments/assignment-2.html).
+In the next video, I go through a couple of example instructions with the datapath that you will be implementing in [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}).
 
 {% include video.html id="1_lbwfhrfe" %}
 
