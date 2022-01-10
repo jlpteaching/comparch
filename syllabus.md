@@ -57,9 +57,9 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 **Maryam Babaie** (<mbabaie@ucdavis.edu>)
 
-*Office Hours Time*: TBA
+*Office Hours Time*: Tuesdays 11am-12pm
 
-*Office Location*: TBA
+*Office Location*: [Zoom](https://ucdavis.zoom.us/j/91998426773?pwd=NzVMd1IvUmNiZkMrWlIwN2lCc21vZz09)
 
 #### ECS 154B
 
