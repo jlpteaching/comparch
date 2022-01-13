@@ -92,7 +92,7 @@ Note: this change is only available after the Assignment 1 due date.
 ## How this assignment is written
 
 The goal of this assignment is to implement a single-cycle RISC-V CPU which can execute all of the RISC-V integer instructions, i.e. RV64I instructions.
-Through the rest of this assignment, [Part I](#part-i-r-type) through [Part X](#part-x-full-applications), you will implement all of the RISC-V instructions, step by step.
+Through the rest of this assignment, [Part I](#part-i-r-types) through [Part X](#part-x-full-applications), you will implement all of the RISC-V instructions, step by step.
 
 If you prefer, you can simply skip to the end and implement all of the instructions at once, then run all of the tests for this assignment via the following command.
 You will also use this command to test everything once you believe you're done.
@@ -126,7 +126,7 @@ You will be implementing everything in the diagram in Chisel (the `cpu.scala` fi
 Then, you will wire all of the components together.
 You will also implement the [control unit](#control-unit-overview), NextPC unit and update the alu control unit.
 
-**Important Notice:** 
+**Important Notice:**
 In order to get familiar with debugging your design using single stepper, ***we strongly encourage you to watch the tutorial video*** we have provided in the link below. You may have watched it while working on assignment1. As mentioned before, the videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to 'wq2w' to be applicable to your materials for the current quarter.
 
 [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d)
@@ -157,14 +157,14 @@ validinst     True if the instruction we're decoding is valid, False otherwise
 wordinst      True if the instruction *only* operates on 32-bit operands, False otherwise
 ```
 
-The following table specifies the `opcode` format and the control signals to be generated for some of the instruction types.   
+The following table specifies the `opcode` format and the control signals to be generated for some of the instruction types.
 
 
 | opcode  | opcode format | itype  | aluop | src1  | src2  | branch | jumptype | resultselect | memop | toreg | regwrite | validinst | wordinst |
 |---------|---------------|--------|-------|-------|-------|--------|----------|--------------|-------|-------|----------|-----------|----------|
 | -       | default       | false  | false | false | 0     | false  | 0        | false        | 0     | false | false    | false     | false    |
 | 0110011 | R-type        | false  | true  | false | 0     | false  | 0        | false        | 0     | false | true     | true      | false    |
-| 0111011 | R-type        | false  | true  | false | 0     | false  | 0        | false        | 0     | false | true     | true      | true     |     
+| 0111011 | R-type        | false  | true  | false | 0     | false  | 0        | false        | 0     | false | true     | true      | true     |
 
 We have given you the control signals for the R-type instructions.
 You must fill in all of the other instruction types in the table in `src/main/scala/components/control.scala`.
@@ -271,7 +271,7 @@ In the last assignment, when you were required to run your CPU for multiple cycl
 
 The NextPC unit recieves eight inputs:
 
-* `branch`, and `jumptype`, both of which come from the control unit. 
+* `branch`, and `jumptype`, both of which come from the control unit.
 * `inputx`, and `inputy`,  both of which come from the Register File.
 * `funct3`, which comes from the instruction.
 * `pc`, which is the pc.
@@ -326,7 +326,7 @@ class NextPC extends Module {
   // Your code goes here
 }
 ```
-In this template, the outputs, `nextpc` and `taken`, are set to always be pc+4 and false, respectively. 
+In this template, the outputs, `nextpc` and `taken`, are set to always be pc+4 and false, respectively.
 
 Before starting Part I, you must remove the parts related to pc+4 and replace it with an instance of NextPC unit and create proper wire connections for it. For this purpose, you must update `src/main/scala/single-cycle/cpu.scala`. In the next sections, you will gradually complete the body of NextPC unit.
 
@@ -421,7 +421,7 @@ You will also need to incorporate the data memory into your data path, starting 
 The data memory port I/O is not as simple as the I/O for other modules.
 It's built to be modular to allow different kinds of memories to be used with your CPU design.
 We are planning to explore this further in Lab 4.
-If you want to see the details, you can find them in the [mem-port-io.scala](https://github.com/jlpteaching/dinocpu/blob/main/src/main/scala/memory/memory-port-io.scala) file.
+If you want to see the details, you can find them in the [mem-port-io.scala](https://github.com/jlpteaching/dinocpu-wq22/blob/main/src/main/scala/memory/memory-port-io.scala) file.
 
 The I/O for the data memory port is shown below.
 Don't forget that the instruction and data memory ports look weird to use.
@@ -659,11 +659,11 @@ You can find the specification in the following places:
 * Chapter 2 of the RISC-V reader
 * in the front of the Computer Organization and Design book
 
-You must now extend NextPC module with additional control to generate correct value for `nextpc` and correct result for `taken`. 
+You must now extend NextPC module with additional control to generate correct value for `nextpc` and correct result for `taken`.
 As a helpful tip, it's important to remember that the `funct3` wire helps differentiate between different branch instructions.
 
 See [the Chisel getting started guide](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/getting-started.md) for examples.
-You may also find the [Chisel cheat sheet](https://chisel.eecs.berkeley.edu/2.2.0/chisel-cheatsheet.pdf) helpful.
+You may also find the [Chisel cheat sheet](https://inst.eecs.berkeley.edu/~cs250/sp17/handouts/chisel-cheatsheet3.pdf) helpful.
 
 **HINT:** Use Chisel's `when` / `elsewhen` / `otherwise`, or `MuxCase` syntax.
 You can also use normal operators, such as `<`, `>`, `===`, `=/=`, etc.
@@ -792,7 +792,7 @@ We have provided four applications for you.
 If you have passed all of the above tests, your CPU should execute these applications with no issues!
 If you do not pass a test, you may need to dig into the debug output of the test.
 
-**Important Note:** We strongly encourage you to use [single stepper](../documentation/single-stepping.md) to test your design for full applications. It will let you step through the execution one cycle at a time and print information as you go. Details on how to use the single stepper can be found in the [documentation](../documentation/single-stepping.md). You can also watch the video we have provided in the link below to learn how to debug using single stepper. As mentioned earlier, the videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to 'wq22' to be applicable to your materials for the current quarter.
+**Important Note:** We strongly encourage you to use [single stepper](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) to test your design for full applications. It will let you step through the execution one cycle at a time and print information as you go. Details on how to use the single stepper can be found in the [documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md). You can also watch the video we have provided in the link below to learn how to debug using single stepper. As mentioned earlier, the videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to 'wq22' to be applicable to your materials for the current quarter.
 
 [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d)
 
