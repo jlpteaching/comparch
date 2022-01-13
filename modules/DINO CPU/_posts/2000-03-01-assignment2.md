@@ -10,7 +10,7 @@ Originally from ECS 154B Lab 2, Winter 2019.
 
 Modified for ECS 154B Lab 2, Winter 2022
 
-**Due on 1/23**: See [Submission](#submission) for details
+**Due on 1/23 11:59PM PST**: See [Submission](#submission) for details
 
 # Table of Contents
 
@@ -27,16 +27,16 @@ Modified for ECS 154B Lab 2, Winter 2022
 * [Part II: I-types](#part-ii-i-types)
   * [I-type instruction details](#i-type-instruction-details)
   * [Testing the I-types](#testing-the-i-types)
-* [Part III: `lw`](#part-iii-lw)
-  * [`lw` instruction details](#lw-instruction-details)
-  * [Testing `lw`](#testing-lw)
+* [Part III: Load](#part-iii-first-load-instruction)
+  * [`ld` instruction details](#ld-instruction-details)
+  * [Testing `ld`](#testing-ld)
 * [Part IV: U-types](#part-iv-u-types)
   * [`lui` instruction details](#lui-instruction-details)
   * [`auipc` instruction details](#auipc-instruction-details)
   * [Testing the U-types](#testing-the-u-types)
-* [Part V: `sw`](#part-v-sw)
-  * [`sw` instruction details](#sw-instruction-details)
-  * [Testing `sw`](#testing-sw)
+* [Part V: Store](#part-v-first-store-instruction)
+  * [`sd` instruction details](#sd-instruction-details)
+  * [Testing `sd`](#testing-sd)
 * [Part VI: Other memory instructions](#part-vi-other-memory-instructions)
   * [Other memory instruction details](#other-memory-instruction-details)
   * [Testing the other memory instructions](#testing-the-other-memory-instructions)
@@ -408,12 +408,12 @@ You can run the tests for this part with the following command:
 sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleITypeTesterLab2
 ```
 
-# Part III: `lw`
+# Part III: First load instruction
 
-Next, we will implement the `lw` instruction.
+Next, we will implement the `ld` instruction.
 Officially, this is a I-type instruction, so you shouldn't have to make too many modifications to your data path.
 
-As with the previous parts, first update your control unit to assert the necessary control signals for the `lw` instruction, then modify your CPU data path to add the necessary MUXes and wire up your control.
+As with the previous parts, first update your control unit to assert the necessary control signals for the `ld` instruction, then modify your CPU data path to add the necessary MUXes and wire up your control.
 For this part, you will have to think about how this instruction uses the ALU.
 You will also need to incorporate the data memory into your data path, starting with this instruction.
 
@@ -442,15 +442,15 @@ Output: good, true when memory is responding with a piece of data
 Output: ready, true when the memory is ready to accept another request
 ```
 
-## `lw` instruction details
+## `ld` instruction details
 
-The following table shows how the `lw` instruction is laid out:
+The following table shows how the `ld` instruction is laid out:
 
 | 31-20     | 19-15 | 14-12 | 11-7 | 6-0     | Name   |
 |-----------|-------|-------|------|---------|--------|
-| imm[11:0] | rs1   | 010   | rd   | 0000011 | lw     |
+| imm[11:0] | rs1   | 011   | rd   | 0000011 | ld     |
 
-`lw` stands for "load word".
+`ld` stands for "load doubleword".
 The instruction has the following effect.
 `M[x]` means the value of memory at location x.
 
@@ -458,7 +458,7 @@ The instruction has the following effect.
 R[rd] = M[R[rs1] + immediate]
 ```
 
-## Testing `lw`
+## Testing `ld`
 
 You can run the tests for this part with the following command:
 
@@ -518,20 +518,20 @@ You can run the tests for this part with the following command:
 sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleUTypeTesterLab2
 ```
 
-# Part V: `sw`
+# Part V: First store instruction
 
-`sw` is similar to `lw` in function, and looks similar to an I-type.
+`sd` is similar to `ld` in function, and looks similar to an I-type.
 You'll need to think about how to implement the changes needed for the data memory.
 
-## `sw` instruction details
+## `sd` instruction details
 
-The following table shows how the `sw` instruction is laid out.
+The following table shows how the `sd` instruction is laid out.
 
 | 31-25     | 24-20 | 19-15 | 14-12 | 11-7     | 6-0     | Name   |
 |-----------|-------|-------|-------|----------|---------|--------|
-| imm[11:5] | rs2   | rs1   | 010   | imm[4:0] | 0100011 | sw     |
+| imm[11:5] | rs2   | rs1   | 011   | imm[4:0] | 0100011 | sd     |
 
-`sw` stands for "store word."
+`sd` stands for "store doubleword."
 The instruction has the following effect.
 (Careful, while this looks similar to `ld`, it has a very different effect!)
 
@@ -539,7 +539,7 @@ The instruction has the following effect.
 M[R[rs1] + immediate] = R[rs2]
 ```
 
-## Testing `sw`
+## Testing `sd`
 
 You can run the tests for this part with the following command:
 
@@ -550,7 +550,7 @@ sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleStoreTesterLab2
 # Part VI: Other memory instructions
 
 We now move on to the other memory instructions.
-Make sure your `lw` and `sw` instructions work before moving on to this part.
+Make sure your `ld` and `sd` instructions work before moving on to this part.
 
 ## Other memory instruction details
 
@@ -591,9 +591,9 @@ ld:  R[rd] = M[R[rs1] + immediate] + M[R[rs1] + immediate + 4] << 32
 lbu: R[rd] = M[R[rs1] + immediate] & 0xff
 lhu: R[rd] = M[R[rs1] + immediate] & 0xffff
 lwu: R[rd] = M[R[rs1] + immediate]
-sw:  M[R[rs1] + immediate] = R[rs2]
 sb:  M[R[rs1] + immediate] = R[rs2] & 0xff
 sh:  M[R[rs1] + immediate] = R[rs2] & 0xffff
+sw:  M[R[rs1] + immediate] = R[rs2]
 sd:  M[R[rs1] + immediate] = R[rs2] & 0xffff
      M[R[rs1] + immediate + 4] = R[rs2] >> 32
 ```
