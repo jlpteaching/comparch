@@ -607,6 +607,11 @@ _start: #checks if v is a power of 2
 _last:
 ```
 
+### Hint
+There is a bug with `pc` that doing arithmetic with `pc` directly will result in
+an undesired result. One way of getting around this bug is to use an Adder
+(implemented in `components/helpers.scala`).
+
 ### Testing
 
 To run just one test, you can use the `-z` trick from above.
