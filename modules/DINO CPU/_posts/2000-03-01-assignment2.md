@@ -131,7 +131,7 @@ In order to get familiar with debugging your design using single stepper, ***we 
 
 [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d)
 
-![Single cycle DINO CPU without control wires](single-cycle-no-control-assignment-2.png)
+![Single cycle DINO CPU without control wires]({{'img/dinocpu/single-cycle-no-control-assignment-2.svg' | relative_url}})
 
 # Control unit overview
 
