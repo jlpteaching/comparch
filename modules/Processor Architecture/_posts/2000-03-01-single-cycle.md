@@ -1,11 +1,12 @@
 ---
 title: Single Cycle CPU Design
-discussion: 796055763403407410
 ---
 
 ![XKCD comic](https://imgs.xkcd.com/comics/old_days.png)
 
 {% include reading.html section="Sections 4.1-4.4" %}
+
+{% include reading-grad.html section="Appendix C.1" %}
 
 In this section, we will be digging into the necessary components and details on how to design a processor.
 The goal of this section will be to design a full RISC-V processor, which is [Assignment 2](https://github.com/jlpteaching/dinocpu-sq20/blob/master/assignments/assignment-2.md) (Due 4/17).
@@ -34,15 +35,6 @@ Next, we look at details of execute, memory, and writeback.
 
 {% include video.html id="0_6hppdgq5" %}
 
-{% include prompt.html content="
-The way the processor in your book is designed (and the DINO CPU) is optimizing each structure for maximum reuse.
-For instance, there is a single ALU that is used for all of the different R-type and I-type instructions, and lw/sw, and jumps, etc.
-
-To reuse the same hardware structure for multiple instructions, this means that the hardware might need to accept input data from different sources (e.g., the second input of the ALU is from `readdata1` for R-types and from the immediate generator for I-types).
-
-Before watching the next videos, how do you think we can implement this in hardware? Do we use an `OR` gate? Something else? We **can't** just wire two things together...
-" %}
-
 ## Data path and control path
 
 Next, we'll discuss how to split up the hardware into two parts, the control path and the data path.
@@ -50,17 +42,18 @@ By splitting the hardware this way, we're able to use *one set of hardware* to e
 
 {% include video.html id="0_q2vuxnkt" %}
 
-Now, we can use the following design (what you will be implementing in [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}})) to run *any* RISC-V instruction with *one* set of hardware!
+Now, we can use the following design (what you will be implementing in [DINO CPU Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}})) to run *any* RISC-V instruction with *one* set of hardware!
 
-![Single cycle DINO CPU design](https://jlpteaching.github.io/dinocpu-wq22/assignments/single-cycle-no-control.svg)
+![Single cycle DINO CPU without control wires](single-cycle-no-control-assignment-2.png)
 
-In the next video, I go through a couple of example instructions with the datapath that you will be implementing in [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}).
+In the next video, I go through a couple of example instructions with the datapath that you will be implementing in [DINO CPU Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}).
+Note that this datapath was from WQ'21, and it varies slightly from the version in WQ'22.
 
 {% include video.html id="1_lbwfhrfe" %}
 
 ## **QUIZ** Single cycle design
 
-{% include quiz.html id="109475" %}
+See canvas for the quiz!
 
 ## Performance and limits to a single cycle design
 
@@ -68,7 +61,7 @@ In these videos, we will analyze this microarchitecture to understand the perfor
 
 Note that these videos will be using the design from spring quarter 2020 which is a bit different than your design.
 However, the idea is the same.
-The quiz below will be using *your design for Winter Quarter 2021* so you will see examples using that design too.
+The quiz below will be using *your design for Winter Quarter 2022* so you will see examples using that design too.
 
 ### Performance of the single cycle design
 
@@ -87,4 +80,4 @@ However, we have freedom to make any design that we want, and this is an interes
 
 ### **QUIZ** The Single cycle design's performance
 
-{% include quiz.html id="109748" %}
+See Canvas for the quiz!
