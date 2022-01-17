@@ -12,7 +12,7 @@ The pipelined processor leverages *parallelism*, specifically "pipelined" parall
 
 In the next section on [Instruction-level parallelism](../ilp), we will see another type of parallelism and how it can further increase performance.
 
-{% include reading.html section="Sections 4.5-4.9" %}
+{% include reading.html section="Sections 4.6-4.10"  ed1_section="Sections 4.5-4.9" %}
 
 {% include reading-grad.html section="Appendix C.2-C.7" %}
 
@@ -24,7 +24,7 @@ Those of you in 201A can
 
 ### What is pipelining?
 
-{% include reading.html section="Sections 4.5" %}
+{% include reading.html section="Sections 4.6"  ed1_section="Section 4.5" %}
 
 {% include reading-grad.html section="Appendix C.2" %}
 
@@ -37,7 +37,7 @@ So, you're stuck with me talking about laundry.
 
 ### Pipelined design for the DINO CPU
 
-{% include reading.html section="Section 4.6" %}
+{% include reading.html section="Section 4.7"  ed1_section="Section 4.6" %}
 
 {% include reading-grad.html section="Appendix C.3" %}
 
@@ -87,7 +87,7 @@ Note: these lectures will be useful when completing [Part II]({{'modules/dino cp
 
 ### Limits of our basic pipelined design and data hazards
 
-{% include reading.html section="Section 4.7" %}
+{% include reading.html section="Section 4.8"  ed1_section="Section 4.7" %}
 
 {% include reading-grad.html section="Appendix C.4" %}
 
@@ -145,7 +145,7 @@ Use canvas to complete the quiz!
 
 ### Control hazards and branch prediction
 
-{% include reading.html section="Section 4.8" %}
+{% include reading.html section="Section 4.9"  ed1_section="Section 4.8" %}
 
 {% include reading-grad.html section="Appendix C.2, Section 3.3" %}
 
@@ -169,7 +169,7 @@ This video talks about structural hazards.
 
 ## Exceptions in a pipelined processor
 
-{% include reading.html section="Section 4.9" %}
+{% include reading.html section="Section 4.10" ed1_section="Section 4.9" %}
 
 {% include video.html id="0_b0k5r233" %}
 
