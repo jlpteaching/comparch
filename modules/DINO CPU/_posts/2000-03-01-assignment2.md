@@ -829,7 +829,7 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ## Code portion
 
-You will upload the three files that you changed to Gradescope on the [Lab 2](TODO) assignment.
+You will upload the three files that you changed to Gradescope on the [Lab 2](https://www.gradescope.com/courses/343623/assignments/1779469) assignment.
 
 - `src/main/scala/components/alucontrol.scala`
 - `src/main/scala/components/nextpc.scala`
