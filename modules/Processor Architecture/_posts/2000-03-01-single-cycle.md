@@ -44,7 +44,7 @@ By splitting the hardware this way, we're able to use *one set of hardware* to e
 
 Now, we can use the following design (what you will be implementing in [DINO CPU Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}})) to run *any* RISC-V instruction with *one* set of hardware!
 
-![Single cycle DINO CPU without control wires](single-cycle-no-control-assignment-2.png)
+![Single cycle DINO CPU without control wires]({{'img\dinocpu\single-cycle-no-control-assignment-2.svg' | relative_url}})
 
 In the next video, I go through a couple of example instructions with the datapath that you will be implementing in [DINO CPU Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}).
 Note that this datapath was from WQ'21, and it varies slightly from the version in WQ'22.
