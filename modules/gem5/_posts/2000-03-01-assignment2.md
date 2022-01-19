@@ -65,7 +65,7 @@ int main()
 }
 ```
 
-Your first task is to compile this code statically and simulate it with gem5 using the *TimingSimple CPU*.
+Your first task is to compile this code statically and simulate it with gem5 using the *TimingSimple CPU*. You can name the config file you use to run it with gem5 as `run.py`.
 
 In your report, report the breakup of instructions for different op classes -- and provide a brief analysis of the breakdown. For this, grep for statExecutedInstType in the stats.txt file (Note: there are also summary stats directly above the statExecutedInstType stats that you may find useful). You should also use the same two-level cache configuration as assignment1.
 
@@ -95,7 +95,7 @@ Assume that the issueLat and the opLat of the FloatSimdFU can vary from 1 to 6 c
 
 In your report, answer: which design of the FloatSimd functional unit would you prefer? Provide statistical evidence obtained through simulations of the annotated portion of the code.
 
-You can find a skeleton file that extends the minor CPU [here](http://pages.cs.wisc.edu/~sinclair/courses/cs752/fall2021/handouts/hw/hw2/cpu.py). If you use this file, you will have to modify your config scripts to work with it. Also, you'll have to modify this file to support the next part.
+You can find a skeleton file that extends the minor CPU [here](http://pages.cs.wisc.edu/~sinclair/courses/cs752/fall2021/handouts/hw/hw2/cpu.py). If you use this file, you will have to modify your config scripts (run.py) to work with it. Also, you'll have to modify this file to support the next part.
 
 ## Step IV
 
@@ -105,27 +105,29 @@ In your report, answer: Which one should we go for? Provide statistical evidence
 
 ## Submission
 
-1. Create an archive (.zip, .gz, or .tgz) of the following files:
+1. Prepare the following files:
     a. A file named daxpy.cpp which is used for testing. This file should also include the pseudo-instructions (m5_dump_reset_stats()) as asked in [Step II](#step-ii).  Also provide a file daxpy.s with the fragment of the generated assembly code as asked for in [Step II](#step-ii).
-    b. Any Python files you used to run your simulations.
-    c. stats.txt and config.ini files for all the simulations, appropriately named to convey which file is from which run.
+
+    b. Any Python files you used to run your simulations (e.g., `run.py`).
+
+    c. `stats.txt` and `config.ini` files for all the simulations, appropriately named to convey which file is from which run.
+
     d. The Makefile you used to compile your benchmark.
 
-2. Additionally, separate from the above archive, create a file named report.pdf that contains a short report (400 words) with answers to the above questions.
+2. Additionally, separate from the above files, create a file named report.pdf that contains the answers to the above questions.
 
-3. Submit your archive and report to Gradescope.
+3. Submit your files to the designated sections on the Gradescope.
 
 
 ## Grading
 The grading breakdown for this assignment is as follows:
 
-Total Points: 48
+Total Points: 100
 
 1. **Stats files (20 points total)**: Each stats/config file is worth 1 point if it is submitted, 0 otherwise.
-2. **daxpy.cpp (2 points)**
-3. **cpu.py (4 points)** (or equivalent script(s) if you chose not to modify this one)
-4. **Makefile (2 points)**
-5. **Report (20 points)**: Each of the 4 questions is worth 5 points. Partial credit will be given for answers that do not fully answer the question.
+2. **20 points for compiling daxpy.cpp file by running `make` using your Makefile.**
+2. **20 for gem5 executing the run.py script.**
+5. **Report (40 points)**: Each of the 4 questions is worth 10 points. Partial credit will be given for answers that do not fully answer the question.
 
 
 **Warning**: read the submission instructions carefully.
