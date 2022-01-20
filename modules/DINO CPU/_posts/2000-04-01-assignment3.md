@@ -46,7 +46,7 @@ See [Grading](#grading) for details on turning in lab 3.2.
 
 # Introduction
 
-![Cute Dino](../dino-128.png)
+![Cute Dino]({{'img/dinocpu/dino-128.png' | relative_url}})
 
 In the last assignment, you implemented a full single cycle RISC-V CPU.
 In this assignment, you will be extending this design to be a 5-stage pipeline instead of a single cycle.
@@ -56,7 +56,7 @@ The simple in-order CPU design is based closely on the CPU model in Patterson an
 ## Updating the DINO CPU code
 
 The DINO CPU code must be updated before you can run each lab.
-You should read up on [how to update your code](../documentation/updating-from-git.md) to get the assignment 3 template from GitHub.
+You should read up on [how to update your code](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/updating-from-git.md) to get the assignment 3 template from GitHub.
 
 You can check out the main branch to get the template code for this lab.
 If you want to use your solution from lab2 as a starting point, you can merge your commits with the `origin` main by running `git pull` or `git fetch; git merge origin/main`.
@@ -85,13 +85,13 @@ You will get errors on Gradescope (and thus no credit) if you modify the I/O.
 # Pipelined CPU design
 
 Below is a diagram of the pipelined DINO CPU.
-This diagram includes all control wires unlike the diagram in [Assignment 2](assignment-2.md) in addition to all of the MUXes needed.
+This diagram includes all control wires unlike the diagram in [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}) in addition to all of the MUXes needed.
 
 **Notice: Please be aware that in some of the connections we have not specified what bits of a signal must be connected to the input of a module. While working on this assignment, please make sure you specify the proper bits, wherever needed in your implementation.**
 
 The pipelined design is based very closely on the single cycle design.
 You may notice there are a few minor changes (e.g., the location of the PC MUX).
-You can take your code from the [Assignment 2](assignment-2.md) as a starting point, or you can use the code provided in `src/main/scala/single-cycle/cpu.scala`, which is my solution to Assignment 2.
+You can take your code from the [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}) as a starting point, or you can use the code provided in `src/main/scala/single-cycle/cpu.scala`, which is the reference solution to Assignment 2.
 
 ![Pipelined CPU](../documentation/pipelined.svg)
 
@@ -117,10 +117,10 @@ When you see something like the following output when running a test:
 This means that the test `bne-False` failed.
 
 For this assignment, it would be a good idea to single step through each one of the failed tests.
-You can find out more information on this in the [DINO CPU documentation](../documentation/single-stepping.md) and in the video [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+You can find out more information on this in the [DINO CPU documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and in the video [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 You may also want to add your own `printf` statements to help you debug.
-Details on how to do this were are in the [Chisel notes](../documentation/chisel-notes/printf-debugging.md).
+Details on how to do this were are in the [Chisel notes](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/printf-debugging.md).
 
 # Part I: Re-implement the CPU logic and add pipeline registers
 
@@ -250,7 +250,7 @@ Don't forget about [how to single-step through the pipelined CPU](https://github
 **Hint-1**: `auipc1` and `auipc3` actually execute two instructions (the first is a `nop`) so even though this section is about single instructions, you still need to think about the value of the `PC`.
 Note: These instructions *don't* require forwarding.
 
-**Hint-2**: You may need to include other modules to properly drive the pipelined CPU. We strongly encourage you to analyze the [data and control path](../documentation/pipelined.png) we provided to make sure you have included all the modules.
+**Hint-2**: You may need to include other modules to properly drive the pipelined CPU. We strongly encourage you to analyze the [data and control path]({{'img/dinocpu/pipelined.svg' | relative_url}}) we provided to make sure you have included all the modules.
 
 
 ------------------------------------------------------------------------------------------------------------
@@ -305,7 +305,7 @@ There are three steps to implementing forwarding.
 2. Wire the forwarding unit into the processor.
 3. Implement the forwarding logic in the forwarding unit.
 
-![Forwarding MUXes](forwarding.png)
+![Forwarding MUXes]({{'img/dinocpu/forwarding.svg' | relative_url}})
 
 For #3, you may want to consult Section 4.7 of Patterson and Hennessy.
 Specifically, Figure 4.53 will be helpful.
@@ -324,7 +324,7 @@ sbt:dinocpu> Lab3 / testOnly dinocpu.ITypeMultiCycleTesterLab3
 sbt:dinocpu> Lab3 / testOnly dinocpu.RTypeMultiCycleTesterLab3
 ```
 
-Don't forget about [how to single-step through the pipelined CPU](../documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+Don't forget about [how to single-step through the pipelined CPU](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 # Part III: Implementing branching and flushing
 
@@ -349,7 +349,7 @@ sbt:dinocpu> Lab3 / testOnly dinocpu.BranchTesterLab3
 sbt:dinocpu> Lab3 / testOnly dinocpu.JumpTesterLab3
 ```
 
-Don't forget about [how to single-step through the pipelined CPU](../documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+Don't forget about [how to single-step through the pipelined CPU](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 # Part IV: Hazard detection
 
@@ -374,7 +374,7 @@ sbt:dinocpu> Lab3 / testOnly dinocpu.MemoryMultiCycleTesterLab3
 sbt:dinocpu> Lab3 / testOnly dinocpu.ApplicationsTesterLab3
 ```
 
-Don't forget about [how to single-step through the pipelined CPU](../documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+Don't forget about [how to single-step through the pipelined CPU](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 ## Full application traces
 
@@ -440,4 +440,4 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 - Start early! Start early and ask questions on Discord and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Discord.
-- See [common errors](../documentation/common-errors.md) for some common errors and their solutions.
+- See [common errors](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/common-errors.md) for some common errors and their solutions.
