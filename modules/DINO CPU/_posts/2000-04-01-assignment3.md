@@ -93,7 +93,7 @@ The pipelined design is based very closely on the single cycle design.
 You may notice there are a few minor changes (e.g., the location of the PC MUX).
 You can take your code from the [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}) as a starting point, or you can use the code provided in `src/main/scala/single-cycle/cpu.scala`, which is the reference solution to Assignment 2.
 
-![Pipelined CPU](../documentation/pipelined.svg)
+![Pipelined CPU]({{'img/dinocpu/pipelined.svg' | relative_url}})
 
 ## Testing your pipelined CPU
 
