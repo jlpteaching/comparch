@@ -83,7 +83,7 @@ Execute `scons build/x86/out/m5` in the $GEM5_ROOT/util/m5/ directory. This will
 
 **NOTE**: If you're using CSIF machines, do not forget to use this format: **$HOME/.local/bin/scons** for scons.
 
-In your report, report the breakup of instructions among different op classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to m5_dump_reset_stats() and ends with another call to m5_dump_reset_stats(), with the main DAXPY loop in between.
+In your report, report the breakup of instructions among different opcode classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to m5_dump_reset_stats() and ends with another call to m5_dump_reset_stats(), with the main DAXPY loop in between.
 
 ## Step III
 
@@ -107,7 +107,7 @@ In your report, answer: Which one should we go for? Provide statistical evidence
 
 1. Prepare the following files:
 
-    a. A file named daxpy.cpp which is used for testing. This file should also include the pseudo-instructions (m5_dump_reset_stats()) as asked in [Step II](#step-ii).  Also provide a file daxpy.s with the fragment of the generated assembly code as asked for in [Step II](#step-ii).
+    a. A file named daxpy.cpp which is used for testing. This file should also include the pseudo-instructions (m5_dump_reset_stats()) as asked in [Step II](#step-ii).
 
     b. Any Python files you used to run your simulations (e.g., `run.py`).
 
