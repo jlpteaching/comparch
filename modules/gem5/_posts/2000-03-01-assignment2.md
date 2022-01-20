@@ -30,7 +30,7 @@ You should do this assignment on your own, although you are welcome to talk to c
 The purpose of this assignment is to give you experience with pipelined CPUs. You will simulate a given program with TimingSimple CPU to understand the instruction mix of the program. Then, you will simulate the same program with a pipelined in-order CPU to understand how the latency and bandwidth of different parts of pipeline affect performance. You will also be exposed to pseudo-instructions that are used for carrying out functions required by the underlying experiment. This homework is based on exercise 3.6 of CA:AQA 3rd edition (the former textbook for this course) and was developed in part by Jason Lowe-Power et al., then modernized by Matt Sinclair and Jason Lowe-Power.
 
 ## Step I
-The DAXPY loop (double precision aX + Y) is an oft used operation in programs that work with matrices and vectors. The following code implements DAXPY in C++14 (please compile your program for c++14).
+The DAXPY loop (double precision `aX + Y`) is an oft used operation in programs that work with matrices and vectors. The following code implements DAXPY in C++14 (please compile your program for c++14).
 
 ```cpp 
 #include <cstdio>
@@ -67,39 +67,39 @@ int main()
 
 Your first task is to compile this code statically and simulate it with gem5 using the *TimingSimple CPU*. You can name the config file you use to run it with gem5 as `run.py`.
 
-In your report, report the breakup of instructions for different op classes -- and provide a brief analysis of the breakdown. For this, grep for statExecutedInstType in the stats.txt file (Note: there are also summary stats directly above the statExecutedInstType stats that you may find useful). You should also use the same two-level cache configuration as assignment1.
+In your report, report the breakup of instructions for different op classes -- and provide a brief analysis of the breakdown. For this, grep for `statExecutedInstType` in the stats.txt file (Note: there are also summary stats directly above the `statExecutedInstType` stats that you may find useful). You should also use the same two-level cache configuration as assignment1.
 
 ## Step II
 
-Generate the assembly code for the DAXPY program above by using the -S and -O3 options when compiling with g++. As you can see from the assembly code, instructions that are not central to the actual task of the program (computing aX + Y) will also be simulated. This includes the instructions for generating the vectors X and Y, summing elements in Y, and printing the sum. When we compiled the code with -S, we got about 320 lines of assembly code with O2 and 500 lines of assembly code with O3, with only about 15-20 lines for the actual DAXPY loop. 
+Generate the assembly code for the DAXPY program above by using the `-S` and `-O3` options when compiling with g++. As you can see from the assembly code, instructions that are not central to the actual task of the program (computing `aX + Y`) will also be simulated. This includes the instructions for generating the vectors X and Y, summing elements in Y, and printing the sum. When we compiled the code with `-S`, we got about 320 lines of assembly code with O2 and 500 lines of assembly code with O3, with only about 15-20 lines for the actual DAXPY loop. 
 
-Optional: you may find -fverbose-asm useful to include in your Makefile for this step.
+Optional: you may find `-fverbose-asm` useful to include in your Makefile for this step.
 
 Usually while carrying out experiments for evaluating a design, one would like to look only at statistics for the portion of the code that is most important. This part of the code is also known as the region of interest. To look only at the region of interest, typically programs are annotated so that the simulator, on reaching the beginning of an annotated portion of the code, will carry out functions like create a checkpoint, output, and reset statistical variables. By doing this, it ensures that our stats are representative for the region of the code we care about, instead of mixing these stats in with the stats for parts we aren't focused on (e.g., generating the vectors in DAXPY).
 
-To learn how to reset the stats in gem5, you will edit the C++ code from the [Step I](#step-i) to output and reset stats just before the start of the DAXPY loop and just after it. For this, include the file [m5op.h](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/include/gem5/m5ops.h) in the program (you will find this file in include/gem5/ directory of the gem5 repository). Use the function m5_dump_reset_stats() from this file in your program. This function outputs the statistical variables and then resets them. You can provide 0 as the value for both the delay and the period arguments. If you want to learn more about m5ops, [here](https://www.gem5.org/documentation/general_docs/m5ops/) is a good place to start. In particular, you will need to update your CFLAGS and LDFLAGS similarly to how the documentation does.
+To learn how to reset the stats in gem5, you will edit the C++ code from the [Step I](#step-i) to output and reset stats just before the start of the DAXPY loop and just after it. For this, include the file [m5ops.h](https://gem5.googlesource.com/public/gem5/+/refs/heads/stable/include/gem5/m5ops.h) in the program (you will find this file in `include/gem5/` directory of the gem5 repository). Use the function `m5_dump_reset_stats()` from this file in your program. This function outputs the statistical variables and then resets them. You can provide 0 as the value for both the delay and the period arguments. If you want to learn more about m5ops, [here](https://www.gem5.org/documentation/general_docs/m5ops/) is a good place to start. In particular, you will need to update your `CFLAGS` and `LDFLAGS` similarly to how the documentation does.
 
-Execute `scons build/x86/out/m5` in the $GEM5_ROOT/util/m5/ directory. This will create a file named libm5.a (and a binary named m5) in $GEM5_ROOT/util/m5/build/x86/out. Link this library with the program for DAXPY (compile with g++, see above for CFLAGS and LDFLAGS updates). Now again simulate the program with the TimingSimple CPU. This time you should see three sets of statistics in the stats.txt file.
+Execute `scons build/x86/out/m5` in the `$GEM5_ROOT/util/m5/` directory. This will create a file named `libm5.a` (and a binary named `m5`) in `$GEM5_ROOT/util/m5/build/x86/out`. Link this library with the program for DAXPY (compile with g++, see above for `CFLAGS` and `LDFLAGS` updates). Now again simulate the program with the TimingSimple CPU. This time you should see three sets of statistics in the `stats.txt` file.
 
 **NOTE**: If you're using CSIF machines, do not forget to use this format: **$HOME/.local/bin/scons** for scons.
 
-In your report, report the breakup of instructions among different opcode classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to m5_dump_reset_stats() and ends with another call to m5_dump_reset_stats(), with the main DAXPY loop in between.
+In your report, report the breakup of instructions among different opcode classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to `m5_dump_reset_stats()` and ends with another call to `m5_dump_reset_stats()`, with the main DAXPY loop in between.
 
 ## Step III
 
 As the tutorial with assignment1 discussed, there are several different types of CPUs that gem5 supports: atomic, TimingSimple, out-of-order, in-order and KVM. Let's talk about the timing and in-order CPUs. The TimingSimple CPU executes each arithmetic instruction in a single cycle, but requires multiple cycles for memory accesses. Also, it is not pipelined. So only a single instruction is being worked upon at any time. The in-order CPU (also known as MinorCPU) executes instructions in a pipelined fashion with the following pipe stages: fetch1, fetch2, decode and execute. Remember, as discussed in assignment1, you must add MinorCPU to the command line to get it to compile.
 
-Especially if you didn't already for assignment1, take a look at the file MinorCPU.py. In the definition of MinorFU, the class for functional units, we define two quantities opLat and issueLat. From the comments provided in the file, understand how these two parameters are to be used. Also note the different functional units that are instantiated as defined in class MinorDefaultFUPool.
+Especially if you didn't already for assignment1, take a look at the file `MinorCPU.py`. In the definition of `MinorFU`, the class for functional units, we define two quantities `opLat` and `issueLat`. From the comments provided in the file, understand how these two parameters are to be used. Also note the different functional units that are instantiated as defined in class `MinorDefaultFUPool`.
 
-Assume that the issueLat and the opLat of the FloatSimdFU can vary from 1 to 6 cycles and that they always sum to 7 cycles (e.g., issueLat = 1, opLat = 6, 1+6=7). For each decrease in the opLat, we need to pay with a unit increase in issueLat (e.g., issueLat = 2, opLat = 5). 
+Assume that the `issueLat` and the `opLat` of the `FloatSimdFU` can vary from 1 to 6 cycles and that they always sum to 7 cycles (e.g., issueLat = 1, opLat = 6, 1+6=7). For each decrease in the `opLat`, we need to pay with a unit increase in `issueLat` (e.g., issueLat = 2, opLat = 5). 
 
-In your report, answer: which design of the FloatSimd functional unit would you prefer? Provide statistical evidence obtained through simulations of the annotated portion of the code.
+In your report, answer: which design of the `FloatSimd` functional unit would you prefer? Provide statistical evidence obtained through simulations of the annotated portion of the code.
 
-You can find a skeleton file that extends the minor CPU [here](http://pages.cs.wisc.edu/~sinclair/courses/cs752/fall2021/handouts/hw/hw2/cpu.py). If you use this file, you will have to modify your config scripts (run.py) to work with it. Also, you'll have to modify this file to support the next part.
+You can find a skeleton file that extends the minor CPU [here](http://pages.cs.wisc.edu/~sinclair/courses/cs752/fall2021/handouts/hw/hw2/cpu.py). If you use this file, you will have to modify your config scripts (`run.py`) to work with it. Also, you'll have to modify this file to support the next part.
 
 ## Step IV
 
-The Minor CPU has by default two integer functional units as defined in the file MinorCPU.py (ignore the Multiplication and the Division units). Assume our original Minor CPU design requires 2 cycles for integer functions and 4 cycles for floating point functions. In our upcoming Minor CPU, we can halve either of these latencies. 
+The Minor CPU has by default two integer functional units as defined in the file `MinorCPU.py` (ignore the Multiplication and the Division units). Assume our original Minor CPU design requires 2 cycles for integer functions and 4 cycles for floating point functions. In our upcoming Minor CPU, we can halve either of these latencies. 
 
 In your report, answer: Which one should we go for? Provide statistical evidence obtained through simulations.
 
@@ -107,7 +107,7 @@ In your report, answer: Which one should we go for? Provide statistical evidence
 
 1. Prepare the following files:
 
-    a. A file named daxpy.cpp which is used for testing. This file should also include the pseudo-instructions (m5_dump_reset_stats()) as asked in [Step II](#step-ii).
+    a. A file named `daxpy.cpp` which is used for testing. This file should also include the pseudo-instructions (`m5_dump_reset_stats()`) as asked in [Step II](#step-ii).
 
     b. Any Python files you used to run your simulations (e.g., `run.py`).
 
