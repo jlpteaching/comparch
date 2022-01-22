@@ -113,7 +113,26 @@ In your report, answer: Which one should we go for? Provide statistical evidence
 
     c. `stats.txt` and `config.ini` files for all the simulations, appropriately named to convey which file is from which run.
 
+      **NOTE**: Here's a table showing all the gem5's output files you need to run and submit for this part:
+    
+
+    | #   | Step# | latency1 |   latency2  | stats.txt | config.ini |
+    |-----|-------|----------|-------------|-----------|------------|
+    | 1	  | i     |    NA    |   NA        |    YES    |     YES    |
+    | 2	  | ii	  |    NA    |   NA        |    YES    |     YES    |
+    | 3	  | iii   | opLat=1  | issLat=6    |    YES    |     YES    |
+    | 4   | iii   | opLat=2  | issLat=5    |    YES    |     YES    |
+    | 5	  | iii   | opLat=3  | issLat=4    |    YES    |     YES    |
+    | 6	  | iii   | opLat=4  | issLat=3    |    YES    |     YES    |
+    | 7	  | iii   | opLat=5  | issLat=2    |    YES    |     YES    |
+    | 8	  | iii   | opLat=6  | issLat=1    |    YES    |     YES    |
+    | 9	  | iv    | intLat=2 | floatLat=4  |    YES    |     YES    |
+    | 10	| iv    | intLat=2 | floatLat=2  |    YES    |     YES    |
+    | 11  | iv    | intLat=1 | floatLat=4  |    YES    |     YES    |
+
+
     d. The Makefile you used to compile your benchmark.
+
 
 2. Additionally, separate from the above files, create a file named report.pdf that contains the answers to the above questions.
 
@@ -125,7 +144,7 @@ The grading breakdown for this assignment is as follows:
 
 Total Points: 100
 
-1. **Stats files (20 points total)**: Each stats/config file is worth 1 point if it is submitted, 0 otherwise.
+1. **Stats files (20 points total)**: for each missing stats/config (according to the table shown above) 1 point will be reduced (20 points reduced, if none submitted).
 2. **20 points for compiling daxpy.cpp file by running `make` using your Makefile.**
 2. **20 for gem5 executing the run.py script.**
 5. **Report (40 points)**: Each of the 4 questions is worth 10 points. Partial credit will be given for answers that do not fully answer the question.
