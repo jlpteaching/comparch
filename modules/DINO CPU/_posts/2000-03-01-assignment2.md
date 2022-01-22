@@ -809,7 +809,7 @@ sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleApplicationsTesterLab2
 To run a single application, you can use the following command:
 
 ```
-sbt:dinocpu> testOnly dinocpu.SingleCycleApplicationsTesterLab2 -- -z <binary name>
+sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleApplicationsTesterLab2 -- -z <binary name>
 ```
 
 # Grading
