@@ -18,7 +18,7 @@ In the next section on [Instruction-level parallelism](../ilp), we will see anot
 
 **Note:** In this section there are a couple of videos which have examples using the DINO CPU in great detail.
 These are very useful for the students in 154B while they are working on the DINO CPU project.
-Those of you in 201A can
+Those of you in 201A can skip these videos or run through at 2x speed.
 
 ## Basic pipeline design
 

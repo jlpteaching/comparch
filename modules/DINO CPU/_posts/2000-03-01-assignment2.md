@@ -295,7 +295,7 @@ import chisel3._
  * Next PC unit. This takes various inputs and outputs the next address of the next instruction.
  *
  * Input: branch         True if executing a branch instruction, False otherwise
- * Input: jumptype       00 if not a jump inst, 10 if inst is a jal, 11 if inst is a jalr
+ * Input: jumptype       0 if not a jump inst, 2 if inst is a jal, 3 if inst is a jalr
  * Input: inputx         First input
  * Input: inputy         Second input
  * Input: funct3         The funct3 from the instruction
@@ -429,12 +429,12 @@ You have to say `io.dmem`, which seems backwards.
 For this assignment, you can ignore the good and ready signals since memory will respond to the request in the same cycle.
 
 ```
-Input:  address, the address of a piece of data in memory.
+Input:  address, the address of a piece of data in memory
 Input:  writedata, valid interface for the data to write to the address
 Input:  valid, true when the address (and writedata during a write) specified is valid
 Input:  memread, true if we are reading from memory
 Input:  memwrite, true if we are writing to memory
-Input:  maskmode, mode to mask the result. 0 means byte, 1 means halfword, 2 means word
+Input:  maskmode, mode to mask the result. 0 means byte, 1 means halfword, 2 means word, 3 means doubleword
 Input:  sext, true if we should sign extend the result
 
 Output: readdata, the data read and sign extended
