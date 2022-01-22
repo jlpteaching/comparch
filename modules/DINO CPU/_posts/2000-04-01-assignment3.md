@@ -438,6 +438,6 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 # Hints
 
-- Start early! Start early and ask questions on Discord and in discussion.
-- If you need help, come to office hours for the TA, or post your questions on Discord.
+- Start early! Start early and ask questions on Campuswire and in discussion.
+- If you need help, come to office hours for the TA, or post your questions on Campuswire.
 - See [common errors](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/common-errors.md) for some common errors and their solutions.
