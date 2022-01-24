@@ -83,7 +83,7 @@ Execute `scons build/x86/out/m5` in the `$GEM5_ROOT/util/m5/` directory. This wi
 
 **NOTE**: If you're using CSIF machines, do not forget to use this format: **$HOME/.local/bin/scons** for scons.
 
-In your report, report the breakup of instructions among different opcode classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to `m5_dump_reset_stats()` and ends with another call to `m5_dump_reset_stats()`, with the main DAXPY loop in between.
+In your report, report the breakup of instructions among different opcode classes for the three parts of the program. Provide the fragment of the generated assembly code that starts with call to `m5_dump_reset_stats()` and ends with another call to `m5_dump_reset_stats()`, with the main DAXPY loop in between. Like Step I provide a brief analysis of the breakdowns.
 
 ## Step III
 
