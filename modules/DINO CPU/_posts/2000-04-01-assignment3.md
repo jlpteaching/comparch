@@ -14,7 +14,7 @@ Modified for ECS 154B Lab 3, Winter 2022.
 
 See [End of Part 3.1](#end-of-part-31) for details on turning in lab 3.1.
 
-**Part 3.2 Due on 02/06/2021**
+**Part 3.2 Due on 02/09/2021 at 11:59PM PST**
 
 See [Grading](#grading) for details on turning in lab 3.2.
 
