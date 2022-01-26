@@ -32,7 +32,7 @@ The purpose of this assignment is to give you experience with pipelined CPUs. Yo
 ## Step I
 The DAXPY loop (double precision `aX + Y`) is an oft used operation in programs that work with matrices and vectors. The following code implements DAXPY in C++14 (please compile your program for c++14).
 
-```cpp 
+```cpp
 #include <cstdio>
 #include <random>
 
@@ -71,7 +71,7 @@ In your report, report the breakup of instructions for different op classes -- a
 
 ## Step II
 
-Generate the assembly code for the DAXPY program above by using the `-S` and `-O3` options when compiling with g++. As you can see from the assembly code, instructions that are not central to the actual task of the program (computing `aX + Y`) will also be simulated. This includes the instructions for generating the vectors X and Y, summing elements in Y, and printing the sum. When we compiled the code with `-S`, we got about 320 lines of assembly code with O2 and 500 lines of assembly code with O3, with only about 15-20 lines for the actual DAXPY loop. 
+Generate the assembly code for the DAXPY program above by using the `-S` and `-O3` options when compiling with g++. As you can see from the assembly code, instructions that are not central to the actual task of the program (computing `aX + Y`) will also be simulated. This includes the instructions for generating the vectors X and Y, summing elements in Y, and printing the sum. When we compiled the code with `-S`, we got about 320 lines of assembly code with O2 and 500 lines of assembly code with O3, with only about 15-20 lines for the actual DAXPY loop.
 
 Optional: you may find `-fverbose-asm` useful to include in your Makefile for this step.
 
@@ -91,15 +91,15 @@ As the tutorial with assignment1 discussed, there are several different types of
 
 Especially if you didn't already for assignment1, take a look at the file `MinorCPU.py`. In the definition of `MinorFU`, the class for functional units, we define two quantities `opLat` and `issueLat`. From the comments provided in the file, understand how these two parameters are to be used. Also note the different functional units that are instantiated as defined in class `MinorDefaultFUPool`.
 
-Assume that the `issueLat` and the `opLat` of the `FloatSimdFU` can vary from 1 to 6 cycles and that they always sum to 7 cycles (e.g., issueLat = 1, opLat = 6, 1+6=7). For each decrease in the `opLat`, we need to pay with a unit increase in `issueLat` (e.g., issueLat = 2, opLat = 5). 
+Assume that the `issueLat` and the `opLat` of the `FloatSimdFU` can vary from 1 to 6 cycles and that they always sum to 7 cycles (e.g., issueLat = 1, opLat = 6, 1+6=7). For each decrease in the `opLat`, we need to pay with a unit increase in `issueLat` (e.g., issueLat = 2, opLat = 5).
 
 In your report, answer: which design of the `FloatSimd` functional unit would you prefer? Provide statistical evidence obtained through simulations of the annotated portion of the code.
 
-You can find a skeleton file that extends the minor CPU [here](http://pages.cs.wisc.edu/~sinclair/courses/cs752/fall2021/handouts/hw/hw2/cpu.py). If you use this file, you will have to modify your config scripts (`run.py`) to work with it. Also, you'll have to modify this file to support the next part.
+You can find a skeleton file that extends the minor CPU [here]({{ "img/cpu.py" | relative_url }}). If you use this file, you will have to modify your config scripts (`run.py`) to work with it. Also, you'll have to modify this file to support the next part.
 
 ## Step IV
 
-The Minor CPU has by default two integer functional units as defined in the file `MinorCPU.py` (ignore the Multiplication and the Division units). Assume our original Minor CPU design requires 2 cycles for integer functions and 4 cycles for floating point functions. In our upcoming Minor CPU, we can halve either of these latencies. 
+The Minor CPU has by default two integer functional units as defined in the file `MinorCPU.py` (ignore the Multiplication and the Division units). Assume our original Minor CPU design requires 2 cycles for integer functions and 4 cycles for floating point functions. In our upcoming Minor CPU, we can halve either of these latencies.
 
 In your report, answer: Which one should we go for? Provide statistical evidence obtained through simulations.
 
@@ -114,7 +114,7 @@ In your report, answer: Which one should we go for? Provide statistical evidence
     c. `stats.txt` and `config.ini` files for all the simulations, appropriately named to convey which file is from which run.
 
       **NOTE**: Here's a table showing all the gem5's output files you need to run and submit for this part:
-    
+
 
     | #   | Step# | latency1 |   latency2  | stats.txt | config.ini |
     |-----|-------|----------|-------------|-----------|------------|
