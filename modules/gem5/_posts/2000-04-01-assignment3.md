@@ -41,7 +41,7 @@ Note that this requires 3-4 GiB of disk space, so if you're running on a compute
 
 In this assignment, we will be using the [gem5 standard library](https://www.gem5.org/documentation/gem5-stdlib/overview) for the simulated system (called a board), to run the simulation via the `Simulator` class, and for the benchmark `Resources`.
 
-Description of the files in the [template zip file]({{img/assignment3-template.tgz | relative_url}}).
+Description of the files in the [template zip file]({{ "img/assignment3-template.tgz" | relative_url }}).
 
 - `riscv_se.py`: This file contains a simple RISC-V system with a configurable out-of-order core.
 - `stanford_benchmarks.py`: Contains the "resources" for the stanford benchmarks precompiled for RISC-V.
