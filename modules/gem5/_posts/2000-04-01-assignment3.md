@@ -18,7 +18,7 @@ The goals of this assignment are:
 - Improve your understanding of out-of-order processor architecture.
 
 In this assignment, you will be running a set of simple benchmarks (the "Stanford" benchmarks) taken from the [LLVM test-suite](https://github.com/llvm/llvm-test-suite/tree/main/SingleSource/Benchmarks/Stanford).
-We have precomiled these for you for the RISC-V ISA, which you can download as part of the [assignment 3 template files]({{img/assignment3-template.tgz | relative_url}}).
+We have precomiled these for you for the RISC-V ISA, which you can download as part of the [assignment 3 template files]({{ "img/assignment3-template.tgz" | relative_url }}).
 You'll be running them on the out-of-order CPU model in gem5 (the "O3CPU", O3->"OOO").
 
 For this assignment, since we're interested only in the kernel of the benchmarks, we'll be using gem5's *syscall emulation* mode.
