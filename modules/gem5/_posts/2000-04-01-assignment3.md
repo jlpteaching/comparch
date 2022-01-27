@@ -90,6 +90,7 @@ You're given two core configurations.
 You will have to extend this with other configurations as you are answering the questions below.
 
 `LargeCore`: This is a core with many resources (some the maximum gem5 supports like being 8-wide). You will be using this as the "maximum" performance core.
+
 `SmallCore`: This is a core with few resources (some the minimum that gem5 supports like only 48 physical registers). You will be using this as the "minimum" performance core.
 
 ## Assignment
