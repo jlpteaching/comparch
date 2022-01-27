@@ -117,6 +117,11 @@ Vary the four parameters in the core configuration: pipeline width, ROB entries,
 1. Which parameter(s) have the most impact on performance? Is this the same for all workloads or does it vary between different workloads?
 2. Are there any dependences between the parameters (e.g., do you need to change two or more parameters at once to have an impact on the performance of different applications)?
 3. Pick a core design between the cost of the `SmallCore` and the `LargeCore` which gives most of the performance benefits of the large core but with fewer resources.
+    
     a. What are the parameters you chose? Let's call this the `GoodCore`.
-    b. What is the average IPC improvement of your `GoodCore` design compared to the `SmallCore`? c. How much more performance could you get from the `LargeCore`? (What is the average speedup of the `LargeCore` compared to your `GoodCore`)?
+    
+    b. What is the average IPC improvement of your `GoodCore` design compared to the `SmallCore`? 
+    
+    c. How much more performance could you get from the `LargeCore`? (What is the average speedup of the `LargeCore` compared to your `GoodCore`)?
+    
     d. Are the workloads that benefited the most from the `LargeCore` the same as the ones that benefit from the `GoodCore`? Why or why not (talk about workload characteristics).
