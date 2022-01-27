@@ -4,7 +4,7 @@ Editor:  Maryam Babaie
 Title: ECS 201A Assignment 2
 ---
 
-# Assignment 2 -- Due 11:59 pm (PST) Sunday, January 23rd 2022 (48 Points)
+# Assignment 2 -- Due 11:59 pm (PST) Sunday, January 23rd 2022 (100 Points)
 
 Originally from University of Wisconsin-Madison CS/ECE 752 .
 

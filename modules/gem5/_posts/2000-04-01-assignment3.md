@@ -4,11 +4,21 @@ Editor:  Maryam Babaie
 Title: ECS 201A Assignment 3
 ---
 
-WORK IN PROGRESS!!! PLEASE DO NOT START YET!!
+# Assignment 3 -- Due 11:59 pm (PST) Wednesday, February 9th 2022
 
 ## Table of Contents
+  - [Introduction](#introduction)
+  - [Compile gem5 to execute RISC-V binaries](#compile-gem5-to-execute-risc-v-binaries)
+  - [Template files and gem5's out-of-order CPU model](#template-files-and-gem5's-out-of-order-cpu-model)
+  - [Assignment](#assignment)
+  - [Submission](#submission)
+  - [Grading](#grading)
+  - [Academic misconduct reminder](#academic-misconduct-reminder)
+  - [Hints](#hints)
 
 ## Introduction
+
+You should do this assignment on your own, although you are welcome to talk to classmates in person or on Campuswire about any issues you may have encountered. The standard late assignment policy applies.
 
 In this assignment, you'll be investigating the performance impacts of different out-of-order core designs on a set of RISC-V benchmarks.
 The goals of this assignment are:
@@ -31,11 +41,18 @@ First, we need to create a gem5 simulator binary that can execute RISC-V code.
 As of the writing of this assignment (Winter 2022), each *target* ISA that you want to run requires a different gem5 build.
 To compile gem5 to execute RISC-V binaries, we will use the default build options file for RISC-V: `build_opts/RISCV`.
 
+**Important Note**: For this assignment you need Python 3.8 or newer. If you're using *CSIF machines or any machine that has older version of Python* (e.g., 3.6), you need to follow an additional step that we describe here, **before** compiling gem5 RISC-V binary. As shown [in this patch](https://gem5-review.googlesource.com/c/public/gem5/+/55863/2/src/python/gem5/components/boards/abstract_board.py), you are required to slightly modify the file located at `gem5/src/python/gem5/components/boards/abstract_board.py`.
+    
+    1. Remove only `, final` part in line #40.
+    2. Remove the `@final` in line #239.
+
+You can use the following command to build gem5's RISC-V binary.
+
 ```sh
 scons build/RISCV/gem5.opt -j<your number of cores>
 ```
 
-**Reminder**: If you're using CSIF machines, use this format: **$HOME/.local/bin/scons** for scons.
+**Reminder**: If you're using CSIF machines, you should use this format: **$HOME/.local/bin/scons** for `scons`.
 
 Note that this requires 3-4 GiB of disk space, so if you're running on a computer or virtual machine with limited disk space you may need to delete other prior builds (e.g., `rm -r build/X86`).
 
@@ -125,3 +142,43 @@ Vary the four parameters in the core configuration: pipeline width, ROB entries,
     c. How much more performance could you get from the `LargeCore`? (What is the average speedup of the `LargeCore` compared to your `GoodCore`)?
     
     d. Are the workloads that benefited the most from the `LargeCore` the same as the ones that benefit from the `GoodCore`? Why or why not (talk about workload characteristics).
+
+
+## Submission
+
+For this assignment you don't need to turn in any code files. The only file you need to submit on gradescope at the designated section, is the pdf file of your report. Please do not forget to specify each question according to the outline when you're submitting your work.
+In your report, you're not required to include any data which is not used in your analysis. Only include those that you actually use to justify your answer and make sure they are precisly and cleary specified.
+
+## Grading
+
+Grading breakdown is as follows:
+
+Total points = 100
+
+| #Question   | Points |
+|-------------|--------|
+| Part1.1	  | 10     |
+| Part1.2	  | 15	   |
+| Part1.3	  | 15     |
+| Part2.1     | 10     |
+| Part2.2	  | 10     |
+| Part2.3.a	  | 10     |
+| Part2.3.b	  | 10     |
+| Part2.3.c	  | 10     |
+| Part2.3.d	  | 10     |
+
+
+## Academic misconduct reminder
+
+You are to work on this project **individually**.
+You may discuss *high level concepts* with one another (e.g., talking about the diagram), but all work must be completed on your own.
+
+**Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
+Any code found on GitHub that is not the base template you are given will be reported to SJA.
+If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
+GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and **you shouldn't have *any* collaborators** for your code in this class.
+
+## Hints
+
+* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
+* If you need help, come to office hours for the TA, or post your questions on Campuswire.
