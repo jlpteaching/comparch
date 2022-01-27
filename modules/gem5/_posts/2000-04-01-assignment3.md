@@ -35,6 +35,8 @@ To compile gem5 to execute RISC-V binaries, we will use the default build option
 scons build/RISCV/gem5.opt -j<your number of cores>
 ```
 
+**Reminder**: If you're using CSIF machines, use this format: **$HOME/.local/bin/scons** for scons.
+
 Note that this requires 3-4 GiB of disk space, so if you're running on a computer or virtual machine with limited disk space you may need to delete other prior builds (e.g., `rm -r build/X86`).
 
 ## Template files and gem5's out-of-order CPU model
