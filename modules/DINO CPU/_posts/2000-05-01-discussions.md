@@ -16,3 +16,13 @@ Recording:
 [Slides]({{'img/dinocpu/154B-discussion-2.pdf' | relative_url}})
 
 Recording: [link](https://campuswire.com/c/G03D9D0A1/feed/155).
+
+### Discussion 3 (Jan 21st)
+
+[Slides]({{'img/dinocpu/154B-discussion-3.pdf' | relative_url}})
+
+### Discussion 4 (Jan 28th)
+
+[Slides]({{'img/dinocpu/154B-discussion-4.pdf' | relative_url}})
+
+Recording: [link](https://ucdavis.zoom.us/rec/share/oKMQBRA6dWC8rf8Nxs9StTfAcdTwZsGmIIoURZ-X4-y7632v7yr3V2o_chqHuzVJ.781A0o1AYdtnWQIY?startTime=1643396645000)
