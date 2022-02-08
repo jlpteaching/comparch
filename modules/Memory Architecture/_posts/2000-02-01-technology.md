@@ -1,6 +1,5 @@
 ---
 title: "Memory Technology"
-discussion: 809206696055668746
 ---
 
 ![XKCD comic](https://imgs.xkcd.com/comics/obsolete_technology.png)
@@ -8,6 +7,10 @@ discussion: 809206696055668746
 ## Reading for this section
 
 {% include reading.html section="Sections 5.1-5.2" %}
+
+Lecture recording for 2/8/2022
+
+{% include video.html id="1_17gcmozn" %}
 
 ## Introduction: Why does memory architecture matter?
 
@@ -58,7 +61,3 @@ It would be good to add a row to the table which is "RAM" and whether it's byte 
 Now that we've talked about how we want to have different places to store data, the next question is "what is the technology required to move data around?"
 
 {% include video.html id="0_qda0avr3" %}
-
-## **QUIZ** Memory technology
-
-{% include quiz.html id="113921"%}
