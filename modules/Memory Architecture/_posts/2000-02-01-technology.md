@@ -10,9 +10,13 @@ title: "Memory Technology"
 
 {% include reading-grad.html section="Sections 2.1, 2.3" %}
 
-Lecture recording for 2/8/2022
+Lecture recording for 2/7/2022
 
 {% include video.html id="1_17gcmozn" %}
+
+Lecture recording for 2/9/2022
+
+{% include video.html id="1_okkimgsj" %}
 
 ## Introduction: Why does memory architecture matter?
 
