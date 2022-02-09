@@ -8,6 +8,8 @@ title: "Memory Technology"
 
 {% include reading.html section="Sections 5.1-5.2" %}
 
+{% include reading-grad.html section="Sections 2.1, 2.3" %}
+
 Lecture recording for 2/8/2022
 
 {% include video.html id="1_17gcmozn" %}
