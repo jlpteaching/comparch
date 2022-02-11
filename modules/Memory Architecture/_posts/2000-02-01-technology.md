@@ -29,7 +29,7 @@ Here's a better picture.
 On the left are the pins for the processor and on the right are the pins for the DDR (or similar) controller.
 Here, you can see the squiggly lines that I was talking about to make sure that they are all the same length.
 
-![PCB trace for memory](/img/pcbtrace.png)
+![PCB trace for memory]({{ '/img/pcbtrace.png' | relative_url }})
 
 ## Memory technology
 
