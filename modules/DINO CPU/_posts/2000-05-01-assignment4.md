@@ -346,6 +346,7 @@ We also hope to show a general theme of making hardware design decisions: there 
 ### Grading
 Part I will be automatically graded on Gradescope.
 See the Submission section for more details.
+
 | Part                | Percentage |
 |---------------------|------------|
 | Part 4.1            |        20% |
