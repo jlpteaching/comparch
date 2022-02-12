@@ -1,12 +1,10 @@
 ---
 Author: Hoa Nguyen, Jason Lowe-Power
 Editor: Hoa Nguyen
-Title: DINO CPU Assignment 4
+Title: DINO CPU Assignment 4: Dual-issue Pipelined CPU: Performance Evaluation and Analysis
 ---
 
-DINO CPU Assignment 4: Dual-issue Pipelined CPU: Performance Evaluation and Analysis
-
-Due on Friday February 25th at 11:59pm: See [Submission] for details.
+Due on Friday February 25th at 11:59pm: See [Submission](#submission) for details.
 
 ## Table of Contents
 
@@ -109,7 +107,7 @@ You will get errors on Gradescope (and thus no credit) if you modify the I/O.
 |commit| A CPU committing an instruction means that that instruction goes through all 5 stages of the pipeline. |
 |IPC| Number of committed instructions per cycle. |
 |performance| The amount of time it takes for a CPU to run application. |
-|loop unrolling| See Loop-unrolling TODO section. |
+|loop unrolling| See [Loop-unrolling section]((#loop-unrolling)). |
 
 ## Dual-issue Pipelined CPU Design
 
