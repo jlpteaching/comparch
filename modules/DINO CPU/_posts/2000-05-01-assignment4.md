@@ -1,8 +1,10 @@
 ---
 Author: Hoa Nguyen, Jason Lowe-Power
 Editor: Hoa Nguyen
-Title: DINO CPU Assignment 4: Dual-issue Pipelined CPU: Performance Evaluation and Analysis
+Title: DINO CPU Assignment 4
 ---
+
+ DINO CPU Assignment 4: Dual-issue Pipelined CPU: Performance Evaluation and Analysis
 
 Due on Friday February 25th at 11:59pm: See [Submission](#submission) for details.
 
