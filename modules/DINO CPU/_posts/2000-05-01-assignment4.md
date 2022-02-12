@@ -193,6 +193,7 @@ Other than that, the hazard detection unit, the forwarding unit, and the registe
 E.g., now the register file needs four read ports and two write ports.
 
 We will illustrate this fact using the following latency data for all of questions in this assignment,
+
 |                      | IF latency | ID latency | EX latency | MEM latency | WB latency |
 |----------------------|------------|------------|------------|-------------|------------|
 | pipelined            |      50 ps |     100 ps |      200ps |       180ps |      190ps |
