@@ -9,7 +9,7 @@ Title: ECS 201A Assignment 3
 ## Table of Contents
   - [Introduction](#introduction)
   - [Compile gem5 to execute RISC-V binaries](#compile-gem5-to-execute-risc-v-binaries)
-  - [Template files and gem5's out-of-order CPU model](#template-files-and-gem5's-out-of-order-cpu-model)
+  - [Template files and gem5's out-of-order CPU model](#template-files-and-gem5-s-out-of-order-cpu-model)
   - [Assignment](#assignment)
   - [Submission](#submission)
   - [Grading](#grading)

@@ -26,7 +26,7 @@ This means that we won't have to wait for Linux to boot or require a precompiled
 
 ### Base matrix multiplication algorithm
 
-Below is a simple implementation of matrix multiplication given in [mm.cpp](mm.cpp).
+Below is a simple implementation of matrix multiplication given in `mm.cpp` file in the Download the template files [here]({{ '/img/assignment4-template.tgz' | relative_url }}).
 
 ```cpp
 void serial_multiply(double **A, double **B, double **C, int size)
