@@ -136,17 +136,20 @@ You can modify/extend/etc. this in any way.
 ### Question 1: Working set sizes
 
 A) What is the working set size for the matrix multiply application?
+
 B) For each for the four blocking configurations, what's the active working set for multiplying *one block*?
 
 ### Question 2: Performance
 
 A) For the three configurations given, which cache configuration performs the best? Why? (Use AMAT to explain.)
+
 B) For the three configurations given, which blocking scheme performs the best? Why? (Use statistics from the simulator to explain.)
 
 ### Question 3: Configuration
 
 A) Can you find a configuration and a blocking scheme that performs best?
 Don't exhaustively search, but try to use the information and the statistics from the three configurations given to find a better one.
+
 B) What is more important, hit ratio, latency, L1, or L2 cache?
 
 ### Question 4: Running on x86
@@ -154,7 +157,9 @@ B) What is more important, hit ratio, latency, L1, or L2 cache?
 Now, run the matrix multiply on some real x86 hardware. I suggest using an input of 256 or 512.
 
 A) What blocking size performs the best?
+
 B) What is the L1/L2/L3 size of the processor you're running on (`lscpu` or `/proc/cpuinfo` and Google should help)?
+
 C) Can you use the information about the cache sizes to predict the best performing block size?
 
 ### Hints
