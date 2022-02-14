@@ -36,12 +36,14 @@ Due on Friday February 25th at 11:59pm: See [Submission](#submission) for detail
   - [Question 4](#question-4)
   - [Question 5](#question-5)
   - [Hints](#hints-2)
+- [Part IV: Extra Credits](#part-iv-extra-credits)
 - [Conclusion](#conclusion)
 - [Logistics](#logistics)
   - [Grading](#grading)
   - [Submission](#submission)
     - [Code Portion](#code-portion)
     - [Written Portion](#written-portion)
+    - [Extra Credits Portion](#extra-credits-portion)
   - [Academic misconduct reminder](#academic-misconduct-reminder)
   - [Hints](#hints-3)
 
@@ -339,6 +341,35 @@ You can find an example of how the commit traces are produced near the end of th
 An idea or two on what caused each of the speedups and slowdowns would be sufficient for full credits.
 Make sure that the ideas are well-explained.
 
+## Part IV: Extra Credits
+
+This part is **optional**.
+In this part, you will improve the performance of the dual-issue pipeline design.
+You can add more components or modify any component in `src/main/scala/components/dual/`, as well as the CPU `src/main/scala/pipelined/dual-issue.scala`.
+The improvement could fall into one of the following cases,
+- The new design improves the performance of most benchmarks, and even 1% or 2% improvements are fine.
+- Or, the new design drastically improves the performance of a few benchmarks in particular.
+
+Make a report, which includes a few sentences describing what you added/modified, as well as a table reporting the performance (in terms of number of cycles) improvement.
+The table should follow the following format,
+
+|              Benchmarks | pipelined-dual-issue (in cycles) | pipelined-dual-issue-improved (in cycles) | speedup |
+|-------------------------|----------------------------------|-------------------------------------------|---------|
+|                multiply |                                  |                                           |         |
+| multiply-loops-unrolled |                                  |                                           |         |
+|                  median |                                  |                                           |         |
+|   median-loops-unrolled |                                  |                                           |         |
+|                   qsort |                                  |                                           |         |
+|    qsort-loops-unrolled |                                  |                                           |         |
+|                   rsort |                                  |                                           |         |
+|    rsort-loops-unrolled |                                  |                                           |         |
+|                  towers |                                  |                                           |         |
+|   towers-loops-unrolled |                                  |                                           |         |
+|                   vvadd |                                  |                                           |         |
+|    vvadd-loops-unrolled |                                  |                                           |         |
+
+See [Submission section](#extra-credits-portion) for submission details.
+
 ## Conclusion
 
 In this assignment, we hope to provide quantitative evidence of how a new CPU design influences the performance of software, and how understanding the microarchitecture of a CPU, even at the high level, might help improving software performance.
@@ -358,6 +389,7 @@ See the Submission section for more details.
 | Part 4.2 Question 3 |        10% |
 | Part 4.3 Question 4 |        15% |
 | Part 4.3 Question 5 |        15% |
+| Part 4.4            |        10% |
 
 ### Submission
 
@@ -393,6 +425,12 @@ Make sure to do this!
 
 We will not grade any questions for which we are unable to read.
 Be sure to check your submission to make sure it's legible, right-side-up, etc.
+
+### Extra Credits Portion
+
+Send an email to either [the instructor](https://jlpteaching.github.io/comparch/syllabus/#instructor) or [one of the TAs](https://jlpteaching.github.io/comparch/syllabus/#teaching-assistant) with the following format,
+- The subject should be "[154B] Assignment 4 Extra Credits Submission".
+- Attach the scala files that you modified and the report (in PDF).
 
 ### Academic misconduct reminder
 
