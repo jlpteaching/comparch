@@ -148,6 +148,9 @@ In this part, you will complete the forwarding unit and the hazard detection uni
 - Forwarding unit: `src/main/scala/components/dual/forwarding.scala`.
 - Hazard detection unit: `src/main/scala/components/dual/hazard.scala`.
 
+![Dual Issue Hazard]({{'img/dinocpu/dual_issue_hazard.svg' | relative_url}})
+Figure 1. Illustration of how hazard detection unit outputs affect stage registers.
+
 ### Hints
 
 - The logics for forwarding and hazard detection for dual-issue pipelined CPU share the same underlying principles as their counterparts in the original pipelined CPU.
