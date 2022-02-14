@@ -209,11 +209,11 @@ ps: picoseconds (1 ps = 10^-12 seconds)
 
 Loop unrolling is a compiler optimization technique transforming a loop from perform one original iteration-worth of work to multiple original iterations-worth of work per new loop iteration.
 
-An unrolled loop would looks like this in a high-level language,
+An unrolled loop would look like this in a high-level language,
 
 ```c
 // original loop                 | // unrolled loop
-for (int i = 0; i < 16; i++)     | for (int i = 0; i < 4; i+=4)
+for (int i = 0; i < 16; i++)     | for (int i = 0; i < 16; i+=4)
 {                                | {
     arr[i] = c[i] + 1;           |     arr[i] = c[i] + 1;
 }                                |     arr[i+1] = c[i+1] + 1;
@@ -362,6 +362,8 @@ See the Submission section for more details.
 
 #### Code Portion
 
+Gradescope Link: [Assignment 4 - Code](https://www.gradescope.com/courses/343623/assignments/1858158)
+
 You will upload the following files to Gradescope on the `Assignment 4: Code` assignment,
 
 - `src/main/scala/components/dual/hazard.scala`
@@ -378,6 +380,8 @@ The auto-grader might fail complete grading within the allocated time if there a
 (Outputting to `stdout/stderr` is very costly time-wise!)
 
 #### Written Portion
+
+Gradescope Link: [Assignment 4 - Written](https://www.gradescope.com/courses/343623/assignments/1858233)
 
 You will upload your answers for the `Assignment 4: Written` assignment to Gradescope.
 Please upload a separate page for each answer!
