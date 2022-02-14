@@ -43,7 +43,7 @@ void serial_multiply(double **A, double **B, double **C, int size)
 
 This algorithm is shown in the figure below.
 
-![matrix multiplication](mm.png)
+![matrix multiplication]({{ '/img/mm.png' | relative_url }})
 
 ### Blocked matrix multiplication
 
@@ -53,7 +53,7 @@ In this algorithm, rather than streaming through all of the inputs, you operate 
 Similar to loop interchange, there are multiple different ways you can choose to block the matrix multiplication algorithm.
 One example is shown below where `k` and `j` are blocked and `i` is streamed.
 
-![blocked matrix multiplication](bmm.png)
+![blocked matrix multiplication]({{ '/img/bmm.png' | relative_url }})
 
 ### Template files
 
@@ -158,7 +158,7 @@ Now, run the matrix multiply on some real x86 hardware. I suggest using an input
 
 A) What blocking size performs the best?
 
-B) What is the L1/L2/L3 size of the processor you're running on (`lscpu` or `/proc/cpuinfo` and Google should help)?
+B) What is the L1/L2/L3 size of the processor you're running on? (`lscpu` or `/proc/cpuinfo` and Google should help)
 
 C) Can you use the information about the cache sizes to predict the best performing block size?
 
