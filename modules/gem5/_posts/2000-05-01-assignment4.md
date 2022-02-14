@@ -1,10 +1,22 @@
 ---
 Author: Jason Lowe-Power
 Editor:  Maryam Babaie
-Title: ECS 201A Assignment 3
+Title: ECS 201A Assignment 4
 ---
 
-**Due 11:59 pm (PST) Friday, February 25th 2022**
+## Assignment 4 -- Due 11:59 pm (PST) Friday, February 25th 2022
+
+## Table of Contents
+  - [Introduction](#introduction)
+  - [Application: matrix multiplication](#application-matrix-multiplication)
+  - [Template files](#template-files)
+  - [Compile gem5 to execute RISC-V binaries](#compile-gem5-to-execute-risc-v-binaries)
+  - [Different cache designs](#different-cache-designs)
+  - [Questions](#questions)
+  - [Submission](#submission)
+  - [Grading](#grading)
+  - [Academic misconduct reminder](#academic-misconduct-reminder)
+  - [Additional notes](#additional-notes)
 
 ## Introduction
 
@@ -55,7 +67,7 @@ One example is shown below where `k` and `j` are blocked and `i` is streamed.
 
 ![blocked matrix multiplication]({{ '/img/bmm.png' | relative_url }})
 
-### Template files
+## Template files
 
 In the template files, you'll find a matrix multiplication implementation which has both non-blocked and blocked algorithms.
 
@@ -75,12 +87,13 @@ Supported blocksizes:
 
 [Download the template files here.]({{ '/img/assignment4-template.tgz' | relative_url }})
 
-#### Files
+### Files
 
 - `mm.cpp`: A simple matrix multiplication code.
 - `my_cache.py`: A configurable two level cache hierarchy.
 - `riscv_se.py`: A simple SE mode board for RISC-V.
 - `run.py`: The runscript for gem5. It takes two arguments: `<blocking type>` and `<cache_config>`. See the `--help` for more information.
+    *Note*: In this file, you may need to adjust the path to `mm-riscv` at line 7 and `mm-riscv-gem5` at line 13 according to where you put your template files and gem5 root directory.
 - `mm-x86`: The matrix multiply binary compiled for x86.
 - `mm-riscv`: The matrix multiply binary compiled for RISC-V.
 - `mm-riscv-gem5`: The matrix multiply binary with annotations for gem5 compiled for RISC-V.
@@ -137,7 +150,7 @@ You can modify/extend/etc. this in any way.
 
 A) What is the working set size for the matrix multiply application?
 
-B) For each for the four blocking configurations, what's the active working set for multiplying *one block*?
+B) For each of the four blocking configurations, what's the active working set for multiplying *one block*?
 
 ### Question 2: Performance
 
@@ -171,3 +184,42 @@ overallMissRate::total
 overallAvgMissLatency::total (in Ticks or ps)
 simSeconds
 ```
+
+## Submission
+
+For this assignment you don't need to turn in any code files. The only file you need to submit on gradescope at the designated section, is the pdf file of your report. Please do not forget to specify each question according to the outline when you're submitting your work.
+In your report, you're not required to include any data which is not used in your analysis. Only include those that you actually use to justify your answer and make sure they are precisly and cleary specified.
+
+## Grading
+
+The grading breakdown is as follows (they are subject to change, but they show the relative breakdown):
+
+Total points = 100
+
+| #Question       | Points |
+|-----------------|--------|
+| Question 1.A	  | 5      |
+| Question 1.B	  | 10	   |
+| Question 2.A	  | 15     |
+| Question 2.B    | 15     |
+| Question 3.A	  | 10     |
+| Question 3.B	  | 15     |
+| Question 4.A	  | 15     |
+| Question 4.B	  | 5      |
+| Question 4.C	  | 10     |
+
+
+## Academic misconduct reminder
+
+You are to work on this project **individually**.
+You may discuss *high level concepts* with one another (e.g., talking about the diagram), but all work must be completed on your own.
+
+**Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
+Any code found on GitHub that is not the base template you are given will be reported to SJA.
+If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
+GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and **you shouldn't have *any* collaborators** for your code in this class.
+
+## Additional notes
+
+* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
+* If you need help, come to office hours for the TA, or post your questions on Campuswire.
