@@ -111,7 +111,7 @@ You will get errors on Gradescope (and thus no credit) if you modify the I/O.
 |commit| A CPU committing an instruction means that that instruction goes through all 5 stages of the pipeline. |
 |IPC| Number of committed instructions per cycle. |
 |performance| The amount of time it takes for a CPU to run application. |
-|loop unrolling| See [Loop-unrolling section]((#loop-unrolling)). |
+|loop unrolling| See [Loop-unrolling section](#loop-unrolling). |
 
 ## Dual-issue Pipelined CPU Design
 
