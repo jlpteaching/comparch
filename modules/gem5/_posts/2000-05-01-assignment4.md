@@ -146,6 +146,8 @@ You can modify/extend/etc. this in any way.
 
 ## Questions
 
+For the first 3 questions, assume a matrix size of 128 x 128 doubles.
+
 ### Question 1: Working set sizes
 
 A) What is the working set size for the matrix multiply application?
