@@ -169,7 +169,10 @@ B) What is more important, hit ratio, latency, L1, or L2 cache?
 
 ### Question 4: Running on x86
 
-Now, run the matrix multiply on some real x86 hardware. I suggest using an input of 256 or 512.
+Now, run the matrix multiply on some real hardware (not gem5).
+Run it on the CSIF machines or your laptop, etc.
+I suggest using an input of 256 or 512.
+I have given you an x86 compiled binary, but if you want to recompile mm.cpp for a different architecture, feel free.
 
 A) What blocking size performs the best?
 
