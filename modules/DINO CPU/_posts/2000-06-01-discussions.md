@@ -29,8 +29,14 @@ Recording: ???
 
 Recording: [link](https://ucdavis.zoom.us/rec/share/oKMQBRA6dWC8rf8Nxs9StTfAcdTwZsGmIIoURZ-X4-y7632v7yr3V2o_chqHuzVJ.781A0o1AYdtnWQIY?startTime=1643396645000)
 
-### Discussion 5 (Jan 28th)
+### Discussion 5 (Feb 11th)
 
 [Slides]({{'img/dinocpu/154B-discussion-5.pdf' | relative_url}})
 
 Recording: [link](https://ucdavis.zoom.us/rec/share/WsVZFmAahv4zDhTQmIe2tCKzGHQttHbxvnwdrkd0NQXiHcJawKRAvyoLOqEyrl1J.LOpcMSFgGvm5jENc?startTime=1644606349000)
+
+### Discussion 6 (Feb 18th)
+
+[Slides](https://drive.google.com/file/d/1yUHFmu2gwPXAwWrZX-_8R1V6lkbrawFs/view?usp=sharing)
+
+Recording: [link](https://ucdavis.zoom.us/rec/play/yhQlyxCsklFqKYZVA6yPlgFkLCDxRh4Lym7ugRB3tIv2zHQRpPS02wbw3b26OS2cGDnYHKDmhCrV054Z.S4eg-4t53QXIgcRw)
