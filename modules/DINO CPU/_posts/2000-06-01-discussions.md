@@ -43,4 +43,10 @@ Recording: [link](https://ucdavis.zoom.us/rec/play/yhQlyxCsklFqKYZVA6yPlgFkLCDxR
 
 ### Discussion 7 (Feb 25th)
 
-[Worksheet]({{'img/dinocpu/154B-discussion-7.pdf' | relative_url}})
+[Worksheet]({{'img/dinocpu/154B-discussion-7-worksheet.pdf' | relative_url}})
+
+[Slides]({{'img/dinocpu/154B-discussion-7.pdf' | relative_url}})
+
+Recording:
+- [with audio](https://video.ucdavis.edu/media/ECS-154BA+2022-02-25+10A57/1_et1txvfa)
+- [without audio](https://ucdavis.zoom.us/rec/share/u3iW3aQIH-RvEfXUSlkVggrfjJPSmhU_RMqVgS48N91q3nj-TNzkUBUPTewXidvB.ZfHG4QCc1oTHwvLe)
