@@ -40,3 +40,7 @@ Recording: [link](https://ucdavis.zoom.us/rec/share/WsVZFmAahv4zDhTQmIe2tCKzGHQt
 [Slides](https://drive.google.com/file/d/1yUHFmu2gwPXAwWrZX-_8R1V6lkbrawFs/view?usp=sharing)
 
 Recording: [link](https://ucdavis.zoom.us/rec/play/yhQlyxCsklFqKYZVA6yPlgFkLCDxRh4Lym7ugRB3tIv2zHQRpPS02wbw3b26OS2cGDnYHKDmhCrV054Z.S4eg-4t53QXIgcRw)
+
+### Discussion 5 (Feb 11th)
+
+[Empty Slides]({{'img/dinocpu/154B-discussion-7.pdf' | relative_url}})
