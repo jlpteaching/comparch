@@ -7,6 +7,7 @@ Title: ECS 201A Assignment 5
 ## Assignment 5 -- Due 11:59 pm (PST) Friday, March 11th 2022
 
 ### Table of Contents
+
 - [Introduction](#introduction)
 - [Application](#application)
   - [Implementation 1: Naive](#implementation-1-naive)
@@ -428,8 +429,11 @@ You can probably get away with just running algorithm 1 and algorithm 6.
 
 ## Submission
 
-For this assignment you don't need to turn in any code files. The only file you need to submit on gradescope at the designated section, is the pdf file of your report. Please do not forget to specify each question according to the outline when you're submitting your work.
-In your report, you're not required to include any data which is not used in your analysis. Only include those that you actually use to justify your answer and make sure they are precisly and cleary specified.
+For this assignment you don't need to turn in any code files.
+The only file you need to submit on gradescope at the designated section, is the pdf file of your report.
+Please do not forget to specify each question according to the outline when you're submitting your work.
+In your report, you're not required to include any data which is not used in your analysis.
+Only include those that you actually use to justify your answer and make sure they are precisely and clearly specified.
 
 **Note: if the submission does not have *page match* for each question, a *9-points/8-points penalty* for ECS 201A/154B will be applied to the assignment5's grade**
 
