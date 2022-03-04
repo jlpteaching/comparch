@@ -439,7 +439,7 @@ Only include those that you actually use to justify your answer and make sure th
 
 ## Grading
 
-The grading breakdown is as follows (they are subject to change, but they show the relative breakdown):
+The grading breakdown is as follows (they are subject to change, but they show the relative breakdown) :
 
 Total points = 100
 
