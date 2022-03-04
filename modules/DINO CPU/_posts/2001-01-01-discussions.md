@@ -50,3 +50,11 @@ Recording: [link](https://ucdavis.zoom.us/rec/play/yhQlyxCsklFqKYZVA6yPlgFkLCDxR
 Recording:
 - [with audio](https://video.ucdavis.edu/media/ECS-154BA+2022-02-25+10A57/1_et1txvfa)
 - [without audio](https://ucdavis.zoom.us/rec/share/u3iW3aQIH-RvEfXUSlkVggrfjJPSmhU_RMqVgS48N91q3nj-TNzkUBUPTewXidvB.ZfHG4QCc1oTHwvLe)
+
+### Discussion 8 (Mar 4th)
+
+[Slides]({{'img/dinocpu/154B-discussion-8.pdf' | relative_url}})
+
+Recording:
+- [with audio](https://video.ucdavis.edu/media/ECS-154B%3A%202022-03-04%2010%3A57/1_ealqnlqs)
+- [with audio?](https://ucdavis.zoom.us/rec/play/FawhVAsMBQj5QBUFDQKBI0oS7eTqp29-SqKAoLaAFZUlNr1YpjjKhh0_osv4W8PZnGjadZFfjRBZwVfn.kTU838EsLxRBIw0j)
