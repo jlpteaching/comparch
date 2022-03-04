@@ -435,33 +435,13 @@ Please do not forget to specify each question according to the outline when you'
 In your report, you're not required to include any data which is not used in your analysis.
 Only include those that you actually use to justify your answer and make sure they are precisely and clearly specified.
 
-**Note: if the submission does not have *page match* for each question, a *9-points/8-points penalty* for ECS 201A/154B will be applied to the assignment5's grade**
+**Note: if the submission does not have *page match* for each question, a *8-points penalty* will be applied to the assignment5's grade**
 
 ## Grading
 
 The grading breakdown is as follows (they are subject to change, but they show the relative breakdown):
 
 Total points = 100
-
-**For ECS 201A:**
-
-| #Question       | Points |
-|-----------------|--------|
-| Question 1	    | 5      |
-| Question 2.a	  | 5	     |
-| Question 2.b	  | 5      |
-| Question 3.a    | 10     |
-| Question 3.b    | 5      |
-| Question 4.a	  | 5      |
-| Question 4.b	  | 5      |
-| Question 5	    | 10     |
-| Question 6	    | 10     |
-| Question 7	    | 10     |
-| Question 8.a	  | 10     |
-| Question 8.b	  | 10     |
-| Question 9	    | 10     |
-
-**For ECS 154B:**
 
 | #Question       | Points |
 |-----------------|--------|
