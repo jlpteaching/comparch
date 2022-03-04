@@ -9,6 +9,8 @@ discussion: 816348401238016010
 
 {% include reading.html section="Section 6.6" %}
 
+{% include reading-grad.html section="Section 4.4" %}
+
 GPUs are one of the most pervasive accelerators.
 Not only do all of your computers have a GPU, but even our phones have GPUs.
 In fact, GPUs are usually one of the largest components on our processors!
@@ -27,8 +29,4 @@ If you want to find out more about the roofline model, it's described in Section
 
 {% include video.html id="1_sahbkuyd" %}
 
-## **QUIZ** It's the last quiz! Coherence, Consistency, and Accelerators
-
-{% include quiz.html id="117243" %}
-
-[Up next... ECS201A the graduate computer architecture course!](https://github.com/jlpteaching/ECS201A).
+[Up next... ECS201C the graduate computer architecture course!](https://jlpteaching.github.io/272-201C/).

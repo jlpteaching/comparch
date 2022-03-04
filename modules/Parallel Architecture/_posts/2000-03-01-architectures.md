@@ -8,6 +8,12 @@ discussion: 816348321055506454
 
 {% include reading.html section="Chapter 6" %}
 
+{% include reading-grad.html section="Chapter 4 and 5" %}
+
+Lecture from 3/4
+
+{% include video.html id="1_qjacxnwj" %}
+
 ## Kinds of parallel architectures
 
 {% include reading.html section="Sections 6.1 and 6.3" %}
@@ -24,7 +30,9 @@ This video discusses different kinds of parallel architectures (from the perspec
 
 ## Shared memory architectures
 
-{% include reading.html section="Sections 6.4" %}
+{% include reading.html ed1_section="Sections 6.4" section="Sections 6.5" %}
+
+{% include reading-grad.html section="5.1--5.3" %}
 
 **IMPORTANT NOTE:** If you notice that I got a haircut, it's because I'm time traveling.
 These videos are from Winter quarter 2020.
@@ -39,6 +47,3 @@ This video talks about shared memory vs message passing, and different synchroni
 This video talks about how to implement a barrier in a shared memory system.
 This implementation is going to be the motivation our next few videos about the hardware implementation of these system.
 
-## **QUIZ** Parallel architectures
-
-{% include quiz.html id="116887" %}
