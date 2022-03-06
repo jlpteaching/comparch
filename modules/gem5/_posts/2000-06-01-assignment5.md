@@ -97,7 +97,7 @@ This is shown visually below with the code as well.
 ![algorithm 2 visualization]({{ '/img/parallel-alg-2.png' | relative_url }})
 
 ```c++
-size_t chunk_size = length/threads;
+size_t chunk_size = (length+threads-1)/threads;
 for (int i=tid*chunk_size; i < (tid+1)*chunk_size && i < length; i++) {
     *result += array[i];
 }
@@ -144,7 +144,7 @@ See the code below.
 ![algorithm 4 visualization]({{ '/img/parallel-alg-4.png' | relative_url }})
 
 ```c++
-size_t chunk_size = length/threads;
+size_t chunk_size = (length+threads-1)/threads;
 for (int i=tid*chunk_size; i < (tid+1)*chunk_size && i < length; i++) {
     result[tid] += array[i];
 }
@@ -175,7 +175,7 @@ And finally, we can combine implementation 5 with blocking.
 ![algorithm 3 visualization]({{ '/img/parallel-alg-6.png' | relative_url }})
 
 ```c++
-size_t chunk_size = length/threads;
+size_t chunk_size = (length+threads-1)/threads;
 for (int i=tid*chunk_size; i < (tid+1)*chunk_size && i < length; i++) {
     result[tid*16] += array[i];
 }
