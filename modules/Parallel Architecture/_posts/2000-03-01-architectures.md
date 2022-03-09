@@ -14,6 +14,10 @@ Lecture from 3/4
 
 {% include video.html id="1_qjacxnwj" %}
 
+Lecture from 3/9
+
+{% include video.html id="1_bzapxtmf" %}
+
 ## Kinds of parallel architectures
 
 {% include reading.html section="Sections 6.1 and 6.3" %}
