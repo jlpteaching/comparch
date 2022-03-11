@@ -58,3 +58,8 @@ Recording:
 Recording:
 - [with audio](https://video.ucdavis.edu/media/ECS-154B%3A%202022-03-04%2010%3A57/1_ealqnlqs)
 - [with audio?](https://ucdavis.zoom.us/rec/play/FawhVAsMBQj5QBUFDQKBI0oS7eTqp29-SqKAoLaAFZUlNr1YpjjKhh0_osv4W8PZnGjadZFfjRBZwVfn.kTU838EsLxRBIw0j)
+
+
+### Discussion 9 (Mar 11th)
+
+[Slides]({{'img/dinocpu/154B-discussion-9.pdf' | relative_url}})
