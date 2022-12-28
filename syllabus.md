@@ -10,18 +10,11 @@ toc: true
 
 ### Time and Location
 
-*Lecture*: Everson 176. M/W/F 10:00am - 10:50am.
+*Lecture*: Giedt 1003. M/W/F 8:00am - 8:50am.
 
-*154B Discussion*: Wellman 202. Friday 11:00 - 11:50am.
+*154B Discussion*: Hutchison Hall 115. Wednesday 9:00 - 9:50am.
 
-*201A Discussion*: Hart 1150. Wednesday 11:00 - 11:50am.
-
-#### Online first week
-
-**For the first week** the class will be online.
-We will use the zoom room linked below.
-
-Zoom link: <https://ucdavis.zoom.us/j/97813864572>
+*201A Discussion*: Cruess Hall 1003. Monday 11:00 - 11:50am.
 
 ### Instructor
 
@@ -36,7 +29,7 @@ For class-wide questions (e.g., anything more than one person might be intereste
 
 #### Office hours
 
-*Office Hours*: Mondays 11:00 - 11:50am (in person) and Thursdays 4:10 - 5:00pm (Zoom).
+*Office Hours*: TBD.
 
 *Office Location*: Kemper 3049.
 
@@ -44,8 +37,8 @@ These office hours can be used to discuss anything you would like.
 The discussion topic doesn't have to be class related or even computer architecture related.
 If you need to discuss something in private, let me know (e.g., via chat on zoom) and I can create a waiting room for others while we talk privately.
 
-*Online office*: [Zoom link](https://ucdavis.zoom.us/my/jlowepower) (<https://ucdavis.zoom.us/my/jlowepower>).
-I'll be connected on Zoom during in person office hours.
+<!-- *Online office*: [Zoom link](https://ucdavis.zoom.us/my/jlowepower) (<https://ucdavis.zoom.us/my/jlowepower>). -->
+<!-- I'll be connected on Zoom during in person office hours. -->
 
 Please suggest a meeting time when you email me for an appointment.
 You can use [my calendar](https://calendar.google.com/calendar/embed?src=jlowepower%40ucdavis.edu&ctz=America%2FLos_Angeles) to quickly find a time I am available.
@@ -55,19 +48,19 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 #### ECS 201A
 
-**Maryam Babaie** (<mbabaie@ucdavis.edu>)
+**Mahyar Samani** (<msamani@ucdavis.edu>)
 
-*Office Hours Time*: Tuesdays 11am-12pm
+*Office Hours Time*: TBD
 
-*Office Location*: [Zoom](https://ucdavis.zoom.us/j/91998426773?pwd=NzVMd1IvUmNiZkMrWlIwN2lCc21vZz09)
+<!-- *Office Location*: [Zoom]() -->
 
 #### ECS 154B
 
 **Hoa Nguyen** (<hoanguyen@ucdavis.edu>)
 
-*Office Hours Time*: Thursdays 1pm-2pm
+*Office Hours Time*: TBD
 
-*Office Location*: [Zoom](https://ucdavis.zoom.us/j/97933096007?pwd=V3g1TmhCRkFoaHpTQk5pbGpvSXI2dz09)
+<!-- *Office Location*: [Zoom](https://ucdavis.zoom.us/j/97933096007?pwd=V3g1TmhCRkFoaHpTQk5pbGpvSXI2dz09) -->
 
 ## Class Resources
 
@@ -105,12 +98,12 @@ Through asking and answering questions on Discord, you improve your understandin
 ### Regrade Requests
 
 Regrade requests must be made within one week of the return of the assignment or test.
-Regrade requests should be made in person (online), in (online) office hours or by appointment.
+Regrade requests should be made in office hours or by appointment.
 
 ### Accommodations
 
 The exam schedule is available on the [main page]({{'/' | relative_url}}).
-Per official UC Davis policy, if you have an accommodation request from the [Student Disability Center](https://sdc.ucdavis.edu/), or have any conflicts with exam times for religious observances, you must notify me **by the fourth class, January 10, 2021**.
+Per official UC Davis policy, if you have an accommodation request from the [Student Disability Center](https://sdc.ucdavis.edu/), or have any conflicts with exam times for religious observances, you must notify me **by the fourth class, January 18, 2023**.
 If you do not notify me by this time, I cannot guarantee I will be able to make the accommodation.
 
 For **each** test, quiz, etc. you must reach out to me *one week in advance* to schedule specific accommodations for that test, quiz, etc.
@@ -155,11 +148,10 @@ However, reaching out to me earlier will increase the likelihood that I can make
 **Do not come to class!**
 
 All classes will be recorded.
-The first four weeks will be mostly asynchronous (async lecture, synchronous discussion, though discussion is not required attendance).
-There will be at least one remote office hour per week which you can attend (do not come to in-person office hours).
 
-The only part of the course which may require in-person attendance is the final.
-The midterm will be online given the timing and the first part of the course is online.
+If you are not feeling well or test positive before an exam, contact Prof Jason Lowe-Power *immediately*.
+We can make accomidations *only before* the exam.
+**DO NOT** come to the exam if you are sick.
 
 ## Prerequisites
 
@@ -207,7 +199,7 @@ See also [student support](#student-support).
 | Category      | Percentage | How to get points? |
 |---------------|------------|--------------------|
 | Project (5x)  | 40%        | Project reports + gradescope autograding |
-| Paper reviews | 25%        | Reviews will be posted on canvas. One per week. |
+| Paper reviews | 25%        | Reviews will be on Perusall. One per week. |
 | Test 1        | 15%        | Take the test |
 | Test 2 (final)| 20%        | Take the test |
 
@@ -246,12 +238,12 @@ All together, the labs are worth 40% of your final grade.
 
 Labs are due at 11:59 PM on the date listed below.
 
-* [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/17.
-* [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due 1/23.
-* [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline** 1/30.
-* [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due 2/6.
-* [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due 2/21.
-* [Assignment 5]({{"/modules/dino cpu/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/6.
+* [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/20.
+* [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due 1/27.
+* [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline** 2/6.
+* [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due 2/17.
+* [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due 3/3.
+* [Assignment 5]({{"/modules/dino cpu/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/17.
 
 #### ECS 201A Projects: gem5
 
@@ -261,11 +253,11 @@ All together, the labs are worth 40% of your final grade.
 
 Labs are due at 11:59 PM on the date listed below.
 
-* [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/17.
-* [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) (1 week,  8%). Due 1/23.
-* [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) (2 weeks, 8%). Due 2/6.
-* [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) (2 weeks, 8%). Due 2/21.
-* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/6.
+* [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/20.
+* [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) (1 week,  8%). Due 1/27.
+* [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) (3 weeks, 8%). Due 2/17.
+* [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) (2 weeks, 8%). Due 3/3.
+* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/17.
 
 #### Late Projects
 
@@ -280,7 +272,7 @@ $$ fraction \: of \: points = -1 \times \frac{ {hours \: late}^2}{48^2} + 1 $$
 Note: When submitting late, the reduction in points will not immediately appear in Gradescope.
 Rest assured, we will go through and double check all of the submission times ;).
 
-### Quizzes
+### Quizzes (154B Only)
 
 There will be one canvas quiz each week (except for the test week).
 Each quiz is worth 3% of your total grade.
@@ -291,15 +283,18 @@ If you don't attempt the first try, you can make at most 80% of the points.
 
 (Note: I'm trying something new with Canvas here... hopefully it works out.)
 
-**ECS 201A**: Instead of quizzes you will write paper reviews.
-You will have a two day grace period to update or turn in the review with a 20% penalty.
+### Perusall (201A Only)
+
+Instead of quizzes you will read papers and collaboratively discuss them.
+
+*Paper reviews are due **before discussion*** and there is no grace period.
 
 ### Tests
 
 There will be two tests this quarter which together count for 35% of your grade.
 There will be a test after the [processor architecture]({{"/modules/processor architecture/index/" | relative_url}}) module and a final after the [memory architecture]({{"/modules/memory architecture/index/" | relative_url}}), and [parallel architecture]({{"/modules/parallel architecture/index/" | relative_url}}) modules.
 
-The tests will be administered *in person* (unless things change...).
+The tests will be administered *in person*.
 
 ## Textbooks
 
