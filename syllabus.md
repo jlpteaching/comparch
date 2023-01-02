@@ -10,7 +10,7 @@ toc: true
 
 ### Time and Location
 
-*Lecture*: Giedt 1003. M/W/F 8:00am - 8:50am.
+*Lecture*: {{ site.data.lecture_location }}.
 
 *154B Discussion*: Hutchison Hall 115. Wednesday 9:00 - 9:50am.
 
@@ -69,13 +69,13 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 All of the material for this course is online.
 We will use [this website]({{'/' | relative_url}}) as the main website and entry point for all course information.
 This will also include links to all of the lecture videos and quizzes.
-You can find the source for this website on [GitHub](https://github.com/jlpteaching/comparch).
-If you find any errors or have ideas for improving the website, please [open an issue](https://github.com/jlpteaching/comparch/issues) on GitHub.
+You can find the source for this website on [GitHub]({{ site.github.owner_url }}).
+If you find any errors or have ideas for improving the website, please [open an issue]({{ site.github.owner_url }}/issues) on GitHub.
 Helpful contributions can be rewarded with [extra credit]({{'/extra-credit' | relative_url}}).
 
 ### Gradescope
 
-We will use [Gradescope](https://www.gradescope.com/courses/216663) for all assignments including lab submissions and returning quizzes, the midterm, and the final.
+We will use Gradescope ([ECS154B]({{ site.data.course.gradescope_154b }}) and [ECS201A]({{ site.data.course.gradescope_201a }})) for all assignments including lab submissions and returning quizzes, the midterm, and the final.
 Gradescope gives you a graded PDF version of your test, along with a rubric, immediately after we're done grading.
 You will receive an email from Gradescope to make your account early in the quarter.
 
@@ -87,7 +87,7 @@ However, if you submit after the deadline, the [late policy](#late-assignments) 
 
 ### Online discussions
 
-We will use [Campuswire](https://campuswire.com/c/G03D9D0A1/) for class discussions outside of the classroom.
+We will use [Online discussions]({{ site.data.course.discussion_link }}) for class discussions outside of the classroom.
 If your question is specific to either 201A or 154B please start the subject with `[ECS 201A]` or `[ECS 154B]` respectively.
 
 It's best to ask your questions on Campuswire.
@@ -127,10 +127,6 @@ This can result in a 0 on the assignment or an F in the class.
 See the [Computer Science Department's policy](https://www.cs.ucdavis.edu/blog/academic-misconduct-policy/) for more information.
 
 ## Student Support
-
-There is a lot of great information on the [Coronovirus Update Page](https://studentaffairs.ucdavis.edu/news/coronavirus-update) with extensive [FAQs](https://studentaffairs.ucdavis.edu/news/coronavirus-faqs) and specific [student support information](https://studentaffairs.ucdavis.edu/news/coronavirus-faqs#support) in this unique circumstance.
-
-If you need access to computing resources, internet, etc. there's lots of good information on the [Keep Teaching webpage](https://keepteaching.ucdavis.edu/student-resources).
 
 As a student you may experience a range of issues that can cause barriers to learning, such as strained relationships, increased anxiety, alcohol/drug problems, feeling down, difficulty concentrating and/or lack of motivation.
 These mental health concerns or stressful events may lead to diminished academic performance or reduce a student’s ability to participate in daily activities.
@@ -238,12 +234,12 @@ All together, the labs are worth 40% of your final grade.
 
 Labs are due at 11:59 PM on the date listed below.
 
-* [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/20.
-* [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due 1/27.
-* [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline** 2/6.
-* [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due 2/17.
-* [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due 3/3.
-* [Assignment 5]({{"/modules/dino cpu/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/17.
+* [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_1 }}.
+* [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due {{ site.data.course.dates.dino_2 }}.
+* [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline** {{ site.data.course.dates.dino_31 }}.
+* [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due {{ site.data.course.dates.dino_32 }}.
+* [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_4 }}.
+* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_5 }}.
 
 #### ECS 201A Projects: gem5
 
@@ -253,11 +249,11 @@ All together, the labs are worth 40% of your final grade.
 
 Labs are due at 11:59 PM on the date listed below.
 
-* [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) (2 weeks, 8%). Due 1/20.
-* [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) (1 week,  8%). Due 1/27.
-* [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) (3 weeks, 8%). Due 2/17.
-* [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) (2 weeks, 8%). Due 3/3.
-* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due 3/17.
+* [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_1 }}.
+* [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) (1 week,  8%). Due {{ site.data.course.dates.dino_2 }}.
+* [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) (3 weeks, 8%). Due {{ site.data.course.dates.dino_32 }}.
+* [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_4 }}.
+* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_5 }}.
 
 #### Late Projects
 
