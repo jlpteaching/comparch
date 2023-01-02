@@ -184,8 +184,8 @@ See also [student support](#student-support).
 | Category      | Percentage | How to get points? |
 |---------------|------------|--------------------|
 | Project (5x)  | 40%        | Gradescope will auto-grade most of the project |
-| Quizzes       | 25%        | Quizzes will be on canvas. One per week. |
-| Test 1        | 15%        | Take the test |
+| Quizzes       | 24%        | Quizzes will be on canvas. One per week. |
+| Test 1        | 16%        | Take the test |
 | Test 2 (final)| 20%        | Take the test |
 
 #### ECS 201A Grading
@@ -268,14 +268,15 @@ Rest assured, we will go through and double check all of the submission times ;)
 
 ### Quizzes (154B Only)
 
-There will be one canvas quiz each week (except for the test week).
+There will be one canvas quiz each week (except for the test week) due before lecture on Wednesday (the day of discussion).
 Each quiz is worth 3% of your total grade.
-You'll have two chances on the quizzes: The first will be due before discussion and is worth 100%.
-The second chance is due 2 days later and you can retake the quiz to improve your score.
-If you take the first version of the quiz, then you can make 100% on the second try.
-If you don't attempt the first try, you can make at most 80% of the points.
+After discussion, the answers for your quiz will be posted.
 
-(Note: I'm trying something new with Canvas here... hopefully it works out.)
+If you want to improve your score, you can take the quiz a second time.
+The second chance is due 2 days later.
+If you take the first version of the quiz, then you can make 100% on the second try.
+If you don't attempt the first try, you can make at most 75% of the points.
+(Note: This 25% penalty for missing the original quiz will be manually applied.)
 
 ### Perusall (201A Only)
 
