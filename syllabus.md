@@ -58,9 +58,7 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 **Hoa Nguyen** (<hoanguyen@ucdavis.edu>)
 
-*Office Hours Time*: TBD
-
-<!-- *Office Location*: [Zoom](https://ucdavis.zoom.us/j/97933096007?pwd=V3g1TmhCRkFoaHpTQk5pbGpvSXI2dz09) -->
+*Office Hours*: Fridays, 10:30am - 11:50am, Kemper 3106.
 
 ## Class Resources
 
