@@ -6,7 +6,7 @@ Title: DINO CPU Assignment 4
 
 DINO CPU Assignment 4: Dual-issue Pipelined CPU: Performance Evaluation and Analysis
 
-Due on *{{ site.data.course.dino_4 }}* at 11:59pm: See [Submission](#submission) for details.
+Due on *{{ site.data.course.dates.dino_4 }}* at 11:59pm: See [Submission](#submission) for details.
 
 ## Table of Contents
 

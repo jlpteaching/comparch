@@ -4,7 +4,7 @@ Editor:  Maryam Babaie
 Title: ECS 201A Assignment 4
 ---
 
-## Assignment 4 -- Due 11:59 pm (PST) *{{ site.data.course.dino_4 }}*
+## Assignment 4 -- Due 11:59 pm (PST) *{{ site.data.course.dates.dino_4 }}*
 
 ## Table of Contents
   - [Introduction](#introduction)
