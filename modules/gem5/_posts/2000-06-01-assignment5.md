@@ -4,7 +4,7 @@ Editor:  Maryam Babaie
 Title: ECS 201A Assignment 5
 ---
 
-## Assignment 5 -- Due 11:59 pm (PST) Friday, March 11th 2022
+## Assignment 5 -- Due 11:59 pm (PST) *{{ site.data.course.dino_5 }}*
 
 ### Table of Contents
 

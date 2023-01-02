@@ -17,7 +17,7 @@ For more information on the class, see **[the syllabus]({{'syllabus' | relative_
 
 The class is broken into four main components: [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}), [Processor Architecture]({{'modules/processor architecture/index/' | relative_url}}), [Memory Architecture]({{'modules/memory architecture/index/' | relative_url}}), and [Parallel Architecture]({{'modules/parallel architecture/index/' | relative_url}}).
 
-This quarter ({{ sites.data.course.quarter }}) lecture will be *in-person* in {{ site.data.course.lecture_location }}.
+This quarter ({{ site.data.course.quarter }}) lecture will be *in-person* in {{ site.data.course.lecture_location }}.
 All lecture videos will be available on [Aggie video]({{ site.data.course.aggie_video_link }}).
 I will be adding videos to the [playlist]({{ site.data.course.aggie_video_link }}) as the quarter progresses.
 You are responsible for the information in both the videos and found in these pages.

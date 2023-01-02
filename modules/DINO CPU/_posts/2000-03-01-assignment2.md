@@ -10,7 +10,7 @@ Originally from ECS 154B Lab 2, Winter 2019.
 
 Modified for ECS 154B Lab 2, Winter 2022
 
-**Due on 1/23 11:59PM PST**: See [Submission](#submission) for details
+**Due on *{{ site.data.course.dino_2 }}* 11:59PM PST**: See [Submission](#submission) for details
 
 # Table of Contents
 
