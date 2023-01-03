@@ -38,11 +38,11 @@ This means that we won't have to wait for Linux to boot or require a precompiled
 ## Compile gem5 to execute RISC-V binaries
 
 First, we need to create a gem5 simulator binary that can execute RISC-V code.
-As of the writing of this assignment (Winter 2022), each *target* ISA that you want to run requires a different gem5 build.
+As of the writing of this assignment ({{ site.data.course.quarter }}), each *target* ISA that you want to run requires a different gem5 build.
 To compile gem5 to execute RISC-V binaries, we will use the default build options file for RISC-V: `build_opts/RISCV`.
 
 **Important Note**: For this assignment you need Python 3.8 or newer. If you're using *CSIF machines or any machine that has older version of Python* (e.g., 3.6), you need to follow an additional step that we describe here, **before** compiling gem5 RISC-V binary. As shown [in this patch](https://gem5-review.googlesource.com/c/public/gem5/+/55863/2/src/python/gem5/components/boards/abstract_board.py), you are required to slightly modify the file located at `gem5/src/python/gem5/components/boards/abstract_board.py`.
-    
+
     1. Remove only `, final` part in line #40.
     2. Remove the `@final` in line #239.
 
@@ -134,13 +134,13 @@ Vary the four parameters in the core configuration: pipeline width, ROB entries,
 1. Which parameter(s) have the most impact on performance? Is this the same for all workloads or does it vary between different workloads?
 2. Are there any dependences between the parameters (e.g., do you need to change two or more parameters at once to have an impact on the performance of different applications)?
 3. Pick a core design between the cost of the `SmallCore` and the `LargeCore` which gives most of the performance benefits of the large core but with fewer resources.
-    
+
     a. What are the parameters you chose? Let's call this the `GoodCore`.
-    
-    b. What is the average IPC improvement of your `GoodCore` design compared to the `SmallCore`? 
-    
+
+    b. What is the average IPC improvement of your `GoodCore` design compared to the `SmallCore`?
+
     c. How much more performance could you get from the `LargeCore`? (What is the average speedup of the `LargeCore` compared to your `GoodCore`)?
-    
+
     d. Are the workloads that benefited the most from the `LargeCore` the same as the ones that benefit from the `GoodCore`? Why or why not (talk about workload characteristics).
 
 

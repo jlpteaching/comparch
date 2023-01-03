@@ -47,7 +47,7 @@ Now, we can use the following design (what you will be implementing in [DINO CPU
 ![Single cycle DINO CPU without control wires]({{'img\dinocpu\single-cycle-no-control-assignment-2.svg' | relative_url}})
 
 In the next video, I go through a couple of example instructions with the datapath that you will be implementing in [DINO CPU Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}).
-Note that this datapath was from WQ'21, and it varies slightly from the version in WQ'22.
+Note that this datapath was from WQ'21, and it varies slightly from the version in {{ site.data.course.quarter }}.
 
 {% include video.html id="1_lbwfhrfe" %}
 
@@ -61,7 +61,7 @@ In these videos, we will analyze this microarchitecture to understand the perfor
 
 Note that these videos will be using the design from spring quarter 2020 which is a bit different than your design.
 However, the idea is the same.
-The quiz below will be using *your design for Winter Quarter 2022* so you will see examples using that design too.
+The quiz below will be using *your design for {{ site.data.course.quarter }}* so you will see examples using that design too.
 
 ### Performance of the single cycle design
 
