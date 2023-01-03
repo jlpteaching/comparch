@@ -282,12 +282,14 @@ If you don't attempt the first try, you can make at most 75% of the points.
 
 Instead of quizzes you will read papers and collaboratively discuss them.
 We will use [Perusall]({{ site.data.course.perusall_link }}) for paper readings and group discussion.
-You are assigned to random groups for the papers.
-Feel free to message your group and meet in person to discuss.
+*Make sure you access Perusuall from Canvas the first time!*
+This is required for me to be able to publish your grades.
+(I.e., if you don't access Perusall via Canvas you will receive a 0 for the assignments.)
 
 *Paper reviews are due **before lecture*** on the day of discussion (Monday 8am) and there is no grace period.
 
 The paper readings will be graded on Perusall.
+You are assigned to random groups for the papers.
 You will be graded based on the amount of time you spend reading the paper, the number of comments you make, the number of interactions you have with your group, and the quality of your comments.
 
 ### Tests
