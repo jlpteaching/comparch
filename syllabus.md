@@ -281,8 +281,14 @@ If you don't attempt the first try, you can make at most 75% of the points.
 ### Perusall (201A Only)
 
 Instead of quizzes you will read papers and collaboratively discuss them.
+We will use [Perusall]({{ site.data.course.perusall_link }}) for paper readings and group discussion.
+You are assigned to random groups for the papers.
+Feel free to message your group and meet in person to discuss.
 
-*Paper reviews are due **before discussion*** and there is no grace period.
+*Paper reviews are due **before lecture*** on the day of discussion (Monday 8am) and there is no grace period.
+
+The paper readings will be graded on Perusall.
+You will be graded based on the amount of time you spend reading the paper, the number of comments you make, the number of interactions you have with your group, and the quality of your comments.
 
 ### Tests
 
