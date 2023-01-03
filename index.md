@@ -62,7 +62,7 @@ However, for this first section *there will be no late penalty*.
 * [Instruction-level parallelism]({{"modules/processor architecture/ilp/" | relative_url}})
 * [Processor architecture summary]({{"modules/processor architecture/summary/" | relative_url}})
 
-**Test on {{ site.data.course.dates.final }}**
+**Test on {{ site.data.course.dates.midterm }}**
 
 ### [Memory System Architecture]({{"modules/memory architecture/index/" | relative_url}}) (About three weeks)
 
