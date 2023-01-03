@@ -62,7 +62,7 @@ However, for this first section *there will be no late penalty*.
 * [Instruction-level parallelism]({{"modules/processor architecture/ilp/" | relative_url}})
 * [Processor architecture summary]({{"modules/processor architecture/summary/" | relative_url}})
 
-**Test on {{ sites.data.course.dates.final }}**
+**Test on {{ site.data.course.dates.final }}**
 
 ### [Memory System Architecture]({{"modules/memory architecture/index/" | relative_url}}) (About three weeks)
 
@@ -76,7 +76,7 @@ However, for this first section *there will be no late penalty*.
 * [Parallel systems' performance]({{"modules/parallel architecture/performance/" | relative_url}})
 * [Parallel architectures and programming]({{"modules/parallel architecture/architectures/" | relative_url}}) (**Assignment 5 Due {{ site.data.course.dates.dino_5 }}**)
 
-**Final exam on {{ sites.data.course.dates.final }}**
+**Final exam on {{ site.data.course.dates.final }}**
 
 ## Calendar
 
