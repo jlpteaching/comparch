@@ -6,7 +6,7 @@ title: Computer Architecture
 
 ## Welcome to Computer Architecture!
 
-**UC Davis: ECS 154B and ECS 201A {{ sites.data.course.quarter }}**
+**UC Davis: ECS 154B and ECS 201A {{ site.data.course.quarter }}**
 
 This website contains a set of asynchronous short-ish lecture videos for UC Davis Computer Architecture (154B/201A).
 The videos were mostly taken during the pandemic (Spring '20 through Winter '22).
