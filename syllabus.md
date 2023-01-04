@@ -10,7 +10,7 @@ toc: true
 
 ### Time and Location
 
-*Lecture*: {{ site.data.lecture_location }}.
+*Lecture*: {{ site.data.course.lecture_location }}.
 
 *154B Discussion*: Hutchison Hall 115. Wednesday 9:00 - 9:50am.
 
