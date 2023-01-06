@@ -6,9 +6,9 @@ Title: DINO CPU Assignment 1
 
 Originally from ECS 154B Lab 1, Winter 2019.
 
-Modified for ECS 154B Lab 1, Winter 2022.
+Modified for ECS 154B Lab 1, {{ site.data.course.quarter }}.
 
-**Due on *{{ site.data.course.dates.dino_1 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
+**Due on *{{ site.data.course.dates.dino_1 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
 ## Table of Contents
 
@@ -62,45 +62,44 @@ There is a more detailed Chisel overview found under the [Chisel notes directory
 Before diving into this assignment, you are encouraged to go through the [Chisel notes](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/overview.md).
 You can find additional help and documentation on [Chisel's website](https://chisel.eecs.berkeley.edu/).
 
-Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/singularity.md).
+We provide a docker image containing the development environment with JDK, Chisel, and
+sbt installed.
+Platforms, such as docker and apptainer, support the OCI image format should be able to 
+run the docker image.
+Details on how to run the docker image can be found in the
+[dockerfiles folder]({{site.data.course.dino_cpu_link}}/tree/main/dockerfiles).
+
+<!-- Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/singularity.md).
+-->
 
 ### Using the CSIF machines
 
-Singularity is installed on the CSIF machines.
+Apptainer is installed on *most* CSIF machines.
 So, if you are using one of the CSIF machines either locally or remotely, things should *just work*.
-However, if you run into any problems, post on [Campuswire](https://campuswire.com/c/G03D9D0A1) or come to office hours.
+However, if you run into any problems, post on [{{ site.data.course.discussion_site }}]({{ site.data.course.discussion_link }}) or come to office hours.
 
 The images are relatively large files.
-As of the beginning of the quarter, the image is 380 MB.
+As of the beginning of the quarter, the image is 700 MB.
 We have tried to keep the size as small as possible.
 Thus, especially if we update the image throughout the quarter, you may find that the disk space on your CSIF account is full.
-If this happens, you can remove the Singularity cache to free up space.
+If this happens, you can remove some of the scala cache to free up space.
 
-To remove the Singularity cache, you can run the following command.
+To remove the scala cache, you can run the following command in the dinocpu folder,
 
 ```
-rm -r ~/.singularity/cache
+rm -rf ? # yes, sbt generated a folder named "?"
 ```
 
 To find out how much space the Singularity containers are using, you can use `du` (disk usage):
 
 ```
-du -sh ~/.singularity/cache
+du -sh ?
 ```
 
-You can also download the images to `/tmp`, if you do not have space in your user directory.
-One way to do this is to create a symlink from `.singularity/cache` to a directory in `/tmp`.
-As an example
-
-```
-mkdir /tmp/jlp
-mkdir /tmp/jlp/singularitycache
-ln -s ~/.singularity/cache /tmp/jlp/singularitycache
-```
-Let us know if you would like more details on this method via [Campuswire](https://campuswire.com/c/G03D9D0A1).
+Let us know if you would like more details on this method via [{{ site.data.course.discussion_site }}]({{ site.data.course.discussion_link }}).
 
 ## Important Notice
-In order to get familiar with setting up your working environment for the DINO CPU Assignments, getting familiar with Chisel through a simple example, and debugging your design, ***we strongly encourage you to watch the tutorial videos*** we have provided in the links below. These videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to 'wq22' to be applicable to your materials for the current quarter.
+In order to get familiar with setting up your working environment for the DINO CPU Assignments, getting familiar with Chisel through a simple example, and debugging your design, ***we strongly encourage you to watch the tutorial videos*** we have provided in the links below. These videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to '{{ site.data.course.quarter_abbr }}' to be applicable to your materials for the current quarter.
 
 [DinoCPU - Getting Started](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_9qlq45sz)
 
@@ -113,72 +112,125 @@ In order to get familiar with setting up your working environment for the DINO C
 
 **The test for this part is `dinocpu.ALUControlTesterLab1`.**
 
-In this part you will be implementing a component in the CPU design.
+In this part, you will be implementing the ALU Control Unit, a component in the CPU design.
+The ALU Control Unit is responsible for interpreting part of an instruction to a
+5-bit value that drives the behavior of the ALU.
+
+**Note**: It is very important to understand the distinction between ISA and microarchitecture. Part of the reason is that, for ISA, you will be able to find the documents in *any* RISC-V documentations, while for the DINOCPU microarchitecture, you
+will only able to the implementation details here, in the DINOCPU repo. Also, being able to know where to find the documentations helps!
+
+**Note**: The ALU Control Unit, ALU, and their input/output formats are implementation details of the DINOCPU and is not part of the RISC-V ISA. Thus, you won't be able to find this information in the RISC-V spec. **However**, the instruction formats
+are part of the RISC-V ISA, and all hardware implementing RISC-V ISA must adhere to those instruction formats.
+
+**Note**: For this quarter assignments, we aim to support part of RV64IM instruction set, which consists of the RISC-V 64-bit integer instruction set (namely the "base" instruction set RV64I), and the RISC-V 64-bit multiply extension (namely the M extension RV64M). The names should be useful when you read the RISC-V specifications as they are often defined in different chapters of the documents.
+
+### The ALU
 
 The ALU has already been implemented for you.
-It takes three inputs: the `operation`, and two inputs, `inputx` and `inputy`.
+It takes three inputs: the `operation`, and two inputs, `operand1` and `operand2`.
 It generates the `result` of the operation on the two inputs.
 
-The following table details the `operation` input and which values produce which results.
+The following table pairs each of possible `operation` input and arithmetic `op` that will be applied to `operand1` and `operand2` to produce `result`.
+In other words, for the ALU coponent, `result := operand1 \<op\> operand2`.
 
-|       |       |
-|-------|-------|
-| 00000 |  xor  |
-| 00001 |  sltu |
-| 00010 |  srl  |
-| 00011 |  sra  |
-| 00100 |  sub  |
-| 00101 |  or   |
-| 00110 |  and  |
-| 00111 |  add  |
-| 01000 |  sll  |
-| 01001 |  slt  |
-| 10010 |  srlw |
-| 10011 |  sraw |
-| 10100 |  subw |
-| 10111 |  addw |
-| 11000 |  sllw |
+| `operation` |   `op` |
+|-------------|--------|
+|       00000 |    and |
+|       00001 |     or |
+|       00010 |    xor |
+|       00100 |    sra |
+|       00101 |   sraw |
+|       00110 |    sll |
+|       00111 |   sllw |
+|       01000 |    srl |
+|       01001 |   srlw |
+|       01010 |    slt |
+|       01011 |   sltu |
+|       01100 |    add |
+|       01101 |   addw |
+|       01110 |    sub |
+|       01111 |   subw |
+|       10000 |    mul |
+|       10001 |   mulw |
+|       10010 |   mulh |
+|       10011 |  mulhu |
+|       10100 |    div |
+|       10101 |   divu |
+|       10110 |   divw |
+|       10111 |  divuw |
+|       11000 |    rem |
+|       11001 |   remu |
+|       11010 |   remw |
+|       11011 |  remuw |
+|       11100 | mulhsu |
 
+### Building the ALU Control Unit
+
+The ALU Control Unit interprets part of an instruction and outputs the appropriate output driving the behavior of the ALU  for that instruction.
 You must take the RISC-V ISA specification and implement the proper control to choose the right ALU operation.
-You can find the specification in the following places:
+You can find the specification in the following places,
 
-* the first page of the Computer Organization and Design book
-* on page 16 in the RISC-V reader
-* [on the RISC-V website](https://riscv.org/specifications/)
+* The first page of the Computer Organization and Design book.
+* RISC-V reader.
+* [On the RISC-V website](https://riscv.org/technical/specifications/).
+
+The following are the instruction formats of arithmetic instructions in RV64I,
 
 | 31--25  | 24--20 | 19--15 | 14--12 | 11--7 | 6--0      |        |
 |---------|--------|--------|--------|-------|-----------|--------|
 | funct7  | rs2    | rs1    | funct3 | rd    | opcode    | R-type |
 | ------- | ------ | ------ | ------ | ----- | --------- | -----  |
-| 0000000 | rs2    | rs1    | 000    | rd    | 0110011   | ADD    |
-| 0100000 | rs2    | rs1    | 000    | rd    | 0110011   | SUB    |
-| 0000000 | rs2    | rs1    | 001    | rd    | 0110011   | SLL    |
-| 0000000 | rs2    | rs1    | 010    | rd    | 0110011   | SLT    |
-| 0000000 | rs2    | rs1    | 011    | rd    | 0110011   | SLTU   |
-| 0000000 | rs2    | rs1    | 100    | rd    | 0110011   | XOR    |
-| 0000000 | rs2    | rs1    | 101    | rd    | 0110011   | SRL    |
-| 0100000 | rs2    | rs1    | 101    | rd    | 0110011   | SRA    |
-| 0000000 | rs2    | rs1    | 110    | rd    | 0110011   | OR     |
-| 0000000 | rs2    | rs1    | 111    | rd    | 0110011   | AND    |
-| 0000000 | rs2    | rs1    | 000    | rd    | 0111011   | ADDW   |
-| 0100000 | rs2    | rs1    | 000    | rd    | 0111011   | SUBW   |
-| 0000000 | rs2    | rs1    | 001    | rd    | 0111011   | SLLW   |
-| 0000000 | rs2    | rs1    | 101    | rd    | 0111011   | SRLW   |
-| 0100000 | rs2    | rs1    | 101    | rd    | 0111011   | SRAW   |
+| 0000000 | rs2    | rs1    | 000    | rd    | OP        | ADD    |
+| 0100000 | rs2    | rs1    | 000    | rd    | OP        | SUB    |
+| 0000000 | rs2    | rs1    | 001    | rd    | OP        | SLL    |
+| 0000000 | rs2    | rs1    | 010    | rd    | OP        | SLT    |
+| 0000000 | rs2    | rs1    | 011    | rd    | OP        | SLTU   |
+| 0000000 | rs2    | rs1    | 100    | rd    | OP        | XOR    |
+| 0000000 | rs2    | rs1    | 101    | rd    | OP        | SRL    |
+| 0100000 | rs2    | rs1    | 101    | rd    | OP        | SRA    |
+| 0000000 | rs2    | rs1    | 110    | rd    | OP        | OR     |
+| 0000000 | rs2    | rs1    | 111    | rd    | OP        | AND    |
+| 0000000 | rs2    | rs1    | 000    | rd    | OP-32     | ADDW   |
+| 0100000 | rs2    | rs1    | 000    | rd    | OP-32     | SUBW   |
+| 0000000 | rs2    | rs1    | 001    | rd    | OP-32     | SLLW   |
+| 0000000 | rs2    | rs1    | 101    | rd    | OP-32     | SRLW   |
+| 0100000 | rs2    | rs1    | 101    | rd    | OP-32     | SRAW   |
 
-This table is from the The RISC-V Instruction Set Manual Volume I: Unprivileged ISA, V20191213, page 130-131.
-You can find the same information in Chapter 2 of the Specification, Chapter 2 of the RISC-V reader, or in the front of the Computer Organization and Design book.
+where `OP = 0110011` and `OP-32 = 0111011`.
 
-The ALU control takes five inputs:
-* `aluop`, `itype`, and `wordinst`, which come from the control unit (you will implement this in the next lab)
+The following are the instruction formats of arithmetic instructions in RV64M,
+
+| 31--25  | 24--20 | 19--15 | 14--12 | 11--7 | 6--0      |        |
+|---------|--------|--------|--------|-------|-----------|--------|
+| funct7  | rs2    | rs1    | funct3 | rd    | opcode    | R-type |
+| ------- | ------ | ------ | ------ | ----- | --------- | -----  |
+| 0000001 | rs2    | rs1    | 000    | rd    | OP        | MUL    |
+| 0000001 | rs2    | rs1    | 001    | rd    | OP        | MULH   |
+| 0000001 | rs2    | rs1    | 010    | rd    | OP        | MULHSU |
+| 0000001 | rs2    | rs1    | 011    | rd    | OP        | MULHU  |
+| 0000001 | rs2    | rs1    | 100    | rd    | OP        | DIV    |
+| 0000001 | rs2    | rs1    | 101    | rd    | OP        | DIVU   |
+| 0000001 | rs2    | rs1    | 110    | rd    | OP        | REM    |
+| 0000001 | rs2    | rs1    | 111    | rd    | OP        | REMU   |
+| 0000001 | rs2    | rs1    | 000    | rd    | OP-32     | MULW   |
+| 0000001 | rs2    | rs1    | 100    | rd    | OP-32     | DIVW   |
+| 0000001 | rs2    | rs1    | 101    | rd    | OP-32     | DIVUW  |
+| 0000001 | rs2    | rs1    | 110    | rd    | OP-32     | REMW   |
+| 0000001 | rs2    | rs1    | 111    | rd    | OP-32     | REMUW  |
+
+where `OP = 0110011` and `OP-32 = 0111011`.
+
+This tables are from the The RISC-V Instruction Set Manual Volume I: Unprivileged ISA, V20191213, page 130-131.
+You can find the same information in Chapter 2, Chapter 5, and Chapter 7 of the Specification, Chapter 2 of the RISC-V reader, or in the front of the Computer Organization and Design book.
+
+The ALU control takes three inputs,
+* `aluop`, which comes from the control unit (you will implement this in the next lab)
 * `funct7` and `funct3`, which come from the instruction
 
-In order to get `wordinst`, you can use the signal from the Control Unit.
 The [assignment 1 worksheet]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}) contains the information on how to use the Control Unit for this assignment.
-You can ignore the `aluop` and `itype` for now.
-Assume both are always `0`.
+You can ignore the `aluop` for now, as the appropriate signals are already set for this assignment.
 
-Given these inputs, you must generate the correct output on the operation wire.
+Given these inputs, you must generate the correct output on the `operation` wire.
 The template code from `src/main/scala/components/alucontrol.scala` is shown below.
 You will fill in where it says *Your code goes here*.
 
@@ -186,36 +238,42 @@ You will fill in where it says *Your code goes here*.
 /**
  * The ALU control unit
  *
- * Input: aluop         0 for ld/st, 1 for R-type
- * Input: itype         True if I-type (i.e., immediate should be used)
- * Input: funct7        The most significant bits of the instruction
- * Input: funct3        The middle three bits of the instruction (12-14)
- * Input: wordinst      True if the instruction *only* operates on 32-bit operands, False otherwise
+ * Input:  aluop        Specifying the type of instruction using ALU
+ *                          . 0 for none of the below
+ *                          . 1 for 64-bit R-type
+ *                          . 2 for 64-bit I-type
+ *                          . 3 for 32-bit R-type
+ *                          . 4 for 32-bit I-type
+ *                          . 5 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
+ * Input:  funct7       The most significant bits of the instruction.
+ * Input:  funct3       The middle three bits of the instruction (12-14).
+ *
  * Output: operation    What we want the ALU to do.
  *
- * For more information, see Section 4.4 and A.5 of Patterson and Hennessy
- * This follows figure 4.12
+ * For more information, see Section 4.4 and A.5 of Patterson and Hennessy.
+ * This is loosely based on figure 4.12
  */
 class ALUControl extends Module {
   val io = IO(new Bundle {
-    val aluop     = Input(Bool())
-    val itype     = Input(Bool())
+    val aluop     = Input(UInt(3.W))
     val funct7    = Input(UInt(7.W))
     val funct3    = Input(UInt(3.W))
-    val wordinst  = Input(Bool())
 
     val operation = Output(UInt(5.W))
   })
 
-  io.operation := "b11111".U // invalid operation
+  io.operation := "b11111".U // Invalid
 
   // Your code goes here
 }
 ```
 
-**HINT:** Use Chisel's  `when` / `elsewhen` / `otherwise`, or `MuxCase` syntax.
+**HINT**: As opposed to general programming advice, it is totally appropriate to use a lot of Chisel's branching statement here (i.e. using `when` / `elsewhen` / `otherwise`, or `MuxCase` syntax). Remember, you are constructing hardware, and branching in Chisel will eventually propagate to muxes in the real hardware design.
 See [the Chisel getting started guide](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/getting-started.md) for examples.
 You may also find the [Chisel cheat sheet](https://www.chisel-lang.org/doc/chisel-cheatsheet3.pdf) helpful.
+
+**HINT**: If you really want to optimize speed of the design (i.e., optimizing the number of transistors in the critical path),
+make sure you have a correct implementation first, then you start from modifying the ALU Control Unit output format. Note that you must not modify the ALU Control Unit output format in the submissions. Also, the FIRRTL compiler also does a lot of optimization on the design as well.
 
 ### Testing your ALU control unit
 
@@ -235,23 +293,14 @@ If you try this before you implement your ALU control unit, you'll see something
 ```
 sbt:dinocpu> Lab1 / test
 [info] [0.002] Elaborating design...
+[info] [0.003] Elaborating design...
 [info] [0.002] Elaborating design...
+[info] [0.003] Elaborating design...
 [info] [0.002] Elaborating design...
-[info] [0.002] Elaborating design...
-[info] [0.002] Elaborating design...
-[info] [0.156] Done elaborating.
-WARNING: No file will be loaded for data memory
-WARNING: No file will be loaded for data memory
-WARNING: No file will be loaded for data memory
+[info] [0.265] Done elaborating.
 CPU Type: single-cycle
 Branch predictor: always-not-taken
-Memory file: test_run_dir/single-cycle/or/or.hex
-Memory type: combinational
-Memory port type: combinational-port
-Memory latency (ignored if combinational): 0
-CPU Type: single-cycle
-Branch predictor: always-not-taken
-Memory file: test_run_dir/single-cycle/add2/add2.hex
+Memory file: test_run_dir/single-cycle/addfwd/addfwd.hex
 Memory type: combinational
 Memory port type: combinational-port
 Memory latency (ignored if combinational): 0
@@ -263,35 +312,28 @@ Memory port type: combinational-port
 Memory latency (ignored if combinational): 0
 CPU Type: single-cycle
 Branch predictor: always-not-taken
-Memory file: test_run_dir/single-cycle/addfwd/addfwd.hex
+Memory file: test_run_dir/single-cycle/add2/add2.hex
 Memory type: combinational
 Memory port type: combinational-port
 Memory latency (ignored if combinational): 0
-[info] [0.947] Done elaborating.
-[info] [0.947] Done elaborating.
-[info] [0.947] Done elaborating.
-[info] [0.950] Done elaborating.
-Total FIRRTL Compile Time: 878.1 ms
-Total FIRRTL Compile Time: 46.0 ms
-End of dependency graph
-Circuit state created
-[info] [0.002] SEED 1585495922699
-[info] [0.014] EXPECT AT 1 load/store wrong  io_operation got 15 expected 2 FAIL
-[info] [0.015] EXPECT AT 2 load/store wrong  io_operation got 15 expected 2 FAIL
-[info] [0.016] EXPECT AT 3 load/store wrong  io_operation got 15 expected 2 FAIL
-[info] [0.018] EXPECT AT 4 add wrong  io_operation got 15 expected 2 FAIL
+CPU Type: single-cycle
+Branch predictor: always-not-taken
+Memory file: test_run_dir/single-cycle/addw1/addw1.hex
+Memory type: combinational
+Memory port type: combinational-port
+Memory latency (ignored if combinational): 0
 ...
 ```
 
 This output continues for a while and somewhere in it you'll see that all of the tests failed.
 
 ```
-[info] Run completed in 20 seconds, 71 milliseconds.
-[info] Total number of tests run: 23
+info] Run completed in 31 seconds, 264 milliseconds.
+[info] Total number of tests run: 43
 [info] Suites: completed 5, aborted 0
-[info] Tests: succeeded 5, failed 18, canceled 0, ignored 0, pending 0
+[info] Tests: succeeded 5, failed 38, canceled 0, ignored 0, pending 0
 [info] *** 18 TESTS FAILED ***
-[error] Failed: Total 23, Failed 18, Errors 0, Passed 5
+[error] Failed: Total 43, Failed 38, Errors 0, Passed 5
 [error] Failed tests:
 [error] 	dinocpu.SingleCycleRTypeTesterLab1
 [error] 	dinocpu.SingleCycleAddTesterLab1
@@ -327,10 +369,10 @@ To get an idea of how you are going to implement this, it's a good idea to first
 It's such a good idea that we're going to make it mandatory, and you'll need to turn it in as part of your assignment.
 We've provided you with a [blank circuit diagram]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}).
 Draw all of the wires and label which bits are on each wire.
-There are a few components that are greyed out that you will not need to use for the R-type instructions (except for the Control Unit's `wordinst`).
+There are a few components that are greyed out that you will not need to use for the R-type instructions.
 These will be used in [Assignment 2]({{'modules/dino cpu/assignment2' | relative_url}}), but you can ignore them for now.
 
-We will be grading this diagram and looking for the following things:
+We will be grading this diagram and looking for the following things,
 
 * The correct wires.
 * Every wire should contain its width in bits.
@@ -350,8 +392,7 @@ For this assignment, you only need to add the hardware to implement the R-type i
 **Hint**: **You may not need to use all of the modules provided.**
 You only need to implement the *R-type* instructions, not all RISC-V instructions, on this lab assignment.
 
-**Hint 2**: The control unit as provided is *almost empty* and has `false` or 0 on every output, except for `wordinst` output, which contains a valid signal and should be used as an input to the ALUControl component.
-*You only need to use the `wordinst` output and ignore the rest of the output for this assignment!*
+**Hint 2**: The control unit as provided is *almost empty* and has `false` or 0 on every output, which contains a valid signal and should be used as an input to the ALUControl component.
 
 ## Part III: Implement the ADD instruction
 
@@ -397,7 +438,7 @@ sbt:dinocpu> Lab1 / testOnly dinocpu.SingleCycleAddTesterLab1
 ```
 
 This runs a very simple RISC-V application that has a single instruction: `add`.
-You can find the code for this program in [`src/test/resources/risc-v/add1.riscv`](https://github.com/jlpteaching/dinocpu-wq22/blob/main/src/test/resources/risc-v/add1.riscv) and below:
+You can find the code for this program in [`src/test/resources/risc-v/add1.riscv`]( {{ site.data.course.dino_cpu_link }}/blob/main/src/test/resources/risc-v/add1.riscv) and below:
 
 ```
   .text
@@ -406,6 +447,11 @@ You can find the code for this program in [`src/test/resources/risc-v/add1.riscv
 _start:
     add t1, zero, t0 # (reg[6] = 0 + reg[5])
 
+    nop
+    nop
+    nop
+    nop
+    nop
     nop
     nop
     nop
@@ -422,39 +468,58 @@ When you get the correct answer, you should see the following output.
 ```
 sbt:dinocpu> Lab1 / testOnly dinocpu.SingleCycleAddTesterLab1
 [info] [0.001] Elaborating design...
-[info] [0.420] Done elaborating.
-Total FIRRTL Compile Time: 1268.4 ms
-file loaded in 0.177122564 seconds, 548 symbols, 531 statements
+CPU Type: single-cycle
+Branch predictor: always-not-taken
+Memory file: test_run_dir/single-cycle/add2/add2.hex
+Memory type: combinational
+Memory port type: combinational-port
+Memory latency (ignored if combinational): 0
+[info] [0.390] Done elaborating.
+Total FIRRTL Compile Time: 993.6 ms
+file loaded in 0.225189459 seconds, 935 symbols, 912 statements
+0 cycles simulated.
+[info] [0.000] Elaborating design...
+CPU Type: single-cycle
+Branch predictor: always-not-taken
+Memory file: test_run_dir/single-cycle/add2/add2.hex
+Memory type: combinational
+Memory port type: combinational-port
+Memory latency (ignored if combinational): 0
+[info] [0.075] Done elaborating.
+Total FIRRTL Compile Time: 211.8 ms
+file loaded in 0.043672044 seconds, 935 symbols, 912 statements
+0 cycles simulated.
 [info] SingleCycleAddTesterLab1:
 [info] Single Cycle CPU
 [info] - should run add test add1
+[info] - should run add test add2
 [info] ScalaTest
-[info] Run completed in 3 seconds, 897 milliseconds.
-[info] Total number of tests run: 1
+[info] Run completed in 4 seconds, 70 milliseconds.
+[info] Total number of tests run: 2
 [info] Suites: completed 1, aborted 0
-[info] Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+[info] Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
-[info] Passed: Total 1, Failed 0, Errors 0, Passed 1
-[success] Total time: 6 s, completed Jan 8, 2020 1:26:31 AM
+[info] Passed: Total 2, Failed 0, Errors 0, Passed 2
+[success] Total time: 5 s, completed Jan 6, 2023, 1:53:55 AM
 ```
 
 The test only runs for a single cycle, since you're just executing one instruction.
 
 Note that the test initializes `t0` to 1234.
-You can see this on line 70 in [`src/test/scala/labs/Lab1Test.scala`](https://github.com/jlpteaching/dinocpu-wq22/blob/main/src/test/scala/labs/Lab1Test.scala).
-This creates a `CPUTestCase` that:
+You can see this on line 88 in [`src/test/scala/labs/Lab1Test.scala`]({{ site.data.course.dino_cpu_link }}/blob/main/src/test/scala/labs/Lab1Test.scala).
+This creates two tests cases, one of them is a `CPUTestCase` that:
 
 * runs the `add1` program
-* uses the `single*cycle` CPU
+* uses the `single-cycle` CPU
 * initializes the `t0` register to 1234
 * checks that `zero` is 0, `t0` is 1234, and `t1` is 1234
 * doesn't initialize any memory addresses
 * doesn't check any memory addresses
 
-More information about `CPUTestCase` can be found in the code (`src/test/scala/cpu-tests/CPUTesterDriver.scala`, line 94), and in the [DINO CPU documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation//testing.md).
+More information about `CPUTestCase` can be found in the code (`src/main/scala/testing/CPUTesterDriver.scala`, line 262), and in the [DINO CPU documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation//testing.md).
 
-You can also use the [single stepper](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation//single-stepping.md) to step through the execution one cycle at a time and print information as you go.
-Details on how to use the single stepper can be found in the [documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md).
+You can also use the [single stepper]({{ site.data.course.dino_cpu_link }}/blob/main/documentation//single-stepping.md) to step through the execution one cycle at a time and print information as you go.
+Details on how to use the single stepper can be found in the [documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/single-stepping.md).
 An example on how to use it is shown below.
 
 First, you can start the single stepper program:
@@ -486,16 +551,17 @@ registers.io.writedata         1234 (0x4d2)
 registers.io.wen               1 (0x1)
 ```
 
-This is saying that you're reading registers 1 and 5, the value in register 1 is 0, the value in register 5 is 1234, you're writing register 6, the value you're writing is 1234, and you're asserting `wen`.
+This is saying that, you are reading register 0 (as indicated by `readreg1`) and register 5 (as indicated by `readreg2`), and their current values are 0 (as indicated by `readdata1`) and 1234 (as indicated by `readdata2`) respectively. As the write enable bit is set (as indicated by `wen`), you are going to write the value 1234 (as indicated by `writedata`) to register 6 (as indicated by `writereg`).
+
 
 Similarly, the ALU wires should look like the following:
 
 ```
 Single stepper> dump alu
-alu.io.inputx                  0 (0x0)
+alu.io.operand1                0 (0x0)
 alu.io.result                  1234 (0x4d2)
-alu.io.inputy                  1234 (0x4d2)
-alu.io.operation               7 (0x7)
+alu.io.operand2                1234 (0x4d2)
+alu.io.operation               12 (0xc)
 ```
 
 Finally, you can also dump the value of specific registers.
@@ -514,9 +580,11 @@ Single stepper> print reg 6
 reg6: 1234
 ```
 
+**Note**: When you writing to a register, the new value only appears from the next cycle, as the register will not be updated until the end of the current cycle. Thus, in cycle 0, the value read out of register 6 is still 0.
+
 On cycle 1, register 6 is written with 1234, as it should be!
 
-More details on how to use the single stepper can be found in the [documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md).
+More details on how to use the single stepper can be found in the [documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/single-stepping.md).
 You can also write `?` on the command prompt to see the help.
 
 ## Part IV: Implementing the rest of the R-type instructions
@@ -536,7 +604,6 @@ There are a couple of tricky ones that may cause you to re-think your design.
 * `add0` tests to make sure you don't overwrite register 0 (it should always be 0 in RISC-V).
 * The `sub` and `sra` instructions will stress corner cases in your ALU control unit, but you already passed those tests so it should work!
 * The signed and unsigned versions of instructions are also tricky.
-* It's important to wire wordinst correctly: when wordinst = 1.U, it means that inputx and inputy of the ALU should be treated as 32-bit values, and the ALU should produce a 32-bit value sign extended to 64-bit. The ALU component is implemented, and you can take a look at the component to see how 32-bit operations are computed.
 
 ## Testing the rest of the instructions
 
@@ -560,8 +627,8 @@ Below is an example of a test that failed:
 
 This ran an **rtype** application which used the binary **add1**.
 You can view the RISC-V assembly for this application in `src/test/resources/risc-v/add1.riscv`.
-The list of applications that this suite will run can be found in the `InstTests.scala` file (`src/test/scala/cpu-tests/InstTests.scala`).
-If you want more details on the syntax and how to extend this to other RISC-V binaries, ask on Discord and we will be happy to expand this section.
+The list of applications that this suite will run can be found in the `InstTests.scala` file (`src/main/scala/testing/InstTests.scala`).
+If you want more details on the syntax and how to extend this to other RISC-V binaries, ask on {{site.data.course.discussion_site}} and we will be happy to expand this section.
 
 If you want to run only a single application from this suite of tests, you can add a parameter to the `test` sbt task.
 You can pass the option `-z` which will execute any tests that match the text given to the parameter.
@@ -583,7 +650,7 @@ Now, let's try a more complicated program that executes more than one instructio
 
 There is only one minor change from [Part IV](#part-iv-implementing-the-rest-of-the-r-type-instructions) to get these programs to execute correctly.
 The change you need to make is to make sure that after executing one instruction, your processor moves on to the next instruction to execute it.
-For now, **do not** use the `NextPC` unit.
+For now, **do not** use the `ControlTransferUnit` unit.
 Instead, add another (simple) hardware component to your system which will enable you to execute multiple instructions.
 
 These programs are starting to be able to do some "real" things.
@@ -606,11 +673,6 @@ _start: #checks if v is a power of 2
     nop
 _last:
 ```
-
-### Hint
-There is a bug with `pc` that doing arithmetic with `pc` directly will result in
-an undesired result. One way of getting around this bug is to use an Adder
-(implemented in `components/helpers.scala`).
 
 ### Testing
 
@@ -641,13 +703,13 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ### Code portion
 
-You will upload the two files that you changed to Gradescope on the [Lab 1](https://www.gradescope.com/courses/343623/assignments/1755181) assignment.
+You will upload the two files that you changed to Gradescope on the [Lab 1]({{ site.data.course.dinocpu_gradescope_lab1_code_link }}) assignment.
 
 * `src/main/scala/components/alucontrol.scala`
 * `src/main/scala/single-cycle/cpu.scala`
 
 Once uploaded, Gradescope will automatically download and run your code.
-This should take less than 10 minutes.
+This should take less than 20 minutes.
 For each part of the assignment, you will receive a grade.
 If all of your tests are passing locally, they should also pass on Gradescope unless you made changes to the I/O, **which you are not allowed to do**.
 
@@ -657,7 +719,7 @@ Either the test passes or it fails.
 
 ### Diagram
 
-Upload your diagram to this [Gradescope assignment](https://www.gradescope.com/courses/343623/assignments/1755193).
+Upload your diagram to this [Gradescope assignment]({{ site.data.course.dinocpu_gradescope_lab1_diagram_link }}).
 
 We will be grading this diagram and looking for the following things:
 
@@ -678,8 +740,8 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 ### Hints
 
 * Start early! There is a steep learning curve for Chisel, so start early and ask questions on Discord and in discussion.
-* If you need help, come to office hours for the TAs, or post your questions on Discord.
-* See [common errors](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/common-errors.md) for some common errors and their solutions.
+* If you need help, come to office hours for the TAs, or post your questions on {{ site.data.course.discussion_site }}.
+* See [common errors]({{site.data.course.dino_cpu_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
 
 ## Printf debugging
 
