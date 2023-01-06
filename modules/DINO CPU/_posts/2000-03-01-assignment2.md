@@ -419,6 +419,7 @@ See the table below for more information about the I-type instruction layouts.
 ## I-type instruction details
 
 The following table shows how an I-type instruction is laid out,
+
 | 31-26     | 25     | 24-20     | 19-15  | 14-12  | 11-7 | 6-0       | Name   | instructions                  |
 |-----------|--------|-----------|--------|--------|------|-----------|--------|-------------------------------|
 | imm(11,6) | imm(5) |  imm(4,0) |  rs1   | funct3 | rd   | OP-IMM    | I-type | ADDI/SLTI/SLTIU/ANDI/ORI/XORI |
@@ -465,7 +466,7 @@ You will also need to incorporate the data memory into your data path, starting 
 The data memory port I/O is not as simple as the I/O for other modules.
 It's built to be modular to allow different kinds of memories to be used with your CPU design.
 We are planning to explore this further in Lab 4.
-If you want to see the details, you can find them in the [mem-port-io.scala](https://github.com/jlpteaching/dinocpu-wq22/blob/main/src/main/scala/memory/memory-port-io.scala) file.
+If you want to see the details, you can find them in the [mem-port-io.scala]({{site.data.course.dino_cpu_link}}/blob/main/src/main/scala/memory/memory-port-io.scala) file.
 
 The I/O for the data memory port is shown below.
 Don't forget that the instruction and data memory ports look weird to use.
