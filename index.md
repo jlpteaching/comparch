@@ -29,7 +29,7 @@ The information here is subject to change, especially the parts later in the qua
 
 * [Syllabus]({{'syllabus' | relative_url}})
 * [OneNote notebook with class notes]({{ site.data.course.one_note_link }})
-* [Campuswire discussions]({{ site.data.course.discussion_link }})
+* [{{site.data.course.discussion_site}} discussions]({{ site.data.course.discussion_link }})
 * [Lecture videos]({{ site.data.course.aggie_video_link }})
 
 ## Detailed Class Outline
@@ -40,7 +40,7 @@ Then, after going through the design details, we will summarize with specific ex
 
 Each section will have one or two project-based assignments.
 Those of you in ECS 154B will be using the [DINO CPU]({{ site.data.course.dino_cpu_link }}), and those of you in ECS 201A will be using [gem5](https://www.gem5.org).
-Each section wil also have an exam at the end.
+Each section will also have an exam at the end.
 
 ### [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}) (About one week)
 
@@ -50,15 +50,15 @@ This first section is going to be part of the "soft launch" or "transition perio
 There are due dates listed for the quizzes.
 However, for this first section *there will be no late penalty*.
 
-* [Introduction to the class]({{"modules/introduction/intro" | relative_rul }})
-* [Current Computing Technology]({{"modules/introduction/technology" | relative_rul }})
-* [Computer System Evaluation]({{"modules/introduction/evaluation" | relative_rul }})
+* [Introduction to the class]({{"modules/introduction/intro" | relative_url }})
+* [Current Computing Technology]({{"modules/introduction/technology" | relative_url }})
+* [Computer System Evaluation]({{"modules/introduction/evaluation" | relative_url }})
 
 ### [Processor Architecture]({{"modules/processor architecture/index/" | relative_url}}) (About three weeks)
 
-* [Instruction set architectures and RISC-V]({{"modules/processor architecture/isa/" | relative_url}}) ([DINO CPU Assignment 1]({{"modules/dino cpu/assignment1" | relative_rul }}) Due {{ site.data.course.dates.dino_1 }})
-* [Single cycle CPU design]({{"/modules/processor architecture/single-cycle/" | relative_url}}) ([DINO CPU Assignment 2]({{"modules/dino cpu/assignment2" | relative_rul }}) Due {{ site.data.course.dates.dino_2 }})
-* [Pipelined CPU design]({{"/modules/processor architecture/pipelined/" | relative_url}}) ([DINO CPU Assignment 3.1]({{"modules/dino cpu/assignment3" | relative_rul }}) Part 1 Due (soft) {{ site.data.course.dates.dino_31 }} & Part 2 Due {{ site.data.course.dates.dino_32 }}) (ECS 201A does not have a part 1)
+* [Instruction set architectures and RISC-V]({{"modules/processor architecture/isa/" | relative_url}}) ([DINO CPU Assignment 1]({{"modules/dino cpu/assignment1" | relative_url }}) Due {{ site.data.course.dates.dino_1 }})
+* [Single cycle CPU design]({{"/modules/processor architecture/single-cycle/" | relative_url}}) ([DINO CPU Assignment 2]({{"modules/dino cpu/assignment2" | relative_url }}) Due {{ site.data.course.dates.dino_2 }})
+* [Pipelined CPU design]({{"/modules/processor architecture/pipelined/" | relative_url}}) ([DINO CPU Assignment 3.1]({{"modules/dino cpu/assignment3" | relative_url }}) Part 1 Due (soft) {{ site.data.course.dates.dino_31 }} & Part 2 Due {{ site.data.course.dates.dino_32 }}) (ECS 201A does not have a part 1)
 * [Instruction-level parallelism]({{"modules/processor architecture/ilp/" | relative_url}})
 * [Processor architecture summary]({{"modules/processor architecture/summary/" | relative_url}})
 
