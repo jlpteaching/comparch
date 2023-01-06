@@ -8,7 +8,7 @@ Title: DINO CPU Assignment 3
 
 Originally from ECS 154B Lab 3, Winter 2019.
 
-Modified for ECS 154B Lab 3, Winter 2022.
+Modified for ECS 154B Lab 3, {{site.data.course.quarter}}.
 
 **Part 3.1 Due on *{{ site.data.course.dates.dino_31 }}* (soft).**
 
@@ -56,7 +56,7 @@ The simple in-order CPU design is based closely on the CPU model in Patterson an
 ## Updating the DINO CPU code
 
 The DINO CPU code must be updated before you can run each lab.
-You should read up on [how to update your code](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/updating-from-git.md) to get the assignment 3 template from GitHub.
+You should read up on [how to update your code]({{site.data.course.dino_cpu_link}}/blob/main/documentation/updating-from-git.md) to get the assignment 3 template from GitHub.
 
 You can check out the main branch to get the template code for this lab.
 If you want to use your solution from lab2 as a starting point, you can merge your commits with the `origin` main by running `git pull` or `git fetch; git merge origin/main`.
@@ -117,10 +117,10 @@ When you see something like the following output when running a test:
 This means that the test `bne-False` failed.
 
 For this assignment, it would be a good idea to single step through each one of the failed tests.
-You can find out more information on this in the [DINO CPU documentation](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and in the video [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+You can find out more information on this in the [DINO CPU documentation]({{site.data.course.dino_cpu_link}}/blob/main/documentation/single-stepping.md) and in the video [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 You may also want to add your own `printf` statements to help you debug.
-Details on how to do this were are in the [Chisel notes](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/printf-debugging.md).
+Details on how to do this were are in the [Chisel notes]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/printf-debugging.md).
 
 # Part I: Re-implement the CPU logic and add pipeline registers
 
@@ -271,7 +271,7 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ## Code portion
 
-You will upload the file that you changed to Gradescope on the [Assignment 3.1](https://www.gradescope.com/courses/343623/assignments/1795388/) assignment.
+You will upload the file that you changed to Gradescope on the [Assignment 3.1]({{site.data.course.154b_gradescope_lab31_code_link}}) assignment.
 
 - `src/main/scala/pipelined/cpu.scala`
 
@@ -324,7 +324,7 @@ sbt:dinocpu> Lab3 / testOnly dinocpu.ITypeMultiCycleTesterLab3
 sbt:dinocpu> Lab3 / testOnly dinocpu.RTypeMultiCycleTesterLab3
 ```
 
-Don't forget about [how to single-step through the pipelined CPU](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+Don't forget about [how to single-step through the pipelined CPU]({{site.data.course.dino_cpu_link}}/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 # Part III: Implementing branching and flushing
 
@@ -349,7 +349,7 @@ sbt:dinocpu> Lab3 / testOnly dinocpu.BranchTesterLab3
 sbt:dinocpu> Lab3 / testOnly dinocpu.JumpTesterLab3
 ```
 
-Don't forget about [how to single-step through the pipelined CPU](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+Don't forget about [how to single-step through the pipelined CPU]({{site.data.course.dino_cpu_link}}/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 # Part IV: Hazard detection
 
@@ -374,7 +374,7 @@ sbt:dinocpu> Lab3 / testOnly dinocpu.MemoryMultiCycleTesterLab3
 sbt:dinocpu> Lab3 / testOnly dinocpu.ApplicationsTesterLab3
 ```
 
-Don't forget about [how to single-step through the pipelined CPU](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
+Don't forget about [how to single-step through the pipelined CPU]({{site.data.course.dino_cpu_link}}/blob/main/documentation/single-stepping.md) and [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d).
 
 ## Full application traces
 
@@ -406,14 +406,14 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ## Code portion
 
-You will upload the three files that you changed to Gradescope on the [Assignment 3.2](https://www.gradescope.com/courses/343623/assignments/1795565/) assignment.
+You will upload the three files that you changed to Gradescope on the [Assignment 3.2]({{site.data.course.154b_gradescope_lab32_code_link}}) assignment.
 
 - `src/main/scala/components/forwarding.scala`
 - `src/main/scala/components/hazard.scala`
 - `src/main/scala/pipelined/cpu.scala`
 
 Once uploaded, Gradescope will automatically download and run your code.
-This should take less than 10 minutes.
+This should take less than 20 minutes.
 For each part of the assignment, you will receive a grade.
 If all of your tests are passing locally, they should also pass on Gradescope unless you made changes to the I/O, **which you are not allowed to do**.
 
@@ -438,6 +438,6 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 # Hints
 
-- Start early! Start early and ask questions on Campuswire and in discussion.
-- If you need help, come to office hours for the TA, or post your questions on Campuswire.
-- See [common errors](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/common-errors.md) for some common errors and their solutions.
+- Start early! Start early and ask questions on {{site.data.course.discussion_site}} and in discussion sessions.
+- If you need help, come to office hours for the TA, or post your questions on {{site.data.course.discussion_site}}.
+- See [common errors]({{site.data.course.dino_cpu_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
