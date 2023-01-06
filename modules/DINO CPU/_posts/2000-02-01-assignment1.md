@@ -706,7 +706,7 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ### Code portion
 
-You will upload the two files that you changed to Gradescope on the [Lab 1]({{ site.data.course.dinocpu_gradescope_lab1_code_link }}) assignment.
+You will upload the two files that you changed to Gradescope on the [Lab 1]({{ site.data.course.154b_gradescope_lab1_code_link }}) assignment.
 
 * `src/main/scala/components/alucontrol.scala`
 * `src/main/scala/single-cycle/cpu.scala`
@@ -722,7 +722,7 @@ Either the test passes or it fails.
 
 ### Diagram
 
-Upload your diagram to this [Gradescope assignment]({{ site.data.course.dinocpu_gradescope_lab1_diagram_link }}).
+Upload your diagram to this [Gradescope assignment]({{ site.data.course.154b_gradescope_lab1_diagram_link }}).
 
 We will be grading this diagram and looking for the following things:
 

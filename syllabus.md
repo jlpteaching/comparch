@@ -88,7 +88,7 @@ However, if you submit after the deadline, the [late policy](#late-assignments) 
 We will use [Online discussions]({{ site.data.course.discussion_link }}) for class discussions outside of the classroom.
 If your question is specific to either 201A or 154B please start the subject with `[ECS 201A]` or `[ECS 154B]` respectively.
 
-It's best to ask your questions on Campuswire.
+It's best to ask your questions on {{site.data.course.discussion_site}}.
 That way, all of your classmates can see the answer instead of emailing the TAs or me.
 Additionally, you might get a much faster response from one of your classmates!
 Through asking and answering questions on Discord, you improve your understanding of the material, and improve other students' understanding as well.

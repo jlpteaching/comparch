@@ -877,7 +877,7 @@ Failure to adhere to the instructions will result in a loss of points.
 
 ## Code portion
 
-You will upload the three files that you changed to Gradescope on the [Lab 2]({{ site.data.course.dinocpu_gradescope_lab2_code_link }}) assignment.
+You will upload the three files that you changed to Gradescope on the [Lab 2]({{ site.data.course.154b_gradescope_lab2_code_link }}) assignment.
 
 - `src/main/scala/components/alucontrol.scala`
 - `src/main/scala/components/controltransferunit.scala`
