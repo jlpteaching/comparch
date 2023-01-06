@@ -131,7 +131,7 @@ It takes three inputs: the `operation`, and two inputs, `operand1` and `operand2
 It generates the `result` of the operation on the two inputs.
 
 The following table pairs each of possible `operation` input and arithmetic `op` that will be applied to `operand1` and `operand2` to produce `result`.
-In other words, for the ALU coponent, `result := operand1 \<op\> operand2`.
+In other words, for the ALU coponent, `result := operand1 <op> operand2`.
 
 | `operation` |   `op` |
 |-------------|--------|
