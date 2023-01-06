@@ -58,8 +58,8 @@ The first step is to familiarize yourself with the tools that we'll be using in 
 You write Scala code, which is syntactically similar to Java.
 Chisel can then generate low-level Verilog code, which is a hardware description language used by a variety of tools to describe how an electronic circuit works.
 
-There is a more detailed Chisel overview found under the [Chisel notes directory](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/overview.md).
-Before diving into this assignment, you are encouraged to go through the [Chisel notes](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/overview.md).
+There is a more detailed Chisel overview found under the [Chisel notes directory]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/overview.md).
+Before diving into this assignment, you are encouraged to go through the [Chisel notes]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/overview.md).
 You can find additional help and documentation on [Chisel's website](https://chisel.eecs.berkeley.edu/).
 
 We provide a docker image containing the development environment with JDK, Chisel, and
@@ -69,7 +69,7 @@ run the docker image.
 Details on how to run the docker image can be found in the
 [dockerfiles folder]({{site.data.course.dino_cpu_link}}/tree/main/dockerfiles).
 
-<!-- Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/singularity.md).
+<!-- Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document]({{site.data.course.dino_cpu_link}}blob/main/documentation/singularity.md).
 -->
 
 ### Using the CSIF machines
@@ -269,7 +269,7 @@ class ALUControl extends Module {
 ```
 
 **HINT**: As opposed to general programming advice, it is totally appropriate to use a lot of Chisel's branching statement here (i.e. using `when` / `elsewhen` / `otherwise`, or `MuxCase` syntax). Remember, you are constructing hardware, and branching in Chisel will eventually propagate to muxes in the real hardware design.
-See [the Chisel getting started guide](https://github.com/jlpteaching/dinocpu-wq22/blob/main/documentation/chisel-notes/getting-started.md) for examples.
+See [the Chisel getting started guide]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/getting-started.md) for examples.
 You may also find the [Chisel cheat sheet](https://www.chisel-lang.org/doc/chisel-cheatsheet3.pdf) helpful.
 
 **HINT**: If you really want to optimize speed of the design (i.e., optimizing the number of transistors in the critical path),
