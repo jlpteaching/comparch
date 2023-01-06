@@ -220,6 +220,9 @@ The following are the instruction formats of arithmetic instructions in RV64M,
 
 where `OP = 0110011` and `OP-32 = 0111011`.
 
+Note that, in general, operands in 64-bit machines are treated as 64-bit integers.
+This is also true for RV64IM, except when the opcode is `OP-32` or `OP-IMM-32` (see assignment 2), where the instructions treat the operands as 32-bit integers, and the output is signed extended from 32-bit arithmetic result to 64-bit.
+
 This tables are from the The RISC-V Instruction Set Manual Volume I: Unprivileged ISA, V20191213, page 130-131.
 You can find the same information in Chapter 2, Chapter 5, and Chapter 7 of the Specification, Chapter 2 of the RISC-V reader, or in the front of the Computer Organization and Design book.
 
