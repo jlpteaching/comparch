@@ -20,7 +20,7 @@ Modified for ECS 154B Lab 2, {{ site.data.course.quarter }}.
   * [Goals](#goals)
 * [Single cycle CPU design](#single-cycle-cpu-design)
 * [Control unit overview](#control-unit-overview)
-* [Part 0: NextPC unit overview](#part-0-nextpc-unit-overview)
+* [Part 0: ControlTransfer unit overview](#part-0-controltransfer-unit-overview")
 * [Part I: R-types](#part-i-r-types)
   * [R-type instruction details](#r-type-instruction-details)
   * [Testing the R-types](#testing-the-r-types)
@@ -42,8 +42,8 @@ Modified for ECS 154B Lab 2, {{ site.data.course.quarter }}.
   * [Testing the other memory instructions](#testing-the-other-memory-instructions)
 * [Part VII: Branch instructions](#part-vii-branch-instructions)
   * [Branch instruction details](#branch-instruction-details)
-  * [Updating your NextPC unit for branch instructions](#updating-your-NextPC-unit-for-branch-instructions)
-    * [Testing your NextPC unit](#testing-your-nextpc-unit)
+  * [Updating your ControlTransfer unit for branch instructions](#updating-your-controltransfer-unit-for-branch-instructions)
+    * [Testing your ControlTransfer unit](#testing-your-controltransfer-unit)
 * [Part VIII: `jal`](#part-viii-jal)
   * [`jal` instruction details](#jal-instruction-details)
   * [Testing `jal`](#testing-jal)
@@ -367,7 +367,7 @@ This did not require all of outputs of a control unit since there were no need f
 However, in this assignment, you will be implementing the rest of the RISC-V instructions, and you will need to use all of outputs of the control unit (except for `validinst`).
 
 The first step is to hook up the control unit and get the R-type instructions working again.
-You shouldn't have to change all that much code in `cpu.scala` from the first assignment after you applying changes regarding [ControlTransfer unit](#part0-controltransfer-unit-overview).
+You shouldn't have to change all that much code in `cpu.scala` from the first assignment after you applying changes regarding [ControlTransfer unit](#part-0-controltransfer-unit-overview").
 All you have to do is to hook up the `opcode` to the input of the control unit and its output `aluop` to the ALU Control Unit.
 We have already implemented the R-type control logic for you.
 You can also use the appropriate signals generated from the control unit (e.g., `writeback_src`) to drive your data path.
@@ -766,7 +766,7 @@ You must properly update any required entities in your code (e.g. the control un
 
 ## Testing `jal`
 
-You can run the tests for changes you made for NextPC in this part with the following command:
+You can run the tests for changes you made for ControlTransfer in this part with the following command,
 
 ```
 sbt:dinocpu> Lab2 / testOnly dinocpu.NextPCJalTesterLab2
