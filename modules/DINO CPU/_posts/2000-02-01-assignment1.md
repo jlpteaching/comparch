@@ -78,6 +78,11 @@ Apptainer is installed on *most* CSIF machines.
 So, if you are using one of the CSIF machines either locally or remotely, things should *just work*.
 However, if you run into any problems, post on [{{ site.data.course.discussion_site }}]({{ site.data.course.discussion_link }}) or come to office hours.
 
+To run the dinocpu container using apptainer,
+```sh
+apptainer run --bind $(pwd):/home/sbt-user --workdir /home/sbt-user docker://jlpteaching/dinocpu-wq23
+```
+
 The images are relatively large files.
 As of the beginning of the quarter, the image is 700 MB.
 We have tried to keep the size as small as possible.
