@@ -103,9 +103,8 @@ You may discuss *high level concepts* with one another (e.g., talking about the 
 **Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
 Any code found on GitHub that is not the base template you are given will be reported to SJA.
 If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
-<!-- GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and **you shouldn't have *any* collaborators** for your code in this class. -->
 
 ## Hints
 
-- Start early! There is a learning curve for gem5, so start early and ask questions on {{site.data.}} and in discussion.
+- Start early! There is a learning curve for gem5, so start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Campuswire.
