@@ -107,4 +107,4 @@ If you want to sidestep this problem entirely, don't create a public fork and in
 ## Hints
 
 - Start early! There is a learning curve for gem5, so start early and ask questions on Piazza and in discussion.
-- If you need help, come to office hours for the TA, or post your questions on Campuswire.
+- If you need help, come to office hours for the TA, or post your questions on Piazza.
