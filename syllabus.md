@@ -50,9 +50,9 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 **Mahyar Samani** (<msamani@ucdavis.edu>)
 
-*Office Hours Time*: TBD
+*Office Hours Time*: Tuesdays, 3:00 pm - 4:30 pm, Kemper 3106
+*Office Hours Zoom*: TBD
 
-<!-- *Office Location*: [Zoom]() -->
 
 #### ECS 154B
 
