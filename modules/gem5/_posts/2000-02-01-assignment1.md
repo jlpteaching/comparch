@@ -24,8 +24,6 @@ Modified for ECS 201A, Winter 2023.
 
 ## Introduction
 
-You should do this assignment on your own, although you are welcome to talk to classmates in person or on Campuswire about any issues you may have encountered. The standard late assignment policy applies.
-
 You should submit your report in pairs. Make sure to start early and post any questions you might have on piazza. The standard late assignemt policy applies.
 
 For all the assignment in this course, we are going to be using the recently developed standard library in the gem5 simulator. Please read through [Getting started with gem5 stdlib](). We are going to use github's classroom and codespaces to setup and run our experiments in gem5. This means no compiling gem5.
@@ -109,5 +107,5 @@ If you want to sidestep this problem entirely, don't create a public fork and in
 
 ## Hints
 
-* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
-* If you need help, come to office hours for the TA, or post your questions on Campuswire.
+- Start early! There is a learning curve for gem5, so start early and ask questions on {{site.data.}} and in discussion.
+- If you need help, come to office hours for the TA, or post your questions on Campuswire.
