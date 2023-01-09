@@ -379,7 +379,7 @@ The following table shows how an R-type instruction is laid out,
 | 31-25  | 24-20 | 19-15 | 14-12   | 11-7 | 6-0   | Name   |
 |--------|-------|-------|---------|------|-------|--------|
 | funct7 | rs2   | rs1   | funct3  | rd   | OP    | R-type |
-| funct7 | rs2   | rs1   | funct3  | rd   | 0P-32 | R-type |
+| funct7 | rs2   | rs1   | funct3  | rd   | OP-32 | R-type |
 
 where `OP = 0110011` and `OP-32 = 0111011`.
 
@@ -431,7 +431,7 @@ The following table shows how an I-type instruction is laid out,
 | 000000    | 0      |  imm[4:0] |  rs1   | funct3 | rd   | OP-IMM-32 | I-type | SRLIW                         |
 | 010000    | 0      |  imm[4:0] |  rs1   | funct3 | rd   | OP-IMM-32 | I-type | SRAIW                         |
 
-where `OP-IMM = 0010011`, `OP-IMM-32 = 0010011`, `imm[11:6]` indicates bit 11 to bit 6 of the immediate, and `imm[5]` indicates bit 5 of the immediate.
+where `OP-IMM = 0010011`, `OP-IMM-32 = 0011011`; `imm[11:6]` indicates bit 11 to bit 6 of the immediate, and `imm[5]` indicates bit 5 of the immediate.
 
 Note that, in general, operands in 64-bit machines are treated as 64-bit integers.
 This is also true for RV64IM, except when the opcode is `OP-32` or `OP-IMM-32`, where the instructions treat the operands as 32-bit integers, and the output is signed extended from 32-bit arithmetic result to 64-bit.
