@@ -78,10 +78,37 @@ Apptainer is installed on *most* CSIF machines.
 So, if you are using one of the CSIF machines either locally or remotely, things should *just work*.
 However, if you run into any problems, post on [{{ site.data.course.discussion_site }}]({{ site.data.course.discussion_link }}) or come to office hours.
 
-To run the dinocpu container using apptainer,
+To run the dinocpu container using apptainer, run the following command in the dinocpu folder,
+
 ```sh
 apptainer run --bind $(pwd):/home/sbt-user --workdir /home/sbt-user docker://jlpteaching/dinocpu-wq23
 ```
+
+The command will pull the jlpteaching/dinocpu-wq23 image from the Docker Hub Container Image Library, and run sbt, the Scala interactive tool.
+The command line should look like this,
+
+```
+Unable to find image 'jlpteaching/dinocpu-wq23:latest' locally
+latest: Pulling from jlpteaching/dinocpu-wq23
+e96e057aae67: Pull complete 
+bdb9413ca2c5: Pull complete 
+ce5c4157a592: Pull complete 
+ae906d0f6b61: Pull complete 
+899b16822c39: Pull complete 
+Digest: sha256:b520941b695d9d4c1e8c72cd0143c3f300655790e7ca928e59042b32a7eb90b4
+Status: Downloaded newer image for jlpteaching/dinocpu-wq23:latest
+downloading sbt launcher 1.8.0
+copying runtime jar...
+[info] [launcher] getting org.scala-sbt sbt 1.2.7  (this may take some time)...
+[info] [launcher] getting Scala 2.12.7 (for sbt)...
+[info] Loading settings for project sbt-user-build from plugins.sbt ...
+[info] Loading project definition from /home/sbt-user/project
+[info] Loading settings for project root from build.sbt ...
+[info] Set current project to dinocpu (in build file:/home/sbt-user/)
+sbt:dinocpu>
+```
+
+The `sbt:dinocpu>` line indicates that sbt recognizes the `dinocpu` project.
 
 The images are relatively large files.
 As of the beginning of the quarter, the image is 700 MB.
