@@ -16,7 +16,7 @@ Modified for ECS 201A, Winter 2023.
   - [Introduction](#introduction)
   - [Workload](#workload)
   - [Experimental setup](#experimental-setup)
-  - [Step V: Analyzing Simulated Data](#step-v-analyzing-simulated-data)
+  - [Analyzing simulation data](#analyzing-simulation-data)
   - [Submission](#submission)
   - [Grading](#grading)
   - [Academic misconduct reminder](#academic-misconduct-reminder)
@@ -24,7 +24,7 @@ Modified for ECS 201A, Winter 2023.
 
 ## Introduction
 
-You should submit your report in pairs. Make sure to start early and post any questions you might have on piazza. The standard late assignemt policy applies.
+You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
 
 For all the assignment in this course, we are going to be using the recently developed standard library in the gem5 simulator. Please read through [Getting started with gem5 stdlib](). We are going to use github's classroom and codespaces to setup and run our experiments in gem5. This means no compiling gem5.
 
@@ -32,7 +32,7 @@ For all the assignment in this course, we are going to be using the recently dev
 
 For this assignment we are going to use a matrix multiplication program as our workload. The program takes and integer as input that determines the `size` of the square matrices `A`, `B`, and `C`.
 
-```c++
+```cpp
 void multiply(double **A, double **B, double **C, int size)
 {
     for (int i = 0; i < size; i++) {
@@ -52,9 +52,9 @@ You can find the definitions for the workload objects in gem5 under `workloads/w
 For this assignment, we will set up an experiment to see effect of changing a system's component on it performance. You will need to write a configuration script in gem5 stdlib that allows you to change the CPU model, CPU and cache frequency, and memory model.
 Under the `components` directory, you will find modules that define the different models that you should use in your configuration scritps.
 
-- Board models: You can find all the models you need to use for your CPU (processor) under `components/boards.py`.
+- Board models: You can find all the models you need to use for your CPU (processor) under `components/boards.py`. You will only be using HW1RISCVBoard in this assignment.
 - CPU models: You can find all the models you need to use for your CPU (processor) under `components/processors.py`.
-- Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`.
+- Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`. You will only use HW1MESITwoLevelCache in this assignment.
 - Memory models: You can find all the models you need to use for your memory under `components/memories.py`.
 
 ### Step I: Changing the CPU model
@@ -77,6 +77,8 @@ In your configuration change the memory model to any of the models listed below.
 - HW1DDR3_2133_8x8, which models DDR3 with a faster clock.
 - HW1LPDDR3_1600_1x32, which models LPDDR3, a low-power DRAM often found in mobile devices.
 
+Hint: again, you may want to read the name of the memory model as an input from the command line.
+
 ### Step IV: Gathering performance data
 
 To gather your performance data, run your `MatMulWorkload` with all the possible combinations of CPU model, CPU and cache clock frequency, and memory model. Make sure to dump the simulator output for each combination to a unique destination so that you can compare and contrast the data later on. In total you need to gather 18 simulation statistics outputs for your data (2 (CPU models) * 3 (clock frequencies) * 3 (memory models)).
@@ -96,15 +98,15 @@ After collecting all of the data from your experiments, analyze the statistics y
 ## Grading
 
 ## Academic misconduct reminder
-
+<!--
 You are to work on this project **individually**.
 You may discuss *high level concepts* with one another (e.g., talking about the sieve algorithm), but all work must be completed on your own.
 
 **Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
 Any code found on GitHub that is not the base template you are given will be reported to SJA.
-If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
+If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work. -->
 
 ## Hints
 
-- Start early! There is a learning curve for gem5, so start early and ask questions on Piazza and in discussion.
+- Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
