@@ -79,9 +79,14 @@ We encourage you to learn to use Codespace over using CSIF machines as it's not 
 ### Using GitHub codespace
 The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
 
-The assignment 1 repo is located at [{{site.data.course.154b_assignment1_github_link}}]({{site.data.course.154b_assignment1_github_link}}).
+The assignment 1 template repo is located at [{{site.data.course.154b_assignment1_github_link}}]({{site.data.course.154b_assignment1_github_link}}).
 
 Follow the following link to access assignment 1: [{{site.data.course.154b_assignment1_invitation_link}}]({{site.data.course.154b_assignment1_invitation_link}}).
+
+The above link will automatically create a repo in the GitHub Classroom page that only you have the access to.
+
+In the event that the template repo is updated, your own repo won't be automatically updated.
+You don't need to keep track of the template repo, unless we found an error in the assignment, in which case, we will make an announcement on {{site.data.course.discussion_site}} and provide ways to update your repo.
 
 ### Using the CSIF machines
 
