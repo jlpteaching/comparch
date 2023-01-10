@@ -58,8 +58,8 @@ The first step is to familiarize yourself with the tools that we'll be using in 
 You write Scala code, which is syntactically similar to Java.
 Chisel can then generate low-level Verilog code, which is a hardware description language used by a variety of tools to describe how an electronic circuit works.
 
-There is a more detailed Chisel overview found under the [Chisel notes directory]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/overview.md).
-Before diving into this assignment, you are encouraged to go through the [Chisel notes]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/overview.md).
+There is a more detailed Chisel overview found under the [Chisel notes directory]({{site.data.course.154b_assignment1_github_link}}/blob/main/documentation/chisel-notes/overview.md).
+Before diving into this assignment, you are encouraged to go through the [Chisel notes]({{site.data.course.154b_assignment1_github_link}}/blob/main/documentation/chisel-notes/overview.md).
 You can find additional help and documentation on [Chisel's website](https://chisel.eecs.berkeley.edu/).
 
 We provide a docker image containing the development environment with JDK, Chisel, and
@@ -67,10 +67,21 @@ sbt installed.
 Platforms, such as docker and apptainer, support the OCI image format should be able to 
 run the docker image.
 Details on how to run the docker image can be found in the
-[dockerfiles folder]({{site.data.course.dino_cpu_link}}/tree/main/dockerfiles).
+[dockerfiles folder]({{site.data.course.154b_assignment1_github_link}}/tree/main/dockerfiles).
 
-<!-- Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document]({{site.data.course.dino_cpu_link}}blob/main/documentation/singularity.md).
+<!-- Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document]({{site.data.course.154b_assignment1_github_link}}blob/main/documentation/singularity.md).
 -->
+
+**Note**: There are at least two options to work on the programming assignments without having to set up the development environment on your local machine: using GitHub's Codespace and using UC Davis' CSIF machines.
+Those are the *only* options that we will provide support if you have trouble setting up the development environment.
+We encourage you to learn to use Codespace over using CSIF machines as it's not prone to VPN troubleshooting as well as it is tightly integrated to a version control system.
+
+### Using GitHub codespace
+The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
+
+The assignment 1 repo is located at [{{site.data.course.154b_assignment1_github_link}}]({{site.data.course.154b_assignment1_github_link}}).
+
+Follow the following link to access assignment 1: [{{site.data.course.154b_assignment1_invitation_link}}]({{site.data.course.154b_assignment1_invitation_link}}).
 
 ### Using the CSIF machines
 
@@ -304,7 +315,7 @@ class ALUControl extends Module {
 ```
 
 **HINT**: As opposed to general programming advice, it is totally appropriate to use a lot of Chisel's branching statement here (i.e. using `when` / `elsewhen` / `otherwise`, or `MuxCase` syntax). Remember, you are constructing hardware, and branching in Chisel will eventually propagate to muxes in the real hardware design.
-See [the Chisel getting started guide]({{site.data.course.dino_cpu_link}}/blob/main/documentation/chisel-notes/getting-started.md) for examples.
+See [the Chisel getting started guide]({{site.data.course.154b_assignment1_github_link}}/blob/main/documentation/chisel-notes/getting-started.md) for examples.
 You may also find the [Chisel cheat sheet](https://www.chisel-lang.org/doc/chisel-cheatsheet3.pdf) helpful.
 
 **HINT**: If you really want to optimize speed of the design (i.e., optimizing the number of transistors in the critical path),
@@ -473,7 +484,7 @@ sbt:dinocpu> Lab1 / testOnly dinocpu.SingleCycleAddTesterLab1
 ```
 
 This runs a very simple RISC-V application that has a single instruction: `add`.
-You can find the code for this program in [`src/test/resources/risc-v/add1.riscv`]( {{ site.data.course.dino_cpu_link }}/blob/main/src/test/resources/risc-v/add1.riscv) and below:
+You can find the code for this program in [`src/test/resources/risc-v/add1.riscv`]( {{ site.data.course.154b_assignment1_github_link }}/blob/main/src/test/resources/risc-v/add1.riscv) and below:
 
 ```
   .text
@@ -541,7 +552,7 @@ file loaded in 0.043672044 seconds, 935 symbols, 912 statements
 The test only runs for a single cycle, since you're just executing one instruction.
 
 Note that the test initializes `t0` to 1234.
-You can see this on line 88 in [`src/test/scala/labs/Lab1Test.scala`]({{ site.data.course.dino_cpu_link }}/blob/main/src/test/scala/labs/Lab1Test.scala).
+You can see this on line 88 in [`src/test/scala/labs/Lab1Test.scala`]({{ site.data.course.154b_assignment1_github_link }}/blob/main/src/test/scala/labs/Lab1Test.scala).
 This creates two tests cases, one of them is a `CPUTestCase` that:
 
 * runs the `add1` program
@@ -551,10 +562,10 @@ This creates two tests cases, one of them is a `CPUTestCase` that:
 * doesn't initialize any memory addresses
 * doesn't check any memory addresses
 
-More information about `CPUTestCase` can be found in the code (`src/main/scala/testing/CPUTesterDriver.scala`, line 262), and in the [DINO CPU documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation//testing.md).
+More information about `CPUTestCase` can be found in the code (`src/main/scala/testing/CPUTesterDriver.scala`, line 262), and in the [DINO CPU documentation]({{ site.data.course.154b_assignment1_github_link }}/blob/main/documentation//testing.md).
 
-You can also use the [single stepper]({{ site.data.course.dino_cpu_link }}/blob/main/documentation//single-stepping.md) to step through the execution one cycle at a time and print information as you go.
-Details on how to use the single stepper can be found in the [documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/single-stepping.md).
+You can also use the [single stepper]({{ site.data.course.154b_assignment1_github_link }}/blob/main/documentation//single-stepping.md) to step through the execution one cycle at a time and print information as you go.
+Details on how to use the single stepper can be found in the [documentation]({{ site.data.course.154b_assignment1_github_link }}/blob/main/documentation/single-stepping.md).
 An example on how to use it is shown below.
 
 First, you can start the single stepper program:
@@ -619,7 +630,7 @@ reg6: 1234
 
 On cycle 1, register 6 is written with 1234, as it should be!
 
-More details on how to use the single stepper can be found in the [documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/single-stepping.md).
+More details on how to use the single stepper can be found in the [documentation]({{ site.data.course.154b_assignment1_github_link }}/blob/main/documentation/single-stepping.md).
 You can also write `?` on the command prompt to see the help.
 
 ## Part IV: Implementing the rest of the R-type instructions
@@ -776,7 +787,7 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 * Start early! There is a steep learning curve for Chisel, so start early and ask questions on Discord and in discussion.
 * If you need help, come to office hours for the TAs, or post your questions on {{ site.data.course.discussion_site }}.
-* See [common errors]({{site.data.course.dino_cpu_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
+* See [common errors]({{site.data.course.154b_assignment1_github_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
 
 ## Printf debugging
 
