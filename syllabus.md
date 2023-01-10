@@ -29,7 +29,7 @@ For class-wide questions (e.g., anything more than one person might be intereste
 
 #### Office hours
 
-*Office Hours*: TBD.
+*Office Hours*: 3:30-5:00pm Wednesday. Preference to 154B from 3:30-4:15 and preference to 201A from 4:15-5pm.
 
 *Office Location*: Kemper 3049.
 
