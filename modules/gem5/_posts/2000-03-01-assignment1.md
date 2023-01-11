@@ -57,7 +57,7 @@ void multiply(double **A, double **B, double **C, int size)
 }
 ```
 
-You can find the definitions for the workload objects in gem5 under `workloads/workloads.py`. In this assignment, we will only be using `MatMulWorkload`. In order to create an object of `MatMulWorkload` you just need to pass matrix size an an integer `mat_size` to its constructor (`__init__`) function. **In your configuration choose an appropriate value for `mat_size`**. It should be large enough that it makes your workload interesting. Since changing `mat_size` will influence simulation time, as a guideline, choose a value that results in simulation times less than 10 minutes (hostSeconds < 600). We found that setting mat_size to 160 will result in a simulation time of around 4.5 minutes which is a reasonable compromise.
+You can find the definitions for the workload objects in gem5 under `workloads/workloads.py`. In this assignment, we will only be using `MatMulWorkload`. In order to create an object of `MatMulWorkload` you just need to pass matrix size (an integer) `mat_size` to its constructor (`__init__`) function. **In your configuration choose an appropriate value for `mat_size`**. It should be large enough that it makes your workload interesting. Since changing `mat_size` will influence simulation time, as a guideline, choose a value that results in simulation times less than 10 minutes (hostSeconds < 600). We found that setting mat_size to 160 will result in a simulation time of around 4.5 minutes which is a reasonable compromise.
 
 ## Experimental setup
 
