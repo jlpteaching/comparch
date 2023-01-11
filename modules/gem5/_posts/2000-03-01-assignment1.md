@@ -108,7 +108,7 @@ In your configuration allow for:
 
 Use `4 GHz` as the clock frequency.
 
-**NOTE**:To become familiar with the different memory models you will use in this assignment, please read through the documentation for the different memory models in `components/memories.py`.
+**NOTE**: To become familiar with the different memory models you will use in this assignment, please read through the documentation for the different memory models in `components/memories.py`.
 
 In your report, answer the same questions after simulation supported with data. A complete set of simualtion data for this step should include **6 configurations** (2 options for CPU model * 3 options for memory model).
 
