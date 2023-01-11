@@ -8,14 +8,15 @@ Title: ECS 201A Assignment 0
 **Due on *{{ site.data.course.dates.gem5_0 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
 ## Table of Contents
-  - [Introduction](#introduction)
-  - [gem5 and gem5's standard libary](#workload)
-  - [Experimental setup](#experimental-setup)
-  - [Analyzing simulation data](#analyzing-simulation-data)
-  - [Submission](#submission)
-  - [Grading](#grading)
-  - [Academic misconduct reminder](#academic-misconduct-reminder)
-  - [Hints](#hints)
+
+- [Introduction](#introduction)
+- [gem5 and gem5's standard libary](#workload)
+- [Experimental setup](#experimental-setup)
+- [Analyzing simulation data](#analyzing-simulation-data)
+- [Submission](#submission)
+- [Grading](#grading)
+- [Academic misconduct reminder](#academic-misconduct-reminder)
+- [Hints](#hints)
 
 ## Introduction
 
@@ -25,31 +26,64 @@ In this assignment, we will use gem5's standard library to simulate the `Hello W
 
 ## gem5 and gem5's standard library (gem5-stdlib)
 
-gem5 is a well known event based simulator for computer architecture research. You will learn about simulation and its different techniques in class and during the discussions. gem5 is designed so that is very powerful in describing widely varying systems. Therefore, it means that it will take a long time to complete the equivalent `Hello World` assignment of gem5. With the purpose of simplifying system description, gem5's standard library has been developed to allow users to use ready made components and user friendly interfaces to describe their system. gem5's standard libary is the digital world equivalent of going to your local BestBuy and picking the different components you need to build your computer system. Although, the names of these components do not match the commercial products of intel, AMD, and Nvidia.
+gem5 is a well known event based simulator for computer architecture research.
+You will learn about simulation and its different techniques in class and during the discussions.
+The gem5 simulator is designed so that is very powerful in describing widely varying systems, but this means it is also quite complex.
+With the purpose of simplifying system description, gem5's standard library has been developed to allow users to use ready made components and user friendly interfaces to describe their system.
+The gem5 standard libary (stdlib) is the digital world equivalent of going to your local BestBuy and picking the different components you need to build your computer system.
+Although, the names of these components do not match the commercial products of Intel, AMD, and Nvidia.
 
-### stdlib::board
+### `gem5.components.boards`
 
-Each system in gem5 is described as a `board`. You can think of this `board` as the **motherboard** in a computer system. In this assignment we are going to be using a ready made board in gem5's standard library that we have renamed to `HW0RISCVBoard`. You can find the definition of `HW0RISCVBoard` in `components/boards.py`. You can see that t is based on `SimpleBoard` from the standard library. You can find its source code in `gem5/src/python/gem5/components/boards/simple_board.py`.
+Each system in gem5 is described as a `board`.
+You can think of this `board` as the **motherboard** in a computer system. 
+In this assignment we are going to be using a ready made board in gem5's standard library that we have renamed to `HW0RISCVBoard`.
+This board will use a RISC-V-based
+You can find the definition of `HW0RISCVBoard` in this repo in `components/boards.py`.
+You can see that it is based on `SimpleBoard` from the standard library.
+You can find the `SimpleBoard` source code and documentation in `gem5/src/python/gem5/components/boards/simple_board.py`.
 
-Similar to a real system, a system in gem5 is not complete with only a `board`. However, the `board` is the platform through which all the other components communicate with each other. In order to build a complete system we need 3 other components: a `processor`, a `cache hierarchy`, and a `memory`. This is not exactly the same way you would build a real computer system. For real computers, `cache hierarchy` comes pre-packaged with the `processor` and you need other components such as a **power supply** and a **storage drive** to complete a real system. However, there are many research focuses on cache hierarchy design that has motivated this separation of `processor` and `cache hierarchy`.
+Similar to a real system, a system in gem5 is not complete with only a `board`.
+However, the `board` is the platform through which all the other components communicate with each other.
+In order to build a complete system we need 3 other components: a `processor`, a `cache hierarchy`, and a `memory`.
+This is not exactly the same way you would build a real computer system.
+For real computers, `cache hierarchy` comes pre-packaged with the `processor` and you need other components such as a **power supply** and a **storage drive** to complete a real system. 
+However, there are many research focuses on cache hierarchy design that has motivated this separation of `processor` and `cache hierarchy`.
 
 In addition, you need to specify the clock frequency for the `processor` and `cache hierarchy` to the `board`.
 
-### stdlib::processor
+### `gem5.components.processors`
 
-Ready made `processor` objects in the standard library represent the processing cores in a real CPU. In this assignment, we are going to use `HW0TimingSimpleCPU`. You can find its source code in `components/processors.py`. This processor is based on `SimpleProcessor` from the standard libary. Whenever instantiated, it will create a `SimpleProcessor` with **one** `TimingSimpleCPU` core with `RISC-V` instruction set architecture (ISA). You can find the source code to `SimpleProcessor` in `gem5/src/python/gem5/components/processors/simple_processor.py`. In addition, it is highly recommended that you learn more about gem5's different CPU models in the link below.
+Ready made `processor` objects in the standard library represent the processing cores in a real CPU.
+In this assignment, we are going to use `HW0TimingSimpleCPU`.
+You can find its source code in this repo in `components/processors.py`.
+This processor is based on `SimpleProcessor` from the standard libary.
+Whenever instantiated, it will create a `SimpleProcessor` with **one** `TimingSimpleCPU` core with `RISC-V` instruction set architecture (ISA).
+You can find the source code to `SimpleProcessor` in `gem5/src/python/gem5/components/processors/simple_processor.py`.
+In addition, it is highly recommended that you learn more about gem5's different CPU models in the link below.
 
 - [SimpleCPU](https://www.gem5.org/documentation/general_docs/cpu_models/SimpleCPU)
 - [MinorCPU](https://www.gem5.org/documentation/general_docs/cpu_models/minor_cpu)
 - [O3CPU](https://www.gem5.org/documentation/general_docs/cpu_models/O3CPU)
 
-### stdlib::cache hierarchy
+### `gem5.components.cachehierarchies`
 
-The `cache hierarchy` objects in standard libary are designed to implement **cache coherency protocol** for multi-core processors and model the **interconnect** between multiple cores and multiple memory channels. In this assignment we are going to use `HW0MESITwoLevelCache`. You can find its source code in `components/cache_hierarchies.py`. This cache hierarchy is based on `MESITwoLevelCacheHierarchy` from the standard librarby. You can find the source code to `MESITwoLevelCacheHierarchy` in `gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_two_level_cache_hierarchy.py`. Whenever instantiated, a `HW0MESITwoLevelCache` creates a **two level** cache hierarchy with the **MESI** protocol for **cache coherency**. It has a **64KiB 8-way set associative L1 instruction cache**, **64KiB 8-way set associative L1 data cache**, **256KiB 4-way set associative L2 unified cache with 16 banks**.
+The `cache hierarchy` objects in standard libary are designed to implement **cache coherency protocol** for multi-core processors and model the **interconnect** between multiple cores and multiple memory channels.
+In this assignment we are going to use `HW0MESITwoLevelCache`.
+You can find its source code in `components/cache_hierarchies.py`.
+This cache hierarchy is based on `MESITwoLevelCacheHierarchy` from the standard library.
+You can find the source code to `MESITwoLevelCacheHierarchy` in `gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_two_level_cache_hierarchy.py`.
+Whenever instantiated, a `HW0MESITwoLevelCache` creates a **two level** cache hierarchy with the **MESI** protocol for **cache coherency**.
+It has a **64KiB 8-way set associative L1 instruction cache**, **64KiB 8-way set associative L1 data cache**, **256KiB 4-way set associative L2 unified cache with 16 banks**.
 
-### stdlib::memory
+### `gem5.components.memory`
 
-The `memory` objects in standard library are designed to implement various types of single and multi-channel DRAM based memories. In this assignment we are going to use `HW0DDR3_1600_8x8`. You can find its source code in `components/memories.py`. This memory is based on `ChanneledMemory` from the standard library. You can find the source code to `ChanneledMemory` in `gem5/src/python/gem5/components/memory/memory.py`. Whenever instantiated, a `HW0DDR3_1600_8x8` creates a **single channel DDR3 DRAM memory with 1GiB of capacity and a data bus frequency of 1600MHz**.
+The `memory` objects in standard library are designed to implement various types of single and multi-channel DRAM based memories.
+In this assignment we are going to use `HW0DDR3_1600_8x8`.
+You can find its source code in `components/memories.py`.
+This memory is based on `ChanneledMemory` from the standard library.
+You can find the source code to `ChanneledMemory` in `gem5/src/python/gem5/components/memory/memory.py`.
+Whenever instantiated, a `HW0DDR3_1600_8x8` creates a **single channel DDR3 DRAM memory with 1GiB of capacity and a data bus frequency of 1600MHz**.
 
 ## Writing your own configuration script
 
