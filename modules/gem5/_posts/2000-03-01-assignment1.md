@@ -68,8 +68,8 @@ Under the `components` directory, you will find modules that define the differen
 Before running any simulations try to answer theses questions.
 
 1. What metric should you use to measure the performance of a computer system? Why?
-2. At the same clock frequency, which CPU model will exhibit better performance? Why?
-3. Which CPU model is going to be more sensitive to changing the clock frequency? Why?
+2. At the same clock frequency, between a single-cycle CPU (`HW1TimingSimpleCPU`) and an in-order pipelined CPU (`HW1MinorCPU`) which CPU model will exhibit better performance? Why?
+3. Between a single-cycle CPU (`HW1TimingSimpleCPU`) and an in-order pipelined CPU (`HW1MinorCPU`) CPU which one is going to be more sensitive to changing the clock frequency? Why?
 
 In your configuration script allow for:
 
