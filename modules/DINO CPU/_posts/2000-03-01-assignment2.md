@@ -71,23 +71,20 @@ The simple in-order CPU design is based closely on the CPU model in Patterson an
 
 ## Updating the DINO CPU code
 
-The DINO CPU code must be updated before you can run each lab.
-You should read up on [how to update your code]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/updating-from-git.md) to get the assignment 2 template from GitHub.
+If you start the assignment 2 before the assignment 1 late due date, you can reuse the code from the previous assignment by copying the modified files from the assignment.
+The assignment 2 template repo will be updated with assignment 1 solution after the assignment 1's late due date.
 
-We will make the following changes after Assignment 1 due date,
-- The solution for `cpu.scala` for Assignment 1.
+### GitHub Codespaces / CSIF machines
+The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
 
-You can check out the main branch to get the template code for this lab.
-If you want to use your solution from lab1 as a starting point, you can merge your commits with the `origin` main by running `git pull` or `git fetch; git merge origin/main`.
+The assignment 2 template repo is located at [{{site.data.course.154b_assignment2_github_link}}]({{site.data.course.154b_assignment2_github_link}}).
 
-If you want to start over and use the provided solution, you can do the following (see [how to update your code]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/updating-from-git.md) for more details):
+Follow the following link to access assignment 2: [{{site.data.course.154b_assignment2_invitation_link}}]({{site.data.course.154b_assignment2_invitation_link}}).
 
-```
-git clone {{ site.data.course.dino_cpu_link }}
-cd dinocpu-{{ site.data.course.quarter_abbr }}
-git merge origin/lab1-solution
-```
-This change is only available after the Assignment 1 due date.
+The above link will automatically create a repo in the GitHub Classroom page that only you have the access to.
+
+In the event that the template repo is updated, your own repo won't be automatically updated.
+You don't need to keep track of the template repo, unless we found an error in the assignment, in which case, we will make an announcement on {{site.data.course.discussion_site}} and provide ways to update your repo.
 
 ## How this assignment is written
 
@@ -121,7 +118,7 @@ This figure has all of the muxes necessary, but does not show which control line
 **Hint**: the comments in the code for the control unit give some hints on how to wire the design.
 
 In this assignment, you will be implementing the data path shown in the figure below, implementing the control path for the DINOCPU, and wiring up the control path.
-You can extend your work from [Lab 1]({{'modules/dino cpu/assignment1' | relative_url}}), or you can take the updated code from [GitHub]({{site.data.course.dino_cpu_link}}).
+You can extend your work from [Lab 1]({{'modules/dino cpu/assignment1' | relative_url}}), or you can take the updated code from [GitHub]({{site.data.course.154b_assignment2_github_link}}).
 You will be implementing everything in the diagram in Chisel (the `cpu.scala` file only implements the R-type instructions), which includes the code for the muxes.
 Then, you will wire all of the components together.
 You will also implement the [control unit](#control-unit-overview), ControlTransfer unit and update the ALU Control unit.
@@ -466,7 +463,7 @@ You will also need to incorporate the data memory into your data path, starting 
 The data memory port I/O is not as simple as the I/O for other modules.
 It's built to be modular to allow different kinds of memories to be used with your CPU design.
 We are planning to explore this further in Lab 4.
-If you want to see the details, you can find them in the [mem-port-io.scala]({{site.data.course.dino_cpu_link}}/blob/main/src/main/scala/memory/memory-port-io.scala) file.
+If you want to see the details, you can find them in the [mem-port-io.scala]({{site.data.course.154b_assignment2_github_link}}/blob/main/src/main/scala/memory/memory-port-io.scala) file.
 
 The I/O for the data memory port is shown below.
 Don't forget that the instruction and data memory ports look weird to use.
@@ -840,7 +837,7 @@ We have provided four applications for you.
 If you have passed all of the above tests, your CPU should execute these applications with no issues!
 If you do not pass a test, you may need to dig into the debug output of the test.
 
-**Important Note:** We strongly encourage you to use [single stepper]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/single-stepping.md) to test your design for full applications. It will let you step through the execution one cycle at a time and print information as you go. Details on how to use the single stepper can be found in the [documentation]({{ site.data.course.dino_cpu_link }}/blob/main/documentation/single-stepping.md). You can also watch the video we have provided in the link below to learn how to debug using single stepper. As mentioned earlier, the videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to '{{ site.data.course.quarter_abbr }}' to be applicable to your materials for the current quarter.
+**Important Note:** We strongly encourage you to use [single stepper]({{ site.data.course.154b_assignment2_github_link }}/blob/main/documentation/single-stepping.md) to test your design for full applications. It will let you step through the execution one cycle at a time and print information as you go. Details on how to use the single stepper can be found in the [documentation]({{ site.data.course.154b_assignment2_github_link }}/blob/main/documentation/single-stepping.md). You can also watch the video we have provided in the link below to learn how to debug using single stepper. As mentioned earlier, the videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to '{{ site.data.course.quarter_abbr }}' to be applicable to your materials for the current quarter.
 
 [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d)
 
@@ -907,12 +904,12 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 - Start early! There is a steep learning curve for Chisel, so start early and ask questions on [{{site.data.course.discussion_site}}]({{site.data.course.discussion_link}}) and in discussion sessions.
 - If you need help, come to office hours for the TA, or post your questions on [{{site.data.course.discussion_site}}]({{site.data.course.discussion_link}}).
-- See [common errors]({{site.data.course.dino_cpu_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
+- See [common errors]({{site.data.course.154b_assignment2_github_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
 
 ## Single stepper
 
-You can also use the [single stepper]({{site.data.course.dino_cpu_link}}/blob/main/documentation/single-stepping.md) to step through the execution one cycle at a time and print information as you go.
-Details on how to use the single stepper can be found in the [documentation]({{site.data.course.dino_cpu_link}}/blob/main/documentation/single-stepping.md).
+You can also use the [single stepper]({{site.data.course.154b_assignment2_github_link}}/blob/main/documentation/single-stepping.md) to step through the execution one cycle at a time and print information as you go.
+Details on how to use the single stepper can be found in the [documentation]({{site.data.course.154b_assignment2_github_link}}/blob/main/documentation/single-stepping.md).
 
 ## `printf` debugging
 

@@ -76,7 +76,7 @@ Details on how to run the docker image can be found in the
 Those are the *only* options that we will provide support if you have trouble setting up the development environment.
 We encourage you to learn to use Codespace over using CSIF machines as it's not prone to VPN troubleshooting as well as it is tightly integrated to a version control system.
 
-### Using GitHub codespace
+### Using GitHub Codespaces
 The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
 
 The assignment 1 template repo is located at [{{site.data.course.154b_assignment1_github_link}}]({{site.data.course.154b_assignment1_github_link}}).
