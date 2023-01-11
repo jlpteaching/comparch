@@ -12,8 +12,10 @@ Title: ECS 201A Assignment 0
 - [Adiministrivia](#administrivia)
 - [Introduction](#introduction)
 - [gem5 and gem5's standard libary](#gem5-and-gem5s-standard-library-gem5-stdlib)
-- [Experimental setup](#experimental-setup)
-- [Analyzing simulation data](#analyzing-simulation-data)
+- [Writing your own configuration script](#writing-your-own-configuration-script)
+- [Workload and gem5-resources](#workload-and-gem5-resources)
+- [Final step: simulate](#final-step-simulate)
+- [Invoking gem5](#invoking-gem5)
 - [Submission](#submission)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
@@ -209,7 +211,7 @@ Next, we will create a simulator object.
 In order to create a simulator object we need to specify what the system to be simulated is and what mode of simulation should be used.
 We have already described the system to be simulated in the previous steps.
 We will need to only pass **board** as the representative for the whole system.
-In regards to simulation modes, gem5 works in two simulation modes. 
+In regards to simulation modes, gem5 works in two simulation modes.
 The two modes are referred to as Full System (FS) mode and Syscall Emulation (SE) mode.
 FS mode is like "bare metal" simulation which requires a kernel and disk image to *boot* Linux and extra script to then run some application.
 In SE mode, gem5 "fakes" the system calls and they take 0 time.
@@ -329,7 +331,7 @@ The file is human readable.
 Please take the time to take a look at the first 15 lines of that file and understand what each statistic means.
 **NOTE**: `host` statistics refer to statistics about the actual machine that the simulation was run on and `guest`/`simulated` statistics refer to the statistics of the simulated computer system.
 
-## Redirecting simulator output
+### Redirecting simulator output
 
 Like every other program gem5 uses standard out `stdout` and standard error `stderr` to communicate some of it information with the user.
 However, you can tell gem5 to not dump `stdout` and `stderr` to your terminal and output those to a file.
@@ -458,7 +460,6 @@ In this file you can see the rest of gem5's output.
 It includes warning and whatever gem5 has outputted to `stderr`.
 If you combine `m5out/simout` and `m5out/simerr` the result looks similar to what gem5 prints to the terminal without any flags.
 
-
 ### Changing the output directory
 
 Since gem5 uses the same name `m5out` for its output directory every time you run gem5, the simulator output will be overwritten every time you run gem5.
@@ -513,7 +514,7 @@ This assignment is not graded and there are no rubrics for it.
 
 ## Academic misconduct reminder
 
-You are required to work on this assignment in teams. You are only allowed to share you scripts and code with your teammate(s). You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
+You are required to work on this assignment **individually**. You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
 
 Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
 
