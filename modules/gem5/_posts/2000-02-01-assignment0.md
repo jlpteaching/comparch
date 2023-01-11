@@ -202,7 +202,13 @@ Next, we will create a simulator object.
 In order to create a simulator object we need to specify what the system to be simulated is and what mode of simulation should be used.
 We have already described the system to be simulated in the previous steps.
 We will need to only pass **board** as the representative for the whole system.
-In regards to simulation modes, gem5 works in two simulation modes. The two modes are referred to as [Full System (FS) mode]() and [Syscall Emulation (SE) mode]().
+In regards to simulation modes, gem5 works in two simulation modes. 
+The two modes are referred to as Full System (FS) mode and Syscall Emulation (SE) mode.
+FS mode is like "bare metal" simulation which requires a kernel and disk image to *boot* Linux and extra script to then run some application.
+In SE mode, gem5 "fakes" the system calls and they take 0 time.
+However, SE mode doesn't require a disk or kernel image, it only requires a binary (usually statically compiled).
+So SE mode is a little easier to get going than FS mode.
+
 We will be using SE mode for this assignment.
 This means that we need to pass value `False` as the `full_system` argument to our simulator. 
 Here is the piece of code that creates a simulator object.
