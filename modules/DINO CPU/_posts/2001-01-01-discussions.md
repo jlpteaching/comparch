@@ -8,5 +8,5 @@ This is a page for materials discussed in the discussion sessions.
 
 ### Discussion 1 (Jan 11th)
 
-[Slides]({{'assets/wq23_154B_discussion/154B-discussion-1.pdf' | relative_url}})
+[Slides]({{'img/154B_discussions/154B-discussion-1.pdf' | relative_url}})
 
