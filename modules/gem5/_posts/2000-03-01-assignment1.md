@@ -10,7 +10,7 @@ Originally from University of Wisconsin-Madison CS/ECE 752 .
 
 Modified for ECS 201A, Winter 2023.
 
-**Due on *{{ site.data.dates.course.gem5_1 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
+**Due on *{{ site.data.course.dates.gem5_1 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
 
 ## Table of Contents
 
