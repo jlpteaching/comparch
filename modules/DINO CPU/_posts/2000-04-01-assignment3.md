@@ -55,8 +55,13 @@ The simple in-order CPU design is based closely on the CPU model in Patterson an
 
 ## Updating the DINO CPU code
 
+You should not reuse the previous assignment templates for this assignment.
+We updated the local tests to match those on Gradescope, as well as bug fixes for this assignments.
+Those changes are not reflected in the previous assignment templates.
+
 If you start the assignment 3 before the previous assignments late due date, you can reuse the code from the previous assignments by copying the modified files from the assignments.
-The assignment 3 template repo will be updated with assignment 2 solution after the assignment 2's late due date.
+We will update the assignment 2 repo with the solution after the assignment 2's late due date.
+You can reuse the code from the solution for this assignment as well as the subsequent assignments.
 
 ### GitHub Codespaces / CSIF machines
 The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
