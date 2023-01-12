@@ -3,7 +3,7 @@ Author: Mahyar Samani
 Title: ECS 201A Assignment 0
 ---
 
-# Assignment 0 -- Due 11:59 pm (PST) *{{ site.data.course.dates.gem5_0 }}* (0 Points)
+# Assignment 0 -- (0 points)
 
 **Due on *{{ site.data.course.dates.gem5_0 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
@@ -25,7 +25,7 @@ Title: ECS 201A Assignment 0
 
 You should complete this assignment **individually**. This assignment is not graded and will not influence your grade. However, it is highly encouraged to complete this assingment as soon as you can and get started on the next assignments. Make sure to start early and post any questions you might have on Piazza.
 
-Use [classroom assignment-0](https://classroom.github.com/a/SZe3u1DA) to accept and create an assignment for yourself on this class' **github classroom**. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the **green code button** on the **top right corner under the tabs** to create a **github codespace** for yourself. Please make sure to **only create one codespace** for yourself.
+Use [classroom assignment-0](https://classroom.github.com/a/E_keWvS_) to accept and create an assignment for yourself on this class' **github classroom**. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the **green code button** on the **top right corner under the tabs** to create a **github codespace** for yourself. Please make sure to **only create one codespace** for yourself.
 
 After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment. Please follow the rest of this assignment using your codespace.
 
@@ -133,8 +133,6 @@ if __name__ == "__m5_main__":
 
 So far, we have written a configuration script that describes the system we would like to simulate.
 However, our simulation setup is not complete.
-We still need to make calls to the simulator and start the simulation.
-However, even after adding those calls, our simulation setup is not complete.
 We still need to describe what **software** needs to be executed on the **hardware** that we just described.
 In computer architecture research frequently used programs and kernels (small pieces of code essential to many programs e.g. quick sort) are used to evaluate the performance of a computer system.
 These programs usually come in a package and are referred to as **benchmarks**. There are many benchmarks available.
@@ -191,7 +189,9 @@ if __name__ == "__m5_main__":
 ## Final step: simulate
 
 The last step before our configuration script is complete is to create a simulator object.
-We will do that through an internal python package from gem5.
+The simulator object allows us to give directions to gem5 on specific things we need gem5 to do for simulation.
+You will see examples of interacting with the simulator later on.
+We can create a simulator object through an internal python package from gem5.
 The simulate package allows user to easily set up the simulation environment for the experiments.
 **NOTE**: Most of gem5's internal python packages work exculsively with gem5.
 gem5 has an internal modified python interpreter that these packages use to communicate with gem5.
@@ -493,12 +493,11 @@ You will then have to parse that part of the command line to read your input arg
 Below is how you can invoke gem5 with the flags we discussed before and input arguments to your conifuration script.
 
 ```shell
-gem5 [-re] [path to your configuration script] [input arguments to your configuration script]
+gem5 [-re] {path to your configuration script} [input arguments to your configuration script]
 ```
 
 I highly recommend you to read up on [argparse](https://docs.python.org/3/library/argparse.html).
 It is a feature rich python package that allows you to parse the command line.
-
 
 ## Submission
 
