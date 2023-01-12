@@ -351,7 +351,7 @@ This is what you will see in your terminal after running the command above.
 Redirecting stdout and stderr to m5out/simout
 ```
 
-Now, if you look at `m5out`, you will see that there is a new file name `stdout`.
+Now, if you look at `m5out`, you will see that there is a new file name `simout`.
 Let's print the content of that file and compare to our previous output in [Invoking gem5](#invoking-gem5).
 To do that, run the following command in your terminal.
 
