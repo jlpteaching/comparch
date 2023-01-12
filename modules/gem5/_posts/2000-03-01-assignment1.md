@@ -145,16 +145,15 @@ As mentioned before, you are allowed to submit your assignments in **pairs** and
 You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
 In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency), [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),and [Analysis and simulation: Step III](#step-iii-general-questions). Use clear reasoning and visualization to drive your conclusions.
 
-
 ## Grading
 
 Like your submission, your grade is split into two parts.
 
 1. Reproducibility Package (50 points):
-1.1 Instruction and automation to run simulations for different section and dump statistics (20 points)
-1.1.a Instructions (10 points)
-1.1.b Automation (10 points)
-1.2 Configuration scripts and correct simulation setup (30 points): 2.5 points for each configuration as described in [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency) and [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model)
+    1.1 Instruction and automation to run simulations for different section and dump statistics (20 points)
+        1.1.a Instructions (10 points)
+        1.1.b Automation (10 points)
+    1.2 Configuration scripts and correct simulation setup (30 points): 2.5 points for each configuration as described in [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency) and [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model)
 2. Report (50 points): 7 points for each question presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency), [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),and [Analysis and simulation: Step III](#step-iii-general-questions).
 
 ## Academic misconduct reminder
