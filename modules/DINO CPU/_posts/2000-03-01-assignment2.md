@@ -71,7 +71,7 @@ The simple in-order CPU design is based closely on the CPU model in Patterson an
 
 ## Updating the DINO CPU code
 
-You should not reuse the assignment 1 template for other assignments.
+You should not reuse the assignment 1 template for this or other assignments.
 We updated the local tests to match those on Gradescope.
 Those changes are not updated in the assignment 1 templates.
 
