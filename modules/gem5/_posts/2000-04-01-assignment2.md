@@ -17,7 +17,7 @@ Modified for ECS 201A, Winter 2023.
 - [Introduction](#introduction)
 - [Workload](#workload)
 - [Experimental setup](#experimental-setup)
-- [Analyzing simulation data](#analyzing-simulation-data)
+- [Analysis and simulation](#analysis-and-simulation)
 - [Submission](#submission)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
