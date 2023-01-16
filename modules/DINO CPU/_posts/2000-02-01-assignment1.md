@@ -279,7 +279,7 @@ The ALU control takes three inputs,
 * `funct7` and `funct3`, which come from the instruction
 
 The [assignment 1 worksheet]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}) contains the information on how to use the Control Unit for this assignment.
-You can ignore the `aluop` for now, as the appropriate signals are already set for this assignment.
+The ControlUnit already has the appropriate `aluop` signal for each R-type instruction, and you can use this signal for the corresponding ALUControlUnit input.
 
 Given these inputs, you must generate the correct output on the `operation` wire.
 The template code from `src/main/scala/components/alucontrol.scala` is shown below.
@@ -295,7 +295,7 @@ You will fill in where it says *Your code goes here*.
  *                          . 2 for 64-bit I-type
  *                          . 3 for 32-bit R-type
  *                          . 4 for 32-bit I-type
- *                          . 5 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
+ *                          . 5 for non-arithmetic instruction types that use ALU (auipc/jal/jarl/Load/Store)
  * Input:  funct7       The most significant bits of the instruction.
  * Input:  funct3       The middle three bits of the instruction (12-14).
  *
