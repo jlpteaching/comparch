@@ -50,7 +50,7 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 **Mahyar Samani** (<msamani@ucdavis.edu>)
 
-*Office Hours Time*: Tuesdays, 3:00 pm - 4:30 pm, Kemper 3106
+*Office Hours Time*: Tuesdays, 3:00 pm - 4:30 pm, Kemper 3083
 
 *Office Hours Zoom*: Fridays, 3:00 pm - 4:00 pm, [zoom only](https://ucdavis.zoom.us/j/92227040942?pwd=SnRIbjVGTWMyZHhrcjZqcDI5bHN4UT09)
 
