@@ -90,6 +90,20 @@ Models for the board, cache hierarchy, and memory will remain a constant in your
 - Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`. You will only use `HW2MESITwoLevelCache` in this assignment.
 - Memory models: You can find all the models you need to use for your memory under `components/memories.py`. You will only use `HW2DDR3_1600_8x8` in this assignment.
 
+### **IMPORTANT NOTE**
+
+In your configuration scripts, make sure to import `exit_event_handler` using the command below.
+
+```python
+from workloads.roi_manager import exit_event_handler
+```
+
+You will have to pass `exit_event_handler` as a keyword argument named `on_exit_event` when creating a `simulator` object. Use the *template* below to create a simulator object.
+
+```python
+simulator = Simulator(board={name of your board}, full_system=False, on_exit_event=exit_event_handler)
+```
+
 ## Analysis and simulation
 
 Complete the following steps and answer the questions for your report.
