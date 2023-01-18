@@ -10,3 +10,6 @@ This is a page for materials discussed in the discussion sessions.
 
 [Slides]({{'img/154B_discussions/154B-discussion-1.pdf' | relative_url}})
 
+### Discussion 2 (Jan 18th)
+[Slides]({{'img/154B_discussions/154B-discussion-2.pdf' | relative_url}})
+
