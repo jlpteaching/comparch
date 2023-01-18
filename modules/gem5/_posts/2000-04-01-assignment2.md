@@ -171,7 +171,7 @@ Here is a table showing all possible combinations of the latencies that you need
 
 In your report answer the following questions.
 
-1. Use Amdahl's law and the information you gathered from [Step I](#step-i) to predict the speed up of each **improved** case over the **baseline**. Which design would you choose? **NOTE**: The only simulation result you can use to answer this question is the data you gathered from [Step I](#step-i)[Step I](#step-i).
+1. Use Amdahl's law and the information you gathered from [Step I](#step-i) to predict the speed up of each **improved** case over the **baseline**. Which design would you choose? **NOTE**: The only simulation result you can use to answer this question is the data you gathered from [Step I](#step-i).
 2. Using simulation results, what is the speed up of each **improved case** over the baseline design?
 3. If there are any differences between your answer to questions 1 and 2, what do you think could be the reason?
 
