@@ -150,10 +150,10 @@ In your report answer the questions presented in [Analysis and simulation](#anal
 Like your submission, your grade is split into two parts.
 
 1. Reproducibility Package (50 points):
-    1.1 Instruction and automation to run simulations for different section and dump statistics (20 points)
-        1.1.a Instructions (10 points)
-        1.1.b Automation (10 points)
-    1.2 Configuration scripts and correct simulation setup (30 points): 2.5 points for each configuration as described in [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency) and [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model)
+    a. Instruction and automation to run simulations for different section and dump statistics (20 points)
+        - Instructions (10 points)
+        - Automation (10 points)
+    b. Configuration scripts and correct simulation setup (30 points): 2.5 points for each configuration as described in [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency) and [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model)
 2. Report (50 points): 7 points for each question presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency), [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),and [Analysis and simulation: Step III](#step-iii-general-questions).
 
 ## Academic misconduct reminder
