@@ -26,7 +26,7 @@ Modified for ECS 201A, Winter 2023.
 
 You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
 
-Use [classroom: assignment 2]() to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 2](https://classroom.github.com/a/p20QOoMw) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
