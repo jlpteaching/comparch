@@ -75,7 +75,7 @@ int main()
 }
 ```
 
-You can find the definitions for the workload objects in gem5 under `workloads/workloads.py`. In this assignment, we will only be using `DAXPYWorkload`. In order to create an object of `DAXPYWorkload` you just need to call its constructor (`__init__`) function.
+You can find the definitions for the workload objects in gem5 under `workloads/daxpy_workloads.py`. In this assignment, we will only be using `DAXPYWorkload`. In order to create an object of `DAXPYWorkload` you just need to call its constructor (`__init__`) function.
 
 ## Experimental setup
 
@@ -137,7 +137,8 @@ Make sure to track the simulation outputs for later use. In the statistics outpu
 This statistic represents a distribution of different operation classes executed by the processor.
 
 In your report, answer the same questions after simulation supported with data.
-A complete set of simulation data for this step should include **1 configuration**.
+Use `HelloWorldWorkload` from `workloads/hello_world_workload.py` as a second program to compare instruction mixes.
+A complete set of simulation data for this step should include **2 configuration** (1 for `DAXPYWorkload` and 1 for `HelloWorldWorkload`).
 
 ### Step II
 
@@ -178,7 +179,7 @@ Can you reason about why you would prefer optimizing one of the latencies over t
 
 For this step, modify your configuration script to allow for changing **integer operation latency** and **floating point operation latency**.
 Let's assume our processor has a very fast **decode** stage that can issue both **integer** and **floating point** instructions in `1 cycle`.
-Next, let's focus **integer operation latency** and **floating point operation latency**.
+Next, let's focus on **integer operation latency** and **floating point operation latency**.
 Let's assume an intial value of `4 cycles` for **integer operation latency** and an initial value of `8 cycles` for **floating point operation latency**.
 For your experimentation, suppose you can only reduce one of these latencies by a factor of 2.
 This means that you can build a processor with an **integer operation latency** of `2 cycles` and a **floating point operation latency** of `8 cycles` or a processor with an **integer operation latency** of `4 cycles` and a **floating point operation latency** of `4 cycles`.
