@@ -151,9 +151,10 @@ Please make sure to read the documentation for `HW2MinorCPU` and understand what
 `HW2MinorCPU` is based on `MinorCPU`. The default pool of functional units for `MinorCPU` includes **two integer units** and **one floating point and SIMD unit**.
 
 Modify your configuration script to allow for changing **issue latency**, and **floating point operation latency**.
-For your reference, **issue latency** measures the number of cycles between injection two consecutive instructions into the pipeline.
+For your reference, **issue latency** measures the number of cycles between the injection of two consecutive instructions into the pipeline.
 An **issue latency** of `3 cycles` means that an instruction is injected to the pipeline, every *3 cycles*.
 On the other hand, **floating point operation latency** refers to the number of cycles it takes to complete the execution of a **floating point instruction**.
+
 In this step, measure your simulated performance for different combination of these two latencies.
 For simplicity's sake, start with an **initial value** of `3 cycles` for **issue latency** and an intial value of `2 cycles` for **floating point operation latency**.
 Moreover, **assume** you can trade **issue latency** with **floating point operation latency**.
