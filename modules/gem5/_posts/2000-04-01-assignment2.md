@@ -12,6 +12,7 @@ Modified for ECS 201A, Winter 2023.
 
 ## Table of Contents
 
+- [Administrivia](#administrivia)
 - [Introduction](#introduction)
 - [Workload](#workload)
 - [Experimental setup](#experimental-setup)
@@ -47,7 +48,7 @@ For this assignment we are going to use DAXPY as our workload. The DAXPY loop (d
 
 int main()
 {
-  const int N = 4096;
+  const int N = 131072;
   double X[N], Y[N], alpha = 0.5;
   std::random_device rd; std::mt19937 gen(rd());
   std::uniform_real_distribution<> dis(1, 2);
@@ -85,10 +86,16 @@ You might find this information useful in later steps of your analysis.
 As part of this assignment, you will only modify/change the CPU model.
 Models for the board, cache hierarchy, and memory will remain a constant in your experiment.
 
-- Board models: You can find all the models you need to use for your CPU (processor) under `components/boards.py`. You will only be using `HW2RISCVBoard` in this assignment.
+- Board models: You can find all the models you need to use for your CPU (processor) under `components/boards.py`.
+You will only be using `HW2RISCVBoard` in this assignment.
 - CPU models: You can find all the models you need to use for your CPU (processor) under `components/processors.py`.
-- Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`. You will only use `HW2MESITwoLevelCache` in this assignment.
-- Memory models: You can find all the models you need to use for your memory under `components/memories.py`. You will only use `HW2DDR3_1600_8x8` in this assignment.
+There are a few classes defined in `components/processors.py`.
+However, the main classes (models) you will need to use are `HW2TimingSimpleCPU` and `HW2MinorCPU`.
+- Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`.
+You will only use `HW2MESITwoLevelCache` in this assignment.
+- Memory models: You can find all the models you need to use for your memory under `components/memories.py`.
+You will only use `HW2DDR3_1600_8x8` in this assignment.
+- Clock frequency: You can use a clock frequency of `4 GHz` for all of your simulations.
 
 ### **IMPORTANT NOTE**
 
@@ -142,34 +149,35 @@ Please make sure to read the documentation for `HW2MinorCPU` and understand what
 `MinorCPU` is one of gem5's internal CPU models that models an in-order pipelined CPU.
 `HW2MinorCPU` is based on `MinorCPU`. The default pool of functional units for `MinorCPU` includes **two integer units** and **one floating point and SIMD unit**.
 
-Modify your configuration script to allow for changing **floating point issue latency**, and **floating point operation latency**.
+Modify your configuration script to allow for changing **issue latency**, and **floating point operation latency**.
+For your reference, **issue latency** measures the number of cycles between injection two consecutive instructions into the pipeline.
+An **issue latency** of `3 cycles` means that an instruction is injected to the pipeline, every *3 cycles*.
+On the other hand, **floating point operation latency** refers to the number of cycles it takes to complete the execution of a **floating point instruction**.
 In this step, measure your simulated performance for different combination of these two latencies.
-For simplicity's sake, start with an **initial value** of `1 cycle` for **floating point issue latency** and an intial value of `6 cycles` for **floating point operation latency**.
-Moreover, **assume** you can trade `1 cycle` of **floating point issue latency** with `1 cycle` of **floating point operation latency**.
-Therefore, in all of your simulation runs, the sum of these two latencies should remain at a constant of `7 cycles`.
-Here is a table showing all the combinations of these latencies that you need to experiment with.
+For simplicity's sake, start with an **initial value** of `3 cycles` for **issue latency** and an intial value of `2 cycles` for **floating point operation latency**.
+Moreover, **assume** you can trade **issue latency** with **floating point operation latency**.
+In addition, **assume** that the product of **issue latency** and **floating point operation latency** will always remain at a constant of `6`.
+For your simulations, evaulate the performance of the configurations shown below.
 
-| # | floating point issue latency | floating point operation latency |
-|---|------------------------------|----------------------------------|
-| 1 | 1                            | 6                                |
-| 2 | 2                            | 5                                |
-| 3 | 3                            | 4                                |
-| 4 | 4                            | 3                                |
-| 5 | 5                            | 2                                |
-| 6 | 6                            | 1                                |
+| # | issue latency | floating point operation latency |
+|---|---------------|----------------------------------|
+| 1 | 3             | 2                                |
+| 2 | 2             | 3                                |
+| 3 | 6             | 1                                |
 
-**NOTE**: Make sure to keep the simulation output for all of your simulation runs for your later analyses.
+**NOTE**: Make sure to keep track of your simulation outputs for all of your simulation runs for your later analyses.
 
-In your report, answer the same questions after simulation supported with data.
-A complete set of simulation data for this step should include **6 configurations** (6 possible combination of **issue** and **operation** latency).
+In your report, answer the following questions after simulation supported with data.
+A complete set of simulation data for this step should include **3 configurations** (3 possible combinations of **issue latency** and **floating point operation latency**).
 
-1. Between the 6 designs for the **floating point** unit, which one did you find to be the be the best design?
-2. What do you think is the reason why your answer to question 2 results in the best performance? Would it make sense to build a **decode** stage that slower than the **execute** stage?
+1. Between the 3 designs, which one did you find to be the be the best design?
+2. Why do you think your chosen design in question 1 results in the best performance?
+Can you reason about why you would prefer optimizing one of the latencies over the other?
 
 ### Step III
 
-Modify your configuration script to allow for changing **integer issue latency**, **integer operation latency**, **floating point issue latency**, and **floating point operation latency**.
-For this step lets assume our processor has a very fast **decode** stage that can issue both **integer** and **floating point** instructions in `1 cycle`.
+For this step, modify your configuration script to allow for changing **integer operation latency** and **floating point operation latency**.
+Let's assume our processor has a very fast **decode** stage that can issue both **integer** and **floating point** instructions in `1 cycle`.
 Next, let's focus **integer operation latency** and **floating point operation latency**.
 Let's assume an intial value of `4 cycles` for **integer operation latency** and an initial value of `8 cycles` for **floating point operation latency**.
 For your experimentation, suppose you can only reduce one of these latencies by a factor of 2.
@@ -233,7 +241,7 @@ Like your submission, your grade is split into two parts.
         - Instructions (10 points)
         - Automation (10 points)
     b. Configuration scripts and correct simulation setup (30 points): 3 points for each configuration as described in [Analysis and simulation: Step I](#step-i), [Analysis and simulation: Step II](#step-ii), and [Analysis and simulation: Step III](#step-iii)
-2. Report (50 points): 8 points for each question presented in [Analysis and simulation: Step I](#step-i), [Analysis and simulation: Step II](#step-ii), [Analysis and simulation: Step III](#step-iii)
+2. Report (50 points): 7 points for each question presented in [Analysis and simulation: Step I](#step-i), [Analysis and simulation: Step II](#step-ii), [Analysis and simulation: Step III](#step-iii)
 
 ## Academic misconduct reminder
 
