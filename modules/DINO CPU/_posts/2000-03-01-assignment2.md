@@ -360,7 +360,13 @@ class ControlTransferUnit extends Module {
 ```
 In this template, the outputs, `nextpc` and `taken`, are set to always be PC+4 and false, respectively.
 
-Before starting Part I, you must remove the parts related to pc+4 and replace it with an instance of ControlTransfer unit and create proper wire connections for it. For this purpose, you must update `src/main/scala/single-cycle/cpu.scala`. In the next sections, you will gradually complete the body of ControlTransfer unit.
+Before starting Part I, you should remove the parts related to PC+4 and replace it with an instance of ControlTransfer unit and create proper wire connections for it.
+For this purpose, you must update `src/main/scala/single-cycle/cpu.scala`.
+In the next sections, you will gradually complete the body of ControlTransfer unit.
+
+**Note**: It is fine to keep the PC+4 adder and have a mux to decide the source of the next PC.
+If you choose to follow the diagram, you should remove the PC+4 adder.
+As a side note, if you peek at the pipelined CPU design in assignment 3, you'll see that the PC+4 adder is required and there are muxes deciding the source of the next PC.
 
 # Part I: R-types
 
