@@ -297,7 +297,7 @@ If you do not set these lines to 0, you will not pass the control unit test on G
 
 In the last assignment, when you were required to run your CPU for multiple cycles, you used a simple adder to generate the next value for the PC which was simply PC+4 in all cases. In this assignment you will implement a much smarter unit, TransferControlUnit, which is responsible for the next value that must be assigned to the PC for the next cycle.
 
-The TransferControlUnit unit receives eight inputs:
+The TransferControlUnit unit receives six inputs:
 
 * `controltransferop`, which comes from the control unit.
 * `operand1`, and `operand2`,  both of which come from the Register File.
