@@ -441,6 +441,8 @@ The following table shows how an I-type instruction is laid out,
 
 where `OP-IMM = 0010011`, `OP-IMM-32 = 0011011`; `imm[11:6]` indicates bit 11 to bit 6 of the immediate, and `imm[5]` indicates bit 5 of the immediate.
 
+The funct3 values can be found in the [RISC-V ISA specs v20191213, Vol I, page 130-131](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf).
+
 Note that, in general, operands in 64-bit machines are treated as 64-bit integers.
 This is also true for RV64IM, except when the opcode is `OP-32` or `OP-IMM-32`, where the instructions treat the operands as 32-bit integers, and the output is signed extended from 32-bit arithmetic result to 64-bit.
 
