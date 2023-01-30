@@ -40,20 +40,49 @@ Read more about each workload and how to use those workloads for your experiment
 
 ### Matrix Multiplication
 
-You are going to use the same matrix multiplication program in [assignment 1]({{'modules/gem5/assignment1' | relative_url}}) as the first workload.
+You are going to use the same matrix multiplication program from [assignment 1]({{'modules/gem5/assignment1' | relative_url}}) as the first workload.
 Please note that matrix size is hardcoded for this assignment.
 You do not have to pass matrix size as an input argument to the `__init__` function for your workload.
+Below you can find the C++ implementation of the matrix multiplication workload.
 
 ```cpp
-void multiply(double **A, double **B, double **C, int size)
+#include <iostream>
+
+#include "matrix.h"
+
+#ifdef GEM5
+#include "gem5/m5ops.h"
+#endif
+
+
+void multiply(double* A, double* B, double* C, int size)
 {
     for (int i = 0; i < size; i++) {
         for (int k = 0; k < size; k++) {
             for (int j = 0; j < size; j++) {
-                C[i][j] += A[i][k] * B[k][j];
+                C[i * size + j] += A[i * size + k] * B[k * size + j];
             }
         }
     }
+}
+
+int main()
+{
+    std::cout << "Beginning matrix multiply ..." << std::endl;
+
+#ifdef GEM5
+    m5_work_begin(0,0);
+#endif
+
+    multiply(A, B, C, SIZE);
+
+#ifdef GEM5
+    m5_work_end(0,0);
+#endif
+
+    std::cout << "Finished matrix multiply." << std::endl;
+
+    return 0;
 }
 ```
 
@@ -71,6 +100,15 @@ Graph analytics workloads have common use cases such as modeling relationships a
 Below you can find a basic C++ implementation of the algorithm discussed in the paper.
 
 ```cpp
+#include <iostream>
+#include <vector>
+
+#include "graph.h"
+
+#ifdef GEM5
+#include "gem5/m5ops.h"
+#endif
+
 int main()
 {
     std::vector<int> frontier;
@@ -80,6 +118,12 @@ int main()
     next.clear();
 
     frontier.push_back(0);
+
+    std::cout << "Beginning BFS ..." << std::endl;
+
+#ifdef GEM5
+    m5_work_begin(0,0);
+#endif
 
     while (!frontier.empty()) {
         for (auto vertex: frontier) {
@@ -97,156 +141,234 @@ int main()
         next.clear();
     }
 
+#ifdef GEM5
+    m5_work_end(0,0);
+#endif
+
+    std::cout << "Finished BFS." << std::endl;
+
     return 0;
 }
 ```
 
 Take a look at `workloads/bfs_workload.py` to learn more about instantiating a BFS workload.
 
-## Compile gem5 to execute RISC-V binaries
+### Bubble Sort
 
-First, we need to create a gem5 simulator binary that can execute RISC-V code.
-As of the writing of this assignment ({{ site.data.course.quarter }}), each *target* ISA that you want to run requires a different gem5 build.
-To compile gem5 to execute RISC-V binaries, we will use the default build options file for RISC-V: `build_opts/RISCV`.
+Bubble sort is the starter algorithm for sorting arrays.
+This program sorts an array by replacing each element with the smallest element to its right (if sorting ascendingly).
+Below you can find the C++ implementation for bubble sort.
 
-**Important Note**: For this assignment you need Python 3.8 or newer. If you're using *CSIF machines or any machine that has older version of Python* (e.g., 3.6), you need to follow an additional step that we describe here, **before** compiling gem5 RISC-V binary. As shown [in this patch](https://gem5-review.googlesource.com/c/public/gem5/+/55863/2/src/python/gem5/components/boards/abstract_board.py), you are required to slightly modify the file located at `gem5/src/python/gem5/components/boards/abstract_board.py`.
+```cpp
 
-    1. Remove only `, final` part in line #40.
-    2. Remove the `@final` in line #239.
+#include <iostream>
 
-You can use the following command to build gem5's RISC-V binary.
+#include "array.h"
 
-```sh
-scons build/RISCV/gem5.opt -j<your number of cores>
+#ifdef GEM5
+#include "gem5/m5ops.h"
+#endif
+
+int main()
+{
+    std::cout << "Beginning bubble sort ... " << std::endl;
+
+#ifdef GEM5
+    m5_work_begin(0,0);
+#endif
+
+    for (int i = 0; i < ARRAY_SIZE - 1; i++) {
+        for (int j = i + 1; j < ARRAY_SIZE; j++) {
+            if (data[i] > data[j]) {
+                int temp = data[i];
+                data[i] = data[j];
+                data[j] = temp;
+            }
+        }
+    }
+
+#ifdef GEM5
+    m5_work_end(0,0);
+#endif
+
+    std::cout << "Finished bubble sort." << std::endl;
+
+    return 0;
+}
+
 ```
 
-**Reminder**: If you're using CSIF machines, you should use this format: **$HOME/.local/bin/scons** for `scons`.
+## Experimental setup
 
-Note that this requires 3-4 GiB of disk space, so if you're running on a computer or virtual machine with limited disk space you may need to delete other prior builds (e.g., `rm -r build/X86`).
+In this assignment, you are asked to desing two `processor` and `cache_hierarchy` combinations for your experiments.
+In regards to the rest of the components in your system:
 
-## Template files and gem5's out-of-order CPU model
+- You will be using `HW3RISCVBoard` as your main `board` for your computer system.
+You can find the model for the board in `components/boards.py`.
+- You will be using `HW3DDR4` as your `memory` in your computer system.
+You can find its model in `components/memories.py`.
+- You will be using `4 GHz` as you clock frequency `clk_freq` in your system.
 
-In this assignment, we will be using the [gem5 standard library](https://www.gem5.org/documentation/gem5-stdlib/overview) for the simulated system (called a board), to run the simulation via the `Simulator` class, and for the benchmark `Resources`.
+For your processor and cache hierarchy, you are going to use `HW3O3CPU` and `HW3CacheHierarchy` to model a high-performance and an efficient processor core.
+`HW3O3CPU` is based on `O3CPU` which is an internal model of gem5.
+Read up on the `O3CPU` in [gem5's documentation](https://www.gem5.org/documentation/general_docs/cpu_models/O3CPU).
+`HW3CacheHierarchy` is based on `MESITwoLevelCacheHierarchy` which is a model from gem5's standard library.
+Read more about `MESITwoLevelCacheHierarhcy` in `gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_two_level_cache_hierarchy.py`.
 
-Description of the files in the [template zip file]({{ "img/assignment3-template.tgz" | relative_url }}).
+Below, you can find details about `HWO3CPU` and its parameters.
 
-- `riscv_se.py`: This file contains a simple RISC-V system with a configurable out-of-order core.
-- `stanford_benchmarks.py`: Contains the "resources" for the stanford benchmarks precompiled for RISC-V.
-- `run.py`: This file is a simple gem5 run script which takes a parameter of the core (options found in the `cores` dictionary) and the benchmark (as specified in the `stanford_benchmarks.py` file.)
-- `Stanford`: the stanford benchmarks. Each benchmark has an associated `.c` file which is the original source, a `.s` file which is the assembly generated by GCC, and the binary file that is executed in gem5. Each binary takes 1-3 minutes to execute in gem5.
-- `run.sh`: A simple script to run all configurations for all benchmarks in parallel. By default, this will launch 22 processes, which is probably too many for most systems. Feel free to modify this to execute fewer at a time. This file also makes sure that the output directories for the stats files are all different based on the core name and the benchmark.
+### Pipeline width
 
-**NOTE**: in your `run.sh` file at line #26, you need to replace the `gem5-riscv` with the proper path of the `build/RISCV/gem5.opt` you compiled in the previous step.
+For the purposes of this assignment, you need to configure a processor with the same width in all stages.
+In the constructor of `HW3O3CPU` this attribute is named as `width`.
 
-### The O3CPU model
+**NOTE**:
 
-You can find some information on the O3CPU in gem5's documentation: <https://www.gem5.org/documentation/general_docs/cpu_models/O3CPU>.
+### Reorder Buffer size
 
-### Options for the core design
-
-#### Pipeline width
-
-This is the width of the pipeline.
-By setting this value, you're setting the width of each stage to be the same.
-
-#### ROB size
-
-This is the number of entries in the reorder buffer.
+This is the number of entries in the **r**e**o**rder **b**uffer (ROB).
 This will constrain the number of instructions which can be "in flight" in the processor.
+In the constructor of `HW3O3CPU` this attribute is named as `rob_size`.
 
-#### Number of physical registers
+### Number of physical registers
 
-This is the number of registers in the *physical* register file.
-In order to overcome write-after-read and write-after-write hazards you have to be able to allocate temporary registers.
-Register renaming and using a pool a physical register larger than the number of logical registers allows the out-of-order core to track the true read-after-write dependences and break some of the false dependences.
+This is the number of registers in the *physical register file*.
+A processor renames architecture registers to physical registers to resolve false dependences.
+It also tracks true dependences (read-after-write) in the register file.
+To learn more about register renaming, read up on Tomasulo's algorithm.
 
-Note that this must be larger than the 32 logical registers in RISC-V or gem5 will hang.
+`HW3O3CPU` has two physical register files.
+One register file for integer registers and one for floating point registers.
+In the constructor of `HW3O3CPU`, `num_int_regs` refers to the number of *integer physical registers* and `num_fp_regs` refers to the number of *floating point physical registers*.
 
-#### Branch predictor
+**NOTE**: Both register files must be larger than the 32 entries or gem5 will hang.
+This is becuase the number of physical registers must be bigger than or equal to the number of logical registers.
+RISC-V ISA defines 32 logical registers.
 
-To find more information on these branch predictors, see `gem5/src/cpu/pred/BranchPredictor.py`.
+### big and LITTLE cores
 
-- `simple`: Tournament branch predictor as discussed in class where there's a predictor to choose either a local or global predictor.
-- `ltage`: A TAgged GEometric history length predictor. At a high-level, this branch predictor enables much longer (e.g., 100s or 1000s of instructions) global history. See <https://jilp.org/vol8/v8paper1.pdf> for details.
-- `perceptron`: This branch predictor uses a table of simple neural networks (well, not a network because it's a single "neuron"). See <https://jilp.org/cbp2016/paper/DanielJimenez1.pdf> for more details.
-- `complex`: Combines TAGE and Perceptron predictors.
+In this assignment, you are required to design your own high-performance and efficient cores.
+You need to add two core designs to `components/processors.py`.
+In `componets/processors.py`, create a model based on `HW3O3CPU` and name it `HW3BigCore`.
+This core will be your high-performance core for the assignment.
+Create another model in `components/processors.py` and name it `HW3LittleCore`.
+This core will be your efficient core for the assignment.
+You can use information available on the internet on the different core microarchitectures to configure your `HW3BigCore` and `HW3LittleCore`.
+As a starting point, take a look at [WikiChip](https://en.wikichip.org/wiki/WikiChip) and [AnandTech](https://www.anandtech.com/).
+Your instructor has loosely modeled their `HW3BigCore` on [Intel Sunny Cove](https://en.wikichip.org/wiki/intel/microarchitectures/sunny_cove) and their `HW3LittleCore` on [Intel Gracemont](https://en.wikichip.org/wiki/intel/microarchitectures/gracemont).
 
-### Given core configurations
+**NOTE**: You are not required to match the specifications of any core.
+Use information online as a guideline for your design.
+You might find it impossible to match the specifications found online.
+E.g. the base model `HW3O3CPU` assumes the same width for all the stages of the pipeline which is not usually the case with modern processor designs.
 
-You're given two core configurations.
-You will have to extend this with other configurations as you are answering the questions below.
+When looking at core designs online, you might notice that apart from the number of functional units and different bandwidth of the different stages of the pipelines, there are various cache sizes and associativity.
+Therefore, you are also required to create models for the cache in your high-performance and efficient cores.
+For this assignment, add two cache models to `components/cache_hierarchies.py`.
+In `components/cache_hierarchies.py`, create a model based on `HW3CacheHierarchy` and name it `HW3BigCache`.
+This cache hierarchy will be the cache hierarchy that is connected to your `HW3BigCore`.
+In `components/cache_hierarchies.py`, create a model based on `HW3CacheHierarchy` and name it `HW3LittleCache`.
+This cache hierarchy will be the cache hierarchy that is connected to your `HW3LittleCore`.
 
-`LargeCore`: This is a core with many resources (some the maximum gem5 supports like being 8-wide). You will be using this as the "maximum" performance core.
+In this assignment, you will be using your `HW3BigCore + HW3BigCache` and `HW3LittleCore + HW3LittleCache` as your `processor` and `cache_hierarchy` combinations.
 
-`SmallCore`: This is a core with few resources (some the minimum that gem5 supports like only 48 physical registers). You will be using this as the "minimum" performance core.
+**Tips and To dos**: When designing your cores and caches, I recommend taking note of the following:
 
-## Assignment
+- Make sure your `width` parameter is always bigger than 3.
+- Make sure you register files have more than 32 entries each.
+- When designing your cores, I strongly recommend not beefing up your cores.
+Remember that in computer design, there are almost always diminishing returns.
+A beefy `HW3LittleCore` will result in a `HW3BigCore` that is not much more performant than `HW3LittleCore`.
+E.g. I used `width` of 4 for `HW3LittleCore` and `width` of 6 for `HW3BigCore`.
+- In real computers, L1 caches are rarely bigger than `32 KiB`.
+I have seen L1I caches that are `48 KiB` in size.
+But I have not seen L1D caches that are bigger than `32 KiB`.
 
-Answer the following questions.
-To answer the questions, you'll have to add other core configurations to the runscript, run experiments, and compare data between the experiments.
-Be sure to include any relevant data in your writeup.
-However, remember this should be *well-written* technical document, so *only* include relevant data and not extra data that's not needed.
+## Analysis and simulation
 
-### Part 1: Analyzing the workloads
+Before running any simulations answer the following questions in your report.
 
-1. What is the average improvement in IPC of the `LargeCore` compared to the `SmallCore`? (Remember to use the correct average statistic).
-2. Some workloads show more speedup that others. Which workloads show high speedup, which show low speedup? Look at the benchmark code (both the `.c` and `.s` files may be useful) and speculate the *algorithm characteristics* which influence the IPC difference between the `LargeCore` and the `SmallCore`. What characteristics do applications have that lead to low performance improvement and what characteristics lead to high performance improvement?
-3. Which workload(s) have the highest IPC for the large core? What is unique about this workload?
+1- What be the average speed up of `HW3BigCore` over `HW3LittleCore`? Can you predict an upper bound using your pipeline parameters?
+2- Do you think all the workloads will experience the same speed up between `HW3BigCore` and `HW3LittleCore`?
 
-### Part 2: Analyzing the hardware
+### Step I: Performance comparison
 
-Between the `SmallCore` and the `LargeCore`, we are varying many parameters at the same time.
-In this part, we will investigate which parameters are most important.
-Vary the four parameters in the core configuration: pipeline width, ROB entries, physical register entries, and branch predictor to answer the following questions.
+Now that you have completed the design process of `HW3BigCore + HW3BigCache` and `HW3LittleCore + HW3LittleCache`, let's compare their performances using our 3 workloads as benchmarks.
+Simulate each workload with each `processor` and `cache_hierarchy` combination.
+For each workload compare the performance of `HW3BigCore + HW3BigCache` with the performance of `HW3LittleCore + HW3LittleCache`.
 
-1. Which parameter(s) have the most impact on performance? Is this the same for all workloads or does it vary between different workloads?
-2. Are there any dependences between the parameters (e.g., do you need to change two or more parameters at once to have an impact on the performance of different applications)?
-3. Pick a core design between the cost of the `SmallCore` and the `LargeCore` which gives most of the performance benefits of the large core but with fewer resources.
+Answer the following questions in your report.
+Use relevant and correct reasoning in your answer.
+Use simulation data with proper simulation data to strengthen your reasoning.
 
-    a. What are the parameters you chose? Let's call this the `GoodCore`.
+1. What is the speed up of `HW3BigCore` over `HW3LittleCore` for each workload?
+2. What is the average improvement in IPC of `HW3BigCore` compared to `HW3LittleCore` over all the workloads?
+**CAUTION**: Make sure to use the correct mean to report average IPC improvement.
+3. Some workloads show more speedup that others. Which workloads show high speedup, which show low speedup? Look at the benchmark code (both the `.c` and `.s` files may be useful) and speculate the *algorithm characteristics* which influence the IPC difference between `HW3BigCore` and `HW3LittleCore`. What characteristics do applications have that lead to low performance improvement and what characteristics lead to high performance improvement?
+4. Which workload has the highest IPC for `HW3BigCore`? What is unique about this workload?
 
-    b. What is the average IPC improvement of your `GoodCore` design compared to the `SmallCore`?
+### Step II: Medium core
 
-    c. How much more performance could you get from the `LargeCore`? (What is the average speedup of the `LargeCore` compared to your `GoodCore`)?
+In this step, you are tasked with finding a middle ground between `HW3BigCore` and `HW3LittleCore`.
+This core needs to perform as closely as possible to `HW3BigCore` while using as little resources as `HW3LittleCore`.
+We will refer to this core as `HW3MediumCore`.
+To pick our sweet spot for the design of `HW3MediumCore`, we need to develop a methodology.
+First, we need to define a cost function for increasing hardware resources.
+This function should take the 4 pipeline parameters and output a decimal number as the cost of constructing that pipeline.
+Morever the cost of increasing two of these resources at the same time should be bigger than the sum of increasing each resource.
+In your report answer the following question.
 
-    d. Are the workloads that benefited the most from the `LargeCore` the same as the ones that benefit from the `GoodCore`? Why or why not (talk about workload characteristics).
+1- What function will you use to estimate the cost of constructing a pipeline? Can you reason about why you chose this function?
 
+Now that we have our cost function, let's devise a method for measuring our gains.
+In you report answer to the following question.
+
+2- If you were to use one of the three workloads used before to measure your gains, which workload will you choose?
+What metric will you define to measure your gains?
+
+Now that we have devised functions to measure costs and gains, configure 4 middle ground designs for the pipeline.
+You need to choose the design that incurs the smallest cost while delivering the biggest gains.
+In your report answer the following question.
+
+3- There is a trader off between minimizing costs and maximizing gains.
+Between your 4 middle grounds, you might not find a design that incurs the smallest cost while delivering the biggest gains.
+What function will you define to choose your sweet spot design (what is your figure of merit)?
 
 ## Submission
 
-For this assignment you don't need to turn in any code files. The only file you need to submit on gradescope at the designated section, is the pdf file of your report. Please do not forget to specify each question according to the outline when you're submitting your work.
-In your report, you're not required to include any data which is not used in your analysis. Only include those that you actually use to justify your answer and make sure they are precisly and cleary specified.
+As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
+You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
+In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
+Use clear reasoning and visualization to drive your conclusions.
+Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
+
+- `Instruction.md`: should include instruction on how to run your simulations.
+- Automation: code/scripts to run your simulations.
+- Configuration: python file configuring the systems you need to simulate.
+You should add your final core designs to `components/processors.py`.
+// TODO: Add final details on what needs to be submitted.
+There should be 6 core definitions in `components/processor.py`.
+
 
 ## Grading
 
-Grading breakdown is as follows:
+Like your submission, your grade is split into two parts.
 
-Total points = 100
+1. Reproducibility Package (50 points):
+    a. Instruction and automation to run simulations for different section and dump statistics (20 points)
+        - Instructions (5 points)
+        - Automation (5 points)
+    b. Configuration scripts and correct simulation setup (40 points): 3 points for each configuration as described in [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
-| #Question   | Points |
-|-------------|--------|
-| Part1.1	  | 10     |
-| Part1.2	  | 15	   |
-| Part1.3	  | 15     |
-| Part2.1     | 10     |
-| Part2.2	  | 10     |
-| Part2.3.a	  | 10     |
-| Part2.3.b	  | 10     |
-| Part2.3.c	  | 10     |
-| Part2.3.d	  | 10     |
-
+2. Report (50 points): 5.5 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
 ## Academic misconduct reminder
 
-You are to work on this project **individually**.
-You may discuss *high level concepts* with one another (e.g., talking about the diagram), but all work must be completed on your own.
+You are required to work on this assignment in teams. You are only allowed to share you scripts and code with your teammate(s). You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
 
-**Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
-Any code found on GitHub that is not the base template you are given will be reported to SJA.
-If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
-GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and **you shouldn't have *any* collaborators** for your code in this class.
+Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
 
 ## Hints
 
-* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
-* If you need help, come to office hours for the TA, or post your questions on Campuswire.
+- Start early and ask questions on Piazza and in discussion.
+- If you need help, come to office hours for the TA, or post your questions on Piazza.
