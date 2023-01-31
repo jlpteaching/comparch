@@ -205,16 +205,15 @@ In regards to the rest of the components in your system:
 
 - You will be using `HW3RISCVBoard` as your main `board` for your computer system.
 You can find the model for the board in `components/boards.py`.
+- You will be using `HW3MESICache` as your cache hierarchy for your computer system.
+You can find its model in `components/cache_hierarchies.py`.
 - You will be using `HW3DDR4` as your `memory` in your computer system.
 You can find its model in `components/memories.py`.
 - You will be using `4 GHz` as you clock frequency `clk_freq` in your system.
 
-For your processor and cache hierarchy, you are going to use `HW3O3CPU` and `HW3CacheHierarchy` to model a high-performance and an efficient processor core.
+For your processor, you are going to use `HW3O3CPU` to model a high-performance and an efficient processor core.
 `HW3O3CPU` is based on `O3CPU` which is an internal model of gem5.
 Read up on the `O3CPU` in [gem5's documentation](https://www.gem5.org/documentation/general_docs/cpu_models/O3CPU).
-`HW3CacheHierarchy` is based on `MESITwoLevelCacheHierarchy` which is a model from gem5's standard library.
-Read more about `MESITwoLevelCacheHierarhcy` in `gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_two_level_cache_hierarchy.py`.
-
 Below, you can find details about `HWO3CPU` and its parameters.
 
 ### Pipeline width
@@ -222,7 +221,7 @@ Below, you can find details about `HWO3CPU` and its parameters.
 For the purposes of this assignment, you need to configure a processor with the same width in all stages.
 In the constructor of `HW3O3CPU` this attribute is named as `width`.
 
-**NOTE**:
+**NOTE**: Make sure to always use values of 4 or bigger for the `width` parameter.
 
 ### Reorder Buffer size
 
@@ -235,7 +234,7 @@ In the constructor of `HW3O3CPU` this attribute is named as `rob_size`.
 This is the number of registers in the *physical register file*.
 A processor renames architecture registers to physical registers to resolve false dependences.
 It also tracks true dependences (read-after-write) in the register file.
-To learn more about register renaming, read up on Tomasulo's algorithm.
+To learn more about register renaming, read up on [Tomasulo's algorithm](https://en.wikipedia.org/wiki/Tomasulo%27s_algorithm).
 
 `HW3O3CPU` has two physical register files.
 One register file for integer registers and one for floating point registers.
@@ -262,40 +261,28 @@ Use information online as a guideline for your design.
 You might find it impossible to match the specifications found online.
 E.g. the base model `HW3O3CPU` assumes the same width for all the stages of the pipeline which is not usually the case with modern processor designs.
 
-When looking at core designs online, you might notice that apart from the number of functional units and different bandwidth of the different stages of the pipelines, there are various cache sizes and associativity.
-Therefore, you are also required to create models for the cache in your high-performance and efficient cores.
-For this assignment, add two cache models to `components/cache_hierarchies.py`.
-In `components/cache_hierarchies.py`, create a model based on `HW3CacheHierarchy` and name it `HW3BigCache`.
-This cache hierarchy will be the cache hierarchy that is connected to your `HW3BigCore`.
-In `components/cache_hierarchies.py`, create a model based on `HW3CacheHierarchy` and name it `HW3LittleCache`.
-This cache hierarchy will be the cache hierarchy that is connected to your `HW3LittleCore`.
-
-In this assignment, you will be using your `HW3BigCore + HW3BigCache` and `HW3LittleCore + HW3LittleCache` as your `processor` and `cache_hierarchy` combinations.
-
 **Tips and To dos**: When designing your cores and caches, I recommend taking note of the following:
 
 - Make sure your `width` parameter is always bigger than 3.
 - Make sure you register files have more than 32 entries each.
-- When designing your cores, I strongly recommend not beefing up your cores.
+- When designing your cores, I strongly recommend **not** beefing up your cores.
 Remember that in computer design, there are almost always diminishing returns.
 A beefy `HW3LittleCore` will result in a `HW3BigCore` that is not much more performant than `HW3LittleCore`.
 E.g. I used `width` of 4 for `HW3LittleCore` and `width` of 6 for `HW3BigCore`.
-- In real computers, L1 caches are rarely bigger than `32 KiB`.
-I have seen L1I caches that are `48 KiB` in size.
-But I have not seen L1D caches that are bigger than `32 KiB`.
 
 ## Analysis and simulation
 
 Before running any simulations answer the following questions in your report.
 
-1- What be the average speed up of `HW3BigCore` over `HW3LittleCore`? Can you predict an upper bound using your pipeline parameters?
+1- What will be the average speed up of `HW3BigCore` over `HW3LittleCore`? Can you predict an upper bound using your pipeline parameters?
+**Hint**: You can predict and upper bound for the speed up using Amdahl's law with optimistic values.
 2- Do you think all the workloads will experience the same speed up between `HW3BigCore` and `HW3LittleCore`?
 
 ### Step I: Performance comparison
 
-Now that you have completed the design process of `HW3BigCore + HW3BigCache` and `HW3LittleCore + HW3LittleCache`, let's compare their performances using our 3 workloads as benchmarks.
+Now that you have completed the design process of `HW3BigCore` and `HW3LittleCore`, let's compare their performances using our 3 workloads as benchmarks.
 Simulate each workload with each `processor` and `cache_hierarchy` combination.
-For each workload compare the performance of `HW3BigCore + HW3BigCache` with the performance of `HW3LittleCore + HW3LittleCache`.
+For each workload compare the performance of `HW3BigCore` with the performance of `HW3LittleCore`.
 
 Answer the following questions in your report.
 Use relevant and correct reasoning in your answer.
@@ -314,23 +301,26 @@ This core needs to perform as closely as possible to `HW3BigCore` while using as
 We will refer to this core as `HW3MediumCore`.
 To pick our sweet spot for the design of `HW3MediumCore`, we need to develop a methodology.
 First, we need to define a cost function for increasing hardware resources.
-This function should take the 4 pipeline parameters and output a decimal number as the cost of constructing that pipeline.
+We will use area as the cost of making a hardware.
+Not all parameters of the pipeline have the same effect on the area.
+E.g. Increasing the width of the pipeline has a quadratic effect on the area of the hardware while increasing register file entries has a linear effect.
 Morever the cost of increasing two of these resources at the same time should be bigger than the sum of increasing each resource.
-In your report answer the following question.
+We will use an equation like below to score the area of a pipeline using the 4 parameters of `width`, `rob_size`, `num_int_regs`, and `num_fp_regs`.
 
-1- What function will you use to estimate the cost of constructing a pipeline? Can you reason about why you chose this function?
+$area_{score} = 2 * width^2 * rob\_size + width^2 * (num\_int\_regs + num\_fp\_regs) + 4 * width + 2 * rob\_size + (num\_int\_regs + num\_fp\_regs)$
+
+You can also get the area score for a pipeline desing by calling the method `get_area_score` on the processor.
 
 Now that we have our cost function, let's devise a method for measuring our gains.
 In you report answer to the following question.
 
-2- If you were to use one of the three workloads used before to measure your gains, which workload will you choose?
-What metric will you define to measure your gains?
+1- If you were to use the speed up under only one workload from the 3 workloads you used before, which workload would you choose? Why?
 
 Now that we have devised functions to measure costs and gains, configure 4 middle ground designs for the pipeline.
 You need to choose the design that incurs the smallest cost while delivering the biggest gains.
 In your report answer the following question.
 
-3- There is a trader off between minimizing costs and maximizing gains.
+2- There is a trader off between minimizing costs and maximizing gains.
 Between your 4 middle grounds, you might not find a design that incurs the smallest cost while delivering the biggest gains.
 What function will you define to choose your sweet spot design (what is your figure of merit)?
 
@@ -346,9 +336,10 @@ Submit all your code through your assignment repository. Please make sure to inc
 - Automation: code/scripts to run your simulations.
 - Configuration: python file configuring the systems you need to simulate.
 You should add your final core designs to `components/processors.py`.
-// TODO: Add final details on what needs to be submitted.
 There should be 6 core definitions in `components/processor.py`.
-
+They should include **1 design** for `HW3BigCore`, **1 design** for `HW3LittleCore`, and **4 designs** for `HW3MediumCore`.
+You can add numbers to designs for `HW3MediumCore` to distinguish their design.
+E.g. `HW3MediumCore0`, `HW3MediumCore1`, `HW3MediumCore2`, and `HW3MediumCore3`.
 
 ## Grading
 
@@ -358,9 +349,9 @@ Like your submission, your grade is split into two parts.
     a. Instruction and automation to run simulations for different section and dump statistics (20 points)
         - Instructions (5 points)
         - Automation (5 points)
-    b. Configuration scripts and correct simulation setup (40 points): 3 points for each configuration as described in [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
+    b. Configuration scripts and correct simulation setup (40 points): 10 points for configuration script(s) used to run your simulations and 5 points for implementing each of the 6 processor models as described in [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
-2. Report (50 points): 5.5 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
+2. Report (50 points): 6 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
 ## Academic misconduct reminder
 
