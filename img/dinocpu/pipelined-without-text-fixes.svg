@@ -28,14 +28,14 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="in"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="581"
-     inkscape:cy="651"
-     inkscape:window-width="1280"
-     inkscape:window-height="667"
-     inkscape:window-x="1920"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="782.7672"
+     inkscape:cy="243.24473"
+     inkscape:window-width="1920"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      inkscape:current-layer="SVGRoot" />
   <defs
      id="defs1140">
@@ -886,49 +886,49 @@
        style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;direction:rtl;white-space:pre;shape-inside:url(#rect60608);display:inline"><tspan
          x="385.57227"
          y="127.29783"
-         id="tspan8463">controltransferop<tspan
+         id="tspan13545">controltransferop<tspan
    dx="-51.132812"
-   id="tspan8461">
+   id="tspan13543">
 </tspan></tspan><tspan
          x="426.0293"
          y="143.29783"
-         id="tspan8467">aluop<tspan
+         id="tspan13549">aluop<tspan
    dx="-10.675781"
-   id="tspan8465">
+   id="tspan13547">
 </tspan></tspan><tspan
          x="417.14258"
          y="159.29783"
-         id="tspan8471">op1_src<tspan
+         id="tspan13553">op1_src<tspan
    dx="-20.460938"
-   id="tspan8469">
+   id="tspan13551">
 </tspan></tspan><tspan
          x="417.14258"
          y="175.29783"
-         id="tspan8475">op2_src<tspan
+         id="tspan13557">op2_src<tspan
    dx="-20.460938"
-   id="tspan8473">
+   id="tspan13555">
 </tspan></tspan><tspan
          x="418.92773"
          y="191.29783"
-         id="tspan8479">memop<tspan
+         id="tspan13561">memop<tspan
    dx="-17.777344"
-   id="tspan8477">
+   id="tspan13559">
 </tspan></tspan><tspan
          x="390.91211"
          y="207.29783"
-         id="tspan8483">writeback_valid<tspan
+         id="tspan13565">writeback_valid<tspan
    dx="-45.792969"
-   id="tspan8481">
+   id="tspan13563">
 </tspan></tspan><tspan
          x="396.70117"
          y="223.29783"
-         id="tspan8487">writeback_src<tspan
+         id="tspan13569">writeback_src<tspan
    dx="-40.902344"
-   id="tspan8485">
+   id="tspan13567">
 </tspan></tspan><tspan
          x="416.70117"
          y="239.29783"
-         id="tspan8489">validinst</tspan></text>
+         id="tspan13571">validinst</tspan></text>
   </g>
   <rect
      y="1.1737628"
@@ -1024,31 +1024,31 @@
      style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;direction:rtl;white-space:pre;shape-inside:url(#rect60608-7);display:inline"><tspan
        x="392.68945"
        y="127.29783"
-       id="tspan8493">idex_memread<tspan
+       id="tspan13575">idex_memread<tspan
    dx="-44.015625"
-   id="tspan8491">
+   id="tspan13573">
 </tspan></tspan><tspan
        x="419.36523"
        y="143.29783"
-       id="tspan8497">idex_rd<tspan
+       id="tspan13579">idex_rd<tspan
    dx="-17.339844"
-   id="tspan8495">
+   id="tspan13577">
 </tspan></tspan><tspan
        x="395.35742"
        y="159.29783"
-       id="tspan8501">exmem_taken<tspan
+       id="tspan13583">exmem_taken<tspan
    dx="-41.347656"
-   id="tspan8499">
+   id="tspan13581">
 </tspan></tspan><tspan
        x="393.58008"
        y="175.29783"
-       id="tspan8505">ex_mem_flush<tspan
+       id="tspan13587">ex_mem_flush<tspan
    dx="-43.125"
-   id="tspan8503">
+   id="tspan13585">
 </tspan></tspan><tspan
        x="405.13086"
        y="191.29783"
-       id="tspan8507">id_ex_flush</tspan></text>
+       id="tspan13589">id_ex_flush</tspan></text>
   <path
      style="fill:#0000ff;stroke:#0000ff;stroke-width:0.019;stroke-dasharray:none;stop-color:#000000"
      d="M 4.0872404,2.3476551 H 3.2513026"
@@ -1168,25 +1168,25 @@
      style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;direction:rtl;white-space:pre;shape-inside:url(#rect60608-7-1);display:inline"><tspan
        x="407.81445"
        y="127.29783"
-       id="tspan8511">exmem_rd<tspan
+       id="tspan13593">exmem_rd<tspan
    dx="-28.890625"
-   id="tspan8509">
+   id="tspan13591">
 </tspan></tspan><tspan
        x="406.48633"
        y="143.29783"
-       id="tspan8515">exmem_rw<tspan
+       id="tspan13597">exmem_rw<tspan
    dx="-27.5625"
-   id="tspan8513">
+   id="tspan13595">
 </tspan></tspan><tspan
        x="406.03711"
        y="159.29783"
-       id="tspan8519">memwb_rd<tspan
+       id="tspan13601">memwb_rd<tspan
    dx="-30.667969"
-   id="tspan8517">
+   id="tspan13599">
 </tspan></tspan><tspan
        x="404.70898"
        y="175.29783"
-       id="tspan8521">memwb_rw</tspan></text>
+       id="tspan13603">memwb_rw</tspan></text>
   <g
      id="g510"
      transform="translate(1.9478323,2.5449086)">
@@ -1226,31 +1226,31 @@
        style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect87069);display:inline"><tspan
          x="835.33984"
          y="433.55369"
-         id="tspan8523">address
+         id="tspan13605">address
 </tspan><tspan
          x="835.33984"
          y="449.55369"
-         id="tspan8525">memread
+         id="tspan13607">memread
 </tspan><tspan
          x="835.33984"
          y="465.55369"
-         id="tspan8527">memwrite
+         id="tspan13609">memwrite
 </tspan><tspan
          x="835.33984"
          y="481.55369"
-         id="tspan8529">valid
+         id="tspan13611">valid
 </tspan><tspan
          x="835.33984"
          y="497.55369"
-         id="tspan8531">maskmode
+         id="tspan13613">maskmode
 </tspan><tspan
          x="835.33984"
          y="513.55369"
-         id="tspan8533">sext
+         id="tspan13615">sext
 </tspan><tspan
          x="835.33984"
          y="529.55369"
-         id="tspan8535">writedata</tspan></text>
+         id="tspan13617">writedata</tspan></text>
   </g>
   <g
      id="g2274"
@@ -1291,15 +1291,15 @@
        style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect115570);display:inline"><tspan
          x="450.43945"
          y="510.8408"
-         id="tspan8537">aluop
+         id="tspan13619">aluop
 </tspan><tspan
          x="450.43945"
          y="526.8408"
-         id="tspan8539">funct7
+         id="tspan13621">funct7
 </tspan><tspan
          x="450.43945"
          y="542.8408"
-         id="tspan8541">funct3</tspan></text>
+         id="tspan13623">funct3</tspan></text>
   </g>
   <circle
      style="fill:#000000;stroke:#000000;stroke-width:0.00285324;stroke-dasharray:none;stop-color:#000000"
@@ -1316,8 +1316,8 @@
   <circle
      style="fill:#000000;stroke:#000000;stroke-width:0.00285324;stroke-dasharray:none;stop-color:#000000"
      id="path9765-9-57-7"
-     cx="6.4082866"
-     cy="9.0209084"
+     cx="6.4088573"
+     cy="9.4999714"
      r="0.039937969" />
   <circle
      style="fill:#000000;stroke:#000000;stroke-width:0.00285324;stroke-dasharray:none;stop-color:#000000"
@@ -1361,15 +1361,15 @@
      style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect122017);display:inline"><tspan
        x="506.9375"
        y="580.70408"
-       id="tspan8543">operation
+       id="tspan13625">operation
 </tspan><tspan
        x="506.9375"
        y="596.70408"
-       id="tspan8545">operand1
+       id="tspan13627">operand1
 </tspan><tspan
        x="506.9375"
        y="612.70408"
-       id="tspan8547">operand2</tspan></text>
+       id="tspan13629">operand2</tspan></text>
   <g
      id="g136602"
      transform="translate(1.4340093,3.0832376)">
@@ -1398,23 +1398,23 @@
        style="font-size:8px;line-height:2;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect126483);display:inline"><tspan
          x="278.9707"
          y="537.72947"
-         id="tspan8549">readreg1
+         id="tspan13631">readreg1
 </tspan><tspan
          x="278.9707"
          y="553.72947"
-         id="tspan8551">readreg2
+         id="tspan13633">readreg2
 </tspan><tspan
          x="278.9707"
          y="569.72947"
-         id="tspan8553">writereg
+         id="tspan13635">writereg
 </tspan><tspan
          x="278.9707"
          y="585.72947"
-         id="tspan8555">wen
+         id="tspan13637">wen
 </tspan><tspan
          x="278.9707"
          y="601.72947"
-         id="tspan8557">writedata</tspan></text>
+         id="tspan13639">writedata</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.01041667,0,0,0.01041667,-1.7899378,-1.0639859)"
@@ -1424,15 +1424,15 @@
        y="0"><tspan
          x="501.14844"
          y="551.31736"
-         id="tspan8561"><tspan
+         id="tspan13643"><tspan
            style="text-align:end;text-anchor:end"
-           id="tspan8559">readdata1
+           id="tspan13641">readdata1
 </tspan></tspan><tspan
          x="501.14844"
          y="567.31736"
-         id="tspan8565"><tspan
+         id="tspan13647"><tspan
            style="text-align:end;text-anchor:end"
-           id="tspan8563">readdata2</tspan></tspan></text>
+           id="tspan13645">readdata2</tspan></tspan></text>
   </g>
   <g
      id="g26682"
@@ -2721,17 +2721,17 @@
      inkscape:path-effect="#path-effect7033"
      inkscape:original-d="m 6.9369298,8.5780455 c -0.1760162,1.04e-5 -0.352043,1.04e-5 -0.5280802,0" />
   <path
-     style="fill:none;stroke:#000000;stroke-width:0.0198236;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-     d="M 6.5893138,7.9787142 H 6.3994304"
+     style="fill:none;stroke:#000000;stroke-width:0.0198494;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="M 6.5893138,7.9787142 H 6.3989373"
      id="path7035"
      inkscape:path-effect="#path-effect7037"
-     inkscape:original-d="m 6.5893138,7.9787142 c -0.063284,1.04e-5 -0.1265776,1.04e-5 -0.1898834,0" />
+     inkscape:original-d="m 6.5893138,7.9787142 c -0.063448,1.04e-5 -0.1269063,1.04e-5 -0.1903765,0" />
   <path
-     style="fill:none;stroke:#000000;stroke-width:0.019;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
-     d="m 6.4088734,7.9739371 v 1.044358"
+     style="fill:none;stroke:#000000;stroke-width:0.01984252;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="M 6.4088734,7.9739371 V 9.5055698"
      id="path7039"
      inkscape:path-effect="#path-effect7041"
-     inkscape:original-d="m 6.4088734,7.9739371 c 1.04e-5,0.3481297 1.04e-5,0.6962491 0,1.044358" />
+     inkscape:original-d="m 6.4088734,7.9739371 c 1.04e-5,0.5105594 1.04e-5,1.0211037 0,1.5316327" />
   <path
      style="fill:none;stroke:#000000;stroke-width:0.019;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
      d="M 6.5751758,7.8567267 H 6.3058407"
