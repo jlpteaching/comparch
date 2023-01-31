@@ -307,7 +307,7 @@ E.g. Increasing the width of the pipeline has a quadratic effect on the area of 
 Morever the cost of increasing two of these resources at the same time should be bigger than the sum of increasing each resource.
 We will use an equation like below to score the area of a pipeline using the 4 parameters of `width`, `rob_size`, `num_int_regs`, and `num_fp_regs`.
 
-$area_{score} = 2 * width^2 * rob\_size + width^2 * (num\_int\_regs + num\_fp\_regs) + 4 * width + 2 * rob\_size + (num\_int\_regs + num\_fp\_regs)$
+$area_{score} = 2 * width^2 * rob\_ size + width^2 * (num\_ int\_ regs + num\_ fp\_ regs) + 4 * width + 2 * rob\_ size + (num\_ int\_ regs + num\_ fp\_ regs)$
 
 You can also get the area score for a pipeline desing by calling the method `get_area_score` on the processor.
 
