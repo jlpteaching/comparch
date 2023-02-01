@@ -314,15 +314,19 @@ You can also get the area score for a pipeline desing by calling the method `get
 Now that we have our cost function, let's devise a method for measuring our gains.
 In you report answer to the following question.
 
-1- If you were to use the speed up under only one workload from the 3 workloads you used before, which workload would you choose? Why?
+1. If you were to use the speed up under only one workload from the 3 workloads you used before, which workload would you choose? Why?
 
 Now that we have devised functions to measure costs and gains, configure 4 middle ground designs for the pipeline.
-You need to choose the design that incurs the smallest cost while delivering the biggest gains.
-In your report answer the following question.
+Not all of these designs will have the "best" cost-gain tradeoff.
+In your report include the following figure.
 
-2- There is a trader off between minimizing costs and maximizing gains.
-Between your 4 middle grounds, you might not find a design that incurs the smallest cost while delivering the biggest gains.
-What function will you define to choose your sweet spot design (what is your figure of merit)?
+2. Create a [pareto frontier](https://en.wikipedia.org/wiki/Pareto_efficiency) plot with cost on the y-axis and performance on the x-axis.
+This will be a scatter plot with 6 points: the two "big" and "LITTLE" cores as well as your 4 middle ground designs.
+Then, "connet the dots" on the "best" designs.
+
+Answer this question in your report.
+
+3. Assume you are an engineer working to design this middle ground core. Given this early analysis, which designs, if any, would you recommend your team to pursue developing? Explain why. (Note: you may want to annotate the above plot.)
 
 ## Submission
 
