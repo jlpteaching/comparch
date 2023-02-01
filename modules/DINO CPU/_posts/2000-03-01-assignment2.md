@@ -297,7 +297,7 @@ If you do not set these lines to 0, you will not pass the control unit test on G
 
 In the last assignment, when you were required to run your CPU for multiple cycles, you used a simple adder to generate the next value for the PC which was simply PC+4 in all cases. In this assignment you will implement a much smarter unit, TransferControlUnit, which is responsible for the next value that must be assigned to the PC for the next cycle.
 
-The TransferControlUnit unit receives eight inputs:
+The TransferControlUnit unit receives six inputs:
 
 * `controltransferop`, which comes from the control unit.
 * `operand1`, and `operand2`,  both of which come from the Register File.
@@ -360,7 +360,13 @@ class ControlTransferUnit extends Module {
 ```
 In this template, the outputs, `nextpc` and `taken`, are set to always be PC+4 and false, respectively.
 
-Before starting Part I, you must remove the parts related to pc+4 and replace it with an instance of ControlTransfer unit and create proper wire connections for it. For this purpose, you must update `src/main/scala/single-cycle/cpu.scala`. In the next sections, you will gradually complete the body of ControlTransfer unit.
+Before starting Part I, you should remove the parts related to PC+4 and replace it with an instance of ControlTransfer unit and create proper wire connections for it.
+For this purpose, you must update `src/main/scala/single-cycle/cpu.scala`.
+In the next sections, you will gradually complete the body of ControlTransfer unit.
+
+**Note**: It is fine to keep the PC+4 adder and have a mux to decide the source of the next PC.
+If you choose to follow the diagram, you should remove the PC+4 adder.
+As a side note, if you peek at the pipelined CPU design in assignment 3, you'll see that the PC+4 adder is required and there are muxes deciding the source of the next PC.
 
 # Part I: R-types
 
@@ -434,6 +440,8 @@ The following table shows how an I-type instruction is laid out,
 | 010000    | 0      |  imm[4:0] |  rs1   | funct3 | rd   | OP-IMM-32 | I-type | SRAIW                         |
 
 where `OP-IMM = 0010011`, `OP-IMM-32 = 0011011`; `imm[11:6]` indicates bit 11 to bit 6 of the immediate, and `imm[5]` indicates bit 5 of the immediate.
+
+The funct3 values can be found in the [RISC-V ISA specs v20191213, Vol I, page 130-131](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf).
 
 Note that, in general, operands in 64-bit machines are treated as 64-bit integers.
 This is also true for RV64IM, except when the opcode is `OP-32` or `OP-IMM-32`, where the instructions treat the operands as 32-bit integers, and the output is signed extended from 32-bit arithmetic result to 64-bit.

@@ -15,6 +15,7 @@ gradescope_201a: "https://www.gradescope.com/"
 perusall_link: "https://app.perusall.com/courses/ecs-201a-001-wq-2023/"
 
 154b_github_classroom_link: "https://github.com/ECS154B-WQ23"
+dino_cpu_link: "https://github.com/jlpteaching/dinocpu"
 154b_assignment1_github_link: "https://github.com/ECS154B-WQ23/dinocpu-assignment1"
 154b_assignment2_github_link: "https://github.com/ECS154B-WQ23/dinocpu-assignment2"
 154b_assignment3_github_link: "https://github.com/ECS154B-WQ23/dinocpu-assignment3"
@@ -38,7 +39,7 @@ dates:
   final:   "3/21"
 
   dino_1:  "1/20"
-  dino_2:  "1/27"
+  dino_2:  "1/30"
   dino_31: "2/6"
   dino_32: "2/17"
   dino_4:  "3/3"
@@ -46,5 +47,5 @@ dates:
 
   gem5_0:  "1/13"
   gem5_1:  "1/20"
-  gem5_2:  "1/27"
+  gem5_2:  "1/30"
   gem5_3:  "2/17"
