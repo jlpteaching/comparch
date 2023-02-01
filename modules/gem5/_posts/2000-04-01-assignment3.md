@@ -22,7 +22,7 @@ Title: ECS 201A Assignment 3
 
 You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
 
-Use [classroom: assignment 3]() to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 3](https://classroom.github.com/a/zntCWm3I) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
@@ -200,7 +200,7 @@ int main()
 
 ## Experimental setup
 
-In this assignment, you are asked to desing two `processor` and `cache_hierarchy` combinations for your experiments.
+In this assignment, you are asked to design  your own out of order `processor` models for your experiments.
 In regards to the rest of the components in your system:
 
 - You will be using `HW3RISCVBoard` as your main `board` for your computer system.
@@ -209,7 +209,7 @@ You can find the model for the board in `components/boards.py`.
 You can find its model in `components/cache_hierarchies.py`.
 - You will be using `HW3DDR4` as your `memory` in your computer system.
 You can find its model in `components/memories.py`.
-- You will be using `4 GHz` as you clock frequency `clk_freq` in your system.
+- You will be using `2 GHz` as you clock frequency `clk_freq` in your system.
 
 For your processor, you are going to use `HW3O3CPU` to model a high-performance and an efficient processor core.
 `HW3O3CPU` is based on `O3CPU` which is an internal model of gem5.
@@ -220,8 +220,6 @@ Below, you can find details about `HWO3CPU` and its parameters.
 
 For the purposes of this assignment, you need to configure a processor with the same width in all stages.
 In the constructor of `HW3O3CPU` this attribute is named as `width`.
-
-**NOTE**: Make sure to always use values of 4 or bigger for the `width` parameter.
 
 ### Reorder Buffer size
 
@@ -263,12 +261,14 @@ E.g. the base model `HW3O3CPU` assumes the same width for all the stages of the 
 
 **Tips and To dos**: When designing your cores and caches, I recommend taking note of the following:
 
-- Make sure your `width` parameter is always bigger than 3.
-- Make sure you register files have more than 32 entries each.
-- When designing your cores, I strongly recommend **not** beefing up your cores.
+- When designing your cores, I strongly recommend **not** beefing up your cores, especially `HW3LittleCore`.
 Remember that in computer design, there are almost always diminishing returns.
 A beefy `HW3LittleCore` will result in a `HW3BigCore` that is not much more performant than `HW3LittleCore`.
-E.g. I used `width` of 4 for `HW3LittleCore` and `width` of 6 for `HW3BigCore`.
+I recommend dividing the values you see on specifications by in half for `HW3LittleCore`.
+- Setting the `width` below 4 would result some unstability.
+However, you might want to set `width` to 3 or less for `HW3LittleCore`.
+I recommend starting with very little numbers for the rest of the parameters, especially `rob_size`, and gradually increasing them to get around this issue.
+- Make sure you register files have more than 32 entries each.
 
 ## Analysis and simulation
 
@@ -281,7 +281,7 @@ Before running any simulations answer the following questions in your report.
 ### Step I: Performance comparison
 
 Now that you have completed the design process of `HW3BigCore` and `HW3LittleCore`, let's compare their performances using our 3 workloads as benchmarks.
-Simulate each workload with each `processor` and `cache_hierarchy` combination.
+Simulate each workload with each core.
 For each workload compare the performance of `HW3BigCore` with the performance of `HW3LittleCore`.
 
 Answer the following questions in your report.
@@ -293,6 +293,8 @@ Use simulation data with proper simulation data to strengthen your reasoning.
 **CAUTION**: Make sure to use the correct mean to report average IPC improvement.
 3. Some workloads show more speedup that others. Which workloads show high speedup, which show low speedup? Look at the benchmark code (both the `.c` and `.s` files may be useful) and speculate the *algorithm characteristics* which influence the IPC difference between `HW3BigCore` and `HW3LittleCore`. What characteristics do applications have that lead to low performance improvement and what characteristics lead to high performance improvement?
 4. Which workload has the highest IPC for `HW3BigCore`? What is unique about this workload?
+
+**Hints**: Take a look at the assembly code of the **ROI** for inspiration.
 
 ### Step II: Medium core
 
@@ -309,10 +311,10 @@ We will use an equation like below to score the area of a pipeline using the 4 p
 
 $area_{score} = 2 * width^2 * rob\_ size + width^2 * (num\_ int\_ regs + num\_ fp\_ regs) + 4 * width + 2 * rob\_ size + (num\_ int\_ regs + num\_ fp\_ regs)$
 
-You can also get the area score for a pipeline desing by calling the method `get_area_score` on the processor.
+You can also get the area score for a pipeline design by calling the method `get_area_score` on the processor.
 
 Now that we have our cost function, let's devise a method for measuring our gains.
-In you report answer to the following question.
+In you report answer the following question.
 
 1. If you were to use the speed up under only one workload from the 3 workloads you used before, which workload would you choose? Why?
 
@@ -355,7 +357,7 @@ Like your submission, your grade is split into two parts.
         - Automation (5 points)
     b. Configuration scripts and correct simulation setup (40 points): 10 points for configuration script(s) used to run your simulations and 5 points for implementing each of the 6 processor models as described in [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
-2. Report (50 points): 6 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
+2. Report (50 points): 5.5 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
 ## Academic misconduct reminder
 
