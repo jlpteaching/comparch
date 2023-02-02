@@ -7,34 +7,39 @@ Title: ECS 201A Assignment 4
 ## Assignment 4 -- Due 11:59 pm (PST) *{{ site.data.course.dates.dino_4 }}*
 
 ## Table of Contents
-  - [Introduction](#introduction)
-  - [Application: matrix multiplication](#application-matrix-multiplication)
-  - [Template files](#template-files)
-  - [Compile gem5 to execute RISC-V binaries](#compile-gem5-to-execute-risc-v-binaries)
-  - [Different cache designs](#different-cache-designs)
-  - [Questions](#questions)
-  - [Submission](#submission)
-  - [Grading](#grading)
-  - [Academic misconduct reminder](#academic-misconduct-reminder)
-  - [Additional notes](#additional-notes)
+
+- [Administrivia](#administrivia)
+- [Introduction](#introduction)
+- [Workload]()
+- [Template files](#template-files)
+- [Compile gem5 to execute RISC-V binaries](#compile-gem5-to-execute-risc-v-binaries)
+- [Different cache designs](#different-cache-designs)
+- [Questions](#questions)
+- [Submission](#submission)
+- [Grading](#grading)
+- [Academic misconduct reminder](#academic-misconduct-reminder)
+- [Additional notes](#additional-notes)
+
+## Administrivia
+
+You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
+
+Use [classroom: assignment 4]() to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
-
-You should do this assignment on your own, although you are welcome to talk to classmates in person or on Campuswire about any issues you may have encountered.
-The standard late assignment policy applies.
 
 In this assignment, you'll be investigating the performance impacts of different cache architectures and different algorithm designs on matrix multiplication.
 The goals of this assignment are:
 
-- Show how algorithms have different behaviors as the microarchitecture changes.
+- Show how algorithms have different behaviors as the microarchitecture changes.
 - Show how changing the algorithm can change performance on the *same* microarchitecture.
 - Improve your understanding of cache architectures.
 
-For this assignment, since we're interested only in the kernel of the benchmarks, we'll be using gem5's *syscall emulation* mode.
-For this assignment, we don't care about I/O or operating system effects, so we will not use full system.
-This means that we won't have to wait for Linux to boot or require a precompiled Linux kernel, etc.
+## Worklaod
 
-## Application: matrix multiplication
+In this assignment, you are going to implement different techniques for multiplying matrices.
+You will see the effect of software implementation on the overall system performance.
+Below you can see a short description of your starter code.
 
 ### Base matrix multiplication algorithm
 
@@ -55,7 +60,7 @@ void serial_multiply(double **A, double **B, double **C, int size)
 
 This algorithm is shown in the figure below.
 
-![matrix multiplication]({{ '/img/mm.png' | relative_url }})
+![matrix multiplication]({{ '/img/mm_ijk.gif' | relative_url }})
 
 ### Blocked matrix multiplication
 
