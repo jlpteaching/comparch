@@ -268,7 +268,7 @@ See [the Submission section](#Submission) for more information on how to submit 
 
 | Name     | Percentage |
 |----------|------------|
-| Part I   | 60%        |
+| Part I   | 30%        |
 
 # Submission
 
@@ -400,10 +400,9 @@ See [the Submission section](#Submission) for more information on how to submit 
 
 | Name     | Percentage |
 |----------|------------|
-| Part I   | 50%        |
-| Part II  | 10%        |
-| Part III | 10%        |
-| Part IV  | 20%        |
+| Part II  | 20%        |
+| Part III | 20%        |
+| Part IV  | 30%        |
 
 # Submission
 
