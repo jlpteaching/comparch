@@ -84,6 +84,16 @@ The animation below shows how the order of operations during the multiplication 
 
 You can import this workload into your configuration script from `workloads/matmul_workload.py` as `IJKMatMulWorkload`.
 
+I have provided a ready made binary for this implementation.
+However, if you need to built this binary at any point, you can run the command below in `workloads/matmul`.
+
+```shell
+make mm-ijk-gem5
+```
+
+**CAUTION**: the above command generates a binary that could only be run with gem5.
+Running this binaries on your host will result in multiple errors.
+
 ### A stationary matrix multiplication (ikj)
 
 As you can see in the animation, the previous implementation of the matrix multiplication does not expose much locality in its accesses to matrices `A` and `B`.
@@ -116,6 +126,16 @@ The animation below shows how the order of operations during the multiplication 
 
 You can import this workload into your configuration script from `workloads/matmul_workload.py` as `IKJMatMulWorkload`.
 
+I have provided a ready made binary for this implementation.
+However, if you need to built this binary at any point, you can run the command below in `workloads/matmul`.
+
+```shell
+make mm-ikj-gem5
+```
+
+**CAUTION**: the above command generates a binary that could only be run with gem5.
+Running this binaries on your host will result in multiple errors.
+
 ### Blocked matrix multiplication
 
 You can improve the cache behavior of matrix multiplication by using a blocked algorithm.
@@ -133,7 +153,7 @@ For this assignment, you need to implement three different variants of the block
 After implementation, you can build your binary by running the command below in `workload/matmul`.
 
 ```shell
-make mm-block-ij
+make mm-block-ij-gem5
 ```
 
 After building your binary, you can import it as a workload into your configuration script from `workloads/matmul_workload.py` as `BlockIJMatMulWorkload`.
@@ -142,7 +162,7 @@ After building your binary, you can import it as a workload into your configurat
 After implementation, you can build your binary by running the command below in `workload/matmul`.
 
 ```shell
-make mm-block-ik
+make mm-block-ik-gem5
 ```
 
 After building your binary, you can import it as a workload into your configuration script from `workloads/matmul_workload.py` as `BlockIKMatMulWorkload`.
@@ -151,7 +171,7 @@ After building your binary, you can import it as a workload into your configurat
 After implementation, you can build your binary by running the command below in `workload/matmul`.
 
 ```shell
-make mm-block-kj
+make mm-block-kj-gem5
 ```
 
 After building your binary, you can import it as a workload into your configuration script from `workloads/matmul_workload.py` as `BlockKJMatMulWorkload`.
@@ -243,10 +263,24 @@ Remember, don't exhaustively search, but try to use the information and the stat
 
 Now, run the matrix multiply workloads on some real hardware (not gem5).
 You can run it on the CSIF machines or your laptop, etc.
-To build your binaries for your native hardware (e.g. your host), use the command below in `workloads/matmul`.
+To build all your binaries for your native hardware (e.g. your host), use the command below in `workloads/matmul`.
 
 ```shell
 make all-native
+```
+
+You can also build them separately using the commands below.
+
+```shell
+make mm-block-ij-native
+```
+
+```shell
+make mm-block-ik-native
+```
+
+```shell
+make mm-block-kj-native
 ```
 
 Before running your worklods on real hardware, answer the following questions in your report.
