@@ -1,6 +1,6 @@
 ---
 Author: Jason Lowe-Power
-Editor:  Maryam Babaie
+Editor:  Maryam Babaie, Mahyar Samani
 Title: ECS 201A Assignment 4
 ---
 
@@ -10,15 +10,13 @@ Title: ECS 201A Assignment 4
 
 - [Administrivia](#administrivia)
 - [Introduction](#introduction)
-- [Workload]()
-- [Template files](#template-files)
-- [Compile gem5 to execute RISC-V binaries](#compile-gem5-to-execute-risc-v-binaries)
-- [Different cache designs](#different-cache-designs)
-- [Questions](#questions)
+- [Workload](#workload)
+- [Experimental setup](#experimental-setup)
+- [Analysis and simulation](#analysis-and-simulation)
 - [Submission](#submission)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
-- [Additional notes](#additional-notes)
+- [Hints](#hints)
 
 ## Administrivia
 
@@ -35,18 +33,40 @@ The goals of this assignment are:
 - Show how changing the algorithm can change performance on the *same* microarchitecture.
 - Improve your understanding of cache architectures.
 
-## Worklaod
+## Workload
 
 In this assignment, you are going to implement different techniques for multiplying matrices.
-You will see the effect of software implementation on the overall system performance.
+All the ready made workloads discussed require one input argument.
+You will have to pass `matrix_size` as an input argument to the constructor of a workload (`__init__`) which describes the size of matrices `A`, `B`, and `C`.
+If you have to run a workload on native hardware (e.g. your host machine), you should pass the same **one** argument in the command line following the name of your binary.
+
+**NOTE**: for all the parts of this assignment assume:
+
+$C = A \times B$
+
+You will have to implement different techniques for matrix multiplications to see the effect of software implementation on the overall system performance.
 Below you can see a short description of your starter code.
 
-### Base matrix multiplication algorithm
+### Base matrix multiplication algorithm (C stationary, or ijk)
 
-Below is a simple implementation of matrix multiplication given in `mm.cpp` file [here]({{ '/img/assignment4-template.tgz' | relative_url }}).
+In programming matrices are stored as two dimensional arrays.
+Otherwise said, a matrix is stored as an array of arrays.
+There are two ways how a matrix could be stored this way.
+
+- Row major order: the matrix is represented as an array of the rows of the matrix.
+Each row is then stored as an array that includes elements from consecutive columns in the row.
+With this order, consecutive access to the elements in a row exhibits spatial locality.
+- Column major order: the matrix is represented as an array of the columns of the matrix.
+Each column is then stored as an array that includes elements from consecutive rows in the column.
+With this order, consecutive access to the elements in a column exhibits spatial locality.
+
+Below is a simple implementation of matrix multiplication given in `workloads/matmul/ijk_multiply.h`.
+For this assignment, assume that all `A`, `B`, and `C` matrices are stored in row major order.
+I.e. matrices are indexed like `A[row number][column number]`.
+The starter code first iterates over the rows of `A` (*i*), then iterates over the columns of `B` (*j*), and then iterates over the elements in the selected row and column (*k*).
 
 ```cpp
-void serial_multiply(double **A, double **B, double **C, int size)
+void multiply(double **A, double **B, double **C, int size)
 {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -58,178 +78,220 @@ void serial_multiply(double **A, double **B, double **C, int size)
 }
 ```
 
-This algorithm is shown in the figure below.
+The animation below shows how the order of operations during the multiplication operation.
 
 ![matrix multiplication]({{ '/img/mm_ijk.gif' | relative_url }})
+
+You can import this workload into your configuration script from `workloads/matmul_workload.py` as `IJKMatMulWorkload`.
+
+### A stationary matrix multiplication (ikj)
+
+As you can see in the animation, the previous implementation of the matrix multiplication does not expose much locality in its accesses to matrices `A` and `B`.
+Rather, it exposes locality when accessing matrix `C`.
+We can reorder our nested loops and still get the correct answer.
+In fact all permutations of our three nested loops will result in the same `C` matrix.
+Moreover, when it comes to the complexity of the algorithm itself, reordering the for loops does not change the complexity.
+However, reordering the for loops, changes the access pattern to the memory.
+In turn, it will increase/decrease our cache hit rate.
+For this step, you can see a slightly different implementation of the matrix multiplication program below.
+You can also find it in `workloads/matmul/ikj_multiply.h`
+
+```cpp
+void multiply(double **A, double **B, double **C, int size)
+{
+    for (int i = 0; i < size; i++) {
+        for (int k = 0; k < size; k++) {
+            for (int j = 0; j < size; j++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+```
+
+As you can see, two for loops have been interchanged (*j* and *k*) from our previous implementation.
+The animation below shows how the order of operations during the multiplication operation.
+
+![matrix multiplication]({{ '/img/mm_ikj.gif' | relative_url }})
+
+You can import this workload into your configuration script from `workloads/matmul_workload.py` as `IKJMatMulWorkload`.
 
 ### Blocked matrix multiplication
 
 You can improve the cache behavior of matrix multiplication by using a blocked algorithm.
-In this algorithm, rather than streaming through all of the inputs, you operate on a *block* at a time.
+In this algorithm, rather than streaming through all of the inputs, you operate on one *block* at a time.
+Look at [this short article](https://csapp.cs.cmu.edu/public/waside/waside-blocking.pdf) to learn more about the blocking technique used to increase locality in matrix multiplication.
 
-Similar to loop interchange, there are multiple different ways you can choose to block the matrix multiplication algorithm.
+Similar to loop interchange, there are multiple different ways you can choose to block accesses to your matrices in the matrix multiplication algorithm.
 One example is shown below where `k` and `j` are blocked and `i` is streamed.
 
-![blocked matrix multiplication]({{ '/img/bmm.png' | relative_url }})
+![blocked matrix multiplication]({{ '/img/mm_blocked.png' | relative_url }})
 
-## Template files
+For this assignment, you need to implement three different variants of the blocking scheme.
 
-In the template files, you'll find a matrix multiplication implementation which has both non-blocked and blocked algorithms.
+- Block *i* and *j* and implement it as the multiply function in `workloads/matmul/block_ij_multiply.h`.
+After implementation, you can build your binary by running the command below in `workload/matmul`.
 
-You can run the `mm-x86` binary locally.
-It takes two parameters: the size of the matrix and the blocking size.
-
-```sh
-./mm-x86 <size> <blocking>
-
-Supported blocksizes:
-0 => not blocked (default)
-1 => 4x4
-2 => 8x8
-3 => 16x16
-4 => 64x64
+```shell
+make mm-block-ij
 ```
 
-[Download the template files here.]({{ '/img/assignment4-template.tgz' | relative_url }})
+After building your binary, you can import it as a workload into your configuration script from `workloads/matmul_workload.py` as `BlockIJMatMulWorkload`.
 
-### Files
+- Block *i* and *k* and implement it as the multiply function in `workloads/matmul/block_ik_multiply.h`.
+After implementation, you can build your binary by running the command below in `workload/matmul`.
 
-- `mm.cpp`: A simple matrix multiplication code.
-- `my_cache.py`: A configurable two level cache hierarchy.
-- `riscv_se.py`: A simple SE mode board for RISC-V.
-- `run.py`: The runscript for gem5. It takes two arguments: `<blocking type>` and `<cache_config>`. See the `--help` for more information.
-    *Note*: In this file, you may need to adjust the path to `mm-riscv` at line 7 and `mm-riscv-gem5` at line 13 according to where you put your template files and gem5 root directory.
-- `mm-x86`: The matrix multiply binary compiled for x86.
-- `mm-riscv`: The matrix multiply binary compiled for RISC-V.
-- `mm-riscv-gem5`: The matrix multiply binary with annotations for gem5 compiled for RISC-V.
-
-## Compile gem5 to execute RISC-V binaries
-
-First, we need to create a gem5 simulator binary that can execute RISC-V code.
-As of the writing of this assignment ({{ site.data.course.quarter }}), each *target* ISA that you want to run requires a different gem5 build.
-To compile gem5 to execute RISC-V binaries, we will use the default build options file for RISC-V: `build_opts/RISCV`.
-
-**Important Note**: For this assignment you need Python 3.8 or newer. If you're using *CSIF machines or any machine that has older version of Python* (e.g., 3.6), you need to follow an additional step that we describe here, **before** compiling gem5 RISC-V binary. As shown [in this patch](https://gem5-review.googlesource.com/c/public/gem5/+/55863/2/src/python/gem5/components/boards/abstract_board.py), you are required to slightly modify the file located at `gem5/src/python/gem5/components/boards/abstract_board.py`.
-
-1. Remove only `, final` part in line #40.
-2. Remove the `@final` in line #239.
-
-You can use the following command to build gem5's RISC-V binary.
-
-```sh
-scons build/RISCV/gem5.opt -j<your number of cores>
+```shell
+make mm-block-ik
 ```
 
-**Reminder**: If you're using CSIF machines, you should use this format: **$HOME/.local/bin/scons** for `scons`.
+After building your binary, you can import it as a workload into your configuration script from `workloads/matmul_workload.py` as `BlockIKMatMulWorkload`.
 
-Note that this requires 3-4 GiB of disk space, so if you're running on a computer or virtual machine with limited disk space you may need to delete other prior builds (e.g., `rm -r build/X86`).
+- Block *k* and *j* and implement it as the multiply function in `workloads/matmul/block_kj_multiply.h`.
+After implementation, you can build your binary by running the command below in `workload/matmul`.
 
-## Different cache designs
-
-We have provided you with three different cache designs for both L1 and L2 caches:
-
-- `SmallL1`: 16 KiB with 1 cycle latency
-- `MediumL1`: 32 KiB with 2 cycle latency
-- `LargeL1`: 64 KiB with 5 cycle latency
-- `SmallL2`: 128 KiB with 10 cycle latency
-- `MediumL2`: 256 KiB with 15 cycle latency
-- `LargeL2`: 512 KiB with 20 cycle latency
-
-We've also given an example of three configurations of the cache hierarchy:
-
-```python
-def get_cache_hierarchy(config):
-    if config == '1':
-        return My2LevelCacheHierarchy(SmallL1(), LargeL2())
-    if config == '2':
-        return My2LevelCacheHierarchy(MediumL1(), MediumL2())
-    if config == '3':
-        return My2LevelCacheHierarchy(LargeL1(), SmallL2())
+```shell
+make mm-block-kj
 ```
 
-You can modify/extend/etc. this in any way.
+After building your binary, you can import it as a workload into your configuration script from `workloads/matmul_workload.py` as `BlockKJMatMulWorkload`.
 
-## Questions
+You will have to pass `matrix_size` (describes the size of matrices `A`, `B`, and `C`) and `block_size` (describes the size of the block in your blocking scheme) to the constructor of all of the workloads you have implemented.
+If you have to run a workload on native hardware (e.g. your host machine), you should pass the same **two** arguments in the same order in the command line following the name of your binary.
 
-For the first 3 questions, assume a matrix size of 128 x 128 doubles.
+**NOTE**: You can use the command below in `workloads/matmul` to create the binaries for all the workloads discussed.
 
-### Question 1: Working set sizes
-
-A) What is the working set size for the matrix multiply application?
-
-B) For each of the four blocking configurations, what's the active working set for multiplying *one block*?
-
-### Question 2: Performance
-
-A) For the three configurations given, which cache configuration performs the best? Why? (Use AMAT to explain.)
-
-B) For the three configurations given, which blocking scheme performs the best? Why? (Use statistics from the simulator to explain.)
-
-### Question 3: Configuration
-
-A) Can you find a configuration and a blocking scheme that performs best?
-Don't exhaustively search, but try to use the information and the statistics from the three configurations given to find a better one.
-
-B) What is more important, hit ratio, latency, L1, or L2 cache?
-
-### Question 4: Running on x86
-
-Now, run the matrix multiply on some real hardware (not gem5).
-Run it on the CSIF machines or your laptop, etc.
-I suggest using an input of 256 or 512.
-I have given you an x86 compiled binary, but if you want to recompile mm.cpp for a different architecture, feel free.
-
-A) What blocking size performs the best?
-
-B) What is the L1/L2/L3 size of the processor you're running on? (`lscpu` or `/proc/cpuinfo` and Google should help)
-
-C) Can you use the information about the cache sizes to predict the best performing block size?
-
-### Hints
-
-There are a few stats that may come in handy:
-
+```shell
+make all-gem5
 ```
-overallMissRate::total
-overallAvgMissLatency::total (in Ticks or ps)
-simSeconds
+
+**CAUTION**: the above command generates binaries that could only be run with gem5.
+Running these binaries on your host will result in multiple errors.
+
+## Experimental setup
+
+In this assignment, we will investigate the effect of caching on overall performance.
+We have already looked at how software implementation can help improve caching in matrix multiplication.
+In regards to hardware models, we will use different cache hierarchies to see the effect of cache size and latency on the performance.
+Under the `components` directory, you will find modules that define the different models that you should use in your configuration scritps.
+
+- Board models: You will find the definitions for `HW4RISCVBoard` in `componets/boards.py`.
+- Board models: You will find the definitions for `HW4O3CPU` in `componets/processors.py`.
+- Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`.
+You can find three models for your cache hierarchy.
+They all have an L2 cache with the size of `128 KiB`.
+They also have the same L1I cache.
+However, there have different L1D cache design.
+You can find a short description of each L1D design below.
+  - Large: a `48 KiB` L1D cache with higher latency.
+  - Medium: a `32 KiB` L1D cache with medium latency.
+  - Small: a `16 KiB` L1 cache with lower latency.
+
+Make sure you understand their similarities and differences.
+
+- Memory models: You will find the definitions for `HW4DDR4` in `components/memories.py`.
+
+## Analysis and simulation
+
+As part of your analysis and simualtion you will have to run your workloads on both real hardware and gem5.
+Before running any workloads, let's take a look at our working set size.
+Working set size is the number of bytes that have to be moved between the processor and the memory subsystem.
+
+### Step I: Working set sizes
+
+In your report answer the following questiosn.
+
+1. What is the working set size for the matrix multiply application?
+Describe the working set size as a function of `matrix_size` and size of a double `double_size`.
+Plug in 128 as `matrix_size` and 8 as `double_size` and calculate the working set size.
+2. For each of the three blocking configurations, what's the active working set for multiplying *one block*?
+Describe the working set size as a function of `matrix_size`, `block_size`, and `double_size`.
+Plug in 128 as `matrix_size`, 8 as `block_size`, and 8 as `double_size`.
+
+### Step II: Simulation and performance comparison
+
+For your simulation, create a configuration script that allows you to run any of the workloads with any of the cache hierachies.
+For this step:
+
+- run all the workloads on `HW4SmallCacheHierarchy`
+- run `BlockIJMatMulWorkload` with all the cache hierarchies.
+
+In your report answer the following questions.
+
+1. For `HW4SmallCacheHierarcy`, which blocking scheme performs the best? Why?
+2. For `BlockIKMatMulWorkload`, which cache hierarchy performs the best? Why?
+
+Use a `matrix_size` of 128 and a `block_size` of 8 for all your simulations.
+
+**Hints**: In your answer use cache related statistics such as `hit rate`.
+Moreover, think of how **a**verage **m**emory **a**ccess **t**ime (**AMAT**) could help you explain your results.
+I also recommend thinking about how the access pattern could influence memory access time.
+
+For this step, you will run **6 configurations** in total.
+
+### Step III: Finding an optimal setup
+
+In this step, you will use your conclusions in the last step to predict a combination of blocking scheme and cache hierarchy that performs best.
+In your report, answer the follwing questions.
+
+1. What combination of a blocking scheme and cache hierarchy will perform best?
+In your answer describe your approach for finding this combination.
+Remember, don't exhaustively search, but try to use the information and the statistics from the previous step to find the best combination.
+2. Between the size and the latency of the caches which one did you find has a more significant effect?
+
+### Step IV: Running on native hardware
+
+Now, run the matrix multiply workloads on some real hardware (not gem5).
+You can run it on the CSIF machines or your laptop, etc.
+To build your binaries for your native hardware (e.g. your host), use the command below in `workloads/matmul`.
+
+```shell
+make all-native
 ```
+
+Before running your worklods on real hardware, answer the following questions in your report.
+
+1. What is the L1/L2/L3 size of the processor you're running on? (`lscpu` or `/proc/cpuinfo` and Google should help)
+2. Can you use the information about the cache sizes to predict the best performing block scheme and size?
+
+When running on native hardware, I recommend using `matrix_size` of at least as big as 256.
+After running the workloads on real hardware answer the following question in your report.
+
+3. Which blocking scheme and size exhibited the best performance?
 
 ## Submission
 
-For this assignment you don't need to turn in any code files. The only file you need to submit on gradescope at the designated section, is the pdf file of your report. Please do not forget to specify each question according to the outline when you're submitting your work.
-In your report, you're not required to include any data which is not used in your analysis. Only include those that you actually use to justify your answer and make sure they are precisly and cleary specified.
+As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
+You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
+In your report answer the questions presented in , [Analysis and simulation: Step I](#step-i-working-set-sizes), [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), [Analysis and simulation: Step III](#step-iii-finding-an-optimal-setup), and [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
+
+Use clear reasoning and visualization to drive your conclusions.
+Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
+
+- `Instruction.md`: should include instruction on how to run your simulations.
+- Automation: code/scripts to run your simulations.
+- Configuration: python file configuring the systems you need to simulate.
+- Workload implementation: You will need to add your implementations for the three different blocking schemes to their respective source code files in `workloads/matmul`.
 
 ## Grading
 
-The grading breakdown is as follows (they are subject to change, but they show the relative breakdown):
+Like your submission, your grade is split into two parts.
 
-Total points = 100
+1. Reproducibility Package (50 points):
+    a. Instruction and automation to run simulations for different section and dump statistics (20 points)
+        - Instructions (5 points)
+        - Automation (5 points)
+    b. Configuration scripts and source codes (40 points): 5 points for configuration script(s) used to run your simulations as described in [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), 10 points for implementing each of the 3 blocking schemes as described in [Blocked matrix multiplication](#blocked-matrix-multiplication), and 5 points for a scripts used to run workloads on native hardware as described in [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
 
-| #Question       | Points |
-|-----------------|--------|
-| Question 1.A	  | 5      |
-| Question 1.B	  | 10	   |
-| Question 2.A	  | 15     |
-| Question 2.B    | 15     |
-| Question 3.A	  | 10     |
-| Question 3.B	  | 15     |
-| Question 4.A	  | 15     |
-| Question 4.B	  | 5      |
-| Question 4.C	  | 10     |
-
+2. Report (50 points): 5.5 points for each question presented in [Analysis and simulation: Step I](#step-i-working-set-sizes), [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), [Analysis and simulation: Step III](#step-iii-finding-an-optimal-setup), and [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
 
 ## Academic misconduct reminder
 
-You are to work on this project **individually**.
-You may discuss *high level concepts* with one another (e.g., talking about the diagram), but all work must be completed on your own.
+You are required to work on this assignment in teams. You are only allowed to share you scripts and code with your teammate(s). You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
 
-**Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
-Any code found on GitHub that is not the base template you are given will be reported to SJA.
-If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
-GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and **you shouldn't have *any* collaborators** for your code in this class.
+Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
 
-## Additional notes
+## Hints
 
-* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
-* If you need help, come to office hours for the TA, or post your questions on Campuswire.
+- Start early and ask questions on Piazza and in discussion.
+- If you need help, come to office hours for the TA, or post your questions on Piazza.
