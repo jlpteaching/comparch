@@ -24,3 +24,6 @@ This is a page for materials discussed in the discussion sessions.
 [Quiz 4]({{'img/154B_discussions/Quiz4.pdf' | relative_url}})
 [Quiz 5]({{'img/154B_discussions/Quiz5.pdf' | relative_url}})
 
+### Discussion 5
+[Slides]({{'img/154B_discussions/154B-discussion-5.pdf' | relative_url}})
+
