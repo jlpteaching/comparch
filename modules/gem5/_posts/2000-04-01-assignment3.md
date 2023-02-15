@@ -276,6 +276,7 @@ Before running any simulations answer the following questions in your report.
 
 1- What will be the average speed up of `HW3BigCore` over `HW3LittleCore`? Can you predict an upper bound using your pipeline parameters?
 **Hint**: You can predict and upper bound for the speed up using Amdahl's law with optimistic values.
+
 2- Do you think all the workloads will experience the same speed up between `HW3BigCore` and `HW3LittleCore`?
 
 ### Step I: Performance comparison
