@@ -27,3 +27,5 @@ This is a page for materials discussed in the discussion sessions.
 ### Discussion 5
 [Slides]({{'img/154B_discussions/154B-discussion-5.pdf' | relative_url}})
 
+### Discussion 6 (Feb 15th)
+[Slides]({{'img/154B_discussions/154B-discussion-6.pdf' | relative_url}})
