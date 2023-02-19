@@ -11,6 +11,7 @@ Originally from ECS 154B Lab 4, Winter 2023.
 ## Table of Contents
 
 * [Introduction](#introduction)
+* [Updating DINO CPU on GitHub Codespaces / CSIF machines](#updating-dino-cpu-on-github-codespaces-csif-machines)
 * [Glossary](#glossary)
 * [The Computer System](#the-computer-system)
   * [The Core](#the-core)
@@ -74,6 +75,18 @@ performance analysis.
 In terms of implementation, most of the system is implemented.
 However, we will ask you to complete the hazard detection unit for the new
 pipelined CPU.
+
+## Updating DINO CPU on GitHub Codespaces / CSIF machines
+The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
+
+The assignment 4 template repo is located at [{{site.data.course.154b_assignment3_github_link}}]({{site.data.course.154b_assignment4_github_link}}).
+
+Follow the following link to access assignment 4: [{{site.data.course.154b_assignment3_invitation_link}}]({{site.data.course.154b_assignment4_invitation_link}}).
+
+The above link will automatically create a repo in the GitHub Classroom page that only you have the access to.
+
+In the event that the template repo is updated, your own repo won't be automatically updated.
+You don't need to keep track of the template repo, unless we found an error in the assignment, in which case, we will make an announcement on {{site.data.course.discussion_site}} and provide ways to update your repo.
 
 ## Glossary
 
@@ -255,6 +268,16 @@ assignment.
 
 The code for the Non Combination Pipelined CPU is mostly the same as the Pipelined CPU.
 However, we are going to use the `HazardUnitNonCombin` rather than `HazardUnit`.
+
+## Updating the DINO CPU code
+
+You should not reuse the previous assignment templates for this assignment or other assignments.
+We updated the local tests to match those on Gradescope, as well as bug fixes for this assignments.
+Those changes are not reflected in the previous assignment templates.
+
+If you start the assignment 3 before the previous assignments late due date, you can reuse the code from the previous assignments by copying the modified files from the assignments.
+We will update the assignment 2 repo with the solution after the assignment 2's late due date.
+You can reuse the code from the solution for this assignment as well as the subsequent assignments.
 
 ### Hints
 
@@ -466,8 +489,8 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 
 Improve the performance of the non combination pipelined CPU when running *any* of
 application in the Full Application tests and their `-loops-unrolled` variants.
-You can find the tests [here](https://github.com/ECS154B-WQ23/dinocpu-assignment3/blob/main/src/main/scala/testing/InstTests.scala#L1096)
-and [here](https://github.com/ECS154B-WQ23/dinocpu-assignment3/blob/main/src/main/scala/testing/InstTests.scala#L1178).
+You can find the tests [here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/testing/InstTests.scala#L1096)
+and [here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/testing/InstTests.scala#L1198).
 
 The new CPU performance should match one of the following cases,
 
