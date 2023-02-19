@@ -424,6 +424,7 @@ when running `stream-64-stride-1-noverify.riscv` compared to running
 ### Grading
 Part I will be automatically graded on Gradescope.
 See the Submission section for more details.
+
 | Part                | Percentage |
 |---------------------|------------|
 | Part 4.1            |        20% |
@@ -456,7 +457,7 @@ The auto-grader might fail complete grading within the allocated time if there a
 
 #### Written Portion
 
-You will upload your answers for the [Assignment 4 - Written Portion({{site.data.course.154b_gradescope_lab4_written_link}}) assignment to Gradescope.
+You will upload your answers for the [Assignment 4 - Written Portion]({{site.data.course.154b_gradescope_lab4_written_link}}) assignment to Gradescope.
 Please upload a separate page for each answer!
 Additionally, I believe Gradescope allows you to circle the area with your final answer.
 Make sure to do this!
