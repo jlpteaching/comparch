@@ -105,7 +105,7 @@ with that was least recently accessed.
 
 ## The Computer System
 
-![system_diagrams](wq23_diagrams/systems.svg)
+![system\_diagrams]({{'img/dinocpu/assignment4-systems.svg' | relative_url}})
 **Figure 1.** Illustration of the systems that we use for evaluating of the caches.
 On each system, the left arrows are wires responsible for sending instruction memory
 requests/responses, while the right arrows are wires responsible for sending data
@@ -203,8 +203,8 @@ pipelined implentation. The `stream-64-stride-1-noverify.riscv`
 and `stream-64-stride-4-noverify.riscv` are used for performance
 evaluation.
 
-![benchmark](wq23_diagrams/stream-for-loop.svg)
-**Figure 2.** The main part of the stream benchmarks consist of calling the copy()
+![benchmark]({{'img/dinocpu/assignment4-stream-for-loop.svg' | relative_url}})
+**Figure 2.** The main part of the stream benchmarks consists of calling the copy()
 function twice. When running each of the benchmarks, the CPU spends most time
 executing the instruction inside the copy() function.
 
@@ -220,7 +220,7 @@ non combinational core.
 
 ### The new memory interface
 
-![mem_interface_diagrams](wq23_diagrams/mem-interface.svg)
+![mem\_interface\_diagrams]({{'img/dinocpu/assignment4-mem-interface.svg' | relative_url}})
 
 **Figure 3.** The new memory interface, which includes a bundle of valid/ready/good signals
 that are used for synchronization between the core and the memory subsystem. Both `imem` and
@@ -359,7 +359,7 @@ described above with the `stream-64-stride-1-noverify.riscv` benchmark and the
 `stream-64-stride-4-noverify.riscv` benchmark.
 The X-axis should be grouped by systems.
 
-![CPI_graph](wq23_diagrams/CPI-graph-example.svg)
+![CPI_graph]({{'img/dinocpu/assignment4-CPI-graph-example.svg' | relative_url}})
 **Figure 4.** An example of a CPI graph with the collected data. Note that the
 data on the graph are not the real CPI of running the mentioned benchmarks on
 the four systems.
