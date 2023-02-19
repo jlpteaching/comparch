@@ -11,7 +11,7 @@ Originally from ECS 154B Lab 4, Winter 2023.
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Updating DINO CPU on GitHub Codespaces / CSIF machines](#updating-dino-cpu-on-github-codespaces-csif-machines)
+* [Updating DINO CPU on GitHub Codespaces / CSIF machines](#updating-dino-cpu-on-github-codespaces--csif-machines)
 * [Glossary](#glossary)
 * [The Computer System](#the-computer-system)
   * [The Core](#the-core)
@@ -79,9 +79,9 @@ pipelined CPU.
 ## Updating DINO CPU on GitHub Codespaces / CSIF machines
 The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
 
-The assignment 4 template repo is located at [{{site.data.course.154b_assignment3_github_link}}]({{site.data.course.154b_assignment4_github_link}}).
+The assignment 4 template repo is located at [{{site.data.course.154b_assignment4_github_link}}]({{site.data.course.154b_assignment4_github_link}}).
 
-Follow the following link to access assignment 4: [{{site.data.course.154b_assignment3_invitation_link}}]({{site.data.course.154b_assignment4_invitation_link}}).
+Follow the following link to access assignment 4: [{{site.data.course.154b_assignment4_invitation_link}}]({{site.data.course.154b_assignment4_invitation_link}}).
 
 The above link will automatically create a repo in the GitHub Classroom page that only you have the access to.
 
@@ -126,7 +126,7 @@ memory requests/responses.
 We will use the same pipeline that we built in the assignment 3.
 However, the memory interface is slightly tweaked to support memory devices
 of which the latency of a memory request is unknown to the core
-[\[1\]](#cache-miss-laitency-might-vary).
+[\[1\]](#cache-miss-latency-might-vary).
 
 Note that both instructions and data come from memory devices.
 As a result, extra care should be taken to ensure correct instructions enter
@@ -139,7 +139,7 @@ the core receives correct instructions/data from the cache system.
 We will use one-level cache system for this assignment.
 We call this a split L1 Cache.
 
-Split L1 Cache: The L1 Cache consists of two components: an L1 Instruction Cache
+The split L1 Cache consists of two components: an L1 Instruction Cache
 (L1I) and L1 Data Cache (L1D).
 The Instruction Cache is optimized for read-only accesses.
 The Data Cache supports both read and write operations.
@@ -181,7 +181,7 @@ means,
 
 * `valid ->  1`: The entry contains valid data.
 * `dirty ->  1`: The entry was written to.
-* `tag -> 211`: The tag bits are 211 in decimal (or 0xd3 in hexadecimal).
+* `tag -> 211`: The tag bits are 211 in decimal, or 0xd3 in hexadecimal.
 * `memIdx -> 27`: The 28th entry of CacheMemory has data of this cache block.
 * `age -> 17614`: The most recent access to this cache block was in the cycle of 17614.
 
@@ -215,9 +215,9 @@ and `stream-64-stride-4-noverify.riscv` are used for performance
 evaluation.
 
 ![benchmark]({{'img/dinocpu/assignment4-stream-for-loop.svg' | relative_url}})
-**Figure 2.** The main part of the stream benchmarks consists of calling the copy()
+**Figure 2.** The main part of the stream benchmarks consists of calling the `copy()`
 function twice. When running each of the benchmarks, the CPU spends most time
-executing the instruction inside the copy() function.
+executing the instruction inside the `copy()` function.
 
 ## Part I: Implementing the Hazard Detection Unit for Non Combinational Pipelined CPU
 
@@ -269,16 +269,6 @@ assignment.
 The code for the Non Combination Pipelined CPU is mostly the same as the Pipelined CPU.
 However, we are going to use the `HazardUnitNonCombin` rather than `HazardUnit`.
 
-## Updating the DINO CPU code
-
-You should not reuse the previous assignment templates for this assignment or other assignments.
-We updated the local tests to match those on Gradescope, as well as bug fixes for this assignments.
-Those changes are not reflected in the previous assignment templates.
-
-If you start the assignment 3 before the previous assignments late due date, you can reuse the code from the previous assignments by copying the modified files from the assignments.
-We will update the assignment 2 repo with the solution after the assignment 2's late due date.
-You can reuse the code from the solution for this assignment as well as the subsequent assignments.
-
 ### Hints
 
 * The instruction outputted by imem is only correct when imem's good signal is 1.
@@ -315,7 +305,7 @@ runMain dinocpu.simulate_predefined_system <system_name> <riscv_binary>
 
 where,
 `<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
-The `default` system should be used for testing purpose.
+The `default` system should be used for testing purposes.
 The `default` system is structurally the same as `system1` except that the RAM latency
 is 1 cycle instead of 30 cycles in other systems.
 
@@ -349,7 +339,7 @@ runMain dinocpu.simulate_predefined_system <system_name> <riscv_binary>
 where,
 
 * `<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
-The `default` system should be used for testing purpose.
+The `default` system should be used for testing purposes.
 The `default` system is structurally the same as `system1` except that the RAM latency
 is 1 cycle instead of 30 cycles in other systems.
 * `<riscv_binary>` is name of the benchmark.
@@ -357,11 +347,11 @@ is 1 cycle instead of 30 cycles in other systems.
 **Notes:** Since there are multiple ways of dealing with timing in a CPU, each
 correct implementation might slightly differs in terms of the optimality, and
 thus we don't expect to see exactly the same amount of cycles per each data point
-when comparing your implementation and the solution.
+when comparing your implementation with the solution.
 However, as long as the correctness is ensured, the general trend of the number of
-cycles should not differ (i.e., there are some systems that are strictly slower than
-others).
-So, we opt to use graphs rather than exact numbers for reporting data.
+cycles should not differ. I.e., there are some systems that are strictly slower than
+others.
+Therefore, we opt to use graphs rather than exact numbers for reporting data.
 
 **Notes:** You don't have to report raw data or how the calculation was done
 for question 2, question 3, and question 4.
@@ -375,8 +365,13 @@ Determine the number of dynamic instructions of the
 `stream-64-stride-1-noverify.riscv` and the
 `stream-64-stride-4-noverify.riscv`.
 
-**Hint:** Single cycle CPU and pipelined CPU should have exactly the same
-amount of executed instructions for each binary.
+**Hint:** Regardless of microarchitectures, the amount of dynamic instruction
+must be the same for each binary containing RV64IM instructions.
+The single cycle CPU might be useful for this question.
+
+**Hint:** DINOCPU simulations output the number of cycles, and does not output
+the number of simulated instructions. Part of the Iron Law might be useful for
+calculation.
 
 ### Question 2 (20 points)
 
@@ -496,7 +491,7 @@ The new CPU performance should match one of the following cases,
 
 1. General performance improvement across most full application tests.
 It's okay to have a marginal performance improvement in this case.
-2. The CPU performs especially well (>1.2x speedup) on a couple of full applications,
+2. The CPU performs especially well (>1.1x speedup) on a couple of full applications,
 while suffers slowdowns on other full applications. Those designs are called
 application accelerators.
 
