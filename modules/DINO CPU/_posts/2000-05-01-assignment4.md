@@ -8,10 +8,8 @@ DINO CPU Assignment 4: The Why of Caching.
 
 Originally from ECS 154B Lab 4, Winter 2023.
 
-Due on *{{ site.data.course.dates.dino_4 }}* at 11:59pm: See [Submission](#submission) for details.
+## Table of Contents
 
-# Table of Contents
-* [Table of Contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Glossary](#glossary)
 * [The Computer System](#the-computer-system)
@@ -39,7 +37,7 @@ Due on *{{ site.data.course.dates.dino_4 }}* at 11:59pm: See [Submission](#submi
 * [Extra Credits (10 points)](#extra-credits-10-points)
 * [Conclusion](#conclusion)
 
-# Introduction
+## Introduction
 
 Caching is among the most influential ideas in computing.
 In fact, the concept reaches many fields of computer science.
@@ -77,42 +75,35 @@ In terms of implementation, most of the system is implemented.
 However, we will ask you to complete the hazard detection unit for the new
 pipelined CPU.
 
-# Glossary
+## Glossary
 
-- Core/CPU terminology: Technically, the cache system resides on a CPU. We
+* Core/CPU terminology: Technically, the cache system resides on a CPU. We
 will use the term "core" to refer to the pipeline, and the term "CPU" to
 refer to the pipeline and the cache system.
-
-- Memory Latency: The time between when a memory device receives a request
+* Memory Latency: The time between when a memory device receives a request
 and when it completes the request.
-
-- Memory Hierarchy: A series of memory devices that, the lower level a memory
+* Memory Hierarchy: A series of memory devices that, the lower level a memory
 device is, the higher memory latency it has.
-
-- Memory System: All memory devices including the cache system and RAM.
-
-- Memory Transaction: A memory device can send a *memory request* to its lower
+* Memory System: All memory devices including the cache system and RAM.
+* Memory Transaction: A memory device can send a *memory request* to its lower
 next memory device, which will send back the corresponding *memory response*
 when the request is complete. The DINOCPU memory system returns 8 bytes of
 requested data for each memory read request. Note that, for all memory
 devices in DINOCPU, the devices won't accept a new memory request until
 the currect request is finished. There's also no mechanism for cancelling
 a memory request.
-
-- Dirty Cache Entry: A cache entry is written to at some point that has yet to
+* Dirty Cache Entry: A cache entry is written to at some point that has yet to
 be written back to the lower level memory.
-
-- Cache Entry Eviction: When there is a cache miss, a cache system will have to
+* Cache Entry Eviction: When there is a cache miss, a cache system will have to
 send a memory request to get the data to the cache. Upon receiving the
 response, if all cache entry are occupied, one of the cache *current* entry
 will be evicted, i.e., this entry will be sent to the next lower
 level memory if the next lower level memory does not have the most recent
 value of the dirty entry. The evicted entry will be replaced by the new data.
-
-- LRU replacement policy: When all cache entry are occupied, the cache entry
+* LRU replacement policy: When all cache entry are occupied, the cache entry
 with that was least recently accessed.
 
-# The Computer System
+## The Computer System
 
 ![system_diagrams](wq23_diagrams/systems.svg)
 **Figure 1.** Illustration of the systems that we use for evaluating of the caches.
@@ -120,7 +111,7 @@ On each system, the left arrows are wires responsible for sending instruction me
 requests/responses, while the right arrows are wires responsible for sending data
 memory requests/responses.
 
-## The Core
+### The Core
 
 We will use the same pipeline that we built in the assignment 3.
 However, the memory interface is slightly tweaked to support memory devices
@@ -132,62 +123,63 @@ the pipeline, as well as the correct data are received.
 For this assignment, you will update the hazard unit to make sure that the
 the core receives correct instructions/data from the cache system.
 
-## The Cache System
+### The Cache System
 
 We will use one-level cache system for this assignment.
-We call this L1 Cache.
+We call this a split L1 Cache.
 
-L1 Cache: The L1 Cache consists of two components: an L1 Instruction Cache
+Split L1 Cache: The L1 Cache consists of two components: an L1 Instruction Cache
 (L1I) and L1 Data Cache (L1D).
 The Instruction Cache is optimized for read-only accesses.
 The Data Cache supports both read and write operations.
-Each of the L1I and L1D is 4-way associtive cache having 32 entries.
+Each of the L1I and L1D is 4-way associative cache having 32 entries.
 The cache block size is 8 bytes.
 Each cache uses the LRU replacement policy, and the write-back write policy.
 
 ### DINOCPU Cache Details
 
-Each cache component consists of one CacheTable and one CacheMemory.
+Each cache component consists of one `CacheTable` and one `CacheMemory`.
 
-A CacheMemory is an array of registers containing all cache blocks.
-Note that CacheMmoery only has the data, it doesn't have metadata.
+A `CacheMemory` is an array of registers containing all cache blocks.
+Note that `CacheMemory` only has the data, it doesn't have metadata.
 
-A CacheTable is a table of CacheEntry's, where each CacheEntry contains
+A `CacheTable` is a table of `CacheEntry`s, where each `CacheEntr`y` contains
 the metadata uniquely identifies a cache block, as well as metadata indicating
 the status of the cache block, and a pointer to the cache block data in the
-CacheMemory.
+`CacheMemory`.
 
-A CacheEntry is stuctured as followed,
+A CacheEntry is structured as followed,
 
-```
+```scala
 class CacheEntry(val numEntryIndexingBits:Int, val numTagBits: Int) extends Bundle {
   val valid  = Bool()                       // Whether this entry contains valid data.
   val dirty  = Bool()                       // Whether this entry is written to by the core. Default to False, set to True upon a write request.
   val tag    = UInt(numTagBits.W)           // Contains the tag bits.
   val memIdx = UInt(numEntryIndexingBits.W) // Where is it in the cache memory.
   val age    = UInt(32.W)                   // When was the most recent access to this cache block.
-} 
+}
 ```
 
 For example,
 
-```
+```scala
 idx 27 -> CacheEntry(valid ->  1, dirty ->  1, tag -> 211, memIdx -> 27, age -> 17614)
 ```
+
 means,
-- `valid ->  1`: The entry contains valid data.
-- `dirty ->  1`: The entry was written to.
-- `tag -> 211`: The tag bits are 211 in decimal (or 0xd3 in hexadecimal).
-- `memIdx -> 27`: The 27th entry of CacheMemory has data of this cache block.
-- `age -> 17614`: The most recent access to this cache block was in cycle 17614.
 
+* `valid ->  1`: The entry contains valid data.
+* `dirty ->  1`: The entry was written to.
+* `tag -> 211`: The tag bits are 211 in decimal (or 0xd3 in hexadecimal).
+* `memIdx -> 27`: The 27th entry of CacheMemory has data of this cache block.
+* `age -> 17614`: The most recent access to this cache block was in cycle 17614.
 
-## The RAM Device
+### The RAM Device
 
 The RAM Device is the lowest level memory device in the DINOCPU system.
 All accesses to the RAM device incurs a 30 CPU cycles latency.
 
-# The Benchmarks
+## The Benchmarks
 
 For this assignment, we evaluate the effectiveness of the cache system using
 a benchmark called `stream`, which is inspired by
@@ -200,10 +192,10 @@ stream-<n>-stride-<stride>[-noverify].riscv
 ```
 
 where,
-- each element is of size 16 bits.
-- `n`: number of memory accesses *per* array *per* iteration.
-- `stride`: the distance between two consecutive elements.
-- `-noverify`: if the workload verifies the result array.
+* each element is of size 16 bits.
+* `n`: number of memory accesses *per* array *per* iteration.
+* `stride`: the distance between two consecutive elements.
+* `-noverify`: if the workload verifies the result array.
 
 For this assignment, we will use `stream-64-stride-1.riscv` and
 `stream-64-stride-4.riscv` for verifying the correctness of the
@@ -216,17 +208,17 @@ evaluation.
 function twice. When running each of the benchmarks, the CPU spends most time
 executing the instruction inside the copy() function.
 
-# Part I: Implementing the Hazard Detection Unit for Non Combinational Pipelined CPU
+## Part I: Implementing the Hazard Detection Unit for Non Combinational Pipelined CPU
 
 In this part, you will complete the hazard detection unit for the non combinational
 pipelined CPU in `components/hazardnoncombin.scala`.
-The descriptions on top of the file that file should give explaination for the meaning
+The descriptions on top of the file that file should give explanation for the meaning
 of each signal.
 The following subsections describe the changes in the cores as well as in the memory.
 Note that you don't have to change any component other than the hazard unit for the
 non combinational core.
 
-## The new memory interface
+### The new memory interface
 
 ![mem_interface_diagrams](wq23_diagrams/mem-interface.svg)
 
@@ -237,24 +229,23 @@ signals of the memory are the same. E.g., for the instruction memory interface, 
 request signal consists of the `address` signal, and the memory response signal consists of
 `instruction` signal.
 
+### The contract between the core and the Memory Interface
 
-## The contract between the core and the Memory Interface
-
-- The core only sends a request when the core set the valid signal to true and Memory is ready.
-- The memory only processes one request at a time.
-- If the memory receives a request in the current cycle, it will start processing the request in the
+* The core only sends a request when Memory is ready, and the core sets the valid signal to true.
+* The memory only processes one request at a time.
+* If the memory receives a request in the current cycle, it will start processing the request in the
 next cycle.
-- If the memory is not ready, then even if the CPU sets valid to 1, the memory does not receive
+* If the memory is not ready, then even if the CPU sets valid to 1, the memory does not receive
 the request.
-- The memory only guarantees the response to be correct when and only when the `good`
-signal is 1. It means, if the `good` signal is 0, the response might contain garbage.
-- The `good` signal is only set to one for 1 cycle. It means, the response is only guaranteed to
+* The memory only guarantees the response to be correct if and only if the `good`
+signal is 1. This means, if the `good` signal is 0, the response might contain garbage.
+* The `good` signal is only set to one for 1 cycle. This means, the response is only guaranteed to
 be correct in that cycle.
-- A load instruction will result in a read memory request being sent to the memory subsystem.
-- A store instruction will result in a read memory request and a write memory request being
+* A load instruction will result in a read memory request being sent to the memory subsystem.
+* A store instruction will result in a read memory request and a write memory request being
 sent to the memory subsystem.
 
-## Updating the Pipelined CPU
+### Updating the Pipelined CPU
 
 The pipelined CPU that is compatible with non combinational memory components is located
 at `pipelined/cpu-noncombin.scala` file.
@@ -266,28 +257,23 @@ assignment.
 The code for the Non Combination Pipelined CPU is mostly the same as the Pipelined CPU.
 However, we are going to use the `HazardUnitNonCombin` rather than `HazardUnit`.
 
-## Hints
+### Hints
 
-- The insrtuction outputted by imem is only correct when and only when
-imem's good signal is 1.
-- Similarly, the readdata outputted by dmem is only correct when and only when
-dmem's good signal is 1.
-- There's no new control hazard or new data hazard. We are modifying the hazard unit
+* The instruction outputted by imem is only correct when imem's good signal is 1.
+* Similarly, the readdata outputted by dmem is only correct when dmem's good signal is 1.
+* There's no new control hazard or new data hazard. We are modifying the hazard unit
 because we can stall and flush stage registers using the hazard unit.
-- It's easier to start with making sure only correct instructions enter the pipeline.
+* It's easier to start with making sure only correct instructions enter the pipeline.
 Meaning, only advance an instruction from IF stage to ID stage when imem's good signal
 is set.
-- There are multiple ways of handling control hazards and data dependencies when
-timing involves. You can follow discussion sessions for suggested ways. However, the
-suggestions might not be the optimal ways. You are encouraged to discuss about dealing
-with timing in the pipeline with your peers/TAs/instructor. You do have to write
-the code yourself, however.
-- There's no guarantee in terms of memory request latency when there is a cache miss.
+* There are multiple ways of handling control hazards and data dependencies. You can follow discussion sessions for suggested ways. However, the
+suggestions might not be the most optimal. You are encouraged to discuss the timing in the pipeline with your peers/TAs/instructor. You must write the code yourself, however.
+* There's no guarantee in terms of memory request latency when there is a cache miss.
 Therefore, the CPU should solely rely on ready/good signals to decide when to send a
-memory request and to receive a memory response. Explaination for those signals can be
+memory request and to receive a memory response. Explanation for those signals can be
 found in the discussions slides.
 
-## Testing the Non Combinational Pipelined CPU
+### Testing the Non Combinational Pipelined CPU
 
 ```scala
 Lab4 / testOnly dinocpu.SmallTestsTesterLab4
@@ -295,9 +281,11 @@ Lab4 / testOnly dinocpu.FullApplicationsTesterLab4
 ```
 
 To run a test,
+
 ```scala
 runMain dinocpu.simulate_predefined_system <system_name> <riscv_binary>
 ```
+
 where,
 `<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
 The `default` system should be used for testing purpose.
@@ -305,35 +293,39 @@ The `default` system is structurally the same as `system1` except that the RAM l
 is 1 cycle instead of 30 cycles in other systems.
 
 **Notes:**
-- The tests on Gradescope are **without** caches.
-- For `SmallTestsTesterLab4` tests: It is expected that, if you are using a system
+
+* The tests on Gradescope are **without** caches.
+* For `SmallTestsTesterLab4` tests: It is expected that, if you are using a system
 **with** data caches, some of the store tests (ones start with `s` prefix) will fail
 because there are data in the cache that are not written back to the RAM yet!
 Those store tests only check the data in RAM rather than in cache, hence the test
 failures.
-- For `FullApplicationsTesterLab4` tests: This test suite includes
+* For `FullApplicationsTesterLab4` tests: This test suite includes
 `stream-64-stride-1.riscv` and `stream-64-stride-4.riscv`, which are used to ensure
 the benchmarks we used in Part II and Part III run correctly.
 
-# Part II: Performance Evaluation
+## Part II: Performance Evaluation
 
 For this assignment, we will consider 4 systems,
-- System 1: Non Combinational Pipelined CPU + No Cache
-- System 2: Non Combinational Pipelined CPU + Instruction Cache (No Data Cache)
-- System 3: Non Combinational Pipelined CPU + Data Cache (No Instruction Cache)
-- System 4: Non Combinational Pipelined CPU + Instruction Cache + Data Cache
+
+* System 1: Non Combinational Pipelined CPU + No Cache
+* System 2: Non Combinational Pipelined CPU + Instruction Cache (No Data Cache)
+* System 3: Non Combinational Pipelined CPU + Data Cache (No Instruction Cache)
+* System 4: Non Combinational Pipelined CPU + Instruction Cache + Data Cache
 
 To run a benchmark on a system,
+
 ```scala
 runMain dinocpu.simulate_predefined_system <system_name> <riscv_binary>
 ```
+
 where,
-- `<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
+
+* `<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
 The `default` system should be used for testing purpose.
 The `default` system is structurally the same as `system1` except that the RAM latency
 is 1 cycle instead of 30 cycles in other systems.
-- `<riscv_binary>` is name of the benchmark.
-
+* `<riscv_binary>` is name of the benchmark.
 
 **Notes:** Since there are multiple ways of dealing with timing in a CPU, each
 correct implementation might slightly differs in terms of the optimality, and
@@ -351,7 +343,7 @@ that you used to generate the data for the graph.
 However, the graphs must have the X-axis and Y-axis with labels and units.
 An example graph will be discussed in during one of the discussion sessions.
 
-## Question 1 (10 points)
+### Question 1 (10 points)
 
 Determine the number of dynamic instructions of the
 `stream-64-stride-1-noverify.riscv` and the
@@ -360,7 +352,7 @@ Determine the number of dynamic instructions of the
 **Hint:** Single cycle CPU and pipelined CPU should have exactly the same
 amount of executed instructions for each binary.
 
-## Question 2 (20 points)
+### Question 2 (20 points)
 
 Create a graph representing the CPI of the Non Combinational CPU in 4 systems
 described above with the `stream-64-stride-1-noverify.riscv` benchmark and the
@@ -372,10 +364,10 @@ The X-axis should be grouped by systems.
 data on the graph are not the real CPI of running the mentioned benchmarks on
 the four systems.
 
-## Question 3 (15 points)
+### Question 3 (15 points)
 
 Assume that the pipelined non combinational CPU is clocked at 2.5GHz.
-Create a graph illustraing the effective bandwidth of system 4 when running
+Create a graph illustrating the effective bandwidth of system 4 when running
 each of `stream-64-stride-1-noverify.riscv` and
 `stream-64-stride-4-noverify.riscv` benchmarks.
 
@@ -385,29 +377,30 @@ For example, when the core executes an `lw` instruction, it uses 4 bytes
 (32 bits) of data in that cycle.
 
 **Note:** The unit can be bytes/second, or a multiple of bytes/second, such as
-KiB/second and MiB/second/
+KiB/second and MiB/second.
 
-## Question 4 (15 points)
+### Question 4 (15 points)
 
 Create a graph representing the L1 data cache hit ratio and the L1 instruction
 cache hit ratio when running each of `stream-64-stride-1-noverify.riscv` and
 `stream-64-stride-4-noverify.riscv` benchmarks with system 4.
 
-# Part III: Performance Analysis
+## Part III: Performance Analysis
 
-## Question 5 (10 points)
+### Question 5 (10 points)
 
 Between data cache and instruction cache, do you think which cache has more
 impact on performance? Explain why using the data from part II.
 
-## Question 6 (10 points)
+### Question 6 (10 points)
 
 From the data from Part II, you should see system 4 performs better
 when running `stream-64-stride-1-noverify.riscv` compared to running
 `stream-64-stride-4-noverify.riscv`. Explain why using the data from part II.
 
-# Logistics
-## Grading
+## Logistics
+
+### Grading
 Part I will be automatically graded on Gradescope.
 See the Submission section for more details.
 | Part                | Percentage |
@@ -421,12 +414,15 @@ See the Submission section for more details.
 | Part 4.3 Question 6 |        10% |
 | Extra Credits       |        10% |
 
-## Submission
+### Submission
+
 **Warning:** read the submission instructions carefully. Failure to adhere to the instructions will result in a loss of points.
 
-### Code Portion
+#### Code Portion
+
 You will upload the following files to Gradescope on the `Assignment 4 - Code Portion` assignment,
-- `src/main/scala/pipelined/cpu-noncombin.scala`
+
+* `src/main/scala/pipelined/cpu-noncombin.scala`
 
 Once uploaded, Gradescope will automatically download and run your code.
 This should take less than 30 minutes.
@@ -438,7 +434,8 @@ There are a lot of long tests for this assignment.
 The auto-grader might fail complete grading within the allocated time if there are too many output statements.
 (Outputting to `stdout/stderr` is very costly time-wise!)
 
-### Written Portion
+#### Written Portion
+
 You will upload your answers for the `Assignment 4 - Written Portion` assignment to Gradescope.
 Please upload a separate page for each answer!
 Additionally, I believe Gradescope allows you to circle the area with your final answer.
@@ -448,6 +445,7 @@ We will not grade any questions for which we are unable to read.
 Be sure to check your submission to make sure it's legible, right-side-up, etc.
 
 ### Academic misconduct reminder
+
 You are to work on this project **individually**.
 You may discuss *high level concepts* with one another (e.g., talking about the diagram), but all work must be completed on your own.
 
@@ -456,12 +454,13 @@ Any code found on GitHub that is not the base template you are given will be rep
 If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
 GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and you shouldn't have any collaborators for your code for this assignment.
 
-## Hints
-- **Start early!** Completing part 4.1 is essential for the next parts.
-- If you need help, come to office hours for the TAs, or post your questions on Piazza.
+### Hints
+
+* **Start early!** Completing part 4.1 is essential for the next parts.
+* If you need help, come to office hours for the TAs, or post your questions on Piazza.
 
 
-# Extra Credits (10 points)
+## Extra Credits (10 points)
 
 Improve the performance of the non combination pipelined CPU when running *any* of
 application in the Full Application tests and their `-loops-unrolled` variants.
@@ -469,31 +468,34 @@ You can find the tests [here](https://github.com/ECS154B-WQ23/dinocpu-assignment
 and [here](https://github.com/ECS154B-WQ23/dinocpu-assignment3/blob/main/src/main/scala/testing/InstTests.scala#L1178).
 
 The new CPU performance should match one of the following cases,
-1. General performance improvement accross most full application tests.
+
+1. General performance improvement across most full application tests.
 It's okay to have a marginal performance improvement in this case.
 2. The CPU performs especially well (>1.2x speedup) on a couple of full applications,
 while suffers slowdowns on other full applications. Those designs are called
 application accelerators.
 
 Constraints:
-- You are not allowed to modify the latency or capacity of the existing memory
+
+* You are not allowed to modify the latency or capacity of the existing memory
 components.
-- You are also not allowed to change the memory hierarchy, such as adding another
+* You are also not allowed to change the memory hierarchy, such as adding another
 level of cache.
 
-However, you can make any changes to the core such as adding more component to the core.
-You also can change the internal of the memory components, such as changning the
+However, you can make any changes to the core such as adding more components to the core.
+You also can change the internal of the memory components, such as changing the
 cache replacement policy, or allowing the memory interface to send a response and
 receive a request within the same cycle, or optimize the state diagram of the cache
 component.
 
 To submit the extra credits portion, email either TAs or the instruction with the
 following files,
-- The zip file containing all files that you modified.
-- A pdf report describing what you did to improve the performance of the CPU, and
+
+* The zip file containing all files that you modified.
+* A pdf report describing what you did to improve the performance of the CPU, and
 the speedups/slowdowns achieved from the Full Application tests.
 
-# Conclusion
+## Conclusion
 
 The assignment should show that, on a realistic setup, it is very hard to
 keep all stages of the 5-stage pipeline busy when every memory access is
@@ -501,13 +503,13 @@ expensive.
 Even with fast caches, keeping the IPC for *this* pipeline close to the ideal 1.0
 is unattainable if you want to keep the CPU frequency high.
 
-Not only the 5-stage pipeline suffers from the problem of memory being
-slower than the core.
-To keep the pipeline as busy as possible, modern architectures have a fetch
+Not only does the 5-stage pipeline suffer from the problem of memory being
+slower than the core, but
+to keep the pipeline as busy as possible, modern architectures have a fetch
 stage with ability to fetch and issue multiple instructions at a time, and
 speculatively fetches instructions to instruction cache, and fetches data
 to data cache.
-Those technique, along with multi-issue, multi-way execution, and using load/store
+These techniques, along with multi-issue, multi-way execution, and using load/store
 queues, are for exploiting ILP.
 
 However, exploiting ILP can only help improving the performance so much
@@ -523,7 +525,7 @@ of memory accesses to hide the high memory latency.
 
 On the hardware/software interaction side, for this assignment, the simple
 benchmarks should reveal the effectiveness of the cache system on different
-program behaviours.
+program behaviors.
 Having a cache system, even a simple one like in the DINO CPU, drastically
 improves the performance of the system on a lot (but not all) of real world
 applications.
@@ -540,7 +542,7 @@ a variety algorithms, or the software developers should reprogram the program
 to maximize the utilization of the cache system.
 
 On the other hand, as you can see from the assignment, the timing within a computer system is
-significantly dependent on the behaviour of workload itself, and a small change
+significantly dependent on the behavior of workload itself, and a small change
 in a system, like a slightly larger cache size, might significantly change
 the performance of a system.
 Thus, performance evaluation of a new system is usually heavily relied on
@@ -553,14 +555,14 @@ We will use another simulator, gem5, which comes with a variety of cache
 coherency protocols allowing investigating the performance of a multiple cores
 system.
 
-# Footnotes
+## Footnotes
 
-## Cache miss latency might vary
+### Cache miss latency might vary
 
 [1] This is not because the latency of a memory device is hidden from the CPU.
 This is a complication caused by internal activities of a memory device that
 are abstracted away by the CPU/Memory interface.
-Consider a cache miss in an L1D cache which causes the L1D cache to pull a 
+Consider a cache miss in an L1D cache which causes the L1D cache to pull a
 cache block from memory to L1D cache.
 However, since the cache is full, it needs to evict an entry to memory.
 Note that, the cache sends to response to the CPU as soon as it sends the
