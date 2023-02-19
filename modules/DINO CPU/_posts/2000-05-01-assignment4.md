@@ -42,18 +42,18 @@ Originally from ECS 154B Lab 4, Winter 2023.
 Caching is among the most influential ideas in computing.
 In fact, the concept reaches many fields of computer science.
 Examples can be found in from almost all hardware architectures, such as the
-use of translation lookup buffers (TLBs) or the use of memory cache system, to
+idea of translation lookup buffers (TLBs) or the use of memory cache system, to
 various software designs, such as DNS caching or web caching.
 
-In essence, the idea of caching is that, when the cost of acquiring data is
-high and the cost of duplicating the data is low, the acquired data can be
-saved in a cache, which incurs a lower data acquiring cost, so that, the next
-time the piece of data is requested, the requestor can retrieve the data from
-the cache rather than going through the whole computation again.
-In other words, we are trading the cost of acquiring the data with some memory
-capacity.
-If the piece of data is frequently requested, the cache would bring down the
-average cost of acquiring that piece of data.
+In essence, the idea of caching is to store previously acquired data in a cache
+that is close to the component uses the data.
+The idea utilizes the assumption that the cost of making a copy of the data is
+low, as well as the the cost of querying for the data in a cache is less
+expensive compared to acquring the data again.
+As a result, if the data is frequently requested, the cache could help bringing
+down the average cost of requesting for that data.
+In other words, we are trading the cost of acquiring the data with 
+*fast storage* capacity.
 
 However, caching does not inherently improve the performance of a system.
 Caching adds an extra cost of querying for the existence of data in the cache,
@@ -62,8 +62,8 @@ work to maintain the entries in the cache.
 Due to physical constraints, such as area, power, and latency, the cache closer
 to the core tends to have drastically smaller capacity than the ones further
 away from the core.
-Thus, designing a performant memory cache in a CPU core imposes a huge
-challenge to the designers.
+Thus, designing a performant memory cache in a core imposes a huge challenge
+to the designers.
 
 In this assignment, we will investigate the performance of a computer system
 with a pipelined CPU core, a memory system, and various cache design decisions.
@@ -77,8 +77,8 @@ pipelined CPU.
 
 ## Glossary
 
-* Core/CPU terminology: Technically, the cache system resides on a CPU. We
-will use the term "core" to refer to the pipeline, and the term "CPU" to
+* Core/CPU terminology: In technical terms, the cache system resides on a CPU.
+We will use the term "core" to refer to the pipeline, and the term "CPU" to
 refer to the pipeline and the cache system.
 * Memory Latency: The time between when a memory device receives a request
 and when it completes the request.
@@ -88,10 +88,7 @@ device is, the higher memory latency it has.
 * Memory Transaction: A memory device can send a *memory request* to its lower
 next memory device, which will send back the corresponding *memory response*
 when the request is complete. The DINOCPU memory system returns 8 bytes of
-requested data for each memory read request. Note that, for all memory
-devices in DINOCPU, the devices won't accept a new memory request until
-the currect request is finished. There's also no mechanism for cancelling
-a memory request.
+requested data for each memory read request.
 * Dirty Cache Entry: A cache entry is written to at some point that has yet to
 be written back to the lower level memory.
 * Cache Entry Eviction: When there is a cache miss, a cache system will have to
@@ -116,7 +113,8 @@ memory requests/responses.
 We will use the same pipeline that we built in the assignment 3.
 However, the memory interface is slightly tweaked to support memory devices
 of which the latency of a memory request is unknown to the core
-[\[1\]](#cache-miss-latency-might-vary).
+[\[1\]](#cache-miss-laitency-might-vary).
+
 Note that both instructions and data come from memory devices.
 As a result, extra care should be taken to ensure correct instructions enter
 the pipeline, as well as the correct data are received.
@@ -143,7 +141,7 @@ Each cache component consists of one `CacheTable` and one `CacheMemory`.
 A `CacheMemory` is an array of registers containing all cache blocks.
 Note that `CacheMemory` only has the data, it doesn't have metadata.
 
-A `CacheTable` is a table of `CacheEntry`s, where each `CacheEntr`y` contains
+A `CacheTable` is a table of `CacheEntry`s, where each `CacheEntry` contains
 the metadata uniquely identifies a cache block, as well as metadata indicating
 the status of the cache block, and a pointer to the cache block data in the
 `CacheMemory`.
@@ -171,8 +169,8 @@ means,
 * `valid ->  1`: The entry contains valid data.
 * `dirty ->  1`: The entry was written to.
 * `tag -> 211`: The tag bits are 211 in decimal (or 0xd3 in hexadecimal).
-* `memIdx -> 27`: The 27th entry of CacheMemory has data of this cache block.
-* `age -> 17614`: The most recent access to this cache block was in cycle 17614.
+* `memIdx -> 27`: The 28th entry of CacheMemory has data of this cache block.
+* `age -> 17614`: The most recent access to this cache block was in the cycle of 17614.
 
 ### The RAM Device
 
@@ -237,6 +235,7 @@ request signal consists of the `address` signal, and the memory response signal 
 next cycle.
 * If the memory is not ready, then even if the CPU sets valid to 1, the memory does not receive
 the request.
+* There is no mechanism for cancelling a memory request that was received by a memory component.
 * The memory only guarantees the response to be correct if and only if the `good`
 signal is 1. This means, if the `good` signal is 0, the response might contain garbage.
 * The `good` signal is only set to one for 1 cycle. This means, the response is only guaranteed to
@@ -262,12 +261,17 @@ However, we are going to use the `HazardUnitNonCombin` rather than `HazardUnit`.
 * The instruction outputted by imem is only correct when imem's good signal is 1.
 * Similarly, the readdata outputted by dmem is only correct when dmem's good signal is 1.
 * There's no new control hazard or new data hazard. We are modifying the hazard unit
-because we can stall and flush stage registers using the hazard unit.
+because we can stall and flush stage registers using the hazard unit. In other words,
+the control hazards and data hazards are the same as in the previous assignments.
+* One way to think about this assignment is to list all combinations of hazards and timing
+signals and decide what to do in each scenario.
 * It's easier to start with making sure only correct instructions enter the pipeline.
 Meaning, only advance an instruction from IF stage to ID stage when imem's good signal
 is set.
-* There are multiple ways of handling control hazards and data dependencies. You can follow discussion sessions for suggested ways. However, the
-suggestions might not be the most optimal. You are encouraged to discuss the timing in the pipeline with your peers/TAs/instructor. You must write the code yourself, however.
+* There are multiple ways of handling control hazards and data dependencies. You can follow
+discussion sessions for suggested ways. However, the suggestions might not be the most
+optimal. You are encouraged to discuss the timing in the pipeline with your
+peers/TAs/instructor. You must write the code yourself, however.
 * There's no guarantee in terms of memory request latency when there is a cache miss.
 Therefore, the CPU should solely rely on ready/good signals to decide when to send a
 memory request and to receive a memory response. Explanation for those signals can be
@@ -296,7 +300,7 @@ is 1 cycle instead of 30 cycles in other systems.
 
 * The tests on Gradescope are **without** caches.
 * For `SmallTestsTesterLab4` tests: It is expected that, if you are using a system
-**with** data caches, some of the store tests (ones start with `s` prefix) will fail
+**with** data caches, some of the store tests, ones start with `s` prefix, will fail
 because there are data in the cache that are not written back to the RAM yet!
 Those store tests only check the data in RAM rather than in cache, hence the test
 failures.
@@ -331,7 +335,7 @@ is 1 cycle instead of 30 cycles in other systems.
 correct implementation might slightly differs in terms of the optimality, and
 thus we don't expect to see exactly the same amount of cycles per each data point
 when comparing your implementation and the solution.
-However, as long as the correct is ensured, the general trend of the number of
+However, as long as the correctness is ensured, the general trend of the number of
 cycles should not differ (i.e., there are some systems that are strictly slower than
 others).
 So, we opt to use graphs rather than exact numbers for reporting data.
@@ -341,7 +345,6 @@ for question 2, question 3, and question 4.
 If you are unsure about the correctness of the graph, you can show the formula
 that you used to generate the data for the graph.
 However, the graphs must have the X-axis and Y-axis with labels and units.
-An example graph will be discussed in during one of the discussion sessions.
 
 ### Question 1 (10 points)
 
@@ -359,8 +362,8 @@ described above with the `stream-64-stride-1-noverify.riscv` benchmark and the
 `stream-64-stride-4-noverify.riscv` benchmark.
 The X-axis should be grouped by systems.
 
-![CPI_graph]({{'img/dinocpu/assignment4-CPI-graph-example.svg' | relative_url}})
-**Figure 4.** An example of a CPI graph with the collected data. Note that the
+![CPI\_graph]({{'img/dinocpu/assignment4-CPI-graph-example.svg' | relative_url}})
+**Figure 4.** An example of a CPI graph with the collected data. The
 data on the graph are not the real CPI of running the mentioned benchmarks on
 the four systems.
 
@@ -420,23 +423,22 @@ See the Submission section for more details.
 
 #### Code Portion
 
-You will upload the following files to Gradescope on the `Assignment 4 - Code Portion` assignment,
+You will upload the following files to Gradescope on the [Assignment 4 - Code Portion]({{site.data.course.154b_gradescope_lab4_code_link}}) assignment,
 
 * `src/main/scala/pipelined/cpu-noncombin.scala`
 
 Once uploaded, Gradescope will automatically download and run your code.
-This should take less than 30 minutes.
+This should take less than 40 minutes.
 For each part of the assignment, you will receive a grade.
 If all of your tests are passing locally, they should also pass on Gradescope unless you made changes to the I/O, which you are not allowed to do.
 
 **Note:** Make sure that you comment out or remove all printing statements in your submissions.
 There are a lot of long tests for this assignment.
 The auto-grader might fail complete grading within the allocated time if there are too many output statements.
-(Outputting to `stdout/stderr` is very costly time-wise!)
 
 #### Written Portion
 
-You will upload your answers for the `Assignment 4 - Written Portion` assignment to Gradescope.
+You will upload your answers for the [Assignment 4 - Written Portion({{site.data.course.154b_gradescope_lab4_written_link}}) assignment to Gradescope.
 Please upload a separate page for each answer!
 Additionally, I believe Gradescope allows you to circle the area with your final answer.
 Make sure to do this!
@@ -457,7 +459,7 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 ### Hints
 
 * **Start early!** Completing part 4.1 is essential for the next parts.
-* If you need help, come to office hours for the TAs, or post your questions on Piazza.
+* If you need help, come to office hours for the TAs, or post your questions on {{site.data.course.discussion_site}}.
 
 
 ## Extra Credits (10 points)
@@ -491,7 +493,7 @@ component.
 To submit the extra credits portion, email either TAs or the instruction with the
 following files,
 
-* The zip file containing all files that you modified.
+* A zip file containing all files that you modified.
 * A pdf report describing what you did to improve the performance of the CPU, and
 the speedups/slowdowns achieved from the Full Application tests.
 
@@ -504,46 +506,42 @@ Even with fast caches, keeping the IPC for *this* pipeline close to the ideal 1.
 is unattainable if you want to keep the CPU frequency high.
 
 Not only does the 5-stage pipeline suffer from the problem of memory being
-slower than the core, but
-to keep the pipeline as busy as possible, modern architectures have a fetch
-stage with ability to fetch and issue multiple instructions at a time, and
-speculatively fetches instructions to instruction cache, and fetches data
-to data cache.
+slower than the core, but to keep the pipeline as busy as possible,
+modern architectures have a fetch stage with ability to fetch and issue multiple
+instructions at a time, and speculatively fetches instructions to instruction cache,
+and fetches data to data cache.
 These techniques, along with multi-issue, multi-way execution, and using load/store
 queues, are for exploiting ILP.
 
 However, exploiting ILP can only help improving the performance so much
 until the CPU has to run a memory-intensive applications.
-Modern architectures have private caches for each core as well as shared caches
-shared among the cores.
-Even if a CPU can hold (a quite limited amount of) load/store instructions at a time,
+Even if a CPU can hold limited amount of load/store instructions at a time,
 there's a limit on how many requests can be processed in parallel.
 In the next assignment, you will explore a case where, even though the
 applications are memory-intensive, if the data can be independently processed,
-there are DLP techniques exist in hardware that helps increasing the throughput
-of memory accesses to hide the high memory latency.
+there are DLP techniques in hardware that helps increasing the throughput of memory
+accesses.
 
 On the hardware/software interaction side, for this assignment, the simple
 benchmarks should reveal the effectiveness of the cache system on different
 program behaviors.
 Having a cache system, even a simple one like in the DINO CPU, drastically
-improves the performance of the system on a lot (but not all) of real world
-applications.
+improves the performance of the system on a lot of real world applications.
 That is why even a low-end chip has some short of a cache system, and why
 a high-end chip tends to dedicate a lot of its area for the cache system.
 
 However, a cache system does not always improve the performance for all
 workloads.
 In fact, by introducing a cache system, we are making the latency of pulling
-a piece of data from memory higher.
+data from memory higher.
 There are algorithms that are naturally cache unfriendly, and it is
 still an open question on whether the cache system should be able to adapt to
 a variety algorithms, or the software developers should reprogram the program
 to maximize the utilization of the cache system.
 
-On the other hand, as you can see from the assignment, the timing within a computer system is
-significantly dependent on the behavior of workload itself, and a small change
-in a system, like a slightly larger cache size, might significantly change
+On the other hand, as you can see from the assignment, the timing within a computer
+system is significantly dependent on the behavior of workload itself, and a small
+change in a system, like a slightly larger cache size, might significantly change
 the performance of a system.
 Thus, performance evaluation of a new system is usually heavily relied on
 simulations.
