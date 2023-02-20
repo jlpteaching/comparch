@@ -367,7 +367,7 @@ Determine the number of dynamic instructions of the
 `stream-64-stride-4-noverify.riscv`.
 
 **Hint:** Regardless of microarchitectures, the amount of dynamic instruction
-must be the same for each binary containing RV64IM instructions.
+must be the same for each binary compiled using the RV64IM instruction set.
 The single cycle CPU might be useful for this question.
 
 **Hint:** DINOCPU simulations output the number of cycles, and does not output
@@ -393,7 +393,7 @@ Create a graph illustrating the effective bandwidth of system 4 when running
 each of `stream-64-stride-1-noverify.riscv` and
 `stream-64-stride-4-noverify.riscv` benchmarks.
 
-Effective bandwidth is defined as the amount of data used by the
+Effective bandwidth is defined as the amount of **data** used by the
 core per second.
 For example, when the core executes an `lw` instruction, it uses 4 bytes
 (32 bits) of data in that cycle.
