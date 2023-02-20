@@ -145,7 +145,7 @@ Look at [this short article](https://csapp.cs.cmu.edu/public/waside/waside-block
 Similar to loop interchange, there are multiple different ways you can choose to block accesses to your matrices in the matrix multiplication algorithm.
 One example is shown below where `k` and `j` are blocked and `i` is streamed.
 
-![blocked matrix multiplication]({{ '/img/mm_blocked.png' | relative_url }})
+![blocked matrix multiplication]({{ '/img/mm_blocked.gif' | relative_url }})
 
 For this assignment, you need to implement three different variants of the blocking scheme.
 
