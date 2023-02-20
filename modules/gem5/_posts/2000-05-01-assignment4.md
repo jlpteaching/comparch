@@ -22,7 +22,7 @@ Title: ECS 201A Assignment 4
 
 You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
 
-Use [classroom: assignment 4]() to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 4](https://classroom.github.com/a/u2u6tuD8) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
@@ -200,21 +200,36 @@ We have already looked at how software implementation can help improve caching i
 In regards to hardware models, we will use different cache hierarchies to see the effect of cache size and latency on the performance.
 Under the `components` directory, you will find modules that define the different models that you should use in your configuration scripts.
 
-- Board models: You will find the definitions for `HW4RISCVBoard` in `componets/boards.py`.
-- Board models: You will find the definitions for `HW4O3CPU` in `componets/processors.py`.
+- Board models: You will find the definitions for `HW4RISCVBoard` in `components/boards.py`.
+- Board models: You will find the definitions for `HW4O3CPU` in `components/processors.py`.
 - Cache models: You can find all the models you need to use for your cache hierarchy under `components/cache_hierarchies.py`.
 You can find three models for your cache hierarchy.
 They all have an L2 cache with the size of `128 KiB`.
 They also have the same L1I cache.
 However, there have different L1D cache design.
 You can find a short description of each L1D design below.
-  - Large: a `48 KiB` L1D cache with higher latency.
-  - Medium: a `32 KiB` L1D cache with medium latency.
-  - Small: a `16 KiB` L1 cache with lower latency.
+  - HW4LargeCache: a `48 KiB` L1D cache with higher latency.
+  - HW4MediumCache: a `32 KiB` L1D cache with medium latency.
+  - HW4SmallCache: a `16 KiB` L1 cache with lower latency.
 
 Make sure you understand their similarities and differences.
 
 - Memory models: You will find the definitions for `HW4DDR4` in `components/memories.py`.
+- Clock frequency: You can use a clock frequency of `2 GHz` for all of your simulations.
+
+### **IMPORTANT NOTE**
+
+In your configuration scripts, make sure to import `exit_event_handler` using the command below.
+
+```python
+from workloads.roi_manager import exit_event_handler
+```
+
+You will have to pass `exit_event_handler` as a keyword argument named `on_exit_event` when creating a `simulator` object. Use the *template* below to create a simulator object.
+
+```python
+simulator = Simulator(board={name of your board}, full_system=False, on_exit_event=exit_event_handler)
+```
 
 ## Analysis and simulation
 
