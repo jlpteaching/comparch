@@ -116,7 +116,8 @@ with that was least recently accessed.
 ## The Computer System
 
 ![system\_diagrams]({{'img/dinocpu/assignment4-systems.svg' | relative_url}})
-**Figure 1.** Illustration of the systems that we use for evaluating of the caches.
+**Figure 1.** Illustration of the systems that we use for evaluating different
+memory cacheh structures.
 On each system, the left arrows are wires responsible for sending instruction memory
 requests/responses, while the right arrows are wires responsible for sending data
 memory requests/responses.
@@ -371,7 +372,7 @@ The single cycle CPU might be useful for this question.
 
 **Hint:** DINOCPU simulations output the number of cycles, and does not output
 the number of simulated instructions. Part of the Iron Law might be useful for
-calculation.
+the calculation step.
 
 ### Question 2 (20 points)
 
