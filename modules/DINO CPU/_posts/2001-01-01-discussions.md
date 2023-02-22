@@ -29,3 +29,7 @@ This is a page for materials discussed in the discussion sessions.
 
 ### Discussion 6 (Feb 15th)
 [Slides]({{'img/154B_discussions/154B-discussion-6.pdf' | relative_url}})
+
+### Discussion 7 (Feb 22nd)
+[Direct-mapped Cache Worksheet]({{'img/154B_discussions/cache-worksheet.pdf' | relative_url}})
+[2-way Associative Cache Worksheet]({{'img/154B_discussions/cache-worksheet-2.pdf' | relative_url}})
