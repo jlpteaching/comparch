@@ -23,6 +23,7 @@ Originally from ECS 154B Lab 4, Winter 2023.
   * [The new memory interface](#the-new-memory-interface)
   * [The contract between the core and the Memory Interface](#the-contract-between-the-core-and-the-memory-interface)
   * [Updating the Pipelined CPU](#updating-the-pipelined-cpu)
+  * [Debugging the Hazard Unit)(#debugging-the-hazard-unit)
   * [Testing the Non Combinational Pipelined CPU](#testing-the-non-combinational-pipelined-cpu)
 * [Part II: Performance Evaluation](#part-ii-performance-evaluation)
   * [Question 1 (10 points)](#question-1-10-points)
@@ -269,6 +270,43 @@ assignment.
 
 The code for the Non Combination Pipelined CPU is mostly the same as the Pipelined CPU.
 However, we are going to use the `HazardUnitNonCombin` rather than `HazardUnit`.
+
+### Debugging the Hazard Unit
+
+There are implemented for debugging debugging the hazard unit,
+
+- You can use the single stepper for debugging using the following commands,
+
+```sh
+runMain dinocpu.singlestep <test_name> 1 pipelined-non-combin
+```
+
+- You can uncomment this line
+[here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/pipelined/cpu-noncombin.scala#L128)
+of `cpu-noncombin.scala` to see the PCs of the instructions in the pipeline for each cycle.
+
+- You can uncomment this code block
+[here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/pipelined/cpu-noncombin.scala#L131)
+of `cpu-noncombin.scala` to see the sequence of PCs of the instructions that are in the writeback stage.
+
+For debugging the hazard unit when running large applications, it is useful to compare
+the committed instruction traces of a benchmark when running the single-cycle cpu and
+the pipelined-non-combin cpu.
+
+An instruction is "committed" means that instruction is complete its execution.
+For the single-cycle cpu, since it executes all instructions in 1 cycle, every
+instruction the cpu executes are committed.
+In a 5-stage pipelined cpu, it means the instruction goes through all 5 stages.
+Since if an instruction ever reaches the WB stage, it will complete all of its
+5 stages.
+Therefore, you can track all instructions reached the WB stage and see the sequences
+of instructions being committed.
+Since each binary has one program order regardless of the microarchitectures, if the
+5-stage cpu is correctly implemented, its commit trace must be exactly the same
+as the single-cycle cpu commit trace for every binary.
+
+By comparing the traces, you can figure out the problematic cycle, and use the single stepper
+to step to that cycle and see what happened.
 
 ### Hints
 
