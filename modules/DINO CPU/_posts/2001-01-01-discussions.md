@@ -21,7 +21,9 @@ This is a page for materials discussed in the discussion sessions.
 
 ### Midterm Review (Feb 6th)
 [Slides]({{'img/154B_discussions/Midterm-review.pdf' | relative_url}})
+
 [Quiz 4]({{'img/154B_discussions/Quiz4.pdf' | relative_url}})
+
 [Quiz 5]({{'img/154B_discussions/Quiz5.pdf' | relative_url}})
 
 ### Discussion 5
@@ -31,5 +33,8 @@ This is a page for materials discussed in the discussion sessions.
 [Slides]({{'img/154B_discussions/154B-discussion-6.pdf' | relative_url}})
 
 ### Discussion 7 (Feb 22nd)
+[Slides]({{'img/154B_discussions/154B-discussion-7.pdf' | relative_url}})
+
 [Direct-mapped Cache Worksheet]({{'img/154B_discussions/cache-worksheet.pdf' | relative_url}})
+
 [2-way Associative Cache Worksheet]({{'img/154B_discussions/cache-worksheet-2.pdf' | relative_url}})
