@@ -23,7 +23,7 @@ Originally from ECS 154B Lab 4, Winter 2023.
   * [The new memory interface](#the-new-memory-interface)
   * [The contract between the core and the Memory Interface](#the-contract-between-the-core-and-the-memory-interface)
   * [Updating the Pipelined CPU](#updating-the-pipelined-cpu)
-  * [Debugging the Hazard Unit)(#debugging-the-hazard-unit)
+  * [Debugging the Hazard Unit](#debugging-the-hazard-unit)
   * [Testing the Non Combinational Pipelined CPU](#testing-the-non-combinational-pipelined-cpu)
 * [Part II: Performance Evaluation](#part-ii-performance-evaluation)
   * [Question 1 (10 points)](#question-1-10-points)
@@ -273,7 +273,7 @@ However, we are going to use the `HazardUnitNonCombin` rather than `HazardUnit`.
 
 ### Debugging the Hazard Unit
 
-There are implemented for debugging debugging the hazard unit,
+There are tools implemented for debugging the hazard unit,
 
 - You can use the single stepper for debugging using the following commands,
 
@@ -306,7 +306,7 @@ Since each binary has one program order regardless of the microarchitectures, if
 as the single-cycle cpu commit trace for every binary.
 
 By comparing the traces, you can figure out the problematic cycle, and use the single stepper
-to step to that cycle and see what happened.
+to step to that cycle and see what happened in that cycle.
 
 ### Hints
 
