@@ -483,7 +483,7 @@ See the Submission section for more details.
 
 You will upload the following files to Gradescope on the [Assignment 4 - Code Portion]({{site.data.course.154b_gradescope_lab4_code_link}}) assignment,
 
-* `src/main/scala/pipelined/cpu-noncombin.scala`
+* `src/main/scala/components/hazardnoncombin.scala`
 
 Once uploaded, Gradescope will automatically download and run your code.
 This should take less than 40 minutes.
