@@ -259,7 +259,7 @@ For this step:
 In your report answer the following questions.
 
 1. For `HW4SmallCacheHierarchy`, which blocking scheme performs the best? Why?
-2. For `BlockIKMatMulWorkload`, which cache hierarchy performs the best? Why?
+2. For `BlockIJMatMulWorkload`, which cache hierarchy performs the best? Why?
 
 Use a `matrix_size` of 128 and a `block_size` of 8 for all your simulations.
 
