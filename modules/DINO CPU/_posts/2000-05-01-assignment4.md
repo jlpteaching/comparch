@@ -406,7 +406,8 @@ Determine the number of dynamic instructions of the
 
 **Hint:** Regardless of microarchitectures, the amount of dynamic instruction
 must be the same for each binary compiled using the RV64IM instruction set.
-The single cycle CPU might be useful for this question.
+The `single-cycle` might be useful for this question as a memory request
+is completed within a cycle.
 
 **Hint:** DINOCPU simulations output the number of cycles, and does not output
 the number of simulated instructions. Part of the Iron Law might be useful for
