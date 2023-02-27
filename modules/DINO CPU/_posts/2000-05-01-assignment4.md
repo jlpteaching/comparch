@@ -433,11 +433,25 @@ each of `stream-64-stride-1-noverify.riscv` and
 
 Effective bandwidth is defined as the amount of **data** used by the
 core per second.
-For example, when the core executes an `lw` instruction, it uses 4 bytes
-(32 bits) of data in that cycle.
+For example, when the core executes an `ld` instruction, it uses 8 bytes
+(64 bits) of data in that cycle.
 
 **Note:** The unit can be bytes/second, or a multiple of bytes/second, such as
 KiB/second and MiB/second.
+
+**Note:** Instructions are not counted as data.
+
+**Hint:** Even though [a store instruction results in a memory read request and
+a memory write request](#the-contract-between-the-core-and-the-memory-interface)
+the number of processed elements is still one element per store instruction.
+However, the number of cache accesses per each store instruction is two.
+Therefore, the cache stats are not reliable for calcuting the efficient memory
+bandwidth without further analysis.
+
+**Hint:** The number of data elements can be derived from the assembly code or the
+C code depicted in Figure 2. The vast majority of memory accesses of the benchmarks
+are produced by the loops in Figure 2, so you can ignore the memory accesses outside
+these loops.
 
 ### Question 4 (15 points)
 
