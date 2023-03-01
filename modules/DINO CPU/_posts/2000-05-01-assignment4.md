@@ -421,6 +421,7 @@ described above with the `stream-64-stride-1-noverify.riscv` benchmark and the
 The X-axis should be grouped by systems.
 
 ![CPI\_graph]({{'img/dinocpu/assignment4-CPI-graph-example.svg' | relative_url}})
+
 **Figure 4.** An example of a CPI graph with the collected data. The
 data on the graph are not the real CPI of running the mentioned benchmarks on
 the four systems.
@@ -446,7 +447,7 @@ KiB/second and MiB/second.
 a memory write request](#the-contract-between-the-core-and-the-memory-interface)
 the number of processed elements is still one element per store instruction.
 However, the number of cache accesses per each store instruction is two.
-Therefore, the cache stats are not reliable for calcuting the efficient memory
+Therefore, the cache stats are not reliable for calculating the efficient memory
 bandwidth without further analysis.
 
 **Hint:** The number of data elements can be derived from the assembly code or the
