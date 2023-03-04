@@ -1,6 +1,6 @@
 ---
 Author: Jason Lowe-Power
-Editor:  Maryam Babaie
+Editor:  Maryam Babaie, Mahyar Samani
 Title: ECS 201A Assignment 5
 ---
 
@@ -8,41 +8,24 @@ Title: ECS 201A Assignment 5
 
 ### Table of Contents
 
+- [Administriva](#administrivia)
 - [Introduction](#introduction)
-- [Application](#application)
-  - [Implementation 1: Naive](#implementation-1-naive)
-  - [Implementation 2: Chunking the array](#implementation-2-chunking-the-array)
-  - [Implementation 3: Let's not be so racy](#implementation-3-lets-not-be-so-racy)
-  - [Implementation 4: Combining 2 and 3](#implementation-4-combining-2-and-3)
-  - [Implementation 5: Knowing the cache](#implementation-5-knowing-the-cache)
-  - [Implementation 6: With blocking...](#implementation-6-with-blocking)
-  - [Template files](#template-files)
+- [Workload](#workload)
 - [Real hardware experiments](#real-hardware-experiments)
-  - [Question 1](#question-1)
-  - [Question 2](#question-2)
-  - [Question 3](#question-3)
-- [gem5 experiments](#gem5-experiments)
-  - [A bit about gem5](#a-bit-about-gem5)
-  - [Using gem5](#using-gem5)
-  - [gem5's output](#gem5s-output)
-    - [Performance](#performance)
-    - [Cache behavior](#cache-behavior)
-      - [Hits and misses](#hits-and-misses)
-      - [L1 miss latency](#l1-miss-latency)
-      - [Average memory access time](#average-memory-access-time)
-      - [Read sharing](#read-sharing)
-      - [Write "sharing"](#write-sharing)
-  - [Getting ready to answer questions](#getting-ready-to-answer-questions)
-  - [Question 4](#question-4)
-  - [Question 5](#question-5)
-  - [Question 6](#question-6)
-  - [Question 7](#question-7)
-  - [Question 8](#question-8)
-  - [Question 9 (**201A only**)](#question-9-201a-only)
+- [Experimental setup](#experimental-setup)
+- [Analysis and simulation](#analysis-and-simulation)
 - [Submission](#submission)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
-- [Additional notes](#additional-notes)
+- [Hints](#hints)
+
+## Administrivia
+
+You can submit your report in pairs, this policy applies to both 154B and 201A students.
+Make sure to start early and post any questions you might have on Piazza.
+The standard late assignment policy applies.
+
+Use [classroom: assignment 5](https://classroom.github.com/a/Qjvl9M2Y) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
@@ -51,7 +34,7 @@ We will take a very simple application, summing the values in an array, and see 
 
 Then, after seeing which algorithms perform well and poorly on real hardware, we will use a cycle-level simulator ([gem5](https://www.gem5.org/)) with a detailed cache model to understand the performance.
 
-## Application
+## Workload
 
 We will explore a very simple application for this assignment: summing an array.
 
@@ -61,7 +44,7 @@ for (int i=0; i < length; i++) {
 }
 ```
 
-We will look at 6 different parallel implementations (called `sum_<1-6>` in the template C++ code).
+We will look at 6 different parallel implementations.
 
 ### Implementation 1: Naive
 
@@ -84,6 +67,42 @@ for (int i=tid; i < length; i += threads) {
 In all of these examples `tid` is the thread id (starting at `0` up to the `threads - 1`),
 `threads` is the number of threads that we're using, and `length` is the number of elements in the array.
 Also, in all examples we will assume that the threads can *race* on the `result` so we must declare it as a `std::atomic` to make sure that all accesses are completed consistently.
+
+You can find the compiled binary for this implementation in X86 under `workloads/array_sum/naive-native`.
+You can use this binary to run the program on real hardware.
+Here is an example of how you could run the binary on native hardware.
+This example sums up an array of size `32768 elements` with `8 threads`.
+
+```shell
+./naive-native 32768 8
+```
+
+**CAUTION**: You **SHOULD NOT** run `workloads/array_sum/naive-gem5` on real hardware.
+
+You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `NaiveArraySumWorkload`.
+To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
+Here is an example of how you should create an object of this workload.
+This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
+
+```python
+from workloads.array_sum_workload import NaiveArraySumWorkload
+
+workload = NaiveArraySumWorkload(16384, 4)
+```
+
+This should take around 1-2 minutes.
+
+To build the native binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make naive-native
+```
+
+To build the gem5 binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make naive-gem5
+```
 
 ### Implementation 2: Chunking the array
 
@@ -110,6 +129,40 @@ This would reduce the *imbalance* in the last chunk.
 OpenMP's `schedule static` does something like this.
 However, for this assignment, it won't make much difference since the array size is much larger than the number of threads.
 
+You can find the compiled binary for this implementation in X86 under `workloads/array_sum/chunking-native`.
+You can use this binary to run the program on real hardware.
+Here is an example of how you could run the binary on native hardware.
+This example sums up an array of size `32768 elements` with `8 threads`.
+
+```shell
+./chunking-native 32768 8
+```
+
+**CAUTION**: You **SHOULD NOT** run `workloads/array_sum/chunking-gem5` on real hardware.
+
+You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `ChunkingArraySumWorkload`.
+To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
+Here is an example of how you should create an object of this workload.
+This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
+
+```python
+from workloads.array_sum_workload import ChunkingArraySumWorkload
+
+workload = ChunkingArraySumWorkload(16384, 4)
+```
+
+To build the native binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make chunking-native
+```
+
+To build the gem5 binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make chunking-gem5
+```
+
 ### Implementation 3: Let's not be so racy
 
 You may notice that a potential problem with implementation 1 and implementation 2 is that all of the threads are accessing the *exact same address* at the *exact same time*.
@@ -135,6 +188,40 @@ for (int i=tid; i < length; i += threads) {
 }
 ```
 
+You can find the compiled binary for this implementation in X86 under `workloads/array_sum/res-race-opt-native`.
+You can use this binary to run the program on real hardware.
+Here is an example of how you could run the binary on native hardware.
+This example sums up an array of size `32768 elements` with `8 threads`.
+
+```shell
+./res-race-opt-native 32768 8
+```
+
+**CAUTION**: You **SHOULD NOT** run `workloads/array_sum/res-race-opt-gem5` on real hardware.
+
+You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `NoResultRaceArraySumWorkload`.
+To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
+**NOTE**: Make sure to use the same number of threads as your processor cores.
+This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
+
+```python
+from workloads.array_sum_workload import NoResultRaceArraySumWorkload
+
+workload = NoResultRaceArraySumWorkload(16384, 4)
+```
+
+To build the native binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make res-race-opt-native
+```
+
+To build the gem5 binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make res-race-opt-gem5
+```
+
 ### Implementation 4: Combining 2 and 3
 
 This implementation is a straightforward combination of the optimizations in implementations 2 and 3.
@@ -148,6 +235,40 @@ size_t chunk_size = (length+threads-1)/threads;
 for (int i=tid*chunk_size; i < (tid+1)*chunk_size && i < length; i++) {
     result[tid] += array[i];
 }
+```
+
+You can find the compiled binary for this implementation in X86 under `workloads/array_sum/chunking-res-race-opt-native`.
+You can use this binary to run the program on real hardware.
+Here is an example of how you could run the binary on native hardware.
+This example sums up an array of size `32768 elements` with `8 threads`.
+
+```shell
+./chunking-res-race-opt-native 32768 8
+```
+
+**CAUTION**: You **SHOULD NOT** run `workloads/array_sum/chunking-res-race-opt-gem5` on real hardware.
+
+You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `ChunkingNoResultRaceArraySumWorkload`.
+To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
+Here is an example of how you should create an object of this workload.
+This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
+
+```python
+from workloads.array_sum_workload import ChunkingNoResultRaceArraySumWorkload
+
+workload = ChunkingNoResultRaceArraySumWorkload(16384, 4)
+```
+
+To build the native binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make chunking-res-race-opt-native
+```
+
+To build the gem5 binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make chunking-res-race-opt-gem5
 ```
 
 ### Implementation 5: Knowing the cache
@@ -168,7 +289,41 @@ for (int i=tid; i < length; i += threads) {
 }
 ```
 
-### Implementation 6: With blocking...
+You can find the compiled binary for this implementation in X86 under `workloads/array_sum/block-race-opt-native`.
+You can use this binary to run the program on real hardware.
+Here is an example of how you could run the binary on native hardware.
+This example sums up an array of size `32768 elements` with `8 threads`.
+
+```shell
+./block-race-opt-native 32768 8
+```
+
+**CAUTION**: You **SHOULD NOT** run `workloads/array_sum/block-race-opt-gem5` on real hardware.
+
+You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `NoCacheBlockRaceArraySumWorkload`.
+To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
+Here is an example of how you should create an object of this workload.
+This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
+
+```python
+from workloads.array_sum_workload import NoCacheBlockRaceArraySumWorkload
+
+workload = NoCacheBlockRaceArraySumWorkload(16384, 4)
+```
+
+To build the native binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make block-race-opt-native
+```
+
+To build the gem5 binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make block-race-opt-gem5
+```
+
+### Implementation 6: With blocking ...
 
 And finally, we can combine implementation 5 with blocking.
 
@@ -181,22 +336,39 @@ for (int i=tid*chunk_size; i < (tid+1)*chunk_size && i < length; i++) {
 }
 ```
 
-### Template files
+You can find the compiled binary for this implementation in X86 under `workloads/array_sum/all-opt-native`.
+You can use this binary to run the program on real hardware.
+Here is an example of how you could run the binary on native hardware.
+This example sums up an array of size `32768 elements` with `8 threads`.
 
-You can download the template files [here]({{ '/img/assignment5-template.tgz' | relative_url }}).
+```shell
+./all-opt-native 32768 8
+```
 
+**CAUTION**: You **SHOULD NOT** run `workloads/array_sum/all-opt-gem5` on real hardware.
 
-  - The 6 different algorithms. You can compile this to generate `parallel` binaries: `assignment5-template/parallel.cpp`
+You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `ChunkingNoBlockRaceArraySumWorkload`.
+To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
+Here is an example of how you should create an object of this workload.
+This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
 
-  - The gem5 run script: `assignment5-template/run.py`
+```python
+from workloads.array_sum_workload import ChunkingNoBlockRaceArraySumWorkload
 
-  - The `parallel` binary to run on real hardware: `assignment5-template/parallel-x86`
+workload = ChunkingNoBlockRaceArraySumWorkload(16384, 4)
+```
 
-  - The `parallel` binary to use with gem5. Same as `parallel-x86` except for the gem5-specific special instructions around the region of interest: `assignment5-template/parallel-x86-gem5`
+To build the native binary for this implementation run the following command in `workloads/array_sum`.
 
-  - The files for the coherence protocol configuration: `assignment5-template/my_mesi/`
+```shell
+make all-opt-native
+```
 
-  - The gem5 binary: `assignment5-template/gem5-x86`
+To build the gem5 binary for this implementation run the following command in `workloads/array_sum`.
+
+```shell
+make all-opt-gem5
+```
 
 ## Real hardware experiments
 
@@ -204,23 +376,13 @@ On a computer *with at least 4 cores* (preferably 8 or more) run the different p
 You can run `grep -m1 "cpu cores" /proc/cpuinfo` to find out how many cores you have.
 It should say something like `cpu cores       : 8`
 
-Note: we will only support running on x86 Linux machines.
+**NOTE**: we will only support running on x86 Linux machines.
 If you want to use a different system, we probably won't be able to help, and you're not guaranteed the correct results.
-
-A binary is already built for you and distributed in the [template files](#template-files).
-If you want to build it yourself, you can use the following command.
-
-```sh
-g++ -o parallel-x86 parallel.cpp -lpthread
-```
-
-This program takes 3 command line parameters: The size of the array, the number of threads to use, and the algorithm to use (as defined above).
-There is a limitation that you cannot use an array larger than 65536 as the integers will overflow.
 
 On your *real hardware* run the 6 parallel algorithms with 1, 2, 4, 8, 16 threads (up to the maximum threads on your hardware).
 I.e., if you only have 4 cores, don't run 8 and 16.
 
-Use the performance shown by the `parallel-x86` (`Time 0.XXXX ms`) app to answer the following questions.
+Use the execution time measured by your binary to answer the following questions.
 
 ### Question 1
 
@@ -238,58 +400,12 @@ For algorithm 1, does increasing the number of threads improve performance or hu
 
 (b) Speculate how the hardware implementation is causing this result. What is it about the hardware that causes this optimization to be most important?
 
-## gem5 experiments
-
-Now, we are going to use a software simulation framework to look at the details of how the hardware operates to actually answer the "speculation" part of [question 3](#question-3).
-
-In the [template files](#template-files) is everything you need to run gem5, including the gem5 binary (`gem5-x86`).
-
-### A bit about gem5
+## gem5
 
 For those of you who are not familiar with [gem5](https://www.gem5.org/), gem5 is a *cycle-level* simulator that simulates the entire system (cores, memory, caches, devices) at the hardware level.
 
 The *input* to gem5 is a *Python* script which configures the system and runs the simulation.
-I have also given you this Python script (`run.py`) and other extra Python files to configure the system (`riscv_se.py` and the files in `my_mesi/`).
-
-This Python script configures gem5 to look like the drawing below, and it runs the `parallel-x86-gem5` binary.
-As part of the configuration the script sets up the command line parameters for the benchmark application, so you don't have to worry about that.
-This new binary (`parallel-x86-gem5`) is just like the one you ran on real hardware (`parallel-x86`), but it has a couple of special instructions to tell the simulator when the *region of interest* begins and ends.
-
-> **SIDE NOTE**
-> If you want to build this binary yourself, you can use the following command (assuming that the root gem5 directory is `../gem5` and you have built the `m5` library.)
-> `g++ -o parallel-x86-gem5 parallel.cpp -lpthread -D GEM5 -I../gem5/include -L../gem5/util/m5/build/x86/out/ -lm5`
-
-Like the timing code (e.g., timer start and timer stop) that's used to measure the *time* of the region of interest on real hardware, the annotations added for gem5 reset the statistics and dump the statistics at the beginning and end of the region of interest, respectively.
-
-**For 201A** *DO NOT USE YOUR gem5 BINARY!*
-
-I found a bug in gem5 when creating this assignment.
-Some important statistics (e.g., everything in Ruby...) were not being reset correctly.
-The binary included in the template has the bug fixed.
-
-### Using gem5
-
-To use the `run.py` script, there are three parameters: the number of cores in the system to simulate (this will allow you to simulate up to 16 cores), the algorithm that the `parallel` program should use (this is passed to the benchmark application), and a "crossbar latency" (`xbar_latency`).
-For now, ignore the last parameter.
-
-To run gem5, you can do something like below:
-
-```sh
-./gem5-x86 run.py 1 1 10
-```
-
-You can also run `gem5-x86 run.py --help` for details on the command line parameters.
-
-*Note: Don't forget to give a proper full path for run.py file in your command.*
-
-When you run gem5, an output directory is created (`m5out/` by default) which holds a file called `stats.txt` which has way too many detailed statistics.
-I would suggest using an extra command line parameter `--outdir=<name>` to save your output to different directories (otherwise, gem5 will just overwrite the last simulation).
-For example, the code below will create a `stats.txt` file in `<cwd>/m5out/1-core-1-alg/`.
-Note that I used the parameters I passed to `run.py` to help name the output directory.
-
-```sh
-./gem5-x86 --outdir=m5out/1-core-1-alg run.py 1 1
-```
+Refer to [Assignment 0]({{'modules/gem5/assignment0' | relative_url}}) to learn how to create your own configuration script.
 
 ### gem5's output
 
@@ -299,19 +415,62 @@ Here, we'll concentrate on a few key stats: the total time to run the region of 
 
 For *reasons* (which I won't get into), you should ignore all of the controllers numbered `0` (e.g., ignore `board.cache_hierarchy.ruby_system.l1_controllers0`).
 
-#### Performance
+## Experimental setup
+
+For this assignment, you will be the same components across your experiments.
+However, for parts of the assignment you might want to change the number of processor cores or the latency of a crossbar in your cache interconnect.
+Refer to the list below for more information on the components you will be using.
+
+- boards: you will only use `HW5X86Board`.
+You can find its definition in `components/boards.py`.
+- processors: you will only use `HW5O3CPU`.
+You can find its definition in `components/processors.py`.
+**NOTE**: you will notice that the component creates a processor with an extra core.
+This is a weird gem5 thing.
+Please ignore this.
+However, when you look at your statistics you should ignore statistics for `board.processor.core.cores0` and
+`board.cache_hierarchy.ruby_system.l1_controllers0`.
+- cache hierarchies: you will only use `HW5MESITwoLevelCacheHierarchy`.
+You can find its definition in `components/cache_hierarchies.py`.
+**NOTE**: you will notice that its `__init__` takes **one** argument.
+You will have to assign different values to `xbar_latency` as instructed in the later parts of this assignment.
+- memories: You will only use `HW5DDR4`.
+You can find its definition in `components/memories.py`.
+- clock frequency: Use `3GHz` as your clock frequency.
+
+## Analysis and simulation
+
+Now, we are going to use a software simulation framework to look at the details of how the hardware operates to actually answer the "speculation" part of [question 3](#question-3).
+
+In order to run your experiments, create a configuration script that allows you to run *any of the 6 implementations* of the workload with *any number of cores* for `HW5O3CPU` with *any latency* for `xbar_latency` in `HW5MESITwoLevelCacheHierarchy`.
+
+### **IMPORTANT NOTE**
+
+In your configuration scripts, make sure to import `exit_event_handler` using the command below.
+
+```python
+from workloads.roi_manager import exit_event_handler
+```
+
+You will have to pass `exit_event_handler` as a keyword argument named `on_exit_event` when creating a `simulator` object. Use the *template* below to create a simulator object.
+
+```python
+simulator = Simulator(board={name of your board}, full_system=False, on_exit_event=exit_event_handler)
+```
+
+### Performance
 
 To get the performance/time of the region of interest, you can see the 3rd line in the stats file: `simSeconds`.
 This is the **simulated time** or the time that the *simulator* says the program *will* take.
 (As opposed to the `hostSeconds` which is how long it took to simulate on your host.)
 This simulated time should be the same order of magnitude as what you say on your hardware, around 1 millisecond.
 
-#### Cache behavior
+### Cache behavior
 
 Let me warn you, these stats are confusing!
 However, hopefully we can narrow them down to make sense of them.
 
-##### Hits and misses
+#### Hits and misses
 
 First, let's look at cache hits and misses.
 In our system, we may have a bunch of difference caches.
@@ -323,7 +482,7 @@ For each cache, there is a statistic named `m_demand_hits` which counts the numb
 
 So, if you search the `stats.txt` file for `board.cache_hierarchy.ruby_system.l1_controllers2.L1Dcache.m_demand_hits` you should see the number of misses for the second L1 Cache controller's L1 data cache.
 
-##### L1 miss latency
+#### L1 miss latency
 
 As we've talked about in class, the latency for L1 misses is an important statistic.
 Unsurprisingly, like everything else in gem5, we have a stat for that!
@@ -331,13 +490,13 @@ If you search the file for `m_missLatencyHistSeqr` you will find a confusingly r
 To keep things simple, you can just worry about the *average* miss latency, which can be found with `board.cache_hierarchy.ruby_system.m_missLatencyHistSeqr::mean`.
 (On a side note, this is aggregated across all L1 caches, but that's fine for the way we're going to use the average.)
 
-##### Average memory access time
+#### Average memory access time
 
 Not only does gem5 track the times for hits and misses separately, it also has a statistic for the latency for *all* accesses.
 For the average memory latency, you can use `board.cache_hierarchy.ruby_system.m_latencyHistSeqr::mean`.
 This statistic looks the same as the `m_missLatencyHistSeqr`, but it includes both hits and misses.
 
-##### Read sharing
+#### Read sharing
 
 We briefly talked in class about different *coherence* protocols.
 In the system we're simulating in this gem5 simulation, the caches follow a "MESI" coherence protocol.
@@ -362,7 +521,7 @@ After that first ignored entry, you'll see the L1 controller number 1 has 1,940 
 This means that 1,940 times another cache wanted to get the data this cache has in shared state.
 This is a measure of the *read sharing* of this algorithm.
 
-##### Write "sharing"
+#### Write "sharing"
 
 Like read sharing we may be interested in what happens with data that is shared between caches, but it is *written*.
 To see the number of times that some cache had to respond to another cache asking to have the data in *writable* state, you can see the `Fwd_GETX` statistic.
@@ -373,6 +532,7 @@ This stat has the exact same format as the `Fwd_GETS` described above.
 
 To dig into why we're seeing the performance results on the real hardware, with gem5 we can look at more extreme systems.
 Instead of just using 4 or 8 cores, let's use 16!
+Moreover, let's use `32768` for the size of the array.
 
 For 16 cores, run *each algorithm* and save the stats output.
 I strongly recommend using `--outdir` and using easy to understand names.
@@ -418,7 +578,9 @@ Finally, you should have an idea on what optimizations have the biggest impact o
 So:
 (b) Using data from the gem5 simulations, now answer what hardware characteristic *causes* the most important optimization to be the most important?
 
-### Question 9 (**201A only**)
+### Question 9
+
+**NOTE**: This question is for 201A students **only**.
 
 Run using a crossbar latency of 1 cycle and 25 cycles (in addition to the 10 cycles that you have already run).
 
@@ -429,48 +591,54 @@ You can probably get away with just running algorithm 1 and algorithm 6.
 
 ## Submission
 
-For this assignment you don't need to turn in any code files.
-The only file you need to submit on gradescope at the designated section, is the pdf file of your report.
-Please do not forget to specify each question according to the outline when you're submitting your work.
-In your report, you're not required to include any data which is not used in your analysis.
-Only include those that you actually use to justify your answer and make sure they are precisely and clearly specified.
+As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
+You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
+In your report answer the questions presented in , [Question 1](#question-1), [Question 2](#question-2),[Question 3](#question-3),[Question 4](#question-4),[Question 5](#question-5),[Question 6](#question-6),[Question 7](#question-7),[Question 8](#question-8), and [Question 9](#question-9).
 
-**Note: if the submission does not have *page match* for each question, a *9-points penalty* will be applied to the assignment5's grade**
+Use clear reasoning and visualization to drive your conclusions.
+
+Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
+
+- `Instruction.md`: should include instruction on how to run your simulations.
+- Automation: code/scripts to run your simulations.
+- Configuration: python file configuring the systems you need to simulate.
 
 ## Grading
 
-The grading breakdown is as follows (they are subject to change, but they show the relative breakdown) :
+Like your submission, your grade is split into two parts.
 
-Total points = 100
+1. Reproducibility Package (50 points):
+    a. Instruction and automation to run simulations for different section and dump statistics (10 points)
+        - Instructions (5 points)
+        - Automation (5 points)
+    b. configuration script(s) (40 points)
+2. Report (50 points): the grading breakdown is as follows (they are subject to change, but they show the relative breakdown) :
+
+Total points = 50
 
 | #Question       | Points |
 |-----------------|--------|
-| Question 1	    | 5      |
-| Question 2.a	  | 5	     |
-| Question 2.b	  | 5      |
-| Question 3.a    | 10     |
-| Question 3.b    | 5      |
-| Question 4.a	  | 5      |
-| Question 4.b	  | 5      |
-| Question 5	    | 10     |
-| Question 6	    | 10     |
-| Question 7	    | 10     |
-| Question 8.a	  | 10     |
-| Question 8.b	  | 10     |
-| Question 9	    | 10     |
+| Question 1	    | 2.5      |
+| Question 2.a	  | 2.5	     |
+| Question 2.b	  | 2.5      |
+| Question 3.a    | 5     |
+| Question 3.b    | 2.5      |
+| Question 4.a	  | 2.5      |
+| Question 4.b	  | 2.5      |
+| Question 5	    | 5     |
+| Question 6	    | 5     |
+| Question 7	    | 5     |
+| Question 8.a	  | 5     |
+| Question 8.b	  | 5     |
+| Question 9	    | 5     |
 
 ## Academic misconduct reminder
 
-You are to work on this project **individually**.
-You may discuss *high level concepts* with one another (e.g., talking about the diagram), but all work must be completed on your own.
+You are required to work on this assignment in teams. You are only allowed to share you scripts and code with your teammate(s). You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
 
-**Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!**
-Any code found on GitHub that is not the base template you are given will be reported to SJA.
-If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
-GitHub now allows everybody to create unlimited private repositories for up to three collaborators, and **you shouldn't have *any* collaborators** for your code in this class.
+Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
 
-## Additional notes
-* Start early! There is a learning curve for gem5, so start early and ask questions on Campuswire and in discussion.
+## Hints
 
-* If you need help, come to office hours for the TA, or post your questions on Campuswire.
-
+- Start early and ask questions on Piazza and in discussion.
+- If you need help, come to office hours for the TA, or post your questions on Piazza.
