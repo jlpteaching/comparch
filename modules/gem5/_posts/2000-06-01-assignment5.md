@@ -15,6 +15,8 @@ Title: ECS 201A Assignment 5
 - [Experimental setup](#experimental-setup)
 - [Analysis and simulation](#analysis-and-simulation)
 - [Submission](#submission)
+  - [For 201A](#for-201a)
+  - [For 154B](#for-154b)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
 - [Hints](#hints)
@@ -591,8 +593,10 @@ You can probably get away with just running algorithm 1 and algorithm 6.
 
 ## Submission
 
-As mentioned before, **both** 154B and 201A students are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [154B gradescope](https://www.gradescope.com/courses/486165) or [201A gradescope](https://www.gradescope.com/courses/487868).
+### For 201A
+
+As mentioned before, 201A students are allowed to submit your assignments in **pairs** and in **PDF** format.
+You should submit your report on [201A gradescope](https://www.gradescope.com/courses/487868).
 In your report answer the questions presented in , [Question 1](#question-1), [Question 2](#question-2),[Question 3](#question-3),[Question 4](#question-4),[Question 5](#question-5),[Question 6](#question-6),[Question 7](#question-7),[Question 8](#question-8), and [Question 9](#question-9).
 
 Use clear reasoning and visualization to drive your conclusions.
@@ -602,6 +606,25 @@ Submit all your code through your assignment repository. Please make sure to inc
 - `Instruction.md`: should include instruction on how to run your simulations.
 - Automation: code/scripts to run your simulations.
 - Configuration: python file configuring the systems you need to simulate.
+
+### For 154B
+
+#### Code Portion
+[TODO] Submit all your code via Gradescope.
+
+
+#### Written Portion
+The assignment can be done individually or in a group of 2.
+You should submit your report here [{{site.data.course.154b_gradescope_lab5_written_link}}]({{site.data.course.154b_gradescope_lab5_written_link}}).
+
+Please upload a separate page for each answer!
+Additionally, I believe Gradescope allows you to circle the area with your final answer.
+Make sure to do this!
+
+We will not grade any questions for which we are unable to read.
+Be sure to check your submission to make sure it's legible, right-side-up, etc.
+
+Use clear reasoning and visualization to drive your conclusions.
 
 ## Grading
 
@@ -616,21 +639,21 @@ Like your submission, your grade is split into two parts.
 
 Total points = 50
 
-| #Question       | Points |
-|-----------------|--------|
-| Question 1	    | 2.5      |
-| Question 2.a	  | 2.5	     |
-| Question 2.b	  | 2.5      |
-| Question 3.a    | 5     |
-| Question 3.b    | 2.5      |
-| Question 4.a	  | 2.5      |
-| Question 4.b	  | 2.5      |
-| Question 5	    | 5     |
-| Question 6	    | 5     |
-| Question 7	    | 5     |
-| Question 8.a	  | 5     |
-| Question 8.b	  | 5     |
-| Question 9	    | 5     |
+| #Question       | Points (201A) | Points (154B) |
+|-----------------|--------|---|
+| Question 1	    | 2.5      | 4 |
+| Question 2.a	  | 2.5	     | 4 |
+| Question 2.b	  | 2.5      | 4 |
+| Question 3.a    | 5     | 4 |
+| Question 3.b    | 2.5      | 4 |
+| Question 4.a	  | 2.5      | 2.5 |
+| Question 4.b	  | 2.5      | 2.5 |
+| Question 5	    | 5     | 5 |
+| Question 6	    | 5     | 5 |
+| Question 7	    | 5     | 5 |
+| Question 8.a	  | 5     | 5 |
+| Question 8.b	  | 5     | 5 |
+| Question 9	    | 5     | 0 |
 
 ## Academic misconduct reminder
 
