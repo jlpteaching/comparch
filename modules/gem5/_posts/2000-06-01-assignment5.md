@@ -21,7 +21,7 @@ Title: ECS 201A Assignment 5
 
 ## Administrivia
 
-You can submit your report in pairs, this policy applies to both 154B and 201A students.
+You can submit your report in pairs, this policy applies to **both** 154B and 201A students.
 Make sure to start early and post any questions you might have on Piazza.
 The standard late assignment policy applies.
 
@@ -591,8 +591,8 @@ You can probably get away with just running algorithm 1 and algorithm 6.
 
 ## Submission
 
-As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
+As mentioned before, **both** 154B and 201A students are allowed to submit your assignments in **pairs** and in **PDF** format.
+You should submit your report on [154B gradescope](https://www.gradescope.com/courses/486165) or [201A gradescope](https://www.gradescope.com/courses/487868).
 In your report answer the questions presented in , [Question 1](#question-1), [Question 2](#question-2),[Question 3](#question-3),[Question 4](#question-4),[Question 5](#question-5),[Question 6](#question-6),[Question 7](#question-7),[Question 8](#question-8), and [Question 9](#question-9).
 
 Use clear reasoning and visualization to drive your conclusions.
