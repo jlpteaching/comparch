@@ -41,3 +41,10 @@ This is a page for materials discussed in the discussion sessions.
 
 ### Discussion 8 (Mar 1st)
 [Slides]({{'img/154B_discussions/154B-discussion-8.pdf' | relative_url}})
+
+
+### Discussion 9 (Mar 8th)
+[Slides]({{'img/154B_discussions/154B-discussion-9.pdf' | relative_url}})
+
+### Lecture (Mar 6th)
+[Slides]({{'img/154B_discussions/lecture-march-06.pdf' | relative_url}})
