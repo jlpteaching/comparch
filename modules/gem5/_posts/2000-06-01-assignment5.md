@@ -15,8 +15,6 @@ Title: ECS 201A Assignment 5
 - [Experimental setup](#experimental-setup)
 - [Analysis and simulation](#analysis-and-simulation)
 - [Submission](#submission)
-  - [For 201A](#for-201a)
-  - [For 154B](#for-154b)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
 - [Hints](#hints)
@@ -593,10 +591,9 @@ You can probably get away with just running algorithm 1 and algorithm 6.
 
 ## Submission
 
-### For 201A
-
-As mentioned before, 201A students are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [201A gradescope](https://www.gradescope.com/courses/487868).
+As mentioned before, both 154B and 201A students are allowed to submit your assignments in **pairs** and in **PDF** format.
+You should submit your report on [201A gradescope](https://www.gradescope.com/courses/487868)
+or [154B gradescope]({{site.data.course.154b_gradescope_lab5_written_link}}).
 In your report answer the questions presented in , [Question 1](#question-1), [Question 2](#question-2),[Question 3](#question-3),[Question 4](#question-4),[Question 5](#question-5),[Question 6](#question-6),[Question 7](#question-7),[Question 8](#question-8), and [Question 9](#question-9).
 
 Use clear reasoning and visualization to drive your conclusions.
@@ -606,25 +603,6 @@ Submit all your code through your assignment repository. Please make sure to inc
 - `Instruction.md`: should include instruction on how to run your simulations.
 - Automation: code/scripts to run your simulations.
 - Configuration: python file configuring the systems you need to simulate.
-
-### For 154B
-
-#### Code Portion
-[TODO] Submit all your code via Gradescope.
-
-
-#### Written Portion
-The assignment can be done individually or in a group of 2.
-You should submit your report here [{{site.data.course.154b_gradescope_lab5_written_link}}]({{site.data.course.154b_gradescope_lab5_written_link}}).
-
-Please upload a separate page for each answer!
-Additionally, I believe Gradescope allows you to circle the area with your final answer.
-Make sure to do this!
-
-We will not grade any questions for which we are unable to read.
-Be sure to check your submission to make sure it's legible, right-side-up, etc.
-
-Use clear reasoning and visualization to drive your conclusions.
 
 ## Grading
 
