@@ -48,3 +48,9 @@ This is a page for materials discussed in the discussion sessions.
 
 ### Lecture (Mar 6th)
 [Slides]({{'img/154B_discussions/lecture-march-06.pdf' | relative_url}})
+
+
+### Discussion 10 (Mar 15th)
+[Slides]({{'img/154B_discussions/154B-discussion-10.pdf' | relative_url}})
+
+[Recording](https://ucdavis.zoom.us/rec/share/v2Y8mpIPE_PPxNNTB3Sa0Ict-ilvcGM6MyZjUkY_OOZVoKVF21AthaNY3W5cRsBI.IMKbP1D4g2lh3Bgc)
