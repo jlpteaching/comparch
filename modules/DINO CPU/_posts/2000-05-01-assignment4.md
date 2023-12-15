@@ -8,6 +8,11 @@ DINO CPU Assignment 4: The Why of Caching.
 
 Originally from ECS 154B Lab 4, Winter 2023.
 
+<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
+Assignment coming soon
+
+{% comment %}
+
 ## Table of Contents
 
 * [Introduction](#introduction)
@@ -644,3 +649,5 @@ However, the memory might be busy with the previous eviction request, so the
 L1D cache must wait for the memory to complete that request before it can
 pull a cache block to memory.
 Thus, the cache miss latency might vary from access to access.
+
+{% endcomment %}

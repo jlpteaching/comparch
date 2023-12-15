@@ -6,6 +6,11 @@ Title: ECS 201A Assignment 3
 
 **Due on *{{ site.data.course.dates.gem5_3 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
 
+<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
+Assignment coming soon
+
+{% comment %}
+
 ## Table of Contents
 
 - [Administrivia](#administrivia)
@@ -370,3 +375,5 @@ Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub tha
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
+
+{% endcomment %}

@@ -12,6 +12,10 @@ Modified for ECS 154B Lab 2, {{ site.data.course.quarter }}.
 
 **Due on *{{ site.data.course.dates.dino_2 }}* 11:59PM PST**: See [Submission](#submission) for details
 
+<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
+Assignment coming soon
+
+{% comment %}
 # Table of Contents
 
 * [Introduction](#introduction)
@@ -934,3 +938,5 @@ This is the best style of debugging for this assignment.
   - You can also put any Scala statement in the print statement (e.g., `printf(p"Output: ${io.output})`).
   - Use `println` to print during compilation in the Chisel code or during test execution in the test code. This is mostly like Java's `println`.
   - If you want to use Scala variables in the print statement, prepend the statement with an 's'. For example, `println(s"This is my cool variable: $variable")` or `println("Some math: 5 + 5 = ${5+5}")`.
+
+{% endcomment %}

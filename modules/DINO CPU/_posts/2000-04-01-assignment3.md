@@ -16,6 +16,11 @@ See [End of Part 3.1](#end-of-part-31) for details on turning in lab 3.1.
 
 **Part 3.2 Due on *{{ site.data.course.dates.dino_32 }}* at 11:59PM PST**
 
+<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
+Assignment coming soon
+
+{% comment %}
+
 See [Grading](#grading) for details on turning in lab 3.2.
 
 # Table of Contents
@@ -446,3 +451,5 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 - Start early! Start early and ask questions on {{site.data.course.discussion_site}} and in discussion sessions.
 - If you need help, come to office hours for the TA, or post your questions on {{site.data.course.discussion_site}}.
 - See [common errors]({{site.data.course.154b_assignment3_github_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
+
+{% endcomment %}

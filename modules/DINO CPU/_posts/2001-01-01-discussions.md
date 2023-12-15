@@ -6,51 +6,37 @@ This is a page for materials discussed in the discussion sessions.
 
 *154B Discussion*: Hutchison Hall 115. Wednesday 9:00 - 9:50am.
 
-### Discussion 1 (Jan 11th)
+## Discussion 1 (Jan 11th)
 
-[Slides]({{'img/154B_discussions/154B-discussion-1.pdf' | relative_url}})
+[Slides]({{'' | relative_url}})
 
-### Discussion 2 (Jan 18th)
-[Slides]({{'img/154B_discussions/154B-discussion-2.pdf' | relative_url}})
+## Discussion 2 (Jan 18th)
+[Slides]({{'' | relative_url}})
 
-### Discussion 3 (Jan 25th)
-[Slides]({{'img/154B_discussions/154B-discussion-3.pdf' | relative_url}})
+## Discussion 3 (Jan 25th)
+[Slides]({{'' | relative_url}})
 
-### Discussion 4 (Feb 1st)
-[Slides]({{'img/154B_discussions/154B-discussion-4.pdf' | relative_url}})
+## Discussion 4 (Feb 1st)
+[Slides]({{'' | relative_url}})
 
-### Midterm Review (Feb 6th)
-[Slides]({{'img/154B_discussions/Midterm-review.pdf' | relative_url}})
+## Midterm Review (Feb 6th)
+[Slides]({{'' | relative_url}})
 
-[Quiz 4]({{'img/154B_discussions/Quiz4.pdf' | relative_url}})
+## Discussion 5
+[Slides]({{'' | relative_url}})
 
-[Quiz 5]({{'img/154B_discussions/Quiz5.pdf' | relative_url}})
+## Discussion 6 (Feb 15th)
+[Slides]({{'' | relative_url}})
 
-### Discussion 5
-[Slides]({{'img/154B_discussions/154B-discussion-5.pdf' | relative_url}})
+## Discussion 7 (Feb 22nd)
+[Slides]({{'' | relative_url}})
 
-### Discussion 6 (Feb 15th)
-[Slides]({{'img/154B_discussions/154B-discussion-6.pdf' | relative_url}})
-
-### Discussion 7 (Feb 22nd)
-[Slides]({{'img/154B_discussions/154B-discussion-7.pdf' | relative_url}})
-
-[Direct-mapped Cache Worksheet]({{'img/154B_discussions/cache-worksheet.pdf' | relative_url}})
-
-[2-way Associative Cache Worksheet]({{'img/154B_discussions/cache-worksheet-2.pdf' | relative_url}})
-
-### Discussion 8 (Mar 1st)
-[Slides]({{'img/154B_discussions/154B-discussion-8.pdf' | relative_url}})
+## Discussion 8 (Mar 1st)
+[Slides]({{'' | relative_url}})
 
 
-### Discussion 9 (Mar 8th)
-[Slides]({{'img/154B_discussions/154B-discussion-9.pdf' | relative_url}})
+## Discussion 9 (Mar 8th)
+[Slides]({{'' | relative_url}})
 
-### Lecture (Mar 6th)
-[Slides]({{'img/154B_discussions/lecture-march-06.pdf' | relative_url}})
-
-
-### Discussion 10 (Mar 15th)
-[Slides]({{'img/154B_discussions/154B-discussion-10.pdf' | relative_url}})
-
-[Recording](https://ucdavis.zoom.us/rec/share/v2Y8mpIPE_PPxNNTB3Sa0Ict-ilvcGM6MyZjUkY_OOZVoKVF21AthaNY3W5cRsBI.IMKbP1D4g2lh3Bgc)
+## Discussion 10 (Mar 15th)
+[Slides]({{'' | relative_url}})

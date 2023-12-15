@@ -6,6 +6,11 @@ Title: ECS 201A Assignment 5
 
 ## Assignment 5 -- Due 11:59 pm (PST) *{{ site.data.course.dates.dino_5 }}*
 
+<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
+Assignment coming soon
+
+{% comment %}
+
 ### Table of Contents
 
 - [Administriva](#administrivia)
@@ -643,3 +648,5 @@ Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub tha
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
+
+{% endcomment %}
