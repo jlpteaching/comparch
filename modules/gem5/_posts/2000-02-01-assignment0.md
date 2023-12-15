@@ -23,9 +23,9 @@ Title: ECS 201A Assignment 0
 
 ## Administrivia
 
-You should complete this assignment **individually**. This assignment is not graded and will not influence your grade. However, it is highly encouraged to complete this assingment as soon as you can and get started on the next assignments. Make sure to start early and post any questions you might have on Piazza.
+You should complete this assignment **individually**. This assignment is not graded and will not influence your grade. However, it is highly encouraged to complete this assignment as soon as you can and get started on the next assignments. Make sure to start early and post any questions you might have on Piazza.
 
-Use [classroom assignment-0](https://classroom.github.com/a/E_keWvS_) to accept and create an assignment for yourself on this class' **github classroom**. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the **green code button** on the **top right corner under the tabs** to create a **github codespace** for yourself. Please make sure to **only create one codespace** for yourself.
+Use [classroom assignment-0]({{site.data.course.201a_assignment0_invitation_link}}) to accept and create an assignment for yourself on this class' **github classroom**. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the **green code button** on the **top right corner under the tabs** to create a **github codespace** for yourself. Please make sure to **only create one codespace** for yourself.
 
 After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment. Please follow the rest of this assignment using your codespace.
 
@@ -39,7 +39,7 @@ gem5 is a well known event based simulator for computer architecture research.
 You will learn about simulation and its different techniques in class and during the discussions.
 The gem5 simulator is designed so that is very powerful in describing widely varying systems, but this means it is also quite complex.
 With the purpose of simplifying system description, gem5's standard library has been developed to allow users to use ready made components and user friendly interfaces to describe their system.
-The gem5 standard libary (stdlib) is the digital world equivalent of going to your local BestBuy and picking the different components you need to build your computer system.
+The gem5 standard library (stdlib) is the digital world equivalent of going to your local BestBuy and picking the different components you need to build your computer system.
 Although, the components along with their names do not match the commercial products of Intel, AMD, and Nvidia.
 
 ### `gem5.components.boards`
@@ -66,7 +66,7 @@ In addition, you need to specify the clock frequency for the `processor` and `ca
 Ready made `processor` objects in the standard library represent the processing cores in a real CPU.
 In this assignment, we are going to use `HW0TimingSimpleCPU`.
 You can find its source code in this repo in `components/processors.py`.
-This processor is based on `SimpleProcessor` from the standard libary.
+This processor is based on `SimpleProcessor` from the standard library.
 Whenever instantiated, it will create a `SimpleProcessor` with **one** `TimingSimpleCPU` core with `RISC-V` instruction set architecture (ISA).
 You can find the source code to `SimpleProcessor` in `gem5/src/python/gem5/components/processors/simple_processor.py`.
 In addition, it is highly recommended that you learn more about gem5's different CPU models in the link below.
@@ -77,7 +77,7 @@ In addition, it is highly recommended that you learn more about gem5's different
 
 ### `gem5.components.cachehierarchies`
 
-The `cache hierarchy` objects in standard libary are designed to implement **cache coherency protocol** for multi-core processors and model the **interconnect** between multiple cores and multiple memory channels.
+The `cache hierarchy` objects in standard library are designed to implement **cache coherency protocol** for multi-core processors and model the **interconnect** between multiple cores and multiple memory channels.
 In this assignment we are going to use `HW0MESITwoLevelCache`.
 You can find its source code in `components/cache_hierarchies.py`.
 This cache hierarchy is based on `MESITwoLevelCacheHierarchy` from the standard library.
@@ -193,7 +193,7 @@ The simulator object allows us to give directions to gem5 on specific things we 
 You will see examples of interacting with the simulator later on.
 We can create a simulator object through an internal python package from gem5.
 The simulate package allows user to easily set up the simulation environment for the experiments.
-**NOTE**: Most of gem5's internal python packages work exculsively with gem5.
+**NOTE**: Most of gem5's internal python packages work exclusively with gem5.
 gem5 has an internal modified python interpreter that these packages use to communicate with gem5.
 The following steps show how to import the simulator package and instantiate a simulator object.
 
