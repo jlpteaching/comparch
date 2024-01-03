@@ -12,9 +12,9 @@ toc: true
 
 *Lecture*: {{ site.data.course.lecture_location }}.
 
-*154B Discussion*: Hutchison Hall 115. Wednesday 9:00 - 9:50am.
+*154B Discussion*: Hutchison Hall 115. Tuesday 3:10 - 4:00pm.
 
-*201A Discussion*: Cruess Hall 1003. Monday 11:00 - 11:50am.
+*201A Discussion*: Wellman 6. Tuesday 2:10 - 3:00pm.
 
 ### Instructor
 
@@ -25,7 +25,7 @@ My pronouns are he/him/his.
 
 Please contact me via email if you have a personal request, *not* canvas messages.
 **I do not check canvas messages.**
-For class-wide questions (e.g., anything more than one person might be interested to know), please use the [online discussion](#discussion).
+For class-wide questions (e.g., anything that is not private), please use the [online discussion](#discussion).
 
 #### Office hours
 
@@ -35,7 +35,7 @@ For class-wide questions (e.g., anything more than one person might be intereste
 
 These office hours can be used to discuss anything you would like.
 The discussion topic doesn't have to be class related or even computer architecture related.
-If you need to discuss something in private, let me know (e.g., via chat on zoom) and I can create a waiting room for others while we talk privately.
+If you need to discuss something in private, please email me for an appointment.
 
 <!-- *Online office*: [Zoom link](https://ucdavis.zoom.us/my/jlowepower) (<https://ucdavis.zoom.us/my/jlowepower>). -->
 <!-- I'll be connected on Zoom during in person office hours. -->
