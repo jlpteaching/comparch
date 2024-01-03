@@ -97,12 +97,15 @@ Through asking and answering questions on Discord, you improve your understandin
 ### Regrade Requests
 
 Regrade requests must be made within one week of the return of the assignment or test.
-Regrade requests should be made in office hours or by appointment.
+Regrade requests can be made through Gradescope.
+*Please be sure to read the rubric and the comments on your assignment before submitting a regrade request.*
+**Do not make regrade requests that simply ask for more points.
+Regrades will only be accepted in the case of a grading error.**
 
 ### Accommodations
 
 The exam schedule is available on the [main page]({{'/' | relative_url}}).
-Per official UC Davis policy, if you have an accommodation request from the [Student Disability Center](https://sdc.ucdavis.edu/), or have any conflicts with exam times for religious observances, you must notify me **by the fourth class, January 18, 2023**.
+Per official UC Davis policy, if you have an accommodation request from the [Student Disability Center](https://sdc.ucdavis.edu/), or have any conflicts with exam times for religious observances, you must notify me **by the fourth class, January 17, 2023**.
 If you do not notify me by this time, I cannot guarantee I will be able to make the accommodation.
 
 For **each** test, quiz, etc. you must reach out to me *one week in advance* to schedule specific accommodations for that test, quiz, etc.
@@ -125,6 +128,25 @@ Any violations of this policy will result in reporting the violating student(s) 
 This can result in a 0 on the assignment or an F in the class.
 See the [Computer Science Department's policy](https://www.cs.ucdavis.edu/blog/academic-misconduct-policy/) for more information.
 
+### Using generative AI tools
+
+Generative AI tools such as [GitHub Copilot](https://copilot.github.com/) and [ChatGPT](https://chat.openai.com/) are *incredibly useful*.
+I encourage you to use these tools when appropriate.
+
+Appropriate uses of the tools include:
+- Using GitHub Copilot to help you write code for DINOCPU or gem5.
+- Using ChatGPT to *draft* text based on *your own* inputs.
+- Using ChatGPT to help improve grammar in your writing.
+
+Inappropriate uses of the tools include:
+- Using ChatGPT to write text for you without editing or reviewing it.
+
+Remember, these tools are prone to "hallucinating" and may not give reasonable results.
+You should always review the output of these tools before submitting it.
+You are responsible for all of the code and text you submit.
+
+If you are unsure if a use of these tools is appropriate, please ask me to clarify **before** submitting work using these tools.
+
 ## Student Support
 
 As a student you may experience a range of issues that can cause barriers to learning, such as strained relationships, increased anxiety, alcohol/drug problems, feeling down, difficulty concentrating and/or lack of motivation.
@@ -138,14 +160,15 @@ If you need additional accommodations due to these or other personal issues, don
 I cannot guarantee that I will be able to make accommodations.
 However, reaching out to me earlier will increase the likelihood that I can make accommodations.
 
-### What happens if I get a positive COVID test?
+### What happens if I get a positive COVID test or I am sick?
 
 **Do not come to class!**
 
 All classes will be recorded.
+(Discussions will not be recorded.)
 
 If you are not feeling well or test positive before an exam, contact Prof Jason Lowe-Power *immediately*.
-We can make accomidations *only before* the exam.
+We can make accommodations *only before* the exam.
 **DO NOT** come to the exam if you are sick.
 
 ## Prerequisites
@@ -278,6 +301,8 @@ The second chance is due 2 days later.
 If you take the first version of the quiz, then you can make 100% on the second try.
 If you don't attempt the first try, you can make at most 75% of the points.
 (Note: This 25% penalty for missing the original quiz will be manually applied.)
+
+The quizzes are available to 201A students, but they are not required.
 
 ### Perusall (201A Only)
 
