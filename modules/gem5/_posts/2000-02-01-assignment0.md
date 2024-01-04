@@ -1,16 +1,11 @@
 ---
-Author: Mahyar Samani
+Author: Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 0
 ---
 
 # Assignment 0 -- (0 points)
 
 **Due on *{{ site.data.course.dates.gem5_0 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
-
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
 
 ## Table of Contents
 
@@ -475,18 +470,18 @@ This means you have to put `--outdir=[path to your desired directory]` before th
 This is what an example command with `--outdir` will look like.
 
 ```shell
-gem5 --outdir=test-mahyar run.py
+gem5 --outdir=test-run0 run.py
 ```
 
-After running the command above, you will see that a directory with the name `test-mahyar` has been created.
+After running the command above, you will see that a directory with the name `test-run0` has been created.
 Let's confirm that by running `ls`.
 This is what you will see in your terminal after running `ls`.
 
 ```shell
-LICENSE  LICENSE.code  LICENSE.content  README.md  components  gem5  m5out  requirements.txt  run.py  test-mahyar  util  workloads
+LICENSE  LICENSE.code  LICENSE.content  README.md  components  gem5  m5out  requirements.txt  run.py  test-run0  util  workloads
 ```
 
-If you look at the content of `test-mahyar`, you will see that it includes all the simulator outputs that you could find in `m5out` before.
+If you look at the content of `test-run0`, you will see that it includes all the simulator outputs that you could find in `m5out` before.
 
 ### Passing input arguments to configuration script
 
@@ -526,5 +521,3 @@ Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub tha
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
-
-{% endcomment %}
