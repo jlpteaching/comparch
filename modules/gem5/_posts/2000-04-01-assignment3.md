@@ -134,7 +134,7 @@ int main()
         for (auto vertex: frontier) {
             int start = columns[vertex];
             int end = columns[vertex + 1];
-            for (int i = start; i < end; i++){
+            for (int i = start; i < end; i++) {
                 int neighbor = edges[i];
                 if (visited[neighbor] == 0) {
                     visited[neighbor] = 1;
