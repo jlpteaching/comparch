@@ -275,11 +275,11 @@ This tables are from the The RISC-V Instruction Set Manual Volume I: Unprivilege
 You can find the same information in Chapter 2, Chapter 5, and Chapter 7 of the Specification, Chapter 2 of the RISC-V reader, or in the front of the Computer Organization and Design book.
 
 The ALU control takes six inputs,
-* `aluop`, `arth_type`, and `inst_set` are all coming from the control unit (you will implement this in the next lab)
+* `aluop`, `arth_type`, and `int_length` are all coming from the control unit (you will implement this in the next lab)
 * `funct7` and `funct3`, which come from the instruction
 
 The [assignment 1 worksheet]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}) contains the information on how to use the Control Unit for this assignment.
-The ControlUnit already has the appropriate `aluop`, `arth_type`, and `inst_set` signals for each R-type instruction, and you can use these signals for the corresponding ALUControlUnit input.
+The ControlUnit already has the appropriate `aluop`, `arth_type`, and `int_length` signals for each R-type instruction, and you can use these signals for the corresponding ALUControlUnit input.
 
 Given these inputs, you must generate the correct output on the `operation` wire.
 The template code from `src/main/scala/components/alucontrol.scala` is shown below.
@@ -294,7 +294,7 @@ You will fill in where it says *Your code goes here*.
  *                          . 1 for arithmetic instruction types (R-type or I-type)
  *                          . 2 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
  * Input:  arth_type    The type of the arithmetic instruction (0 for R-type, 1 for I-type)
- * Input:  inst_set     The instruction set (0 for 64-bit, 1 for 32-bit)
+ * Input:  int_length   The integer length (0 for 64-bit, 1 for 32-bit)
  * Input:  funct7       The most significant bits of the instruction.
  * Input:  funct3       The middle three bits of the instruction (12-14).
  *
@@ -308,7 +308,7 @@ class ALUControl extends Module {
   val io = IO(new Bundle {
     val aluop       = Input(UInt(2.W))
     val arth_type   = Input(UInt(1.W))
-    val inst_set    = Input(UInt(1.W))
+    val int_length  = Input(UInt(1.W))
     val funct7      = Input(UInt(7.W))
     val funct3      = Input(UInt(3.W))
 
