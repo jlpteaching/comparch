@@ -84,8 +84,6 @@ Before starting with simulations, answer the following questions in your report.
 
 1. What metrics should you use to measure the performance of a computer system? Why?
 2. Why is it not always possible to use the same metrics for performance to evaluate computer systems?
-3. Define the Iron law of processor performance.
-4. What does an Instruction Set Architecture (ISA) define?
 
 ### Step I: Changing the CPU model and CPU and cache clock frequency
 
@@ -124,39 +122,41 @@ In your report, answer the same questions after simulation supported with data. 
 ### Step III: Using different compiler optimizations
 
 In this step, you'll be using different compiler optimizations to run the same
-matrix multiplication program. Compiler optimization flags are options that can
-be used to improve the *performance* of the program at the expense of
-compilation time and the ability to debug the program. The default version of
-the matrix multiply program is compiled with the flag `-O2`:
+matrix multiplication program.
+Compiler optimization flags are options that can be used to improve the
+*performance* of the program.
+The default version of the matrix multiply program is compiled with the flag `-O2`:
 
 ```sh
 g++ -o mm mm.cpp -static -O2
 ```
 
-We have compiled binaries with flags `-O0` and `-O3`. The former reduces the
-compilation time and makes debugging produce expected results. The latter
-optimizes the code to the maximum possible limit. This *usually* means that
-there are less number of instructions in the more optimized version of the
-program. Let's look at the following computation: $z = \alpha x + y$.
+We have compiled binaries with flags `-O0` and `-O3`.
+The former the a binary without any compiler optimizations.
+The latter applies modt of the optimizations that gcc (or llvm/clang) supports.
+This *usually* means that there are fewer instructions in the more optimized
+version of the program.
+Let's look at the following computation: $z = \alpha x + y$.
 This operation first multiplies $\alpha$ and $x$, and then adds $y$ to the
-result. Assume that x, y and z are all float. In modern processors,
-these two steps are usually combined to do a `multiply and accumulate`
-operation in a single step. If the compiler detects such computations, it'll
-try to optimize this from two `ld` and one `st` to a MAC operation like
-`fmadd.d` instruction.
+result.
+Assume that x, y and z are all float.
+In modern processors, these two steps are usually combined in a single
+`multiply and accumulate` or `MAC` operation.
+If the compiler detects such computations, it'll try to optimize this from two
+`ld` and one `st` to a MAC operation like `fmadd.d` instruction.
 When we look at the assembly, it generates an `fmadd.d rd, rs1, rs2, rs3`.
 
 Use the `HW1TimingSimpleCPU` and `HW1DDR3_1600_8x8` for this step.
 
 Before running any simulations try to answer this question, which has 4 parts:
 
-1. Which program do you think will perform better? What part of the Iron Law
-are you optimizing in this step? Do you think if you use CSIC ISA, the results
-will further improve? Why?
+1. Which program do you think will perform better?
+2. What part of the Iron Law are you optimizing in this step?
+3. Do you think if you use CSIC ISA, the results will further improve? Why?
 
 In your report, answer the same questions after simulation supported with data.
 A complete set of simualtion data for this step should include
-**2 configurations** (1 for -O0 and 1 for -O3)
+**two configurations** (one for -O0 and one for -O3)
 
 ### Step IV: General questions
 
