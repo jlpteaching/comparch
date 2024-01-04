@@ -1,6 +1,6 @@
 ---
 Authors: Jason Lowe-Power, Filipe Eduardo Borges
-Editor:  Hoa Nguyen
+Editor:  Hoa Nguyen, Zhantong Qiu
 Title: DINO CPU Assignment 1
 ---
 
@@ -8,12 +8,7 @@ Originally from ECS 154B Lab 1, Winter 2019.
 
 Modified for ECS 154B Lab 1, {{ site.data.course.quarter }}.
 
-**Due on *{{ site.data.course.dates.dino_1 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
-
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
+**Due on *{{ site.data.course.dates.dino_1 }}* 2:10 pm (PST)**: See [Submission](#submission) for details.
 
 ## Table of Contents
 
@@ -114,7 +109,7 @@ latest: Pulling from jlpteaching/dinocpu-wq23
 e96e057aae67: Pull complete 
 bdb9413ca2c5: Pull complete 
 ce5c4157a592: Pull complete 
-ae906d0f6b61: Pull complete 
+ae906d0f6b61: Pull complete
 899b16822c39: Pull complete 
 Digest: sha256:b520941b695d9d4c1e8c72cd0143c3f300655790e7ca928e59042b32a7eb90b4
 Status: Downloaded newer image for jlpteaching/dinocpu-wq23:latest
@@ -188,34 +183,34 @@ In other words, for the ALU coponent, `result := operand1 <op> operand2`.
 
 | `operation` |   `op` |
 |-------------|--------|
-|       00000 |    and |
-|       00001 |     or |
-|       00010 |    xor |
-|       00100 |    sra |
-|       00101 |   sraw |
-|       00110 |    sll |
-|       00111 |   sllw |
-|       01000 |    srl |
-|       01001 |   srlw |
-|       01010 |    slt |
-|       01011 |   sltu |
-|       01100 |    add |
-|       01101 |   addw |
-|       01110 |    sub |
-|       01111 |   subw |
-|       10000 |    mul |
-|       10001 |   mulw |
-|       10010 |   mulh |
-|       10011 |  mulhu |
-|       10100 |    div |
-|       10101 |   divu |
-|       10110 |   divw |
-|       10111 |  divuw |
-|       11000 |    rem |
-|       11001 |   remu |
-|       11010 |   remw |
-|       11011 |  remuw |
-|       11100 | mulhsu |
+|       00000 |    add |
+|       00001 |    sub |
+|       00010 |    mul |
+|       00011 |    div |
+|       00100 |    rem |
+|       00101 |    and |
+|       00111 |     or |
+|       01000 |    xor |
+|       01001 |    sra |
+|       01010 |    sll |
+|       01011 |    srl |
+|       01100 |    slt |
+|       01101 |   divu |
+|       01110 |   remu |
+|       01111 |   sltu |
+|       10000 |   addw |
+|       10001 |   subw |
+|       10010 |   mulw |
+|       10011 |   divw |
+|       10100 |   remw |
+|       10101 |   mulh |
+|       10111 |  mulhu |
+|       11000 | mulhsu |
+|       11001 |   sraw |
+|       11010 |   sllw |
+|       11011 |   srlw |
+|       11101 |  divuw |
+|       11110 |  remuw |
 
 ### Building the ALU Control Unit
 
@@ -279,12 +274,12 @@ This is also true for RV64IM, except when the opcode is `OP-32` or `OP-IMM-32` (
 This tables are from the The RISC-V Instruction Set Manual Volume I: Unprivileged ISA, V20191213, page 130-131.
 You can find the same information in Chapter 2, Chapter 5, and Chapter 7 of the Specification, Chapter 2 of the RISC-V reader, or in the front of the Computer Organization and Design book.
 
-The ALU control takes three inputs,
-* `aluop`, which comes from the control unit (you will implement this in the next lab)
+The ALU control takes six inputs,
+* `aluop`, `arth_type`, and `inst_length` are all coming from the control unit (you will implement this in the next lab)
 * `funct7` and `funct3`, which come from the instruction
 
 The [assignment 1 worksheet]({{'img/dinocpu/assignment-1-worksheet.pdf' | relative_url}}) contains the information on how to use the Control Unit for this assignment.
-The ControlUnit already has the appropriate `aluop` signal for each R-type instruction, and you can use this signal for the corresponding ALUControlUnit input.
+The ControlUnit already has the appropriate `aluop`, `arth_type`, and `inst_length` signals for each R-type instruction, and you can use these signals for the corresponding ALUControlUnit input.
 
 Given these inputs, you must generate the correct output on the `operation` wire.
 The template code from `src/main/scala/components/alucontrol.scala` is shown below.
@@ -296,11 +291,10 @@ You will fill in where it says *Your code goes here*.
  *
  * Input:  aluop        Specifying the type of instruction using ALU
  *                          . 0 for none of the below
- *                          . 1 for 64-bit R-type
- *                          . 2 for 64-bit I-type
- *                          . 3 for 32-bit R-type
- *                          . 4 for 32-bit I-type
- *                          . 5 for non-arithmetic instruction types that use ALU (auipc/jal/jarl/Load/Store)
+ *                          . 1 for arithmetic instruction types (R-type or I-type)
+ *                          . 2 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
+ * Input:  arth_type    The type of the arithmetic instruction (0 for R-type, 1 for I-type)
+ * Input:  inst_length  The length of the instruction (0 for 64-bit, 1 for 32-bit)
  * Input:  funct7       The most significant bits of the instruction.
  * Input:  funct3       The middle three bits of the instruction (12-14).
  *
@@ -309,18 +303,21 @@ You will fill in where it says *Your code goes here*.
  * For more information, see Section 4.4 and A.5 of Patterson and Hennessy.
  * This is loosely based on figure 4.12
  */
+
 class ALUControl extends Module {
   val io = IO(new Bundle {
-    val aluop     = Input(UInt(3.W))
-    val funct7    = Input(UInt(7.W))
-    val funct3    = Input(UInt(3.W))
+    val aluop       = Input(UInt(2.W))
+    val arth_type   = Input(UInt(1.W))
+    val inst_length = Input(UInt(1.W))
+    val funct7      = Input(UInt(7.W))
+    val funct3      = Input(UInt(3.W))
 
-    val operation = Output(UInt(5.W))
+    val operation   = Output(UInt(5.W))
   })
 
   io.operation := "b11111".U // Invalid
-
-  // Your code goes here
+  
+  // Your code here
 }
 ```
 
@@ -335,7 +332,7 @@ make sure you have a correct implementation first, then you start from modifying
 
 We have implemented some tests for your ALU control unit.
 The general ALU control unit tests are in `src/test/scala/components/ALUControlUnitTest.scala`.
-However, these tests require you to implement the required control for not only the R-type instructions but also for I-Types and loads/stores.
+However, these tests require you to implement the required control for not only the R-type instructions but also for I-Types and loads/stores(it will be in assignment2).
 Thus, there are Lab 1-specific tests in `src/test/scala/labs/Lab1Test.scala`.
 
 To run these tests, you simply need to execute the following at the sbt command prompt:
@@ -384,7 +381,7 @@ Memory latency (ignored if combinational): 0
 This output continues for a while and somewhere in it you'll see that all of the tests failed.
 
 ```
-info] Run completed in 31 seconds, 264 milliseconds.
+[info] Run completed in 31 seconds, 264 milliseconds.
 [info] Total number of tests run: 43
 [info] Suites: completed 5, aborted 0
 [info] Tests: succeeded 5, failed 38, canceled 0, ignored 0, pending 0
@@ -418,7 +415,7 @@ Feel free to add your own tests in `src/tests/scala`, modify the current tests, 
 
 For the rest of the assignments, you will implement all of RISC-V's R-type instructions.
 Since you have implemented the ALU control, there isn't much more to do except to connect the correct wires together.
-However, before you start writing code, you should know what you're going to do!
+However, before you start writing code, you should know what you're going to do.
 The goal of this part of the assignment is to allow you to design your hardware before you start trying to describe your design in Chisel.
 
 To get an idea of how you are going to implement this, it's a good idea to first draw your design on a piece of paper.
@@ -448,7 +445,7 @@ For this assignment, you only need to add the hardware to implement the R-type i
 **Hint**: **You may not need to use all of the modules provided.**
 You only need to implement the *R-type* instructions, not all RISC-V instructions, on this lab assignment.
 
-**Hint 2**: The control unit as provided is *almost empty* and has `false` or 0 on every output, which contains a valid signal and should be used as an input to the ALUControl component.
+**Hint 2**: The control unit as provided is *almost empty* and has 0 on every output, which contains a valid signal and should be used as an input to the ALUControl component.
 
 ## Part III: Implement the ADD instruction
 
@@ -706,8 +703,8 @@ Now, let's try a more complicated program that executes more than one instructio
 
 There is only one minor change from [Part IV](#part-iv-implementing-the-rest-of-the-r-type-instructions) to get these programs to execute correctly.
 The change you need to make is to make sure that after executing one instruction, your processor moves on to the next instruction to execute it.
-For now, **do not** use the `ControlTransferUnit` unit.
-Instead, add another (simple) hardware component to your system which will enable you to execute multiple instructions.
+For now, **do not** use the `jumpDetection` and `jumpPcGen` unit.
+Instead, add another (simple) hardware component to your system which will enable you to execute the next instruction.
 
 These programs are starting to be able to do some "real" things.
 For instance, `power2` computes whether the input register is a power of 2.
@@ -809,5 +806,3 @@ This is the best style of debugging for this assignment.
   * You can also put any Scala statement in the print statement (e.g., `printf(p"Output: ${io.output})`).
   * Use `println` to print during compilation in the Chisel code or during test execution in the test code. This is mostly like Java's `println`.
   * If you want to use Scala variables in the print statement, prepend the statement with an 's'. For example, `println(s"This is my cool variable: $variable")` or `println(s"Some math: 5 + 5 = ${5+5}")`.
-
-{% endcomment %}

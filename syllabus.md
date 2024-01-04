@@ -12,7 +12,7 @@ toc: true
 
 *Lecture*: {{ site.data.course.lecture_location }}.
 
-*154B Discussion*: Hutchison Hall 115. Tuesday 3:10 - 4:00pm.
+*154B Discussion*: Wellman Hall 230. Tuesday 3:10 - 4:00pm.
 
 *201A Discussion*: Wellman 6. Tuesday 2:10 - 3:00pm.
 
@@ -57,9 +57,9 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 #### ECS 154B
 
-**Hoa Nguyen** (<hoanguyen@ucdavis.edu>)
+**Zhantong Qiu** (<ztqiu@ucdavis.edu>)
 
-*Office Hours*: Fridays, 10:30am - 11:50am, Kemper 3106.
+*Office Hours*: Thursday, 2:00 pm - 3:00 pm, Kemper 3106.
 
 ## Class Resources
 
