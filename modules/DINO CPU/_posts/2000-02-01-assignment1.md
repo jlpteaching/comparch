@@ -316,7 +316,7 @@ class ALUControl extends Module {
   })
 
   io.operation := "b11111".U // Invalid
-  
+
   // Your code here
 }
 ```
@@ -332,7 +332,7 @@ make sure you have a correct implementation first, then you start from modifying
 
 We have implemented some tests for your ALU control unit.
 The general ALU control unit tests are in `src/test/scala/components/ALUControlUnitTest.scala`.
-However, these tests require you to implement the required control for not only the R-type instructions but also for I-Types and loads/stores(it will be in assignment2).
+However, these tests require you to implement the required control for not only the R-type instructions but also for I-Types and loads/stores (this will be in [assignment 2]({{'modules/gem5/assignment2' | relative_url}})).
 Thus, there are Lab 1-specific tests in `src/test/scala/labs/Lab1Test.scala`.
 
 To run these tests, you simply need to execute the following at the sbt command prompt:
