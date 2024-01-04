@@ -131,8 +131,28 @@ In the `workloads/daxpy/daxpy.cpp`, the code is annotated as:
 ```
 To compile this program, you need to include the `gem5/m5ops.h` header file.
 In the stats file generated after the simulation, you will only have statistics within the defined ROI.
+For this assignment, the code is already compiled.
+You can find the binary `daxpy-gem5` and it's assembly `daxpy-gem5-asm` in the `workloads/daxpy/` directory.
 
-The compiled program `daxpy-gem5` and it's assembly are already generated in the `workloads/daxpy/`.
+If you want to manually compile this program, follow this instructions:
+```makefile
+CROSS_COMPILE=riscv-linux-gnu-
+all: daxpy-gem5 daxpy-gem5-asm
+
+clean:
+  rm daxpy-gem5 daxpy-gem-asm
+
+daxpy-gem5:
+  $(CROSS_COMPILE)g++ daxpy.cpp -o daxpy-gem5 -static -O2 -I$(GEM5_ROOT)/include -DGEM5 -L$(GEM5_ROOT)/util/m5/build/riscv/out -lm5 
+daxpy-gem5-asm:
+  $(CROSS_COMPILE)g++ daxpy.cpp -o daxpy-gem5-asm -static -O2 -I$(GEM5_ROOT)/include -DGEM5 -L$(GEM5_ROOT)/util/m5/build/riscv/out -lm5 -S -fverbose-asm
+```
+
+You need to include the `gem5.h` file. More on including and linking gem5's `m5` can be [found here.](https://www.gem5.org/documentation/general_docs/m5ops/).
+If you want to dump the dynamic assembly instructions, you need to use tools like `objdump` to do so.
+```sh
+objdump daxpy-gem5    # or riscv-linux-gnu-objdump
+```
 
 ### **IMPORTANT NOTE**
 
@@ -277,7 +297,7 @@ Which design would you choose?
 
 As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
 You should submit your report on
-[gradescope](https://www.gradescope.com/courses/487868).
+[gradescope]({{site.data.course.201a__gradescope_lab2_link}).
 In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step 0](#step-0),
 [Analysis and simulation: Step I](#step-i),
 [Analysis and simulation: Step II](#step-ii), and
