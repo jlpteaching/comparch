@@ -1,6 +1,6 @@
 ---
 Author: Jason Lowe-Power
-Editor:  Maryam Babaie, Mahyar Samani
+Editor:  Maryam Babaie, Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 1
 ---
 
@@ -10,12 +10,7 @@ Originally from University of Wisconsin-Madison CS/ECE 752 .
 
 Modified for ECS 201A, Winter 2023.
 
-**Due on *{{ site.data.course.dates.gem5_1 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
-
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
+**Due on *{{ site.data.course.dates.gem5_1 }}* 1:59 pm (PST)**: See [Submission](#submission) for details
 
 ## Table of Contents
 
@@ -33,12 +28,13 @@ Assignment coming soon
 
 You should submit your report in **pairs** and in **PDF** format. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
 
-Use [classroom: assignment 1](https://classroom.github.com/a/j_DKuKaP) to create an assignment. You will be aksed to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 1]({{site.data.course.201a_assignment1_invitation_link}}) to create an assignment. You will be aksed to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
 In this assignment you are going to:
 
+- see a pactical demonstration of the Iron Law of computer architecture.
 - measure the performance differences of a single-cycle like processor vs an in-order pipelined processor,
 - see how the measured performance scales as CPU clock frequency changes,
 - and see the effect of memory bandwidth and latency on measured performance.
@@ -65,17 +61,10 @@ void multiply(double **A, double **B, double **C, int size)
 You can find the definitions for the workload objects in gem5 under `workloads/workloads.py`.
 In this assignment, we will only be using `MatMulWorkload`.
 In order to create an object of `MatMulWorkload` you just need to pass matrix size (an integer) `mat_size` to its constructor (`__init__`) function.
+
 **In your configuration choose an appropriate value for `mat_size`**. It should be large enough that it makes your workload interesting.
 Since changing `mat_size` will influence simulation time, as a guideline, choose a value that results in simulation times less than 10 minutes (hostSeconds < 600).
 We found that setting mat_size to 224 will result in a simulation time of around 5 minutes which is a reasonable compromise.
-
-**CAVEAT [PLEASE READ CAREFULLY]**: When using this workload with gem5, your simulation will output two sets of statistics in the same `stats.txt` file. Each set of statistics start with a line like below.
-
-```text
----------- Begin Simulation Statistics ----------
-```
-
-Please make sure to **ignore** the **second** set of generated statistics in your analysis.
 
 ## Experimental setup
 
@@ -95,6 +84,8 @@ Before starting with simulations, answer the following questions in your report.
 
 1. What metrics should you use to measure the performance of a computer system? Why?
 2. Why is it not always possible to use the same metrics for performance to evaluate computer systems?
+3. Define the Iron law of processor performance.
+4. What does an Instruction Set Architecture (ISA) define?
 
 ### Step I: Changing the CPU model and CPU and cache clock frequency
 
@@ -130,7 +121,44 @@ Use `4GHz` as the clock frequency.
 
 In your report, answer the same questions after simulation supported with data. A complete set of simualtion data for this step should include **6 configurations** (2 options for CPU model * 3 options for memory model).
 
-### Step III: General questions
+### Step III: Using different compiler optimizations
+
+In this step, you'll be using different compiler optimizations to run the same
+matrix multiplication program. Compiler optimization flags are options that can
+be used to improve the *performance* of the program at the expense of
+compilation time and the ability to debug the program. The default version of
+the matrix multiply program is compiled with the flag `-O2`:
+
+```sh
+g++ -o mm mm.cpp -static -O2
+```
+
+We have compiled binaries with flags `-O0` and `-O3`. The former reduces the
+compilation time and makes debugging produce expected results. The latter
+optimizes the code to the maximum possible limit. This *usually* means that
+there are less number of instructions in the more optimized version of the
+program. Let's look at the following computation: $z = \alpha x + y$.
+This operation first multiplies $\alpha$ and $x$, and then adds $y$ to the
+result. Assume that x, y and z are all float. In modern processors,
+these two steps are usually combined to do a `multiply and accumulate`
+operation in a single step. If the compiler detects such computations, it'll
+try to optimize this from two `ld` and one `st` to a MAC operation like
+`fmadd.d` instruction.
+When we look at the assembly, it generates an `fmadd.d rd, rs1, rs2, rs3`.
+
+Use the `HW1TimingSimpleCPU` and `HW1DDR3_1600_8x8` for this step.
+
+Before running any simulations try to answer this question, which has 4 parts:
+
+1. Which program do you think will perform better? What part of the Iron Law
+are you optimizing in this step? Do you think if you use CSIC ISA, the results
+will further improve? Why?
+
+In your report, answer the same questions after simulation supported with data.
+A complete set of simualtion data for this step should include
+**2 configurations** (1 for -O0 and 1 for -O3)
+
+### Step IV: General questions
 
 Now that you have completed your simulation runs and analyses. Answer this last question in your report.
 
@@ -146,20 +174,39 @@ As part of your submission, you should include any script/code/file that might b
 
 ### Part II: Report
 
-As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
-In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency), [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),and [Analysis and simulation: Step III](#step-iii-general-questions). Use clear reasoning and visualization to drive your conclusions.
+As mentioned before, you are allowed to submit your assignments in **pairs**
+and in **PDF** format.
+You should submit your report on
+[gradescope](https://www.gradescope.com/courses/487868).
+In your report answer the questions presented in
+[Analysis and simulation](#analysis-and-simulation),
+[Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency),
+[Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),
+[Analysis and simulation: Step III](#step-iii-using-different-compiler-optimizations),
+and
+[Analysis and simulation: Step IV](#step-iv-general-questions).
+Use clear reasoning and visualization to drive your conclusions.
 
 ## Grading
 
 Like your submission, your grade is split into two parts.
 
 1. Reproducibility Package (50 points):
-    a. Instruction and automation to run simulations for different section and dump statistics (20 points)
-        - Instructions (10 points)
-        - Automation (10 points)
-    b. Configuration scripts and correct simulation setup (30 points): 2.5 points for each configuration as described in [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency) and [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model)
-2. Report (50 points): 7 points for each question presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency), [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),and [Analysis and simulation: Step III](#step-iii-general-questions).
+    1. Instruction and automation to run simulations for different section and
+    dump statistics (20 points)
+    2. Instructions (10 points)
+    3. Automation (10 points)
+    4. Configuration scripts and correct simulation setup (30 points): 2.5
+    points for each configuration as described in
+    [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency)
+    and
+    [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model)
+2. Report (50 points): 5 points for each question presented in 
+    [Analysis and simulation](#analysis-and-simulation),
+    [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency), [Analysis and simulation: Step II](#step-ii-changing-the-cpu-and-memory-model),
+    [Analysis and simulation: Step III](#step-iii-using-different-compiler-optimizations),
+    and
+    [Analysis and simulation: Step IV](#step-iv-general-questions).
 
 ## Academic misconduct reminder
 
@@ -171,5 +218,3 @@ Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub tha
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
-
-{% endcomment %}
