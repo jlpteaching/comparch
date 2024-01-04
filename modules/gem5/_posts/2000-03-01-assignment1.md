@@ -84,6 +84,7 @@ Before starting with simulations, answer the following questions in your report.
 
 1. What metrics should you use to measure the performance of a computer system? Why?
 2. Why is it not always possible to use the same metrics for performance to evaluate computer systems?
+3. Define the Iron law of processor performance.
 
 ### Step I: Changing the CPU model and CPU and cache clock frequency
 
@@ -177,7 +178,7 @@ As part of your submission, you should include any script/code/file that might b
 As mentioned before, you are allowed to submit your assignments in **pairs**
 and in **PDF** format.
 You should submit your report on
-[gradescope](https://www.gradescope.com/courses/487868).
+[gradescope]({{site.data.course.201a__gradescope_lab1_link}).
 In your report answer the questions presented in
 [Analysis and simulation](#analysis-and-simulation),
 [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency),
