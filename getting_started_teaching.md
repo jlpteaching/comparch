@@ -52,6 +52,44 @@ Assignment coming soon
 {% endcomment %}
 ```
 
-## Creating the quizzes
+- Update the syllabus with the times for discussions.
+- Update the syllabus with the times for office hours.
+- Update the syllabus with the current TAs and their office hours.
 
-??? Can't remember...
+## Creating assignments on gradescope
+
+## Creating assignments on Perusall
+
+- You can import a previous class
+- Go through the current assignments and see if you want to change any papers
+
+## Setting up Canvas
+
+- Remove all of the unneeded links. Keep the following. **DON'T FORGET TO HIT "SAVE" AT THE BOTTOM OF THE PAGE**
+  - Equitable Access
+  - Piazza
+  - Grades
+  - Assignments
+  - Gradescope
+  - Quizzes
+  - Perusall (201A only)
+  - Syllabus
+- Click on gradescope to create the courses on gradescope
+  - Update the data file
+- Add TA's to the course
+- Modify the syllabus with "See https://jlpteaching.github.io/comparch/ for all class information."
+- Choose home page -> Syllabus
+
+### Creating the quizzes
+
+- Update the dates in `util.py`
+- Update dates on each quiz in `wq23` directory
+
+```sh
+cd Canvas\ Integration/wq23
+python week2.py --course 201A
+python week2.py --course 154B
+python week2.py --course 154B --late
+```
+
+Adding `--late` makes it so there is an "extra" quiz that has the answers and can be completed in the 2 days after the quiz is due as specified in the syllabus.
