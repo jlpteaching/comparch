@@ -10,6 +10,7 @@ This is mostly a set of notes from what I amd doing in Winter 2024.
 
 - DINO CPU (private): https://github.com/jlpteaching/dinocpu-private/
   - This has all of the solutions and templates for the past quarters.
+  - The branch name for Winter 2024 assignment 3 solution is `wq24/updated-assginment3`
 - DINO CPU (public): https://github.com/jlpteaching/dinocpu
   - This is the public version of the DINO CPU. TBH, it hasn't been updated in a while.
 - gem5 for teaching: ????
