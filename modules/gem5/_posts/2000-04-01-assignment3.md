@@ -1,10 +1,10 @@
 ---
 Author: Jason Lowe-Power
-Editor:  Maryam Babaie, Mahyar Samani
+Editor:  Maryam Babaie, Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 3
 ---
 
-**Due on *{{ site.data.course.dates.gem5_3 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
+**Due on *{{ site.data.course.dates.gem5_3 }}* 1:59 pm (PST)**: See [Submission](#submission) for details
 
 <img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
 Assignment coming soon
@@ -27,7 +27,10 @@ Assignment coming soon
 
 You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
 
-Use [classroom: assignment 3](https://classroom.github.com/a/zntCWm3I) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 3]({{site.data.course.201a_assignment3_invitation_link}}) to create an assignment.
+You will be asked to **join**/**create** an assignment.
+If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment.
+Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
@@ -40,7 +43,7 @@ The goals of this assignment are:
 
 ## Workload
 
-In this assignment, you are going to use 3 workloads for the evaluation of the performance of your systems.
+In this assignment, you are going to use four workloads for the evaluation of the performance of your systems.
 Read more about each workload and how to use those workloads for your experiments below.
 
 ### Matrix Multiplication
@@ -203,6 +206,105 @@ int main()
 
 ```
 
+### N-Queens
+
+The N-Queens problem is a classic computer science problem.
+It involves placing N chess queens on an N×N chessboard so that no two queens threaten each other.
+This means that no two queens can share the same row, column, or diagonal.
+The most common method to solve the N-Queens problem is to use backtracking.
+Below you can find the C++ implementation for the same:
+
+```cpp
+#include <bits/stdc++.h>
+
+#ifdef GEM5
+#include "gem5/m5ops.h"
+#endif
+
+void printSolution(int **board, int N) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++)
+            printf(" %d ", board[i][j]);
+        printf("\n");
+    }
+}
+
+bool isSafe(int **board, int row, int col, int N) {
+    for (int i = 0; i < col; i++)
+        if (board[row][i])
+            return false;
+
+    for (int i=row, j=col; i>=0 && j>=0; i--, j--)
+        if (board[i][j])
+            return false;
+
+    for (int i=row, j=col; j>=0 && i<N; i++, j--)
+        if (board[i][j])
+            return false;
+
+    return true;
+}
+
+bool solveNQUtil(int **board, int col, int N) {
+    if (col >= N)
+        return true;
+
+    for (int i = 0; i < N; i++) {
+        if (isSafe(board, i, col, N)) {
+            board[i][col] = 1;
+
+            if (solveNQUtil(board, col + 1, N))
+                return true;
+
+            board[i][col] = 0;
+        }
+    }
+
+    return false;
+}
+
+bool solveNQ(int **board, int N) {
+
+
+    if (solveNQUtil(board, 0, N) == false) {
+        printf("Solution does not exist");
+        return false;
+    }
+
+    printSolution(board, N);
+    return true;
+}
+
+int main(int argc, char *argv[]) {
+    // the user needs to input the size of the chessboard
+    if (argc == 2) {
+        int size = atoi(argv[1]);
+
+        // initialize the board
+        int **board = new int*[size];
+        for (int i = 0 ; i < size; i++)
+            board[i] = new int[size];
+
+        for (int i = 0 ; i < size ; i++) {
+            for (int j = 0 ; j < size ; j++) {
+                board[i][j] = 0;
+            }
+        }
+#ifdef GEM5
+    m5_work_begin(0,0);
+#endif
+        solveNQ(board, size);
+#ifdef GEM5
+    m5_work_end(0,0);
+#endif
+    }
+    else {
+        printf("N-Queens program. Usage \n $ ./queens <chess-board-size>\n");
+    }
+    return 0;
+}
+```
+
 ## Experimental setup
 
 In this assignment, you are asked to design  your own out of order `processor` models for your experiments.
@@ -286,7 +388,7 @@ Before running any simulations answer the following questions in your report.
 
 ### Step I: Performance comparison
 
-Now that you have completed the design process of `HW3BigCore` and `HW3LittleCore`, let's compare their performances using our 3 workloads as benchmarks.
+Now that you have completed the design process of `HW3BigCore` and `HW3LittleCore`, let's compare their performances using our four workloads as benchmarks.
 Simulate each workload with each core.
 For each workload compare the performance of `HW3BigCore` with the performance of `HW3LittleCore`.
 
@@ -322,7 +424,7 @@ You can also get the area score for a pipeline design by calling the method `get
 Now that we have our cost function, let's devise a method for measuring our gains.
 In you report answer the following question.
 
-1. If you were to use the speed up under only one workload from the 3 workloads you used before, which workload would you choose? Why?
+1. If you were to use the speed up under only one workload from the four workloads you used before, which workload would you choose? Why?
 
 Now that we have devised functions to measure costs and gains, configure 4 middle ground designs for the pipeline.
 Not all of these designs will have the "best" cost-gain tradeoff.
@@ -336,11 +438,22 @@ Answer this question in your report.
 
 3. Assume you are an engineer working to design this middle ground core. Given this early analysis, which designs, if any, would you recommend your team to pursue developing? Explain why. (Note: you may want to annotate the above plot.)
 
+### Step III: General Questions
+
+Based on your experiments and insights, can you answer the following qeustion?
+
+1. Many phone chips (e.g. Arm Cortex-A series processors) and Intel's Alder Lake chips employ architectures that contain both big cores and little cores in a single system.
+The operating system (or Intel's "thread directory") can choose which core to use to run each thread.
+Assume that there is not context switching overhead, do you think that this system will be more or less efficient than have an equal number of medium cores?
+You may want to read the paper [Amdahl's Law in the Multicore Era by Hill and Marty](https://research.cs.wisc.edu/multifacet/papers/ieeecomputer08_amdahl_multicore.pdf) for inspiration.
+Note that you do not need to run any further experiments to answer this question.
+Back up your answer with logic.
+
 ## Submission
 
 As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
-In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
+You should submit your report on [gradescope]({{site.data.course.201a__gradescope_lab3_link}).
+In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), [Analysis and simulation: Step II](#step-ii-medium-core), and, [Analysis and simulation: Step III](#step-iii-general-questions).
 Use clear reasoning and visualization to drive your conclusions.
 Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
 
@@ -349,7 +462,7 @@ Submit all your code through your assignment repository. Please make sure to inc
 - Configuration: python file configuring the systems you need to simulate.
 You should add your final core designs to `components/processors.py`.
 There should be 6 core definitions in `components/processor.py`.
-They should include **1 design** for `HW3BigCore`, **1 design** for `HW3LittleCore`, and **4 designs** for `HW3MediumCore`.
+They should include **one design** for `HW3BigCore`, **one design** for `HW3LittleCore`, and **four designs** for `HW3MediumCore`.
 You can add numbers to designs for `HW3MediumCore` to distinguish their design.
 E.g. `HW3MediumCore0`, `HW3MediumCore1`, `HW3MediumCore2`, and `HW3MediumCore3`.
 
@@ -363,7 +476,7 @@ Like your submission, your grade is split into two parts.
         - Automation (5 points)
     b. Configuration scripts and correct simulation setup (40 points): 10 points for configuration script(s) used to run your simulations and 5 points for implementing each of the 6 processor models as described in [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
-2. Report (50 points): 5.5 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
+2. Report (50 points): 5 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), [Analysis and simulation: Step II](#step-ii-medium-core), and, [Analysis and simulation: Step III](#step-iii-general-questions).
 
 ## Academic misconduct reminder
 
