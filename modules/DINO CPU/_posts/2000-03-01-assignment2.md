@@ -1,6 +1,6 @@
 ---
 Authors: Jason Lowe-Power, Filipe Eduardo Borges
-Editor:  Hoa Nguyen
+Editor:  Hoa Nguyen, Zhantong Qiu
 Title: DINO CPU Assignment 2
 ---
 
@@ -24,7 +24,7 @@ Assignment coming soon
   * [Goals](#goals)
 * [Single cycle CPU design](#single-cycle-cpu-design)
 * [Control unit overview](#control-unit-overview)
-* [Part 0: ControlTransfer unit overview](#part-0-controltransfer-unit-overview")
+* [Part 0: JumpDetection unit overview](#part-0-jumpdetection-unit-overview")
 * [Part I: R-types](#part-i-r-types)
   * [R-type instruction details](#r-type-instruction-details)
   * [Testing the R-types](#testing-the-r-types)
@@ -69,7 +69,7 @@ Assignment coming soon
 ![Cute Dino]({{'img/dinocpu/dino-128.png' | relative_url}})
 
 In the last assignment, you implemented the ALU control and incorporated it into the DINO CPU to test some bare-metal R-type RISC-V instructions.
-In this assignment, you will implement the main control unit and ControlTransfer unit and update the ALU control unit (if needed).
+In this assignment, you will implement the main control unit and JumpDetection unit and update the ALU control unit (if needed).
 After implementing the individual components and successfully passing all individual component tests, you will combine these along with the other CPU components to complete the single-cycle DINO CPU.
 The simple in-order CPU design is based closely on the CPU model in Patterson and Hennessy's Computer Organization and Design.
 
@@ -130,7 +130,7 @@ In this assignment, you will be implementing the data path shown in the figure b
 You can extend your work from [Lab 1]({{'modules/dino cpu/assignment1' | relative_url}}), or you can take the updated code from [GitHub]({{site.data.course.154b_assignment2_github_link}}).
 You will be implementing everything in the diagram in Chisel (the `cpu.scala` file only implements the R-type instructions), which includes the code for the muxes.
 Then, you will wire all of the components together.
-You will also implement the [control unit](#control-unit-overview), ControlTransfer unit and update the ALU Control unit.
+You will also implement the [control unit](#control-unit-overview), JumpDetection unit and update the ALU Control unit.
 
 **Important Notice:**
 In order to get familiar with debugging your design using single stepper, ***we strongly encourage you to watch the tutorial video*** we have provided in the link below. You may have watched it while working on assignment1. As mentioned before, the videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to '{{site.data.course.quarter_abbr}}' to be applicable to your materials for the current quarter.
@@ -149,45 +149,44 @@ From that input, it generates the 12 control signals listed below as output.
 
 
 ```scala
-aluop                 Specifying the type of instruction using ALU
-                          . 0 for none of the below
-                          . 1 for 64-bit R-type
-                          . 2 for 64-bit I-type
-                          . 3 for 32-bit R-type
-                          . 4 for 32-bit I-type
-                          . 5 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
-controltransferop     Specifying the type of control transfer instruction (J-type/B-type)
-                          . 0 for none of the below
-                          . 1 for jal
-                          . 2 for jalr
-                          . 3 for branch instructions (B-type)
+aluop                Specifying the type of instruction using ALU
+                                   . 0 for none of the below
+                                   . 1 for arithmetic instruction types (R-type or I-type)
+                                   . 2 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
+arth_type            The type of instruction (0 for R-type, 1 for I-type)
+int_length           The integer length (0 for 64-bit, 1 for 32-bit)
+jumpop               Specifying the type of jump instruction (J-type/B-type)
+                                   . 0 for none of the below
+                                   . 1 for jal
+                                   . 2 for jalr
+                                   . 3 for branch instructions (B-type)
 memop                 Specifying the type of memory instruction (Load/Store)
-                          . 0 for none of the below
-                          . 1 for Load
-                          . 2 for Store
+                                   . 0 for none of the below
+                                   . 1 for Load
+                                   . 2 for Store
 op1_src               Specifying the source of operand1 of ALU/ControlTransferUnit
-                          . 0 if source is register file's readdata1
-                          . 1 if source is pc
+                                   . 0 if source is register file's readdata1
+                                   . 1 if source is pc
 op2_src               Specifying the source of operand2 of ALU/ControlTransferUnit
-                          . 0 if source is register file's readdata2
-                          . 1 if source is a hardwired value 4
-                          . 2 if source is immediate
-writeback_valid       0 if not writing back to registers, 1 otherwise
+                                   . 0 if source is register file's readdata2
+                                   . 1 if source is immediate
+                                   . 2 if source is a hardwired value 4
 writeback_src         Specifying the source of value written back to the register file
-                          . 0 to select alu result
-                          . 1 to select immediate generator result
-                          . 2 to select data memory result
+                                   . 0 if writeback is invalid
+                                   . 1 to select alu result
+                                   . 2 to select immediate generator result
+                                   . 3 to select data memory result
 validinst             0 if the instruction is invalid, 1 otherwise
 ```
 
 The following table specifies the `opcode` format and the control signals to be generated for some of the instruction types.
 
 
-| opcode  | opcode format | aluop | controltransferop | memop | op1_src | op2_src | writeback_valid | writeback_src | validinst |
-|---------|---------------|-------|-------------------|-------|---------|---------|-----------------|---------------|-----------|
-| -       | default       |     0 |                 0 |     0 |       0 |       0 |               0 |             0 |         0 |
-| 0110011 | R-type        |     1 |                 0 |     0 |       0 |       0 |               1 |             0 |         1 |
-| 0111011 | R-type        |     3 |                 0 |     0 |       0 |       0 |               1 |             0 |         1 |
+| opcode  | opcode format | aluop | arth_type | int_length | jumpop | memop | op1_src | op2_src | writeback_src | validinst |
+|---------|---------------|-------|-----------|------------|--------|-------|---------|---------|---------------|-----------|
+| -       | default       |     0 |         0 |          0 |      0 |     0 |       0 |       0 |             0 |         0 |
+| 0110011 | R-type        |     1 |         0 |          0 |      0 |     0 |       0 |       0 |             1 |         1 |
+| 0111011 | R-type        |     1 |         0 |          1 |      0 |     0 |       0 |       0 |             1 |         1 |
 
 We have given you the control signals for the R-type instructions.
 You must fill in all of the other instruction types in the table in `src/main/scala/components/control.scala`.
@@ -210,14 +209,13 @@ import chisel3.util.{BitPat, ListLookup}
  *
  * Input: opcode:                Opcode from instruction
  *
- * Output: aluop                 Specifying the type of instruction using ALU
+ * Output: aluop                Specifying the type of instruction using ALU
  *                                   . 0 for none of the below
- *                                   . 1 for 64-bit R-type
- *                                   . 2 for 64-bit I-type
- *                                   . 3 for 32-bit R-type
- *                                   . 4 for 32-bit I-type
- *                                   . 5 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
- * Output: controltransferop     Specifying the type of control transfer instruction (J-type/B-type)
+ *                                   . 1 for arithmetic instruction types (R-type or I-type)
+ *                                   . 2 for non-arithmetic instruction types that uses ALU (auipc/jal/jarl/Load/Store)
+ * Output: arth_type            The type of instruction (0 for R-type, 1 for I-type)
+ * Output: int_length           The integer length (0 for 64-bit, 1 for 32-bit)
+ * Output: jumpop               Specifying the type of jump instruction (J-type/B-type)
  *                                   . 0 for none of the below
  *                                   . 1 for jal
  *                                   . 2 for jalr
@@ -231,13 +229,13 @@ import chisel3.util.{BitPat, ListLookup}
  *                                   . 1 if source is pc
  * Output: op2_src               Specifying the source of operand2 of ALU/ControlTransferUnit
  *                                   . 0 if source is register file's readdata2
- *                                   . 1 if source is a hardwired value 4
- *                                   . 2 if source is immediate
- * Output: writeback_valid       0 if not writing back to registers, 1 otherwise
+ *                                   . 1 if source is immediate
+ *                                   . 2 if source is a hardwired value 4
  * Output: writeback_src         Specifying the source of value written back to the register file
- *                                   . 0 to select alu result
- *                                   . 1 to select immediate generator result
- *                                   . 2 to select data memory result
+ *                                   . 0 if writeback is invalid
+ *                                   . 1 to select alu result
+ *                                   . 2 to select immediate generator result
+ *                                   . 3 to select data memory result
  * Output: validinst             0 if the instruction is invalid, 1 otherwise
  *
  * For more information, see section 4.4 of Patterson and Hennessy.
@@ -246,37 +244,40 @@ import chisel3.util.{BitPat, ListLookup}
 
 class Control extends Module {
   val io = IO(new Bundle {
-    val opcode = Input(UInt(7.W))
+    val opcode            = Input(UInt(7.W))
 
-    val aluop             = Output(UInt(3.W))
-    val controltransferop = Output(UInt(2.W))
+    val aluop             = Output(UInt(2.W))
+    val arth_type         = Output(UInt(1.W))
+    val int_length        = Output(UInt(1.W))
+    val jumpop            = Output(UInt(2.W))
     val memop             = Output(UInt(2.W))
     val op1_src           = Output(UInt(1.W))
     val op2_src           = Output(UInt(2.W))
-    val writeback_valid   = Output(UInt(1.W))
     val writeback_src     = Output(UInt(2.W))
     val validinst         = Output(UInt(1.W))
   })
 
+
   val signals =
     ListLookup(io.opcode,
-      /*default*/           List(     0.U,               0.U,   0.U,     0.U,     0.U,             0.U,           0.U,       0.U),
-      Array(              /*        aluop, controltransferop, memop, op1_src, op2_src, writeback_valid, writeback_src, validinst*/
-      // R-format 64-bit operands
-      BitPat("b0110011") -> List(     1.U,               0.U,   0.U,     0.U,     0.U,             1.U,           0.U,       1.U),
-      // R-format 32-bit operands
-      BitPat("b0111011") -> List(     3.U,               0.U,   0.U,     0.U,     0.U,             1.U,           0.U,       1.U),
+      /*default*/           List(     0.U,       0.U,         0.U,     0.U,   0.U,     0.U,     0.U,           0.U,       0.U),
+      Array(              /*        aluop, arth_type,     int_length,   jumpop, memop, op1_src, op2_src, writeback_src, validinst*/
+      // R-format 64-bit
+      BitPat("b0110011") -> List(     1.U,       0.U,         0.U,     0.U,   0.U,     0.U,     0.U,           1.U,       1.U),
+      // R-format 32-bit
+      BitPat("b0111011") -> List(     1.U,       0.U,         1.U,     0.U,   0.U,     0.U,     0.U,           1.U,       1.U)
       ) // Array
     ) // ListLookup
 
   io.aluop             := signals(0)
-  io.controltransferop := signals(1)
-  io.memop             := signals(2)
-  io.op1_src           := signals(3)
-  io.op2_src           := signals(4)
-  io.writeback_valid   := signals(5)
-  io.writeback_src     := signals(6)
-  io.validinst         := signals(7)
+  io.arth_type         := signals(1)
+  io.int_length        := signals(2)
+  io.jumpop            := signals(3)
+  io.memop             := signals(4)
+  io.op1_src           := signals(5)
+  io.op2_src           := signals(6)
+  io.writeback_src     := signals(7)
+  io.validinst         := signals(8)
 }
 ```
 
@@ -297,24 +298,85 @@ You are *required* to set these lines to 0 for this assignment.
 If you do not set these lines to 0, you will not pass the control unit test on Gradescope.
 
 
-# Part 0: ControlTransfer unit overview
+# Part 0: JumpDetection unit overview
 
-In the last assignment, when you were required to run your CPU for multiple cycles, you used a simple adder to generate the next value for the PC which was simply PC+4 in all cases. In this assignment you will implement a much smarter unit, TransferControlUnit, which is responsible for the next value that must be assigned to the PC for the next cycle.
+In the last assignment, when you were required to run your CPU for multiple cycles, you used a simple adder to generate the next value for the PC which was simply PC+4 in all cases. However, you need a smarter unit to generate the next value for the PC when there is a jump instruction.
 
-The TransferControlUnit unit receives six inputs:
+In this assignment, you will use the JumpPcGenerator unit to generate the correct next value for the PC and implement the JumpDetection unit to pick the next value for the PC.
 
-* `controltransferop`, which comes from the control unit.
+The JumpDetectionUnit unit receives four inputs:
+
+* `jumpop`, which comes from the control unit.
 * `operand1`, and `operand2`,  both of which come from the Register File.
 * `funct3`, which comes from the instruction.
-* `pc`, which is the PC.
-* `imm`, which comes from the Immediate Generator unit.
 
-The ControlTransfer unit generates two outputs:
+The JumpDetection unit generates three outputs:
 
-* `nextpc`, which determines the PC of the next cycle.
+* `pc_plus_offset` is true if the next value for the PC is the PC of the current instruction plus the offset.
+* `op1_plus_offset` is true if the next value for the PC is the operand1 of the current instruction plus the offset.
 * `taken`, which is True if and only if the instruction is a jump instruction, or the instruction is a branch instruction and the branch is resolved to true.
 
-Given the inputs, you must generate the correct value for nextpc and taken. The template code from `src/main/scala/components/controltransferunit.scala` is shown below.
+Given the inputs, you must generate the correct value for `pc_plus_offset`, `op1_plus_offset`, and `taken`. The template code from `/src/main/scala/components/jumpdetection.scala` is shown below.
+
+```scala
+package dinocpu.components
+
+import chisel3._
+
+/**
+ * JumpDetection Unit.
+ * This component takes care of deciding the PC of the next cycle upon a jump instruction (jump/branch-type).
+ *
+ * Input: jumpop        Specifying the type of jump instruction (J-type/B-type)
+ *                                          . 0 for none of the below
+ *                                          . 1 for jal
+ *                                          . 2 for jalr
+ *                                          . 3 for branch instructions (B-type)
+ * Input: operand1                 First input
+ * Input: operand2                 Second input
+ * Input: funct3                   The funct3 from the instruction
+ *
+ * Output: pc_plus_offset          True if the next pc is the current pc plus the offset (imm)
+ * Output: op1_plus_offset         True if the first operand is the first operand plus the offset (imm)
+ * Output: taken                   True if, either the instruction is a branch instruction and it is taken, or it is a jump instruction
+ *
+ */
+class JumpDetectionUnit extends Module {
+  val io = IO(new Bundle {
+    val jumpop            = Input(UInt(2.W))
+    val operand1          = Input(UInt(64.W))
+    val operand2          = Input(UInt(64.W))
+    val funct3            = Input(UInt(3.W))
+  
+    val pc_plus_offset    = Output(Bool())
+    val op1_plus_offset   = Output(Bool())
+    val taken             = Output(Bool())
+  })
+
+  // default case, i.e., not a jump instruction
+  io.pc_plus_offset := false.B
+  io.op1_plus_offset := false.B
+  io.taken := false.B
+
+  // Your code goes here
+}
+```
+In this template, the outputs, `pc_plus_offset`, `op1_plus_offset`, and `taken`, are set to always be false, respectively.
+
+The JumpPcGeneratorUnit is a helper unit for generating the next value for the PC.
+
+The JumpPcGenerator unit receives five inputs:
+
+* `pc_plus_offset` and `op1_plus_offset` from the JumpDetection unit.
+* `pc`, the PC of the current instruction.
+* `op1`, the first operand of the current instruction.
+* `offset`, the offset(imm) of the current instruction.
+
+The JumpPcGenerator unit generates one output:
+
+* `jumppc`, the value of the PC it is jumping to
+
+The source code from `/src/main/scala/components/jumppcgenerator.scala` is shown below:
 
 ```scala
 // Logic to calculate the next pc
@@ -324,52 +386,50 @@ package dinocpu.components
 import chisel3._
 
 /**
- * ControlTransfer Unit.
- * This component takes care of calculating/deciding the PC of the next cycle upon a control transfer instruction (jump/branch-type).
+ * JumpPcGenerator Unit.
+ * This component takes care of calculating the pc that the jump instruction is jumping to.
  *
- * Input: controltransferop        Specifying the type of control transfer instruction (J-type/B-type)
- *                                          . 0 for none of the below
- *                                          . 1 for jal
- *                                          . 2 for jalr
- *                                          . 3 for branch instructions (B-type)
- * Input: operand1                 First input
- * Input: operand2                 Second input
- * Input: funct3                   The funct3 from the instruction
- * Input: pc                       The *current* program counter for this instruction
- * Input: imm                      The sign-extended immediate
- *
- * Output: nextpc                  The address of the next instruction
- * Output: taken                   True if, either the instruction is a branch instruction and it is taken, or it is a jump instruction
+ * Input: pc_plus_offset          True if the next pc is the current pc plus the offset (imm)
+ * Input: op1_plus_offset         True if the first operand is the first operand plus the offset (imm)
+ * Input: pc                      The PC of the current instruction
+ * Input: op1                     The first operand of the current instruction
+ * Input: offset                  The offset (imm) of the current instruction
  *
  */
-class ControlTransferUnit extends Module {
+class JumpPcGeneratorUnit extends Module {
   val io = IO(new Bundle {
-    val controltransferop = Input(UInt(2.W))
-    val operand1          = Input(UInt(64.W))
-    val operand2          = Input(UInt(64.W))
-    val funct3            = Input(UInt(3.W))
+    val pc_plus_offset    = Input(Bool())
+    val op1_plus_offset   = Input(Bool())
     val pc                = Input(UInt(64.W))
-    val imm               = Input(UInt(64.W))
-  
-    val nextpc   = Output(UInt(64.W))
-    val taken    = Output(Bool())
+    val op1               = Input(UInt(64.W))
+    val offset            = Input(UInt(64.W))
+
+    val jumppc            = Output(UInt(64.W))
+
   })
 
-  // default case, i.e., non-control-transfer instruction, or non-taken branch
-  io.nextpc := io.pc + 4.U
-  io.taken := false.B
+  // default case, i.e., not a jump instruction
+  io.jumppc := 0.U
 
-  // Your code goes here
+  when (io.pc_plus_offset) {
+    io.jumppc := io.pc + io.offset
+  }
+  .elsewhen (io.op1_plus_offset) {
+    io.jumppc := io.op1 + io.offset
+  }
 }
+
 ```
-In this template, the outputs, `nextpc` and `taken`, are set to always be PC+4 and false, respectively.
+**Important: DO NOT MODIFY THE SOURCE CODE.**
+The JumpPcGenerator unit is completed so you do not need to modify it. If you modify it, it will not pass the Gradescope tests. If the inputs are correctly wired, the JumpPcGenerator unit will output the correct `jumppc`.
 
-Before starting Part I, you should remove the parts related to PC+4 and replace it with an instance of ControlTransfer unit and create proper wire connections for it.
+The output `taken` from the JumpDetection unit will determine if the next value for the PC should be `PC + 4` or the output `jumppc` from the JumpPcGenerator unit.
+Therefore, before starting Part I, you should modify the code from assignment 1 to take `taken` into account when choosing the next value for the PC and create proper wire connections for it.
+
 For this purpose, you must update `src/main/scala/single-cycle/cpu.scala`.
-In the next sections, you will gradually complete the body of ControlTransfer unit.
+In the next sections, you will gradually complete the body of JumpDetectionUnit unit.
 
-**Note**: It is fine to keep the PC+4 adder and have a mux to decide the source of the next PC.
-If you choose to follow the diagram, you should remove the PC+4 adder.
+**Hint**: It is suggested to keep the PC+4 adder and have a mux to decide the source of the next PC.
 As a side note, if you peek at the pipelined CPU design in assignment 3, you'll see that the PC+4 adder is required and there are muxes deciding the source of the next PC.
 
 # Part I: R-types
@@ -379,8 +439,8 @@ This did not require all of outputs of a control unit since there were no need f
 However, in this assignment, you will be implementing the rest of the RISC-V instructions, and you will need to use all of outputs of the control unit (except for `validinst`).
 
 The first step is to hook up the control unit and get the R-type instructions working again.
-You shouldn't have to change all that much code in `cpu.scala` from the first assignment after you applying changes regarding [ControlTransfer unit](#part-0-controltransfer-unit-overview").
-All you have to do is to hook up the `opcode` to the input of the control unit and its output `aluop` to the ALU Control Unit.
+You shouldn't have to change all that much code in `cpu.scala` from the first assignment after you applying changes regarding [Part 0: JumpDetection unit overview](#part-0-jumpdetection-unit-overview")
+All you have to do is to hook up the `opcode` to the input of the control unit and its outputs `aluop`, `arth_type`, and `int_length` to the ALU Control Unit.
 We have already implemented the R-type control logic for you.
 You can also use the appropriate signals generated from the control unit (e.g., `writeback_src`) to drive your data path.
 
@@ -424,7 +484,7 @@ Then you can add the appropriate muxes to the CPU (in `cpu.scala`) and wire the 
 **HINT**: You only need one extra mux, compared to your R-type-only design.
 
 In this section, you will (likely) also have to update your ALU Control unit.
-In assignment 1, we ignored the `aluop` input on the ALU Control unit.
+In assignment 1, we ignored the `arth_type` input on the ALU Control unit.
 Now that we are running the I-type instructions, the use of `funct7` becomes tricky.
 See the table below for more information about the I-type instruction layouts.
 
@@ -672,7 +732,10 @@ This part is a little more involved than the previous instructions.
 Branch (along with jump) instructions are among the instructions that can alternate the next PC to values other than PC+4.
 They are called control transfer instructions as, effectively, they alter the flow of execution.
 
-First, you will update the ControlTransfer unit.
+Branch is also commonly known as a type of conditional jumps because it alters the flow of execution in a program based on a specific condition. 
+If the condition is met, the program “jumps” to a different set of instructions.
+
+First, you will update the JumpDetection unit.
 Then, you will update other necessary modules (e.g. control unit, ALU control if needed, etc) and then wire up the other necessary muxes.
 
 ## Branch instruction details
@@ -709,9 +772,9 @@ else
 
 where `<op>` determined by `funct3` (see above).
 
-## Updating your ControlTransfer unit for branch instructions
+## Updating your JumpDetectionUnit unit for branch instructions
 
-In this part you will be updating the ControlTransferUnit component to account for branch instructions. Similar to the CPU implementation in the book, the ControlTransferUnit will compute whether or not a branch is taken (outputting its result in `taken`, true if the branch is taken and false if the branch is not taken).
+In this part you will be updating the JumpDetectionUnit component to account for branch instructions. Similar to the CPU implementation in the book, the JumpDetectionUnit will compute whether or not a branch is taken (outputting its result in `taken`, true if the branch is taken and false if the branch is not taken).
 
 You must take the RISC-V ISA specification and implement the proper control to choose the right type of branch test.
 You can find the specification in the following places:
@@ -721,17 +784,17 @@ You can find the specification in the following places:
 * Chapter 2 of the RISC-V reader
 * in the front of the Computer Organization and Design book
 
-You must now extend ControlTransfer module with additional control to generate correct value for `nextpc` and correct result for `taken`.
+You must now extend JumpDetection module with additional control to generate the correct result for `taken`.
 **HINT**: As mentioned, `funct3` wire helps differentiate between different branch instructions.
 **HINT**: Use Chisel's `when` / `elsewhen` / `otherwise`, or `MuxCase` syntax.
 You can also use normal operators, such as `<`, `>`, `>=`, `===`, `=/=`, etc.
 **HINT**: The inputs are unsigned by default. `.asSInt` and `.asUInt` allows conversions of a chisel integer type to signed and unsigned integers respectively.
 
-**Important Note:** In this assignment you will not use the `taken` output of ControlTransfer unit anywhere in your single cycle CPU. However, we test if your ControlTransfer unit generates correct value for it. You will utilize `taken` in the next assignment.
+**Important Note:** In this assignment we will test if your JumpPcGenerator unit generates correct value for `jumppc`, which requires you to generate correct outputs from the JumpDetection unit.
 
-## Testing your ControlTransfer unit
+## Testing your JumpDetection unit
 
-We have updated the tests for your ControlTransfer unit. The tests, along with the other lab2 tests, are in `src/test/scala/labs/Lab2Test.scala`.
+We have updated the tests for your JumpDetection unit. The tests, along with the other lab2 tests, are in `src/test/scala/labs/Lab2Test.scala`.
 
 In this part of the assignment, you only need to run the ControlTransfer unit tests.
 To run just these tests, you can use the sbt command `testOnly`, as demonstrated below.
@@ -742,7 +805,7 @@ sbt:dinocpu> testOnly dinocpu.NextPCBranchTesterLab2
 
 ## Implementing branch instructions
 
-Next, you need to wire the `nextpc` output from the ControlTransfer unit into the data path.
+Next, you need to connect the outputs from the JumpDetection unit to the JumpPcGenerator unit, then you will need to wire the `jumppc` output from the JumpPcGenerator unit into the data path.
 You can follow the diagram given in [the single cycle CPU design section](#single-cycle-cpu-design).
 
 ## Testing the branch instructions
@@ -757,6 +820,7 @@ sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleBranchTesterLab2
 
 Next, we look at the J-type instructions.
 You can think of them as "unconditional jumps" as opposed to branch instructions, which are "conditional jumps".
+"Uncondtional jumps" are always taken.
 
 ## `jal` instruction details
 
@@ -815,9 +879,9 @@ R[rd] = pc + 4
 
 (Careful, there's one major difference between this and `jal`!)
 
-You must properly update any required entities in your code (e.g. the control unit, ControlTransfer unit, etc). Finally, you should wire up any necessary muxes.
+You must properly update any required entities in your code (e.g. the control unit, JumpDetection unit, etc). Finally, you should wire up any necessary muxes.
 
-You can run the tests for changes you made for ControlTransfer unit in this part with the following command,
+You can run the tests for changes you made for JumpDetection unit in this part with the following command,
 
 ```
 sbt:dinocpu> Lab2 / testOnly dinocpu.NextPCJalrTesterLab2
@@ -833,7 +897,7 @@ sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleJALRTesterLab2
 
 # Testing the entire `ControlTransfer` module
 
-Now, that you have fully implemented the ControlTransfer unit, you can run the tests for the whole unit with the following command,
+Now, that you have fully implemented the JumpDetection unit, you can run the tests for the whole unit with the following command,
 
 ```
 sbt:dinocpu> Lab2 / testOnly dinocpu.NextPCTesterLab2
@@ -894,7 +958,7 @@ Failure to adhere to the instructions will result in a loss of points.
 You will upload the three files that you changed to Gradescope on the [Lab 2]({{ site.data.course.154b_gradescope_lab2_code_link }}) assignment.
 
 - `src/main/scala/components/alucontrol.scala`
-- `src/main/scala/components/controltransferunit.scala`
+- `src/main/scala/components/jumpdetection.scala`
 - `src/main/scala/components/control.scala`
 - `src/main/scala/single-cycle/cpu.scala`
 
