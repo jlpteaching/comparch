@@ -297,7 +297,7 @@ Which design would you choose?
 
 As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
 You should submit your report on
-[gradescope]({{site.data.course.201a__gradescope_lab2_link}).
+[gradescope]({{site.data.course.201a__gradescope_lab2_link}}).
 In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step 0](#step-0),
 [Analysis and simulation: Step I](#step-i),
 [Analysis and simulation: Step II](#step-ii), and
