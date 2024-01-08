@@ -48,11 +48,11 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 #### ECS 201A
 
-**Mahyar Samani** (<msamani@ucdavis.edu>)
+**Kaustav Goswami** (<kggoswami@ucdavis.edu>)
 
-*Office Hours Time*: Tuesdays, 3:00 pm - 4:30 pm, Kemper 3083, [zoom (attend only, priority given to in-person attendees)](https://ucdavis.zoom.us/j/92534693034?pwd=Tnh3NDZHKzFGUWhDYWJYempkcHNBUT09)
+*Office Hours Time*: Thursdays, 4:00 pm - 5:00 pm, Kemper 3106, [zoom (attend only, priority given to in-person attendees)](https://ucdavis.zoom.us/j/96608995773?pwd=QjV5UUsvQlN0OXpSQm5rZmpqTENjZz09)
 
-*Office Hours Zoom*: Fridays, 3:00 pm - 4:00 pm, [zoom only](https://ucdavis.zoom.us/j/92227040942?pwd=SnRIbjVGTWMyZHhrcjZqcDI5bHN4UT09)
+*Office Hours Zoom*: Fridays, 3:00 pm - 4:00 pm, [zoom only](https://ucdavis.zoom.us/j/96608995773?pwd=QjV5UUsvQlN0OXpSQm5rZmpqTENjZz09)
 
 
 #### ECS 154B
