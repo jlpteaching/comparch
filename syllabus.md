@@ -254,7 +254,7 @@ You will complete [five project-based assignments]({{"/modules/dino cpu/index/" 
 The assignments can be found via the links below.
 All together, the labs are worth 40% of your final grade.
 
-Labs are due at 11:59 PM on the date listed below.
+Labs are due at 2:10 PM on the date listed below.
 
 * [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_1 }}.
 * [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due {{ site.data.course.dates.dino_2 }}.
