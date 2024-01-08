@@ -231,7 +231,7 @@ Add clear and relevant commit messages to your commits.
 As mentioned before, you are allowed to submit your assignments in **pairs**
 and in **PDF** format.
 You should submit your report on
-[gradescope]({{site.data.course.201a__gradescope_lab1_link}}).
+[gradescope]({{site.data.course.201a_gradescope_lab1_link}}).
 In your report answer the questions presented in
 [Analysis and simulation](#analysis-and-simulation),
 [Analysis and simulation: Step I](#step-i-changing-the-cpu-model-and-cpu-and-cache-clock-frequency),

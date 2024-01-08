@@ -452,7 +452,7 @@ Back up your answer with logic.
 ## Submission
 
 As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [gradescope]({{site.data.course.201a__gradescope_lab3_link}}).
+You should submit your report on [gradescope]({{site.data.course.201a_gradescope_lab3_link}}).
 In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), [Analysis and simulation: Step II](#step-ii-medium-core), and, [Analysis and simulation: Step III](#step-iii-general-questions).
 Use clear reasoning and visualization to drive your conclusions.
 Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
