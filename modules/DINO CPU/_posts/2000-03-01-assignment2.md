@@ -10,7 +10,7 @@ Originally from ECS 154B Lab 2, Winter 2019.
 
 Modified for ECS 154B Lab 2, {{ site.data.course.quarter }}.
 
-**Due on *{{ site.data.course.dates.dino_2 }}* 11:59PM PST**: See [Submission](#submission) for details
+**Due on *{{ site.data.course.dates.dino_2 }}* 2:10 PM PST**: See [Submission](#submission) for details
 
 <img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
 Assignment coming soon

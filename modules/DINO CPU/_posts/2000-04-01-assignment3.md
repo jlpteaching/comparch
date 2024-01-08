@@ -14,7 +14,7 @@ Modified for ECS 154B Lab 3, {{site.data.course.quarter}}.
 
 See [End of Part 3.1](#end-of-part-31) for details on turning in lab 3.1.
 
-**Part 3.2 Due on *{{ site.data.course.dates.dino_32 }}* at 11:59PM PST**
+**Part 3.2 Due on *{{ site.data.course.dates.dino_32 }}* at 2:10 PM PST**
 
 <img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
 Assignment coming soon
