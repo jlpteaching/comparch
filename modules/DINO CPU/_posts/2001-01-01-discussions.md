@@ -9,7 +9,7 @@ This is a page for materials discussed in the discussion sessions.
 
 ## Discussion 1 (Jan 9th)
 
-[Slides]({{'' | relative_url}})
+[Slides]({{'img/154B_discussions/154b_discussion_1.pdf' | relative_url}})
 
 ## Discussion 2 (Jan 16th)
 [Slides]({{'' | relative_url}})
