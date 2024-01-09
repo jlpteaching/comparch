@@ -47,7 +47,7 @@ Matrix multiplication is a commonly used kernel in many domains such as linear a
 
 ## Workload
 
-For this assignment we are going to use a matrix multiplication program as our workload. The program takes an integer as input that determines the `size` of the square matrices `A`, `B`, and `C`.
+For this assignment, we are going to use a matrix multiplication program as our workload. The program takes an integer as input that determines the `size` of the square matrices `A`, `B`, and `C`.
 
 ```cpp
 void multiply(double **A, double **B, double **C, int size)
