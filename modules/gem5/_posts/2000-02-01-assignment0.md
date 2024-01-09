@@ -3,8 +3,6 @@ Author: Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 0
 ---
 
-# Assignment 0 -- (0 points)
-
 **Due on *{{ site.data.course.dates.gem5_0 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
 ## Table of Contents
@@ -27,7 +25,8 @@ You should complete this assignment **individually**. This assignment is not gra
 
 Use [classroom assignment-0]({{site.data.course.201a_assignment0_invitation_link}}) to accept and create an assignment for yourself on this class' **github classroom**. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the **green code button** on the **top right corner under the tabs** to create a **github codespace** for yourself. Please make sure to **only create one codespace** for yourself.
 
-After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment. Please follow the rest of this assignment using your codespace.
+After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment.
+Please follow the rest of this assignment using your codespace.
 
 ## Introduction
 

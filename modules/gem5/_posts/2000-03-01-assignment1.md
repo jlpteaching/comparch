@@ -37,7 +37,7 @@ You will be aksed to **join**/**create** an assignment. If your teammate has alr
 
 In this assignment you are going to:
 
-- see a pactical demonstration of the Iron Law of computer architecture,
+- see a practical demonstration of the Iron Law of computer architecture,
 - measure the performance differences of a single-cycle like processor vs an in-order pipelined processor,
 - see how the measured performance scales as CPU clock frequency changes,
 - and see the effect of memory bandwidth and latency on measured performance.
@@ -201,10 +201,10 @@ Before running any simulations try to answer this question, which has 4 parts:
 
 1. Which program do you think will perform better?
 2. What part of the Iron Law are you optimizing in this step?
-3. Do you think if you use CSIC ISA, the results will further improve? Why?
+3. Do you think if you use CISC ISA, the results will further improve? Why?
 
 In your report, answer the same questions after simulation supported with data.
-A complete set of simualtion data for this step should include
+A complete set of simulation data for this step should include
 **two configurations** (one for -O0 and one for -O3)
 
 ### Step IV: General questions
