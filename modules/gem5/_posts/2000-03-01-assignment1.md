@@ -8,7 +8,7 @@ Title: ECS 201A Assignment 1
 
 Originally from University of Wisconsin-Madison CS/ECE 752 .
 
-Modified for ECS 201A, Winter 2023.
+Modified for ECS 201A, Winter 2024.
 
 **Due on *{{ site.data.course.dates.gem5_1 }}* 1:59 pm (PST)**: See [Submission](#submission) for details
 
@@ -28,16 +28,16 @@ Modified for ECS 201A, Winter 2023.
 
 You should submit your report in **pairs** and in **PDF** format.
 Make sure to start early and post any questions you might have on Piazza.
-The standard late assignemt policy applies.
+The standard late assignment policy applies.
 
 Use [classroom: assignment 1]({{site.data.course.201a_assignment1_invitation_link}}) to create an assignment.
-You will be aksed to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
+You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
 In this assignment you are going to:
 
-- see a pactical demonstration of the Iron Law of computer architecture,
+- see a practical demonstration of the Iron Law of computer architecture,
 - measure the performance differences of a single-cycle like processor vs an in-order pipelined processor,
 - see how the measured performance scales as CPU clock frequency changes,
 - and see the effect of memory bandwidth and latency on measured performance.
@@ -47,7 +47,7 @@ Matrix multiplication is a commonly used kernel in many domains such as linear a
 
 ## Workload
 
-For this assignment we are going to use a matrix multiplication program as our workload. The program takes and integer as input that determines the `size` of the square matrices `A`, `B`, and `C`.
+For this assignment we are going to use a matrix multiplication program as our workload. The program takes an integer as input that determines the `size` of the square matrices `A`, `B`, and `C`.
 
 ```cpp
 void multiply(double **A, double **B, double **C, int size)
@@ -75,7 +75,7 @@ We found that setting mat_size to 224 will result in a simulation time of around
 
 For this assignment, we will set up an experiment to see effect of changing a system's component on it performance.
 You will need to write configuration scripts using gem5 stdlib that allow you to change the CPU model, CPU and cache frequency, and memory model.
-Under the `components` directory, you will find modules that define the different models that you should use in your configuration scritps.
+Under the `components` directory, you will find modules that define the different models that you should use in your configuration scripts.
 
 - Board models: You can find all the models you need to use for your CPU (processor) under `components/boards.py`.
 You will only be using `HW1RISCVBoard` in this assignment.
@@ -111,7 +111,7 @@ In your configuration script allow for:
 Use `HW1DDR3_1600_8x8` as the memory model.
 
 In your report, answer the same questions after simulation supported with data.
-A complete set of simualtion data for this step should include **6 configurations** (2 options for CPU model * 3 options for clock frequency).
+A complete set of simulation data for this step should include **6 configurations** (2 options for CPU model * 3 options for clock frequency).
 
 ### Step II: Changing the CPU and memory model
 
@@ -123,7 +123,7 @@ Before running any simulations try to answer these questions:
 In your configuration allow for:
 
 - changing the CPU model between `HW1TimingSimpleCPU` and `HW1MinorCPU`.
-- and changine the memory model between `HW1DDR3_1600_8x8`, `HW1DDR3_2133_8x8`, and `HW1LPDDR3_1600_1x32`.
+- and changing the memory model between `HW1DDR3_1600_8x8`, `HW1DDR3_2133_8x8`, and `HW1LPDDR3_1600_1x32`.
 
 Use `4GHz` as the clock frequency.
 
@@ -146,7 +146,7 @@ g++ -o mm mm.cpp -static -O2
 
 We have compiled binaries with flags `-O0` and `-O3`.
 The former the a binary without any compiler optimizations.
-The latter applies modt of the optimizations that gcc (or llvm/clang) supports.
+The latter applies most of the optimizations that gcc (or llvm/clang) supports.
 This *usually* means that there are fewer instructions in the more optimized version of the program.
 Let's look at the following computation: $z = \alpha x + y$.
 This operation first multiplies $\alpha$ and $x$, and then adds $y$ to the result.
@@ -204,7 +204,7 @@ Before running any simulations try to answer this question, which has 4 parts:
 3. Do you think if you use CSIC ISA, the results will further improve? Why?
 
 In your report, answer the same questions after simulation supported with data.
-A complete set of simualtion data for this step should include
+A complete set of simulation data for this step should include
 **two configurations** (one for -O0 and one for -O3)
 
 ### Step IV: General questions
