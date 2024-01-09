@@ -69,14 +69,11 @@ run the docker image.
 Details on how to run the docker image can be found in the
 [dockerfiles folder]({{site.data.course.154b_assignment1_github_link}}/tree/main/dockerfiles).
 
-<!-- Details on how to set up your development environment using Chisel and Singularity can be found in the [Singularity document]({{site.data.course.154b_assignment1_github_link}}blob/main/documentation/singularity.md).
--->
-
-**Note**: There are at least two options to work on the programming assignments without having to set up the development environment on your local machine: using GitHub's Codespace and using UC Davis' CSIF machines.
-Those are the *only* options that we will provide support if you have trouble setting up the development environment.
+**Note**: While you maybe able to run the docker container on your own machine or on the CSIF machines, the only development environment that we will *provide support* is the GitHub Codespaces.
 We encourage you to learn to use Codespace over using CSIF machines as it's not prone to VPN troubleshooting as well as it is tightly integrated to a version control system.
 
 ### Using GitHub Codespaces
+
 The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
 
 The assignment 1 template repo is located at [{{site.data.course.154b_assignment1_github_link}}]({{site.data.course.154b_assignment1_github_link}}).
@@ -88,7 +85,7 @@ The above link will automatically create a repo in the GitHub Classroom page tha
 In the event that the template repo is updated, your own repo won't be automatically updated.
 You don't need to keep track of the template repo, unless we found an error in the assignment, in which case, we will make an announcement on {{site.data.course.discussion_site}} and provide ways to update your repo.
 
-### Using the CSIF machines
+### Using the CSIF machines (this is not supported!)
 
 Apptainer is installed on *most* CSIF machines.
 So, if you are using one of the CSIF machines either locally or remotely, things should *just work*.
@@ -147,14 +144,16 @@ du -sh ?
 Let us know if you would like more details on this method via [{{ site.data.course.discussion_site }}]({{ site.data.course.discussion_link }}).
 
 ## Important Notice
-In order to get familiar with setting up your working environment for the DINO CPU Assignments, getting familiar with Chisel through a simple example, and debugging your design, ***we strongly encourage you to watch the tutorial videos*** we have provided in the links below. These videos were originally made for spring quarter 2020 (sq20). Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to '{{ site.data.course.quarter_abbr }}' to be applicable to your materials for the current quarter.
+
+In order to get familiar with setting up your working environment for the DINO CPU Assignments, getting familiar with Chisel through a simple example, and debugging your design, ***we strongly encourage you to watch the tutorial videos*** we have provided in the links below.
+These videos were originally made for spring quarter 2020 (sq20).
+Just in case you wanted to use any command or text from these videos which contains 'sq20', you just need to convert it to '{{ site.data.course.quarter_abbr }}' to be applicable to your materials for the current quarter.
 
 [DinoCPU - Getting Started](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_9qlq45sz)
 
 [DinoCPU - Chisel Example and Singularity](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_ol7ybl9a)
 
 [DinoCPU - Debugging your implementation](https://video.ucdavis.edu/playlist/dedicated/0_8bwr1nkj/0_kv1v647d)
-
 
 ## Part I: Implement the ALU Control
 
@@ -738,7 +737,7 @@ sbt:dinocpu> Lab1 / testOnly dinocpu.SingleCycleMultiCycleTesterLab1 -- -z addfw
 ## Grading
 
 Grading will be done automatically on Gradescope.
-See [the Submission section](#Submission) for more information on how to submit to Gradescope.
+See [the Submission section](#submission) for more information on how to submit to Gradescope.
 
 |                    |     |
 |--------------------|-----|
