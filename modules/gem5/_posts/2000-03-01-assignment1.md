@@ -145,7 +145,7 @@ g++ -o mm mm.cpp -static -O2
 ```
 
 We have compiled binaries with flags `-O0` and `-O3`.
-The former the a binary without any compiler optimizations.
+The former is a binary without any compiler optimizations.
 The latter applies modt of the optimizations that gcc (or llvm/clang) supports.
 This *usually* means that there are fewer instructions in the more optimized version of the program.
 Let's look at the following computation: $z = \alpha x + y$.
@@ -209,7 +209,7 @@ A complete set of simualtion data for this step should include
 
 ### Step IV: General questions
 
-Now that you have completed your simulation runs and analyses. Answer this last question in your report.
+Having completed your simulation runs and analyses, answer this final question in your report.
 
 1. If you were to use a different application, do you think your conclusions would change? Why?
 
@@ -222,7 +222,7 @@ Your submission is split into two parts. Read the following sections for details
 As part of your submission, you should include any script/code/file that might be needed to rerun your gem5 experiments.
 This may include configuration scripts that define set up the simulation, python/shell/etc. scripts that drive your simulations using your configuration scripts, any document including instruction on how to run your simulations.
 You should do this through your assignment's repository.
-Make sure to commit and push your changes to your local repository to your remote.
+Ensure that you commit and push your changes from your local repository to the remote repository.
 Add clear and relevant commit messages to your commits.
 **NOTE**: Any commits/pushes past the assignment deadline will be ignored.
 
@@ -266,7 +266,7 @@ Like your submission, your grade is split into two parts.
 
 You are required to work on this assignment in teams.
 You are only allowed to share you scripts and code with your teammate(s).
-You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
+You may discuss high-level concepts with others in the class but all the work must be completed by your team and your team only.
 
 Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB!
 Any code found on GitHub that is not the base template you are given will be reported to SJA.
