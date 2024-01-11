@@ -30,8 +30,8 @@ You should submit your report in **pairs** and in **PDF** format.
 Make sure to start early and post any questions you might have on Piazza.
 The standard late assignemt policy applies.
 
-Use [classroom: assignment 1]({{site.data.course.201a_assignment1_invitation_link}}) to create an assignment.
-You will be aksed to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
+<img src="https://drive.google.com/uc?id=1_YXoYkAvNp-c8NOLZZnjGXqUcN2C172R" width="25"/> **Use [classroom: assignment 1]({{site.data.course.201a_assignment1_invitation_link}}) to create an assignment.
+You will be aksed to <u>join/create</u> an assignment. If your teammate has already created an assignment, please <u>join</u> their assignment instead of creating one assignment otherwise <u>create</u> your assignment and ask your teammate to <u>join</u> the assignment.**  <img src="https://drive.google.com/uc?id=1nLcNwVpTRz6mQFStwdIgpv0MMzPGzv9j" width="25"/>
 
 ## Introduction
 
