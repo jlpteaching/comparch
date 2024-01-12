@@ -7,7 +7,7 @@ Title: ECS 201A Assignment 0
 
 ## Table of Contents
 
-- [Adiministrivia](#administrivia)
+- [Administrivia](#administrivia)
 - [Introduction](#introduction)
 - [gem5 and gem5's standard libary](#gem5-and-gem5s-standard-library-gem5-stdlib)
 - [Writing your own configuration script](#writing-your-own-configuration-script)

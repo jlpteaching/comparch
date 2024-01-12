@@ -24,7 +24,7 @@ Modified for ECS 201A, Winter 2024.
 
 ## Administrivia
 
-You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
+You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignment policy applies.
 
 Use [classroom: assignment 2]({{site.data.course.201a_assignment1_invitation_link}}) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
 
@@ -222,10 +222,10 @@ For your reference, **issue latency** measures the number of cycles between inje
 An **issue latency** of `4 cycles` means that an instruction is injected to the pipeline, every *4 cycles*.
 On the other hand, **floating point operation latency** refers to the number of cycles it takes to complete the execution of a **floating point instruction**.
 In this step, measure your simulated performance for different combination of these two latencies.
-For simplicity's sake, start with an **initial value** of `4 cycles` for **issue latency** and an intial value of `4 cycles` for **floating point operation latency**.
+For simplicity's sake, start with an **initial value** of `4 cycles` for **issue latency** and an initial value of `4 cycles` for **floating point operation latency**.
 Moreover, **assume** you can trade **issue latency** with **floating point operation latency**.
 In addition, **assume** that the product of **issue latency** and **floating point operation latency** will always remain at a constant of `8`.
-For your simulations, evaulate the performance of the configurations shown below.
+For your simulations, evaluate the performance of the configurations shown below.
 
 | # | issue latency | floating point operation latency |
 |---|---------------|----------------------------------|
@@ -238,7 +238,7 @@ For your simulations, evaulate the performance of the configurations shown below
 In your report, answer the following questions after simulation supported with data.
 A complete set of simulation data for this step should include **three configurations** (three possible combinations of **issue latency** and **floating point operation latency**).
 
-1. Between the 3 designs, which one did you find to be the be the best design?
+1. Between the 3 designs, which one did you find to be the best design?
 2. Why do you think your chosen design in question 1 results in the best
 performance?
 Can you reason about why you would prefer optimizing one of the latencies over
@@ -249,7 +249,7 @@ the other?
 For this step, modify your configuration script to allow for changing **integer operation latency** and **floating point operation latency**.
 Let's assume our processor has a very fast **decode** stage that can issue both **integer** and **floating point** instructions in `1 cycle`.
 Next, let's focus on **integer operation latency** and **floating point operation latency**.
-Let's assume an intial value of `6 cycles` for **integer operation latency** and an initial value of `12 cycles` for **floating point operation latency**.
+Let's assume an initial value of `6 cycles` for **integer operation latency** and an initial value of `12 cycles` for **floating point operation latency**.
 For your experimentation, suppose you can only reduce one of these latencies by
 a factor of 2.
 This means that you can build a processor with an **integer operation latency** of `3 cycles` and a **floating point operation latency** of `12 cycles` or a processor with an **integer operation latency** of `6 cycles` and a **floating point operation latency** of `6 cycles`.
@@ -264,7 +264,7 @@ Here is a table showing all possible combinations of the latencies that you need
 
 In your report answer the following questions.
 
-1. Use Amdahl's law and the information you gathered from [Step I](#step-i) to predict the speed up of each **improved** case over the **baseline**.
+1. Use Amdahl's Law and the information you gathered from [Step I](#step-i) to predict the speed up of each **improved** case over the **baseline**.
 Which design would you choose?
 **NOTE**: The only simulation result you can use to answer this question is the data you gathered from [Step I](#step-i).
 2. Using simulation results, what is the speed up of each **improved case** over the baseline design?
