@@ -3,8 +3,6 @@ Author: Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 0
 ---
 
-# Assignment 0 -- (0 points)
-
 **Due on *{{ site.data.course.dates.gem5_0 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
 ## Table of Contents
@@ -25,9 +23,10 @@ Title: ECS 201A Assignment 0
 
 You should complete this assignment **individually**. This assignment is not graded and will not influence your grade. However, it is highly encouraged to complete this assignment as soon as you can and get started on the next assignments. Make sure to start early and post any questions you might have on Piazza.
 
-Use [classroom assignment-0]({{site.data.course.201a_assignment0_invitation_link}}) to accept and create an assignment for yourself on this class' **github classroom**. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the **green code button** on the **top right corner under the tabs** to create a **github codespace** for yourself. Please make sure to **only create one codespace** for yourself.
+**<span style="font-size:30px" style="font-weight:bold;">&rarr;</span> Use [classroom assignment-0]({{site.data.course.201a_assignment0_invitation_link}}) to accept and create an assignment for yourself on this class' <u>github classroom</u>. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the <u>green code button</u> on the <u>top right corner under the tabs</u> to create a <u>github codespace</u> for yourself. Please make sure to <u>only create one codespace</u> for yourself. <span style="font-size:30px" style="font-weight:bold;">&larr;</span>** 
 
-After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment. Please follow the rest of this assignment using your codespace.
+After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment.
+Please follow the rest of this assignment using your codespace.
 
 ## Introduction
 

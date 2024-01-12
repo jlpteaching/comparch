@@ -84,6 +84,7 @@ We will update the assignment 1 repo with the solution after the assignment 1's 
 You can reuse the code from the solution for this assignment as well as the subsequent assignments.
 
 ### GitHub Codespaces / CSIF machines
+
 The GitHub Classroom page for the class is located at [{{site.data.course.154b_github_classroom_link}}]({{site.data.course.154b_github_classroom_link}}).
 
 The assignment 2 template repo is located at [{{site.data.course.154b_assignment2_github_link}}]({{site.data.course.154b_assignment2_github_link}}).
@@ -938,10 +939,10 @@ To run a single application, you can use the following command,
 sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleApplicationsTesterLab2 -- -z <binary name>
 ```
 
-# Grading
+## Grading
 
 Grading will be done automatically on Gradescope.
-See [the Submission section](#Submission) for more information on how to submit to Gradescope.
+See [the Submission section](#submission) for more information on how to submit to Gradescope.
 
 | Name                  | Percentage                 |
 |-----------------------|----------------------------|
