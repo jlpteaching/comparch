@@ -312,7 +312,7 @@ We will use [Perusall]({{ site.data.course.perusall_link }}) for paper readings 
 This is required for me to be able to publish your grades.
 (I.e., if you don't access Perusall via Canvas you will receive a 0 for the assignments.)
 
-*Paper reviews are due **before lecture*** on the day of discussion (Monday 8am) and there is no grace period.
+*Paper reviews are due **before*** the discussion (Tuesday 2 PM) and there is no grace period.
 
 The paper readings will be graded on Perusall.
 You are assigned to random groups for the papers.
