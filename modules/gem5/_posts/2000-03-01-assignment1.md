@@ -142,9 +142,9 @@ The terminology associated with it is called row cycle time (tRC).
 tRC is given by row access time (tRAS) and precharge time (tRP).
 tRC times are given as:
 
-HW1DDR3_1600_8x8   --  48.75 ns
-HW1DDR3_2133_8x8   --  46.09 ns
-HW1DDR3_1600_1x32  --  58 ns
+- HW1DDR3_1600_8x8   --  48.75 ns
+- HW1DDR3_2133_8x8   --  46.09 ns
+- HW1DDR3_1600_1x32  --  58 ns
 
 The above memory models have the following characteristics
 
