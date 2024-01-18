@@ -119,13 +119,40 @@ A complete set of simulation data for this step should include **6 configuration
 
 Before running any simulations try to answer these questions:
 
-1. If you double the performance of memory (double the bandwidth and halfen the latency) in a computer system, will the overall perforamance double as well? Why?
+1. What would be the impact on the overall performance of a computer system if we were to enhance the memory bandwidth and reduce its latency?
 2. Which CPU model (between `HW1TimingSimpleCPU` and `HW1MinorCPU`) will benefit more from improving memory performance? Why?
 
 In your configuration allow for:
 
 - changing the CPU model between `HW1TimingSimpleCPU` and `HW1MinorCPU`.
 - and changing the memory model between `HW1DDR3_1600_8x8`, `HW1DDR3_2133_8x8`, and `HW1LPDDR3_1600_1x32`.
+
+We can calculate the bandwidth of the memory model.
+Let's take an example of HW1DDR3_1600_8x8.
+Here we have a DDR3 DRAM device of 1600 MHz and a width of 8 bytes.
+The bandwidth of this device can be given by:
+- peak BW = 1.6 x 8 = 12.8 GB/s
+- Similarly for HWDDR3_2133_8x8, peak BW = 2.133 x 8 = 17.057 GB/s
+- For the LPDDR3_1600_1x32, the peak BW = 1.6 x 4 = 6.4 GB/s
+
+You can see the peak bandwidth in the stats.txt.
+
+Latency for memory devices is given by the amount of time it takes to access the data.
+The terminology associated with it is called row cycle time (tRC).
+tRC is given by row access time (tRAS) and precharge time (tRP).
+tRC times are given as:
+
+HW1DDR3_1600_8x8   --  48.75 ns
+HW1DDR3_2133_8x8   --  46.09 ns
+HW1DDR3_1600_1x32  --  58 ns
+
+The above memory models have the following characteristics
+
+|   memory model          |   frequency   |   width   |   bandwidth   |   latency |
+|-------------------------|---------------|-----------|---------------|-----------|
+|   `HW1DDR3_1600_8x8`    |  1600 MHz     |      8    |  12.8 GB/s    |  48.75 ns |
+|   `HW1DDR3_2133_8x8`    |  2133 MHz     |      8    |  17.057 GB/s  |  46.09 ns |
+|   `HW1LPDDR3_1600_1x32` |  1600 MHz     |      4    |  6.4 GB/s     |  58 ns    |
 
 Use `4GHz` as the clock frequency.
 
