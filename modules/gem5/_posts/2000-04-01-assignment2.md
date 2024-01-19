@@ -26,7 +26,7 @@ Modified for ECS 201A, Winter 2024.
 
 You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignment policy applies.
 
-Use **UNDER CONSTRUCTION** to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 2]({{site.data.course.201a_assignment2_invitation_link}}) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment otherwise **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
@@ -297,7 +297,7 @@ Which design would you choose?
 
 As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
 You should submit your report on
-gradescope (**UNDER CONSTRUCTION**),
+[gradescope]({{site.data.course.201a_gradescope_lab2_link}}),
 In your report answer the questions presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step 0](#step-0),
 [Analysis and simulation: Step I](#step-i),
 [Analysis and simulation: Step II](#step-ii), and
