@@ -50,9 +50,9 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 
 **Kaustav Goswami** (<kggoswami@ucdavis.edu>)
 
-*Office Hours Time*: Thursdays, 4:00 pm - 5:00 pm, Kemper 3106, [zoom (attend only, priority given to in-person attendees)](https://ucdavis.zoom.us/j/96608995773?pwd=QjV5UUsvQlN0OXpSQm5rZmpqTENjZz09)
+*Office Hours Time*: Thursdays, 4:00 pm - 5:00 pm, Kemper 3106, [zoom (attend only, priority given to in-person attendees)](https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09)
 
-*Office Hours Zoom*: Fridays, 10:00 am - 11:00 am, [zoom only](https://ucdavis.zoom.us/j/96608995773?pwd=QjV5UUsvQlN0OXpSQm5rZmpqTENjZz09)
+*Office Hours Zoom*: Fridays, 10:00 am - 11:00 am, [zoom only](https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09)
 
 
 #### ECS 154B
