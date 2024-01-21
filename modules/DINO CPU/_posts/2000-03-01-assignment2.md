@@ -12,10 +12,6 @@ Modified for ECS 154B Lab 2, {{ site.data.course.quarter }}.
 
 **Due on *{{ site.data.course.dates.dino_2 }}* 2:10 PM PST**: See [Submission](#submission) for details
 
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
 # Table of Contents
 
 * [Introduction](#introduction)
@@ -801,7 +797,7 @@ In this part of the assignment, you only need to run the ControlTransfer unit te
 To run just these tests, you can use the sbt command `testOnly`, as demonstrated below.
 
 ```
-sbt:dinocpu> testOnly dinocpu.NextPCBranchTesterLab2
+sbt:dinocpu> Lab2 / testOnly dinocpu.NextPCBranchTesterLab2
 ```
 
 ## Implementing branch instructions
