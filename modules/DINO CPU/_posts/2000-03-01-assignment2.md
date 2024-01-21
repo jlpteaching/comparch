@@ -1000,4 +1000,3 @@ This is the best style of debugging for this assignment.
   - Use `println` to print during compilation in the Chisel code or during test execution in the test code. This is mostly like Java's `println`.
   - If you want to use Scala variables in the print statement, prepend the statement with an 's'. For example, `println(s"This is my cool variable: $variable")` or `println("Some math: 5 + 5 = ${5+5}")`.
 
-{% endcomment %}
