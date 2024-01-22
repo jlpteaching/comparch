@@ -199,7 +199,7 @@ This CPU model is a useful tool for extracting information on the instruction mi
 You can find the definition of `HW2TimingSimpleCPU` which is based on `TimingSimpleCPU` in `components/processors.py`.
 
 Write a configuration script that will simulate the execution of `DAXPYWorkload` on `HW2TimingSimpleCPU`.
-Make sure to track the simulation outputs for later use. In the statistics output look for `statExecutedInstType`.
+Make sure to track the simulation outputs for later use. In the statistics output look for `committedInstType`.
 This statistic represents a distribution of different operation classes executed by the processor.
 
 In your report, answer the same questions after simulation supported with data.
