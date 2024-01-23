@@ -161,10 +161,10 @@ memop                 Specifying the type of memory instruction (Load/Store)
                                    . 0 for none of the below
                                    . 1 for Load
                                    . 2 for Store
-op1_src               Specifying the source of operand1 of ALU/ControlTransferUnit
+op1_src               Specifying the source of operand1 of ALU/JumpDetectionUnit
                                    . 0 if source is register file's readdata1
                                    . 1 if source is pc
-op2_src               Specifying the source of operand2 of ALU/ControlTransferUnit
+op2_src               Specifying the source of operand2 of ALU/JumpDetectionUnit
                                    . 0 if source is register file's readdata2
                                    . 1 if source is immediate
                                    . 2 if source is a hardwired value 4
@@ -221,10 +221,10 @@ import chisel3.util.{BitPat, ListLookup}
  *                                   . 0 for none of the below
  *                                   . 1 for Load
  *                                   . 2 for Store
- * Output: op1_src               Specifying the source of operand1 of ALU/ControlTransferUnit
+ * Output: op1_src               Specifying the source of operand1 of ALU/JumpDetectionUnit
  *                                   . 0 if source is register file's readdata1
  *                                   . 1 if source is pc
- * Output: op2_src               Specifying the source of operand2 of ALU/ControlTransferUnit
+ * Output: op2_src               Specifying the source of operand2 of ALU/JumpDetectionUnit
  *                                   . 0 if source is register file's readdata2
  *                                   . 1 if source is immediate
  *                                   . 2 if source is a hardwired value 4
@@ -793,7 +793,7 @@ You can also use normal operators, such as `<`, `>`, `>=`, `===`, `=/=`, etc.
 
 We have updated the tests for your JumpDetection unit. The tests, along with the other lab2 tests, are in `src/test/scala/labs/Lab2Test.scala`.
 
-In this part of the assignment, you only need to run the ControlTransfer unit tests.
+In this part of the assignment, you only need to run the JumpDetectionUnit unit tests.
 To run just these tests, you can use the sbt command `testOnly`, as demonstrated below.
 
 ```
@@ -835,13 +835,13 @@ pc = pc + imm
 R[rd] = pc + 4
 ```
 
-You must properly update any required entities in your code (e.g. the control unit, ControlTransfer unit, etc). Finally, you should wire up any necessary muxes.
+You must properly update any required entities in your code (e.g. the control unit, JumpDetectionUnit unit, etc). Finally, you should wire up any necessary muxes.
 
 **HINT**: This instructions write to both PC and a register. Think of the data paths allowing both of them to be updated.
 
 ## Testing `jal`
 
-You can run the tests for changes you made for ControlTransfer in this part with the following command,
+You can run the tests for changes you made for JumpDetectionUnit in this part with the following command,
 
 ```
 sbt:dinocpu> Lab2 / testOnly dinocpu.NextPCJalTesterLab2
@@ -892,7 +892,7 @@ You can run the tests for this part with the following command,
 sbt:dinocpu> Lab2 / testOnly dinocpu.SingleCycleJALRTesterLab2
 ```
 
-# Testing the entire `ControlTransfer` module
+# Testing the entire `JumpDetectionUnit` module
 
 Now, that you have fully implemented the JumpDetection unit, you can run the tests for the whole unit with the following command,
 
