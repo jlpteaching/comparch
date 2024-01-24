@@ -222,7 +222,7 @@ For your reference, **issue latency** measures the number of cycles between inje
 An **issue latency** of `4 cycles` means that an instruction is injected to the pipeline, every *4 cycles*.
 On the other hand, **floating point operation latency** refers to the number of cycles it takes to complete the execution of a **floating point instruction**.
 In this step, measure your simulated performance for different combination of these two latencies.
-For simplicity's sake, start with an **initial value** of `4 cycles` for **issue latency** and an initial value of `4 cycles` for **floating point operation latency**.
+For simplicity's sake, start with an **initial value** of `4 cycles` for **issue latency** and an initial value of `2 cycles` for **floating point operation latency**.
 Moreover, **assume** you can trade **issue latency** with **floating point operation latency**.
 In addition, **assume** that the product of **issue latency** and **floating point operation latency** will always remain at a constant of `8`.
 For your simulations, evaluate the performance of the configurations shown below.
