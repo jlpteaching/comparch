@@ -6,11 +6,6 @@ Title: ECS 201A Assignment 3
 
 **Due on *{{ site.data.course.dates.gem5_3 }}* 1:59 pm (PST)**: See [Submission](#submission) for details
 
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
-
 ## Table of Contents
 
 - [Administrivia](#administrivia)
@@ -25,7 +20,7 @@ Assignment coming soon
 
 ## Administrivia
 
-You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
+You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignment policy applies.
 
 Use [classroom: assignment 3]({{site.data.course.201a_assignment3_invitation_link}}) to create an assignment.
 You will be asked to **join**/**create** an assignment.
@@ -37,7 +32,7 @@ Otherwise, **create** your assignment and ask your teammate to **join** the assi
 In this assignment, you'll be investigating the performance impacts of different out-of-order core designs on a set of RISC-V benchmarks.
 The goals of this assignment are:
 
-- Show how applications have different behaviors as the microarchitecture changes.
+- Show how applications have different behaviors as the micro-architecture changes.
 - Give you experience investigating the *bottleneck* in a particular architecture.
 - Improve your understanding of out-of-order processor architecture.
 
@@ -104,7 +99,7 @@ I.e. the algorithm starts traversing vertices in the graph starting from a speci
 During the traversal, the algorithm makes sure to visit vertices that are only `1 edge/hop` away from `root` before it visits those vertices that are `2 edges/hops or more` away.
 The BFS algorithm is one of the building blocks of graph analytics workloads.
 Graph analytics workloads have common use cases such as modeling relationships and processes in physical, biological, social, and information systems.
-[Beamer et al.](https://parlab.eecs.berkeley.edu/sites/all/parlab/files/main.pdf) discuss the BFS algorithm and how it could be parallized in their paper.
+[Beamer et al.](https://parlab.eecs.berkeley.edu/sites/all/parlab/files/main.pdf) discuss the BFS algorithm and how it could be parallelized in their paper.
 Below you can find a basic C++ implementation of the algorithm discussed in the paper.
 
 ```cpp
@@ -164,7 +159,7 @@ Take a look at `workloads/bfs_workload.py` to learn more about instantiating a B
 ### Bubble Sort
 
 Bubble sort is the starter algorithm for sorting arrays.
-This program sorts an array by replacing each element with the smallest element to its right (if sorting ascendingly).
+This program sorts an array by replacing each element with the smallest element to its right (if sorted in an ascending order).
 Below you can find the C++ implementation for bubble sort.
 
 ```cpp
@@ -307,7 +302,7 @@ int main(int argc, char *argv[]) {
 
 ## Experimental setup
 
-In this assignment, you are asked to design  your own out of order `processor` models for your experiments.
+In this assignment, you are asked to design your own out-of-order `processor` models for your experiments.
 In regards to the rest of the components in your system:
 
 - You will be using `HW3RISCVBoard` as your main `board` for your computer system.
@@ -318,7 +313,7 @@ You can find its model in `components/cache_hierarchies.py`.
 You can find its model in `components/memories.py`.
 - You will be using `2 GHz` as you clock frequency `clk_freq` in your system.
 
-For your processor, you are going to use `HW3O3CPU` to model a high-performance and an efficient processor core.
+For your processor, you are going to use `HW3O3CPU` to model a high-performance and efficient processor core.
 `HW3O3CPU` is based on `O3CPU` which is an internal model of gem5.
 Read up on the `O3CPU` in [gem5's documentation](https://www.gem5.org/documentation/general_docs/cpu_models/O3CPU).
 Below, you can find details about `HWO3CPU` and its parameters.
@@ -331,14 +326,14 @@ In the constructor of `HW3O3CPU` this attribute is named as `width`.
 ### Reorder Buffer size
 
 This is the number of entries in the **r**e**o**rder **b**uffer (ROB).
-This will constrain the number of instructions which can be "in flight" in the processor.
+This will constrain the number of instructions that can be "in flight" in the processor.
 In the constructor of `HW3O3CPU` this attribute is named as `rob_size`.
 
 ### Number of physical registers
 
 This is the number of registers in the *physical register file*.
-A processor renames architecture registers to physical registers to resolve false dependences.
-It also tracks true dependences (read-after-write) in the register file.
+A processor renames architecture registers to physical registers to resolve false dependencies.
+It also tracks true dependencies (read-after-write) in the register file.
 To learn more about register renaming, read up on [Tomasulo's algorithm](https://en.wikipedia.org/wiki/Tomasulo%27s_algorithm).
 
 `HW3O3CPU` has two physical register files.
@@ -346,18 +341,18 @@ One register file for integer registers and one for floating point registers.
 In the constructor of `HW3O3CPU`, `num_int_regs` refers to the number of *integer physical registers* and `num_fp_regs` refers to the number of *floating point physical registers*.
 
 **NOTE**: Both register files must be larger than the 32 entries or gem5 will hang.
-This is becuase the number of physical registers must be bigger than or equal to the number of logical registers.
+This is because the number of physical registers must be bigger than or equal to the number of logical registers.
 RISC-V ISA defines 32 logical registers.
 
 ### big and LITTLE cores
 
 In this assignment, you are required to design your own high-performance and efficient cores.
 You need to add two core designs to `components/processors.py`.
-In `componets/processors.py`, create a model based on `HW3O3CPU` and name it `HW3BigCore`.
+In `components/processors.py`, create a model based on `HW3O3CPU` and name it `HW3BigCore`.
 This core will be your high-performance core for the assignment.
 Create another model in `components/processors.py` and name it `HW3LittleCore`.
 This core will be your efficient core for the assignment.
-You can use information available on the internet on the different core microarchitectures to configure your `HW3BigCore` and `HW3LittleCore`.
+You can use the information available on the internet on the different core micro-architectures to configure your `HW3BigCore` and `HW3LittleCore`.
 As a starting point, take a look at [WikiChip](https://en.wikichip.org/wiki/WikiChip) and [AnandTech](https://www.anandtech.com/).
 Your instructor has loosely modeled their `HW3BigCore` on [Intel Sunny Cove](https://en.wikichip.org/wiki/intel/microarchitectures/sunny_cove) and their `HW3LittleCore` on [Intel Gracemont](https://en.wikichip.org/wiki/intel/microarchitectures/gracemont).
 
@@ -366,25 +361,25 @@ Use information online as a guideline for your design.
 You might find it impossible to match the specifications found online.
 E.g. the base model `HW3O3CPU` assumes the same width for all the stages of the pipeline which is not usually the case with modern processor designs.
 
-**Tips and To dos**: When designing your cores and caches, I recommend taking note of the following:
+**Tips and TODOs**: When designing your cores and caches, I recommend taking note of the following:
 
 - When designing your cores, I strongly recommend **not** beefing up your cores, especially `HW3LittleCore`.
 Remember that in computer design, there are almost always diminishing returns.
 A beefy `HW3LittleCore` will result in a `HW3BigCore` that is not much more performant than `HW3LittleCore`.
-I recommend dividing the values you see on specifications by in half for `HW3LittleCore`.
-- Setting the `width` below 4 would result some unstability.
+I recommend dividing the values you see on specifications by half for `HW3LittleCore`.
+- Setting the `width` below 4 would result in some instability.
 However, you might want to set `width` to 3 or less for `HW3LittleCore`.
-I recommend starting with very little numbers for the rest of the parameters, especially `rob_size`, and gradually increasing them to get around this issue.
-- Make sure you register files have more than 32 entries each.
+I recommend starting with very small numbers for the rest of the parameters, especially `rob_size`, and gradually increasing them to get around this issue.
+- Make sure your register files have more than 32 entries each.
 
 ## Analysis and simulation
 
 Before running any simulations answer the following questions in your report.
 
-1- What will be the average speed up of `HW3BigCore` over `HW3LittleCore`? Can you predict an upper bound using your pipeline parameters?
-**Hint**: You can predict and upper bound for the speed up using Amdahl's law with optimistic values.
+1. What will be the average speed-up of `HW3BigCore` over `HW3LittleCore`? Can you predict an upper bound using your pipeline parameters?
+**Hint**: You can predict an upper bound for the speed-up using Amdahl's law with optimistic values.
 
-2- Do you think all the workloads will experience the same speed up between `HW3BigCore` and `HW3LittleCore`?
+2. Do you think all the workloads will experience the same speed-up between `HW3BigCore` and `HW3LittleCore`?
 
 ### Step I: Performance comparison
 
@@ -399,7 +394,7 @@ Use simulation data with proper simulation data to strengthen your reasoning.
 1. What is the speed up of `HW3BigCore` over `HW3LittleCore` for each workload?
 2. What is the average improvement in IPC of `HW3BigCore` compared to `HW3LittleCore` over all the workloads?
 **CAUTION**: Make sure to use the correct mean to report average IPC improvement.
-3. Some workloads show more speedup that others. Which workloads show high speedup, which show low speedup? Look at the benchmark code (both the `.c` and `.s` files may be useful) and speculate the *algorithm characteristics* which influence the IPC difference between `HW3BigCore` and `HW3LittleCore`. What characteristics do applications have that lead to low performance improvement and what characteristics lead to high performance improvement?
+3. Some workloads show more speedup than others. Which workloads show high speedup, and which show low speedup? Look at the benchmark code (both the `.c` and `.s` files may be useful) and speculate the *algorithm characteristics* that influence the IPC difference between `HW3BigCore` and `HW3LittleCore`. What characteristics do applications have that lead to low performance improvement and what characteristics lead to high performance improvement?
 4. Which workload has the highest IPC for `HW3BigCore`? What is unique about this workload?
 
 **Hints**: Take a look at the assembly code of the **ROI** for inspiration.
@@ -411,10 +406,10 @@ This core needs to perform as closely as possible to `HW3BigCore` while using as
 We will refer to this core as `HW3MediumCore`.
 To pick our sweet spot for the design of `HW3MediumCore`, we need to develop a methodology.
 First, we need to define a cost function for increasing hardware resources.
-We will use area as the cost of making a hardware.
+We will use the area as the cost of fabricating new hardware.
 Not all parameters of the pipeline have the same effect on the area.
 E.g. Increasing the width of the pipeline has a quadratic effect on the area of the hardware while increasing register file entries has a linear effect.
-Morever the cost of increasing two of these resources at the same time should be bigger than the sum of increasing each resource.
+Moreover, the cost of increasing two of these resources at the same time should be bigger than the sum of increasing each resource.
 We will use an equation like below to score the area of a pipeline using the 4 parameters of `width`, `rob_size`, `num_int_regs`, and `num_fp_regs`.
 
 $$ area_{score} = 2 * width^2 * rob\_ size + width^2 * (num\_ int\_ regs + num\_ fp\_ regs) + 4 * width + 2 * rob\_ size + (num\_ int\_ regs + num\_ fp\_ regs)$$
@@ -422,29 +417,29 @@ $$ area_{score} = 2 * width^2 * rob\_ size + width^2 * (num\_ int\_ regs + num\_
 You can also get the area score for a pipeline design by calling the method `get_area_score` on the processor.
 
 Now that we have our cost function, let's devise a method for measuring our gains.
-In you report answer the following question.
+In your report answer the following question.
 
-1. If you were to use the speed up under only one workload from the four workloads you used before, which workload would you choose? Why?
+1. If you were to use the speed-up under only one workload from the four workloads you used before, which workload would you choose? Why?
 
 Now that we have devised functions to measure costs and gains, configure 4 middle ground designs for the pipeline.
 Not all of these designs will have the "best" cost-gain tradeoff.
 In your report include the following figure.
 
 2. Create a [pareto frontier](https://en.wikipedia.org/wiki/Pareto_efficiency) plot with cost on the y-axis and performance on the x-axis.
-This will be a scatter plot with 6 points: the two "big" and "LITTLE" cores as well as your 4 middle ground designs.
-Then, "connet the dots" on the "best" designs.
+This will be a scatter plot with 6 points: the two "big" and "LITTLE" cores as well as your 4 middle-ground designs.
+Then, "connect the dots" on the "best" designs.
 
 Answer this question in your report.
 
-3. Assume you are an engineer working to design this middle ground core. Given this early analysis, which designs, if any, would you recommend your team to pursue developing? Explain why. (Note: you may want to annotate the above plot.)
+3. Assume you are an engineer working to design this middle-ground core. Given this early analysis, which designs, if any, would you recommend your team to pursue developing? Explain why. (Note: you may want to annotate the above plot.)
 
 ### Step III: General Questions
 
-Based on your experiments and insights, can you answer the following qeustion?
+Based on your experiments and insights, can you answer the following question?
 
 1. Many phone chips (e.g. Arm Cortex-A series processors) and Intel's Alder Lake chips employ architectures that contain both big cores and little cores in a single system.
 The operating system (or Intel's "thread directory") can choose which core to use to run each thread.
-Assume that there is not context switching overhead, do you think that this system will be more or less efficient than have an equal number of medium cores?
+Assume that there is no context switching overhead, do you think that this system will be more or less efficient than have an equal number of medium cores?
 You may want to read the paper [Amdahl's Law in the Multicore Era by Hill and Marty](https://research.cs.wisc.edu/multifacet/papers/ieeecomputer08_amdahl_multicore.pdf) for inspiration.
 Note that you do not need to run any further experiments to answer this question.
 Back up your answer with logic.
@@ -457,7 +452,7 @@ In your report answer the questions presented in [Analysis and simulation](#anal
 Use clear reasoning and visualization to drive your conclusions.
 Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
 
-- `Instruction.md`: should include instruction on how to run your simulations.
+- `Instruction.md`: should include instructions on how to run your simulations.
 - Automation: code/scripts to run your simulations.
 - Configuration: python file configuring the systems you need to simulate.
 You should add your final core designs to `components/processors.py`.
@@ -471,16 +466,16 @@ E.g. `HW3MediumCore0`, `HW3MediumCore1`, `HW3MediumCore2`, and `HW3MediumCore3`.
 Like your submission, your grade is split into two parts.
 
 1. Reproducibility Package (50 points):
-    a. Instruction and automation to run simulations for different section and dump statistics (20 points)
+    a. Instruction and automation to run simulations for different sections and dump statistics (20 points)
         - Instructions (5 points)
         - Automation (5 points)
     b. Configuration scripts and correct simulation setup (40 points): 10 points for configuration script(s) used to run your simulations and 5 points for implementing each of the 6 processor models as described in [Analysis and simulation: Step I](#step-i-performance-comparison), and [Analysis and simulation: Step II](#step-ii-medium-core).
 
-2. Report (50 points): 5 points for each question presented in [Analysis and simualtion](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), [Analysis and simulation: Step II](#step-ii-medium-core), and, [Analysis and simulation: Step III](#step-iii-general-questions).
+2. Report (50 points): 5 points for each question presented in [Analysis and simulation](#analysis-and-simulation), [Analysis and simulation: Step I](#step-i-performance-comparison), [Analysis and simulation: Step II](#step-ii-medium-core), and, [Analysis and simulation: Step III](#step-iii-general-questions).
 
 ## Academic misconduct reminder
 
-You are required to work on this assignment in teams. You are only allowed to share you scripts and code with your teammate(s). You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
+You are required to work on this assignment in teams. You are only allowed to share your scripts and code with your teammate(s). You may discuss high-level concepts with others in the class but all the work must be completed by your team and your team only.
 
 Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
 
@@ -488,5 +483,3 @@ Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub tha
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
-
-{% endcomment %}
