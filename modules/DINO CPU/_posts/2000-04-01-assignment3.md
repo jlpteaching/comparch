@@ -1,6 +1,6 @@
 ---
 Author: Jason Lowe-Power
-Editor: Hoa Nguyen
+Editor: Zhantong Qiu, Hoa Nguyen
 Title: DINO CPU Assignment 3
 ---
 
@@ -15,11 +15,6 @@ Modified for ECS 154B Lab 3, {{site.data.course.quarter}}.
 See [End of Part 3.1](#end-of-part-31) for details on turning in lab 3.1.
 
 **Part 3.2 Due on *{{ site.data.course.dates.dino_32 }}* at 2:10 PM PST**
-
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
 
 See [Grading](#grading) for details on turning in lab 3.2.
 
@@ -168,10 +163,12 @@ We have given you the signals that are needed in the EX stage as an example of h
 
 ```scala
 class EXControl extends Bundle {
-  val aluop             = UInt(3.W)
+  val aluop             = UInt(2.W)
+  val arth_type         = UInt(1.W)
+  val int_length        = UInt(1.W)
+  val jumpop            = UInt(2.W)
   val op1_src           = UInt(1.W)
   val op2_src           = UInt(2.W)
-  val controltransferop = UInt(2.W)
 }
 ```
 
@@ -185,10 +182,12 @@ See the example below:
 
 ```scala
 class EXControl extends Bundle {
-  val aluop             = UInt(3.W)
+  val aluop             = UInt(2.W)
+  val arth_type         = UInt(1.W)
+  val int_length        = UInt(1.W)
+  val jumpop            = UInt(2.W)
   val op1_src           = UInt(1.W)
   val op2_src           = UInt(2.W)
-  val controltransferop = UInt(2.W)
 }
 
 class IDEXControl extends Bundle {
@@ -451,5 +450,3 @@ GitHub now allows everybody to create unlimited private repositories for up to t
 - Start early! Start early and ask questions on {{site.data.course.discussion_site}} and in discussion sessions.
 - If you need help, come to office hours for the TA, or post your questions on {{site.data.course.discussion_site}}.
 - See [common errors]({{site.data.course.154b_assignment3_github_link}}/blob/main/documentation/common-errors.md) for some common errors and their solutions.
-
-{% endcomment %}
