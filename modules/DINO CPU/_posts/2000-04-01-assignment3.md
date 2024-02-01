@@ -200,7 +200,10 @@ val id_ex_ctrl  = Module(new StageReg(new IDEXControl))
 
 ...
 
+// set the aluop signal in the IDEX stage register at decode stage
 id_ex_ctrl.io.in.ex_ctrl.aluop := control.io.aluop
+// get the aluop signal from the IDEX stage register at execute stage
+aluControl.io.aluop := id_ex_ctrl.io.data.ex_ctrl.aluop
 ```
 
 Specifically in `id_ex_ctrl.io.in.ex_ctrl.aluop` you have to specify `ex_ctrl.aluop` since you are are getting a signal out of the `ex_ctrl` part of the `IDEXControl` bundle.
