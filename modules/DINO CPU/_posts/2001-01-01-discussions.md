@@ -23,6 +23,9 @@ This is a page for materials discussed in the discussion sessions.
 ## Midterm Review (Feb 5th)
 [Slides(updated on Feb 5th)]({{'img/154B_discussions/Midterm_Review.pdf' | relative_url}})
 
+## Discussion 5 (Feb 6th)
+[Slides(updated on Jan 30th)]({{'img/154B_discussions/154b_discussion_5.pdf' | relative_url}})
+
 ## Discussion 5 (Feb 13th)
 [Slides]({{'' | relative_url}})
 
