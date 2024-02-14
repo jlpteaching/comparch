@@ -24,19 +24,19 @@ This is a page for materials discussed in the discussion sessions.
 [Slides(updated on Feb 5th)]({{'img/154B_discussions/Midterm_Review.pdf' | relative_url}})
 
 ## Discussion 5 (Feb 6th)
-[Slides(updated on Jan 30th)]({{'img/154B_discussions/154b_discussion_5.pdf' | relative_url}})
+[Slides(updated on Feb 6th)]({{'img/154B_discussions/154b_discussion_5.pdf' | relative_url}})
 
-## Discussion 5 (Feb 13th)
+## Discussion 6 (Feb 13th)
+[Slides(updated on Feb 13th)]({{'img/154B_discussions/154b_discussion_6.pdf' | relative_url}})
+
+## Discussion 7 (Feb 20th)
 [Slides]({{'' | relative_url}})
 
-## Discussion 6 (Feb 20th)
+## Discussion 8 (Feb 27nd)
 [Slides]({{'' | relative_url}})
 
-## Discussion 7 (Feb 27nd)
+## Discussion 9 (Mar 5st)
 [Slides]({{'' | relative_url}})
 
-## Discussion 8 (Mar 5st)
-[Slides]({{'' | relative_url}})
-
-## Discussion 9 (Mar 12th)
+## Discussion 10 (Mar 12th)
 [Slides]({{'' | relative_url}})
