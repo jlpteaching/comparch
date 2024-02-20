@@ -8,11 +8,6 @@ DINO CPU Assignment 4: The Why of Caching.
 
 Originally from ECS 154B Lab 4, Winter 2023.
 
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
-
 ## Table of Contents
 
 * [Introduction](#introduction)
@@ -56,7 +51,7 @@ In essence, the idea of caching is to store previously acquired data in a cache
 that is close to the component uses the data.
 The idea utilizes the assumption that the cost of making a copy of the data is
 low, as well as the the cost of querying for the data in a cache is less
-expensive compared to acquring the data again.
+expensive compared to acquiring the data again.
 As a result, if the data is frequently requested, the cache could help bringing
 down the average cost of requesting for that data.
 In other words, we are trading the cost of acquiring the data with 
@@ -123,7 +118,7 @@ with that was least recently accessed.
 
 ![system\_diagrams]({{'img/dinocpu/assignment4-systems.svg' | relative_url}})
 **Figure 1.** Illustration of the systems that we use for evaluating different
-memory cacheh structures.
+memory cache structures.
 On each system, the left arrows are wires responsible for sending instruction memory
 requests/responses, while the right arrows are wires responsible for sending data
 memory requests/responses.
@@ -287,11 +282,11 @@ runMain dinocpu.singlestep <test_name> 1 pipelined-non-combin
 ```
 
 - You can uncomment this line
-[here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/pipelined/cpu-noncombin.scala#L128)
+[here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/pipelined/cpu-noncombin.scala#L131)
 of `cpu-noncombin.scala` to see the PCs of the instructions in the pipeline for each cycle.
 
 - You can uncomment this code block
-[here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/pipelined/cpu-noncombin.scala#L131)
+[here]({{site.data.course.154b_assignment4_github_link}}/blob/main/src/main/scala/pipelined/cpu-noncombin.scala#L133)
 of `cpu-noncombin.scala` to see the sequence of PCs of the instructions that are in the writeback stage.
 
 For debugging the hazard unit when running large applications, it is useful to compare
@@ -337,8 +332,8 @@ found in the discussions slides.
 ### Testing the Non Combinational Pipelined CPU
 
 ```scala
-Lab4 / testOnly dinocpu.SmallTestsTesterLab4
-Lab4 / testOnly dinocpu.FullApplicationsTesterLab4
+Lab4 / testOnly dinocpu.SmallTestsPipelinedTesterLab4
+Lab4 / testOnly dinocpu.FullApplicationsPipelinedTesterLab4
 ```
 
 To run a test,
@@ -348,31 +343,39 @@ runMain dinocpu.simulate_predefined_system <system_name> <riscv_binary>
 ```
 
 where,
-`<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
+`<system_name>` is one of `default`, `single-cycle`, `pipelined`, `system1`, `system2`, `system3`, `system4`, `system5`, `system6`, `system7`, and `system8`.
+
 The `default` system should be used for testing purposes.
 The `default` system is structurally the same as `system1` except that the RAM latency
 is 1 cycle instead of 30 cycles in other systems.
 
+The `single-cycle` and `pipelined` are both without caches and can access the RAM with latency of 0 cycle.
+
 **Notes:**
 
 * The tests on Gradescope are **without** caches.
-* For `SmallTestsTesterLab4` tests: It is expected that, if you are using a system
+* For `SmallTestsPipelinedTesterLab4` tests: It is expected that, if you are using a system
 **with** data caches, some of the store tests, ones start with `s` prefix, will fail
 because there are data in the cache that are not written back to the RAM yet!
 Those store tests only check the data in RAM rather than in cache, hence the test
 failures.
-* For `FullApplicationsTesterLab4` tests: This test suite includes
+* For `FullApplicationsPipelinedTesterLab4` tests: This test suite includes
 `stream-64-stride-1.riscv` and `stream-64-stride-4.riscv`, which are used to ensure
 the benchmarks we used in Part II and Part III run correctly.
 
 ## Part II: Performance Evaluation
 
-For this assignment, we will consider 4 systems,
+For this assignment, we will consider 4 pipelined systems and 4 single-cycle systems,
 
 * System 1: Non Combinational Pipelined CPU + No Cache
 * System 2: Non Combinational Pipelined CPU + Instruction Cache (No Data Cache)
 * System 3: Non Combinational Pipelined CPU + Data Cache (No Instruction Cache)
 * System 4: Non Combinational Pipelined CPU + Instruction Cache + Data Cache
+
+* System 5: Non Combinational Single-Cycle CPU + No Cache
+* System 6: Non Combinational Single-Cycle CPU + Instruction Cache (No Data Cache)
+* System 7: Non Combinational Single-Cycle CPU + Data Cache (No Instruction Cache)
+* System 8: Non Combinational Single-Cycle CPU + Instruction Cache + Data Cache
 
 To run a benchmark on a system,
 
@@ -382,10 +385,11 @@ runMain dinocpu.simulate_predefined_system <system_name> <riscv_binary>
 
 where,
 
-* `<system_name>` is one of `default`, `system1`, `system2`, `system3`, and `system4`.
+* `<system_name>` is one of `default`, `single-cycle`, `pipelined`, `system1`, `system2`, `system3`, `system4`, `system5`, `system6`, `system7`, and `system8`.
 The `default` system should be used for testing purposes.
 The `default` system is structurally the same as `system1` except that the RAM latency
 is 1 cycle instead of 30 cycles in other systems.
+The `single-cycle` and `pipelined` are both without caches and can access the RAM with latency of 0 cycle.
 * `<riscv_binary>` is name of the benchmark.
 
 **Notes:** Since there are multiple ways of dealing with timing in a CPU, each
@@ -403,7 +407,7 @@ If you are unsure about the correctness of the graph, you can show the formula
 that you used to generate the data for the graph.
 However, the graphs must have the X-axis and Y-axis with labels and units.
 
-### Question 1 (10 points)
+### Question 1 (5 points)
 
 Determine the number of dynamic instructions of the
 `stream-64-stride-1-noverify.riscv` and the
@@ -418,9 +422,9 @@ is completed within a cycle.
 the number of simulated instructions. Part of the Iron Law might be useful for
 the calculation step.
 
-### Question 2 (20 points)
+### Question 2 (10 points)
 
-Create a graph representing the CPI of the Non Combinational CPU in 4 systems
+Create a graph representing the CPI of the Non Combinational CPU in 8 systems
 described above with the `stream-64-stride-1-noverify.riscv` benchmark and the
 `stream-64-stride-4-noverify.riscv` benchmark.
 The X-axis should be grouped by systems.
@@ -431,7 +435,14 @@ The X-axis should be grouped by systems.
 data on the graph are not the real CPI of running the mentioned benchmarks on
 the four systems.
 
-### Question 3 (15 points)
+### Question 3 (10 points)
+
+Assuming that the pipelined non combinational CPU is clocked at 2.5GHz and the 
+single-cycle non combinational CPU is clocked at 1.5GHz. Create a graph representing 
+the execution time of the 8 systems with the `stream-64-stride-1-noverify.riscv` benchmark and the
+`stream-64-stride-4-noverify.riscv` benchmark.
+
+### Question 4 (15 points)
 
 Assume that the pipelined non combinational CPU is clocked at 2.5GHz.
 Create a graph illustrating the effective bandwidth of system 4 when running
@@ -460,24 +471,35 @@ C code depicted in Figure 2. The vast majority of memory accesses of the benchma
 are produced by the loops in Figure 2, so you can ignore the memory accesses outside
 these loops.
 
-### Question 4 (15 points)
+### Question 5 (10 points)
 
 Create a graph representing the L1 data cache hit ratio and the L1 instruction
 cache hit ratio when running each of `stream-64-stride-1-noverify.riscv` and
 `stream-64-stride-4-noverify.riscv` benchmarks with system 4.
 
+
 ## Part III: Performance Analysis
 
-### Question 5 (10 points)
+### Question 6 (10 points)
 
 Between data cache and instruction cache, do you think which cache has more
 impact on performance? Explain why using the data from part II.
 
-### Question 6 (10 points)
+### Question 7 (10 points)
 
 From the data from Part II, you should see system 4 performs better
 when running `stream-64-stride-1-noverify.riscv` compared to running
 `stream-64-stride-4-noverify.riscv`. Explain why using the data from part II.
+
+### Question 8 (10 points)
+
+Use the CPI and execution time from Part II to compare the performance between 
+the pipelined and single-cycle non combinational CPU.
+Explain why the single-cycle non combinational CPU might have lower CPI than the 
+pipelined non combinational CPU.
+
+**Hint:** Look at the source code of the benchmarks and think about what hazards 
+that exists in the pipelined CPU but not in the single-cycle CPU.
 
 ## Logistics
 
@@ -488,12 +510,14 @@ See the Submission section for more details.
 | Part                | Percentage |
 |---------------------|------------|
 | Part 4.1            |        20% |
-| Part 4.2 Question 1 |        10% |
-| Part 4.2 Question 2 |        20% |
-| Part 4.2 Question 3 |        15% |
+| Part 4.2 Question 1 |        5%  |
+| Part 4.2 Question 2 |        10% |
+| Part 4.2 Question 3 |        10% |
 | Part 4.2 Question 4 |        15% |
 | Part 4.3 Question 5 |        10% |
 | Part 4.3 Question 6 |        10% |
+| Part 4.3 Question 7 |        10% |
+| Part 4.3 Question 8 |        10% |
 | Extra Credits       |        10% |
 
 ### Submission
@@ -650,4 +674,3 @@ L1D cache must wait for the memory to complete that request before it can
 pull a cache block to memory.
 Thus, the cache miss latency might vary from access to access.
 
-{% endcomment %}
