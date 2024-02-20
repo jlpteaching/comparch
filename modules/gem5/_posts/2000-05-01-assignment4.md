@@ -1,15 +1,10 @@
 ---
 Author: Jason Lowe-Power
-Editor:  Maryam Babaie, Mahyar Samani
+Editor:  Maryam Babaie, Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 4
 ---
 
 ## Assignment 4 -- Due 11:59 pm (PST) *{{ site.data.course.dates.dino_4 }}*
-
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
 
 ## Table of Contents
 
@@ -25,17 +20,17 @@ Assignment coming soon
 
 ## Administrivia
 
-You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignemt policy applies.
+You should submit your report in pairs. Make sure to start early and post any questions you might have on Piazza. The standard late assignment policy applies.
 
-Use [classroom: assignment 4](https://classroom.github.com/a/u2u6tuD8) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 4](https://classroom.github.com/a/5M7Fra0n) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
 In this assignment, you'll be investigating the performance impacts of different cache architectures and different algorithm designs on matrix multiplication.
 The goals of this assignment are:
 
-- Show how algorithms have different behaviors as the microarchitecture changes.
-- Show how changing the algorithm can change performance on the *same* microarchitecture.
+- Show how algorithms have different behaviors as the micro-architecture changes.
+- Show how changing the algorithm can change performance on the *same* micro-architecture.
 - Improve your understanding of cache architectures.
 
 ## Workload
@@ -308,20 +303,21 @@ make mm-block-ik-native
 make mm-block-kj-native
 ```
 
-Before running your worklods on real hardware, answer the following questions in your report.
+Before running your workloads on real hardware, answer the following questions in your report.
 
 1. What is the L1/L2/L3 size of the processor you're running on? (`lscpu` or `/proc/cpuinfo` and Google should help)
-2. Can you use the information about the cache sizes to predict the best performing block scheme and size?
+2. Can you use the information about the cache sizes to predict the best-performing block scheme and size?
 
 When running on native hardware, I recommend using `matrix_size` of at least as big as 256.
 After running the workloads on real hardware answer the following question in your report.
 
-3. Which blocking scheme and size exhibited the best performance? Is this the same as on gem5? Why or why not?
+3. Which blocking scheme and size exhibited the best performance? Why or why not?
+4. Is this the same as on gem5? Why or why not?
 
 ## Submission
 
 As mentioned before, you are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [gradescope](https://www.gradescope.com/courses/487868).
+You should submit your report on [gradescope](https://www.gradescope.com/courses/692537/assignments/4129340).
 In your report answer the questions presented in , [Analysis and simulation: Step I](#step-i-working-set-sizes), [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), [Analysis and simulation: Step III](#step-iii-finding-an-optimal-setup), and [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
 
 Use clear reasoning and visualization to drive your conclusions.
@@ -342,7 +338,7 @@ Like your submission, your grade is split into two parts.
         - Automation (5 points)
     b. Configuration scripts and source codes (40 points): 5 points for configuration script(s) used to run your simulations as described in [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), 10 points for implementing each of the 3 blocking schemes as described in [Blocked matrix multiplication](#blocked-matrix-multiplication), and 5 points for a scripts used to run workloads on native hardware as described in [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
 
-2. Report (50 points): 5.5 points for each question presented in [Analysis and simulation: Step I](#step-i-working-set-sizes), [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), [Analysis and simulation: Step III](#step-iii-finding-an-optimal-setup), and [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
+2. Report (50 points): 5 points for each question presented in [Analysis and simulation: Step I](#step-i-working-set-sizes), [Analysis and simulation: Step II](#step-ii-simulation-and-performance-comparison), [Analysis and simulation: Step III](#step-iii-finding-an-optimal-setup), and [Analysis and simulation: Step IV](#step-iv-running-on-native-hardware).
 
 ## Academic misconduct reminder
 
@@ -354,5 +350,3 @@ Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub tha
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
-
-{% endcomment %}
