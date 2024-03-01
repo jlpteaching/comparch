@@ -78,6 +78,8 @@ This should allow you to use > 2 threads.
 Here is an example of how you could run the binary on native hardware.
 This example sums up an array of size `32768 elements` with `8 threads`.
 
+**HINT**: You **SHOULD** run the native workloads multiple times and take the average to avoid unstable results.
+
 ```shell
 ./naive-native 32768 8
 ```
