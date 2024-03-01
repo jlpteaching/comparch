@@ -70,6 +70,11 @@ Also, in all examples we will assume that the threads can *race* on the `result`
 
 You can find the compiled binary for this implementation in X86 under `workloads/array_sum/naive-native`.
 You can use this binary to run the program on real hardware.
+**You have to run the native workloads in either the CSIF machines or your local computer.**
+Github codespaces are limited to 2 cores system only.
+Instructions on how to get started with the CSIF machines can be found at [here: CSIF machines](https://csif.cs.ucdavis.edu/).
+You'd need to recompile the binaries.
+This should allow you to use > 2 threads.
 Here is an example of how you could run the binary on native hardware.
 This example sums up an array of size `32768 elements` with `8 threads`.
 
