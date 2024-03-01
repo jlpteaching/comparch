@@ -1,15 +1,10 @@
 ---
 Author: Jason Lowe-Power
-Editor:  Maryam Babaie, Mahyar Samani
+Editor:  Maryam Babaie, Mahyar Samani, Kaustav Goswami
 Title: ECS 201A Assignment 5
 ---
 
 ## Assignment 5 -- Due 11:59 pm (PST) *{{ site.data.course.dates.dino_5 }}*
-
-<img alt="Under construction" src="{{ "/img/under-construction.png" | relative_url }}">
-Assignment coming soon
-
-{% comment %}
 
 ### Table of Contents
 
@@ -30,7 +25,7 @@ You can submit your report in pairs, this policy applies to **both** 154B and 20
 Make sure to start early and post any questions you might have on Piazza.
 The standard late assignment policy applies.
 
-Use [classroom: assignment 5](https://classroom.github.com/a/Qjvl9M2Y) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
+Use [classroom: assignment 5](https://classroom.github.com/a/PKHKtcYu) to create an assignment. You will be asked to **join**/**create** an assignment. If your teammate has already created an assignment, please **join** their assignment instead of creating one assignment. Otherwise, **create** your assignment and ask your teammate to **join** the assignment.
 
 ## Introduction
 
@@ -86,7 +81,7 @@ This example sums up an array of size `32768 elements` with `8 threads`.
 
 You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `NaiveArraySumWorkload`.
 To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
-Here is an example of how you should create an object of this workload.
+Here is an example of how you should create an object for this workload.
 This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
 
 ```python
@@ -112,10 +107,10 @@ make naive-gem5
 ### Implementation 2: Chunking the array
 
 One problem with Implementation 1 is that each array will read in a cache line worth of data (64B), but it will only use 1 value from that cache line (4B).
-Thus, we are wasting 60B out of 64B or 94% of the data we're reading from memory!
+Thus, we are wasting 60B out of 64B, or 94% of the data we're reading from memory!
 
 To improve this (think about what kind of locality this is... see [Question 1](#question-1) below), we can instead "chunk up" the array.
-We can split the array into a number of contiguous chunks equal to the number of threads and then assign each thread to one of those chunks.
+We can split the array into several contiguous chunks equal to the number of threads and then assign each thread to one of those chunks.
 This is shown visually below with the code as well.
 
 ![algorithm 2 visualization]({{ '/img/parallel-alg-2.png' | relative_url }})
@@ -183,7 +178,7 @@ Otherwise, this implementation is the same as *implementation 1*.
 Once all threads have computed their part of the result, in the `main` function, the main thread sums up all of the results.
 While this is a bit of serialization (remember Amhahl!), we hope that the work from all the other threads outweighs this work significantly.
 
-You can see this implementation visually and in code below.
+You can see this implementation visually and in the code below.
 
 ![algorithm 3 visualization]({{ '/img/parallel-alg-3.png' | relative_url }})
 
@@ -255,7 +250,7 @@ This example sums up an array of size `32768 elements` with `8 threads`.
 
 You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `ChunkingNoResultRaceArraySumWorkload`.
 To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
-Here is an example of how you should create an object of this workload.
+Here is an example of how you should create an object for this workload.
 This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
 
 ```python
@@ -282,7 +277,7 @@ We have one final optimization that we can apply to this code.
 You hopefully remember that the cache access granularity is a *block* (e.g., 64B).
 So, even if you only want 4B of data, you have to get an entire 64B block.
 
-So, what we're going to do is to make sure that the data that is accessed frequently by each thread is in a *different* cache block.
+So, what we're going to do is make sure that the data that is accessed frequently by each thread is in a *different* cache block.
 Since we know that each integer is 4B, we are going to space out our accesses by 16 integers ($$ 16 \times 4 = 64 $$).
 See the code based on implementation 3 below.
 
@@ -307,7 +302,7 @@ This example sums up an array of size `32768 elements` with `8 threads`.
 
 You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `NoCacheBlockRaceArraySumWorkload`.
 To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
-Here is an example of how you should create an object of this workload.
+Here is an example of how you should create an object for this workload.
 This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
 
 ```python
@@ -354,7 +349,7 @@ This example sums up an array of size `32768 elements` with `8 threads`.
 
 You can import this implementation to your configuration file from `workloads/array_sum_workload.py` as `ChunkingNoBlockRaceArraySumWorkload`.
 To instantiate an object of this workload you need to pass **array_size** and **num_threads** as arguments to `__init__`.
-Here is an example of how you should create an object of this workload.
+Here is an example of how you should create an object for this workload.
 This example creates a workload of this binary that sums up `16384 elements` with `4 threads`.
 
 ```python
@@ -381,7 +376,7 @@ On a computer *with at least 4 cores* (preferably 8 or more) run the different p
 You can run `grep -m1 "cpu cores" /proc/cpuinfo` to find out how many cores you have.
 It should say something like `cpu cores       : 8`
 
-**NOTE**: we will only support running on x86 Linux machines.
+**NOTE**: We will only support running on x86 Linux machines.
 If you want to use a different system, we probably won't be able to help, and you're not guaranteed the correct results.
 
 On your *real hardware* run the 6 parallel algorithms with 1, 2, 4, 8, 16 threads (up to the maximum threads on your hardware).
@@ -397,7 +392,7 @@ For algorithm 1, does increasing the number of threads improve performance or hu
 
 (a) For algorithm 6, does increasing the number of threads improve performance or hurt performance? Use data to back up your answer.
 
-(b) What is the speedup when you use 2, 4, 8, 16 threads (only answer with up to the number of cores on your system).
+(b) What is the speedup when you use 2, 4, 8, and 16 threads (only answer with up to the number of cores on your system).
 
 ### Question 3
 
@@ -409,8 +404,8 @@ For algorithm 1, does increasing the number of threads improve performance or hu
 
 For those of you who are not familiar with [gem5](https://www.gem5.org/), gem5 is a *cycle-level* simulator that simulates the entire system (cores, memory, caches, devices) at the hardware level.
 
-The *input* to gem5 is a *Python* script which configures the system and runs the simulation.
-Refer to [Assignment 0]({{'modules/gem5/assignment0' | relative_url}}) to learn how to create your own configuration script.
+The *input* to gem5 is a *Python* script that configures the system and runs the simulation.
+Refer to [Assignment 0]({{'modules/gem5/assignment0' | relative_url}}) to learn how to create your configuration script.
 
 ### gem5's output
 
@@ -422,8 +417,8 @@ For *reasons* (which I won't get into), you should ignore all of the controllers
 
 ## Experimental setup
 
-For this assignment, you will be the same components across your experiments.
-However, for parts of the assignment you might want to change the number of processor cores or the latency of a crossbar in your cache interconnect.
+For this assignment, you will use the same components across your experiments.
+However, for parts of the assignment, you might want to change the number of processor cores or the latency of a crossbar in your cache interconnect.
 Refer to the list below for more information on the components you will be using.
 
 - boards: you will only use `HW5X86Board`.
@@ -445,9 +440,9 @@ You can find its definition in `components/memories.py`.
 
 ## Analysis and simulation
 
-Now, we are going to use a software simulation framework to look at the details of how the hardware operates to actually answer the "speculation" part of [question 3](#question-3).
+Now, we are going to use a software simulation framework to look at the details of how the hardware operates to answer the "speculation" part of [question 3](#question-3).
 
-In order to run your experiments, create a configuration script that allows you to run *any of the 6 implementations* of the workload with *any number of cores* for `HW5O3CPU` with *any latency* for `xbar_latency` in `HW5MESITwoLevelCacheHierarchy`.
+To run your experiments, create a configuration script that allows you to run *any of the 6 implementations* of the workload with *any number of cores* for `HW5O3CPU` with *any latency* for `xbar_latency` in `HW5MESITwoLevelCacheHierarchy`.
 
 ### **IMPORTANT NOTE**
 
@@ -473,12 +468,12 @@ This simulated time should be the same order of magnitude as what you say on you
 ### Cache behavior
 
 Let me warn you, these stats are confusing!
-However, hopefully we can narrow them down to make sense of them.
+However, hopefully, we can narrow them down to make sense of them.
 
 #### Hits and misses
 
 First, let's look at cache hits and misses.
-In our system, we may have a bunch of difference caches.
+In our system, we may have a bunch of different caches.
 They will be named something like `board.cache_hierarchy.ruby_system.l1_controllers2.L1Dcache` and `board.cache_hierarchy.ruby_system.l1_controllers15.L1Dcache` if, for instance, you use 16 cores (there's one L1 cache per core).
 
 **IMPORTANT:** Ignore `board.cache_hierarchy.ruby_system.l1_controllers0`!! This is *not* a "real" core. (For *reasons*... let's not talk about it. This is a weird gem5 thing.)
@@ -497,7 +492,7 @@ To keep things simple, you can just worry about the *average* miss latency, whic
 
 #### Average memory access time
 
-Not only does gem5 track the times for hits and misses separately, it also has a statistic for the latency for *all* accesses.
+Not only does gem5 track the times for hits and misses separately, but it also has a statistic for the latency for *all* accesses.
 For the average memory latency, you can use `board.cache_hierarchy.ruby_system.m_latencyHistSeqr::mean`.
 This statistic looks the same as the `m_missLatencyHistSeqr`, but it includes both hits and misses.
 
@@ -523,7 +518,7 @@ You can ignore the percentages.
 
 So, you should **ignore the first entry** because this is a fake/annoying/unrealistic L1.
 After that first ignored entry, you'll see the L1 controller number 1 has 1,940 `Fwd_GETS` events.
-This means that 1,940 times another cache wanted to get the data this cache has in shared state.
+This means that 1,940 times another cache wanted to get the data this cache has in the shared state.
 This is a measure of the *read sharing* of this algorithm.
 
 #### Write "sharing"
@@ -531,7 +526,7 @@ This is a measure of the *read sharing* of this algorithm.
 Like read sharing we may be interested in what happens with data that is shared between caches, but it is *written*.
 To see the number of times that some cache had to respond to another cache asking to have the data in *writable* state, you can see the `Fwd_GETX` statistic.
 I.e., you can use `board.cache_hierarchy.ruby_system.L1Cache_Controller.Fwd_GETX`.
-This stat has the exact same format as the `Fwd_GETS` described above.
+This stat has the same format as the `Fwd_GETS` described above.
 
 ### Getting ready to answer questions
 
@@ -540,7 +535,7 @@ Instead of just using 4 or 8 cores, let's use 16!
 Moreover, let's use `32768` for the size of the array.
 
 For 16 cores, run *each algorithm* and save the stats output.
-I strongly recommend using `--outdir` and using easy to understand names.
+I strongly recommend using `--outdir` and using easy-to-understand names.
 The following questions will ask you to consult these outputs and use data to back up your answers.
 
 ### Question 4
@@ -578,10 +573,10 @@ So:
 (a) Out of the three characteristics we have looked at, the L1 hit ratio, the read sharing, or the write sharing, which is most important for determining performance?
 Use the average memory latency (and overall performance) to address this question.
 
-Finally, you should have an idea on what optimizations have the biggest impact on the hit ratio, the read sharing performance, and the write sharing performance.
+Finally, you should have an idea of what optimizations have the biggest impact on the hit ratio, the read sharing performance, and the write sharing performance.
 
 So:
-(b) Using data from the gem5 simulations, now answer what hardware characteristic *causes* the most important optimization to be the most important?
+(b) Using data from the gem5 simulations, now answer what hardware characteristic *causes* the most important optimization to be the most important.
 
 ### Question 9
 
@@ -597,7 +592,7 @@ You can probably get away with just running algorithm 1 and algorithm 6.
 ## Submission
 
 As mentioned before, both 154B and 201A students are allowed to submit your assignments in **pairs** and in **PDF** format.
-You should submit your report on [201A gradescope](https://www.gradescope.com/courses/487868)
+You should submit your report on [201A gradescope](https://www.gradescope.com/courses/692537/assignments/4170670)
 or [154B gradescope]({{site.data.course.154b_gradescope_lab5_written_link}}).
 In your report answer the questions presented in , [Question 1](#question-1), [Question 2](#question-2),[Question 3](#question-3),[Question 4](#question-4),[Question 5](#question-5),[Question 6](#question-6),[Question 7](#question-7),[Question 8](#question-8), and [Question 9](#question-9).
 
@@ -605,7 +600,7 @@ Use clear reasoning and visualization to drive your conclusions.
 
 Submit all your code through your assignment repository. Please make sure to include code/scripts for the following.
 
-- `Instruction.md`: should include instruction on how to run your simulations.
+- `Instruction.md`: should include instructions on how to run your simulations.
 - Automation: code/scripts to run your simulations.
 - Configuration: python file configuring the systems you need to simulate.
 
@@ -614,7 +609,7 @@ Submit all your code through your assignment repository. Please make sure to inc
 Like your submission, your grade is split into two parts.
 
 1. Reproducibility Package (50 points):
-    a. Instruction and automation to run simulations for different section and dump statistics (10 points)
+    a. Instruction and automation to run simulations for different sections and dump statistics (10 points)
         - Instructions (5 points)
         - Automation (5 points)
     b. configuration script(s) (40 points)
@@ -640,13 +635,11 @@ Total points = 50
 
 ## Academic misconduct reminder
 
-You are required to work on this assignment in teams. You are only allowed to share you scripts and code with your teammate(s). You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
+You are required to work on this assignment in teams. You are only allowed to share your scripts and code with your teammate(s). You may discuss high-level concepts with others in the class but all the work must be completed by your team and your team only.
 
-Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
+Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork instead create a private repository to store your work.
 
 ## Hints
 
 - Start early and ask questions on Piazza and in discussion.
 - If you need help, come to office hours for the TA, or post your questions on Piazza.
-
-{% endcomment %}
