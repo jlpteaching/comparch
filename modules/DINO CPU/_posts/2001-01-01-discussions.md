@@ -36,7 +36,7 @@ This is a page for materials discussed in the discussion sessions.
 [Slides(updated on Feb 27th)]({{'img/154B_discussions/154b_discussion_8.pdf' | relative_url}})
 
 ## Discussion 9 (Mar 5st)
-[Slides]({{'' | relative_url}})
+[Slides(updated on Mar 8st)]({{'img/154B_discussions/154b_discussion_9.pdf' | relative_url}})
 
 ## Discussion 10 (Mar 12th)
 [Slides]({{'' | relative_url}})
