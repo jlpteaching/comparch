@@ -39,4 +39,4 @@ This is a page for materials discussed in the discussion sessions.
 [Slides(updated on Mar 8st)]({{'img/154B_discussions/154b_discussion_9.pdf' | relative_url}})
 
 ## Discussion 10 (Mar 12th)
-[Slides]({{'' | relative_url}})
+[Slides(updated on Mar 12th)]({{'img/154B_discussions/154b_discussion_10.pdf' | relative_url}})
