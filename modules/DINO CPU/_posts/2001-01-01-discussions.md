@@ -40,3 +40,7 @@ This is a page for materials discussed in the discussion sessions.
 
 ## Discussion 10 (Mar 12th)
 [Slides(updated on Mar 12th)]({{'img/154B_discussions/154b_discussion_10.pdf' | relative_url}})
+
+## Final Office Hour Note (Mar 18th)
+[Slides(updated on Mar 18th)]({{'img/154B_discussions/final_office_hour_note.pdf' | relative_url}})
+
