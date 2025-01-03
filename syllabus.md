@@ -12,9 +12,9 @@ toc: true
 
 *Lecture*: {{ site.data.course.lecture_location }}.
 
-*154B Discussion*: Wellman Hall 230. Tuesday 3:10 - 4:00pm.
+*154B Discussion*: {{ site.data.course.discussion_154b_location }}
 
-*201A Discussion*: Wellman 6. Tuesday 2:10 - 3:00pm.
+*201A Discussion*: {{ site.data.course.discussion_201a_location }}
 
 ### Instructor
 
@@ -25,11 +25,11 @@ My pronouns are he/him/his.
 
 Please contact me via email if you have a personal request, *not* canvas messages.
 **I do not check canvas messages.**
-For class-wide questions (e.g., anything that is not private), please use the [online discussion](#discussion).
+For class-wide questions (e.g., anything that is not private), please use the [online discussion](#online-discussions).
 
 #### Office hours
 
-*Office Hours*: 3:30-5:00pm Wednesday. Preference to 154B from 3:30-4:15 and preference to 201A from 4:15-5pm.
+*Office Hours*: 2:30-4:00pm Monday. Preference to 154B from 2:30-3:15 and preference to 201A from 3:15-4pm.
 
 *Office Location*: Kemper 3049.
 
@@ -41,8 +41,6 @@ If you need to discuss something in private, please email me for an appointment.
 <!-- I'll be connected on Zoom during in person office hours. -->
 
 Please suggest a meeting time when you email me for an appointment.
-You can use [my calendar](https://calendar.google.com/calendar/embed?src=jlowepower%40ucdavis.edu&ctz=America%2FLos_Angeles) to quickly find a time I am available.
-It's not guaranteed to be completely up-to-date, but it gives a good starting point.
 
 ### Teaching Assistant
 
@@ -53,7 +51,6 @@ It's not guaranteed to be completely up-to-date, but it gives a good starting po
 *Office Hours Time*: Thursdays, 4:00 pm - 5:00 pm, Kemper 3106, [zoom (attend only, priority given to in-person attendees)](https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09)
 
 *Office Hours Zoom*: Fridays, 10:00 am - 11:00 am, [zoom only](https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09)
-
 
 #### ECS 154B
 
@@ -82,7 +79,7 @@ All lab assignments will be autograded by Gradescope.
 When you upload your code to Gradescope, a set of tests will be run on it and your grade *will be immediately available*.
 You may submit your code any number of times.
 Only the final submission will be accepted as the grade for your assignment.
-However, if you submit after the deadline, the [late policy](#late-assignments) applies.
+However, if you submit after the deadline, the [late policy](#late-projects) applies.
 
 ### Online discussions
 
@@ -105,7 +102,7 @@ Regrades will only be accepted in the case of a grading error.**
 ### Accommodations
 
 The exam schedule is available on the [main page]({{'/' | relative_url}}).
-Per official UC Davis policy, if you have an accommodation request from the [Student Disability Center](https://sdc.ucdavis.edu/), or have any conflicts with exam times for religious observances, you must notify me **by the fourth class, January 17, 2023**.
+Per official UC Davis policy, if you have an accommodation request from the [Student Disability Center](https://sdc.ucdavis.edu/), or have any conflicts with exam times for religious observances, you must notify me **by the fourth class, January 13, 2023**.
 If you do not notify me by this time, I cannot guarantee I will be able to make the accommodation.
 
 For **each** test, quiz, etc. you must reach out to me *one week in advance* to schedule specific accommodations for that test, quiz, etc.
@@ -134,11 +131,13 @@ Generative AI tools such as [GitHub Copilot](https://copilot.github.com/) and [C
 I encourage you to use these tools when appropriate.
 
 Appropriate uses of the tools include:
-- Using GitHub Copilot to help you write code for DINOCPU or gem5.
+
+- Using GitHub Copilot to help you write code.
 - Using ChatGPT to *draft* text based on *your own* inputs.
 - Using ChatGPT to help improve grammar in your writing.
 
 Inappropriate uses of the tools include:
+
 - Using ChatGPT to write text for you without editing or reviewing it.
 
 Remember, these tools are prone to "hallucinating" and may not give reasonable results.
@@ -207,21 +206,22 @@ See also [student support](#student-support).
 
 | Category      | Percentage | How to get points? |
 |---------------|------------|--------------------|
-| Project (5x)  | 40%        | Gradescope will auto-grade most of the project |
-| Quizzes       | 24%        | Quizzes will be on canvas. One per week. |
-| Test 1        | 16%        | Take the test |
+| Project (7x)  | 40%        | GitHub Classroom   |
+| Quizzes       | 25%        | Quizzes will be on canvas. One per week. |
+| Test 1        | 15%        | Take the test |
 | Test 2 (final)| 20%        | Take the test |
 
 #### ECS 201A Grading
 
 | Category      | Percentage | How to get points? |
 |---------------|------------|--------------------|
-| Project (5x)  | 40%        | Project reports + gradescope autograding |
+| Project (7x)  | 40%        | GitHub Classroom |
 | Paper reviews | 25%        | Reviews will be on Perusall. One per week. |
 | Test 1        | 15%        | Take the test |
 | Test 2 (final)| 20%        | Take the test |
 
 {% comment %}
+
 ### Participation
 
 I want to encourage participation in my classes.
@@ -248,6 +248,8 @@ For each office hour you attend (and we have a substantive conversation), you ca
 
 ### Projects
 
+{% comment %}
+
 #### ECS 154B Project: DINO CPU
 
 You will complete [five project-based assignments]({{"/modules/dino cpu/index/" | relative_url}}) throughout this course.
@@ -256,26 +258,30 @@ All together, the labs are worth 40% of your final grade.
 
 Labs are due at 2:10 PM on the date listed below.
 
-* [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_1 }}.
-* [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due {{ site.data.course.dates.dino_2 }}.
-* [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline** {{ site.data.course.dates.dino_31 }}.
-* [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due {{ site.data.course.dates.dino_32 }}.
-* [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_4 }}.
-* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_5 }}.
+- [Assignment 1]({{"/modules/dino cpu/assignment1/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_1 }}.
+- [Assignment 2]({{"/modules/dino cpu/assignment2/" | relative_url}}) (1 weeks, 8%). Due {{ site.data.course.dates.dino_2 }}.
+- [Assignment 3.1]({{"/modules/dino cpu/assignment3/" | relative_url}}) (1 week, 4%). **Soft deadline*- {{ site.data.course.dates.dino_31 }}.
+- [Assignment 3.2]({{"/modules/dino cpu/assignment3/" | relative_url}}#part-ii-implementing-forwarding) (1 week, 4%). Due {{ site.data.course.dates.dino_32 }}.
+- [Assignment 4]({{"/modules/dino cpu/assignment4/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_4 }}.
+- [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_5 }}.
 
 #### ECS 201A Projects: gem5
 
-You will complete five project-based assignments throughout this course.
+{% endcomment %}
+
+You will complete seven project-based assignments throughout this course.
 The assignments can be found via the links below.
 All together, the labs are worth 40% of your final grade.
 
-Labs are due at 1:59 PM on the date listed below.
+Labs are due at midnight (11:59 PM) on the date listed below.
 
-* [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_1 }}.
-* [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) (1 week,  8%). Due {{ site.data.course.dates.dino_2 }}.
-* [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) (3 weeks, 8%). Due {{ site.data.course.dates.dino_32 }}.
-* [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_4 }}.
-* [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) (2 weeks, 8%). Due {{ site.data.course.dates.dino_5 }}.
+- [Assignment 1]({{"/modules/gem5/assignment0/" | relative_url}}) Due {{ site.data.course.dates.gem5_0 }}.
+- [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) Due {{ site.data.course.dates.gem5_1 }}.
+- [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) Due {{ site.data.course.dates.gem5_2 }}.
+- [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) Due {{ site.data.course.dates.gem5_3 }}.
+- [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) Due {{ site.data.course.dates.gem5_4 }}.
+- [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) Due {{ site.data.course.dates.gem5_5 }}.
+- [Assignment 5]({{"/modules/gem5/assignment6/" | relative_url}}) Due {{ site.data.course.dates.gem5_6 }}.
 
 #### Late Projects
 
@@ -312,7 +318,7 @@ We will use [Perusall]({{ site.data.course.perusall_link }}) for paper readings 
 This is required for me to be able to publish your grades.
 (I.e., if you don't access Perusall via Canvas you will receive a 0 for the assignments.)
 
-*Paper reviews are due **before*** the discussion (Tuesday 2 PM) and there is no grace period.
+*Paper reviews are due **before*** the discussion ( {{ site.data.course.discussion_201a_location }} ) and there is no grace period.
 
 The paper readings will be graded on Perusall.
 You are assigned to random groups for the papers.

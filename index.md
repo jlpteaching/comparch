@@ -38,8 +38,8 @@ The class will generally be broken up into three parts, with more emphasis on th
 Each section will begin with the motivation for why you should care about this architectural component based on the performance or other metrics of the system.
 Then, after going through the design details, we will summarize with specific example from modern systems.
 
-Each section will have one or two project-based assignments.
-Those of you in ECS 154B will be using the [DINO CPU]({{ site.data.course.dino_cpu_link }}), and those of you in ECS 201A will be using [gem5](https://www.gem5.org).
+Each section will have one or two project-based assignments based on the computer architecture simulator [gem5](https://www.gem5.org).
+{% comment %} Those of you in ECS 154B will be using the [DINO CPU]({{ site.data.course.dino_cpu_link }}), and those of you in ECS 201A will be using [gem5](https://www.gem5.org). {% endcomment %}
 Each section will also have an exam at the end.
 
 ### [Introduction to Computer Architecture]({{'modules/introduction/index/' | relative_url}}) (About one week)
@@ -56,10 +56,10 @@ However, for this first section *there will be no late penalty*.
 
 ### [Processor Architecture]({{"modules/processor architecture/index/" | relative_url}}) (About three weeks)
 
-* [Instruction set architectures and RISC-V]({{"modules/processor architecture/isa/" | relative_url}}) ([DINO CPU Assignment 1]({{"modules/dino cpu/assignment1" | relative_url }}) Due {{ site.data.course.dates.dino_1 }})
-* [Single cycle CPU design]({{"/modules/processor architecture/single-cycle/" | relative_url}}) ([DINO CPU Assignment 2]({{"modules/dino cpu/assignment2" | relative_url }}) Due {{ site.data.course.dates.dino_2 }})
-* [Pipelined CPU design]({{"/modules/processor architecture/pipelined/" | relative_url}}) ([DINO CPU Assignment 3.1]({{"modules/dino cpu/assignment3" | relative_url }}) Part 1 Due (soft) {{ site.data.course.dates.dino_31 }} & Part 2 Due {{ site.data.course.dates.dino_32 }}) (ECS 201A does not have a part 1)
-* [Instruction-level parallelism]({{"modules/processor architecture/ilp/" | relative_url}})
+* [Instruction set architectures and RISC-V]({{"modules/processor architecture/isa/" | relative_url}})
+* [Single cycle CPU design]({{"/modules/processor architecture/single-cycle/" | relative_url}}) (less focus than in past)
+* [Pipelined CPU design]({{"/modules/processor architecture/pipelined/" | relative_url}}) (less focus than in past)
+* [Instruction-level parallelism]({{"modules/processor architecture/ilp/" | relative_url}}) (more focus than in past)
 * [Processor architecture summary]({{"modules/processor architecture/summary/" | relative_url}})
 
 <span style="font-size:larger;color:red;">**Midterm exam on {{ site.data.course.dates.midterm }}**</span>
@@ -69,17 +69,11 @@ However, for this first section *there will be no late penalty*.
 * [Memory technology]({{"modules/memory architecture/technology/" | relative_url}})
 * [Caches and memory hierarchy]({{"modules/memory architecture/caches/" | relative_url}})
 * [Virtual memory]({{"modules/memory architecture/virtual/" | relative_url}})
-* [Memory architecture summary]({{"modules/memory architecture/summary/" | relative_url}}) (**Assignment 4 Due {{ site.data.course.dates.dino_4 }}**)
+* [Memory architecture summary]({{"modules/memory architecture/summary/" | relative_url}})
 
 ### [Parallel Architectures]({{"modules/parallel architecture/index/" | relative_url}}) (About two weeks)
 
 * [Parallel systems' performance]({{"modules/parallel architecture/performance/" | relative_url}})
-* [Parallel architectures and programming]({{"modules/parallel architecture/architectures/" | relative_url}}) (**Assignment 5 Due {{ site.data.course.dates.dino_5 }}**)
+* [Parallel architectures and programming]({{"modules/parallel architecture/architectures/" | relative_url}})
 
 <span style="font-size:larger;color:red;">**Final exam on {{ site.data.course.dates.final }}**</span>
-
-## Calendar
-
-Calendar view available [here](https://trello.com/b/{{ site.data.course.trello_code }}/{{ site.data.course.trello_name }}/calendar).
-
-<iframe class="trello" src="https://trello.com/b/{{ site.data.course.trello_code }}.html" height="800"></iframe>

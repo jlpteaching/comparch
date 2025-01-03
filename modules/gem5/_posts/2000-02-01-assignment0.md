@@ -1,13 +1,12 @@
 ---
-Author: Mahyar Samani, Kaustav Goswami
-Title: ECS 201A Assignment 0
+Author: Mahyar Samani, Kaustav Goswami, Jason Lowe-Power
+Title: Getting started with gem5
 ---
 
 **Due on *{{ site.data.course.dates.gem5_0 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
 ## Table of Contents
 
-- [Administrivia](#administrivia)
 - [Introduction](#introduction)
 - [gem5 and gem5's standard libary](#gem5-and-gem5s-standard-library-gem5-stdlib)
 - [Writing your own configuration script](#writing-your-own-configuration-script)
@@ -17,20 +16,11 @@ Title: ECS 201A Assignment 0
 - [Submission](#submission)
 - [Grading](#grading)
 - [Academic misconduct reminder](#academic-misconduct-reminder)
-- [Hints](#hints)
-
-## Administrivia
-
-You should complete this assignment **individually**. This assignment is not graded and will not influence your grade. However, it is highly encouraged to complete this assignment as soon as you can and get started on the next assignments. Make sure to start early and post any questions you might have on Piazza.
-
-**<span style="font-size:30px" style="font-weight:bold;">&rarr;</span> Use [classroom assignment-0]({{site.data.course.201a_assignment0_invitation_link}}) to accept and create an assignment for yourself on this class' <u>github classroom</u>. It will take a few minutes for github to initialize your repo. After the repo is created, you can use the <u>green code button</u> on the <u>top right corner under the tabs</u> to create a <u>github codespace</u> for yourself. Please make sure to <u>only create one codespace</u> for yourself. <span style="font-size:30px" style="font-weight:bold;">&larr;</span>** 
-
-After launching your codespace, you will have access to all the code that your TA has prepared for you to use in this assignment.
-Please follow the rest of this assignment using your codespace.
 
 ## Introduction
 
-In this assignment, we will use gem5's standard library to simulate the `Hello World` program in c++ on gem5. You will learn how to write your own configuration scripts to describe the computer system you need to simulate and pass your workloads and benchmark to the simulator.
+In this assignment, we will use gem5's standard library to simulate the `Hello World` program in C++ on gem5.
+You will learn how to write your own configuration scripts to describe the computer system you need to simulate and pass your workloads and benchmark to the simulator.
 
 ## gem5 and gem5's standard library (gem5-stdlib)
 
@@ -45,30 +35,36 @@ Although, the components along with their names do not match the commercial prod
 
 Each system in gem5 is described as a `board`.
 You can think of this `board` as the **motherboard** in a computer system.
-In this assignment we are going to be using a ready made board in gem5's standard library that we have renamed to `HW0RISCVBoard`.
-This board will use a RISC-V-based
-You can find the definition of `HW0RISCVBoard` in this repo in `components/boards.py`.
+In this assignment we are going to be using a ready made board in gem5's standard library that we have renamed to `RISCVBoard`.
+This board will use a RISC-V-based processor.
+You can find the definition of `RISCVBoard` in `components/__init__.py`.
 You can see that it is based on `SimpleBoard` from the standard library.
-You can find the `SimpleBoard` source code and documentation in `gem5/src/python/gem5/components/boards/simple_board.py`.
+You can find the `SimpleBoard` source code and documentation in [`gem5/src/python/gem5/components/boards/simple_board.py`](/gem5/src/python/gem5/components/boards/simple_board.py).
 
 Similar to a real system, a system in gem5 is not complete with only a `board`.
 However, the `board` is the platform through which all the other components communicate with each other.
-In order to build a complete system we need 3 other components: a `processor`, a `cache hierarchy`, and a `memory`.
+In order to build a complete system we need 3 other components: a "processor", a "cache hierarchy", and a "memory".
 This is not exactly the same way you would build a real computer system.
-For real computers, `cache hierarchy` comes pre-packaged with the `processor` and you need other components such as a **power supply** and a **storage drive** to complete a real system.
-However, there are many research focuses on cache hierarchy design that has motivated this separation of `processor` and `cache hierarchy`.
+For real computers, "cache hierarchy" comes pre-packaged with the "processor" and you need other components such as a **power supply** and a **storage drive** to complete a real system.
+However, there are many research focuses on cache hierarchy design that has motivated this separation of "processor" and "cache hierarchy".
 
-In addition, you need to specify the clock frequency for the `processor` and `cache hierarchy` to the `board`.
+In addition, you need to specify the clock frequency for the processor and cache hierarchy to the board.
 
 ### `gem5.components.processors`
 
-Ready made `processor` objects in the standard library represent the processing cores in a real CPU.
-In this assignment, we are going to use `HW0TimingSimpleCPU`.
-You can find its source code in this repo in `components/processors.py`.
+Ready made `Processor` objects in the standard library represent the processing cores in a real CPU.
+In this assignment, we are going to use the `SingleCycleCPU`.
+You can find its source code in this repo in `components/__init__.py`.
 This processor is based on `SimpleProcessor` from the standard library.
 Whenever instantiated, it will create a `SimpleProcessor` with **one** `TimingSimpleCPU` core with `RISC-V` instruction set architecture (ISA).
-You can find the source code to `SimpleProcessor` in `gem5/src/python/gem5/components/processors/simple_processor.py`.
-In addition, it is highly recommended that you learn more about gem5's different CPU models in the link below.
+The `TimingSimpleCPU` is a simple in-order CPU model that is designed to be fast to simulate.
+It assumes *no* time to execute instructions and only models the time to fetch the instruction from the cache.
+In practice, this results in a approximately 1 cycle for each ALU operation.
+For memory operations, the time to get the data from memory is modeled based on the cache hierarchy and memory system.
+In other words, `TimingSimpleCPU` models a single-cycle processor except for memory operations, which can be more than a cycle.
+
+You can find the source code to `SimpleProcessor` in [`gem5/src/python/gem5/components/processors/simple_processor.py`](/gem5/src/python/gem5/components/processors/simple_processor.py).
+In addition, it is highly recommended that you learn more about gem5's different CPU models in the links below.
 
 - [SimpleCPU](https://www.gem5.org/documentation/general_docs/cpu_models/SimpleCPU)
 - [MinorCPU](https://www.gem5.org/documentation/general_docs/cpu_models/minor_cpu)
@@ -77,21 +73,22 @@ In addition, it is highly recommended that you learn more about gem5's different
 ### `gem5.components.cachehierarchies`
 
 The `cache hierarchy` objects in standard library are designed to implement **cache coherency protocol** for multi-core processors and model the **interconnect** between multiple cores and multiple memory channels.
-In this assignment we are going to use `HW0MESITwoLevelCache`.
-You can find its source code in `components/cache_hierarchies.py`.
+In this assignment we are going to use `MESITwoLevelCache`.
+You can find its source code in `components/__init__.py`.
+
 This cache hierarchy is based on `MESITwoLevelCacheHierarchy` from the standard library.
-You can find the source code to `MESITwoLevelCacheHierarchy` in `gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_two_level_cache_hierarchy.py`.
-Whenever instantiated, a `HW0MESITwoLevelCache` creates a **two level** cache hierarchy with the **MESI** protocol for **cache coherency**.
+You can find the source code to `MESITwoLevelCacheHierarchy` in [`gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_two_level_cache_hierarchy.py`](/gem5/src/python/gem5/components/cachehierarchies/ruby/mesi_three_level_cache_hierarchy.py).
+Whenever instantiated, a `MESITwoLevelCache` creates a **two level** cache hierarchy with the **MESI** protocol for **cache coherency**.
 It has a **64KiB 8-way set associative L1 instruction cache**, **64KiB 8-way set associative L1 data cache**, **256KiB 4-way set associative L2 unified cache with 16 banks**.
 
 ### `gem5.components.memory`
 
 The `memory` objects in standard library are designed to implement various types of single and multi-channel DRAM based memories.
-In this assignment we are going to use `HW0DDR3_1600_8x8`.
+In this assignment we are going to use `DDR3`.
 You can find its source code in `components/memories.py`.
 This memory is based on `ChanneledMemory` from the standard library.
-You can find the source code to `ChanneledMemory` in `gem5/src/python/gem5/components/memory/memory.py`.
-Whenever instantiated, a `HW0DDR3_1600_8x8` creates a **single channel DDR3 DRAM memory with 1GiB of capacity and a data bus frequency of 1600MHz**.
+You can find the source code to `ChanneledMemory` in [`gem5/src/python/gem5/components/memory/memory.py`](/gem5/src/python/gem5/components/memory/memory.py).
+Whenever instantiated, a `DDR3` creates a **single channel DDR3 DRAM memory with 1GiB of capacity and a data bus frequency of 1600MHz**.
 
 ## Writing your own configuration script
 
@@ -104,13 +101,10 @@ Then we will pass this script to the gem5 binary for simulation.
 ### Import models
 
 We will need to import the models for the different components that we aim to simulate.
-Here is the code that imports all the mentioned models for `HW0`.
+Here is the code that imports all the mentioned models for ``.
 
 ```python
-from components.boards import HW0RISCVBoard
-from components.processors import HW0TimingSimpleCPU
-from components.cache_hierarchies import HW0MESITwoLevelCache
-from components.memories import HW0DDR3_1600_8x8
+from components import RISCVBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
 ```
 
 ### Instantiate an object of the model
@@ -120,10 +114,10 @@ We will need **cpu, cache, and memory** to create a board. Here is the code that
 
 ```python
 if __name__ == "__m5_main__":
-    cpu = HW0TimingSimpleCPU()
-    cache = HW0MESITwoLevelCache()
-    memory = HW0DDR3_1600_8x8()
-    board = HW0RISCVBoard(
+    cpu = TimingSimpleCPU()
+    cache = MESITwoLevelCache()
+    memory = DDR3()
+    board = RISCVBoard(
         clk_freq="2GHz", processor=cpu, cache_hierarchy=cache, memory=memory
     )
 ```
@@ -132,57 +126,36 @@ if __name__ == "__m5_main__":
 
 So far, we have written a configuration script that describes the system we would like to simulate.
 However, our simulation setup is not complete.
-We still need to describe what **software** needs to be executed on the **hardware** that we just described.
-In computer architecture research frequently used programs and kernels (small pieces of code essential to many programs e.g. quick sort) are used to evaluate the performance of a computer system.
+We still need to describe what **software** needs to be executed on the **hardware** that we just created.
+In computer architecture research frequently used programs and kernels (small pieces of code essential to many programs e.g. quicksort) are used to evaluate the performance of a computer system.
 These programs usually come in a package and are referred to as **benchmarks**. There are many benchmarks available.
 [SPEC2017](https://spec.org/cpu2017/) and [PARSEC](https://parsec.cs.princeton.edu/) are among the popular **benchmarks** in computer architecture research.
 
 [gem5 resources](https://resources.gem5.org/) is a project aiming to offer ready made resources compatible with the gem5 simulator.
-You can download and use compiled binaries from many benchmarks and small programs from gem5-reosources.
+You can download and use compiled binaries from many benchmarks and small programs from gem5-resources.
 
 In this assignment, as mentioned before, we are going to use an already compiled `Hello World` binary for the RISC-V ISA from gem5-resources.
-You can find the source code to `HelloWorldWorkload` in `workloads/hello_world.py`.
+There are many workloads available in gem5-resources, but we have provided some for you in the [`resources.json` file](../workloads/resources.json).
 
-### Importing workload
+### Using a workload in gem5
 
-We need to import our `HelloWorldWorkload` to our configuration script.
-To do that add the following line to your import section of the code.
+In order to use a workload in gem5, you need to download the workload from gem5-resources.
+You can do that by using the `obtain_resource` function from the `gem5.resources` package.
 
 ```python
-from workloads.hello_world_workload import HelloWorldWorkload
+from gem5.resources.resource import obtain_resource
+...
+workload = obtain_resource("hello_world_workload")
 ```
 
 ### Setting the workload for simulation
 
 Next, we will need to create an object of the workload we just imported and describe that this workload object is the object that we want to use for the **software** on our specified **hardware**.
-You can do that by calling `set_workload` function from `HW0RISCVBoard`.
+You can do that by calling `set_workload` function from `RISCVBoard`.
 Here is the line of code that does that.
 
 ```python
-workload = HelloWorldWorkload()
 board.set_workload(workload)
-```
-
-Here is how the configuration script looks like so far.
-
-```python
-from components.boards import HW0RISCVBoard
-from components.processors import HW0TimingSimpleCPU
-from components.cache_hierarchies import HW0MESITwoLevelCache
-from components.memories import HW0DDR3_1600_8x8
-
-from workloads.hello_world_workload import HelloWorldWorkload
-
-if __name__ == "__m5_main__":
-
-    cpu = HW0TimingSimpleCPU()
-    cache = HW0MESITwoLevelCache()
-    memory = HW0DDR3_1600_8x8()
-    board = HW0RISCVBoard(
-        clk_freq="2GHz", processor=cpu, cache_hierarchy=cache, memory=memory
-    )
-    workload = HelloWorldWorkload()
-    board.set_workload(workload)
 ```
 
 ## Final step: simulate
@@ -222,7 +195,7 @@ This means that we need to pass value `False` as the `full_system` argument to o
 Here is the piece of code that creates a simulator object.
 
 ```python
-simulator = Simulator(board=board, full_system=False)
+simulator = Simulator(board=board)
 ```
 
 The last action item is to tell gem5 to run the simulation.
@@ -243,29 +216,23 @@ print("Finished simulation.")
 Here is how the script looks like after adding all the necessary statements.
 
 ```python
-from components.boards import HW0RISCVBoard
-from components.processors import HW0TimingSimpleCPU
-from components.cache_hierarchies import HW0MESITwoLevelCache
-from components.memories import HW0DDR3_1600_8x8
+from components import RISCVBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
 
-from workloads.hello_world_workload import HelloWorldWorkload
-
+from gem5.resources.resource import obtain_resource
 from gem5.simulate.simulator import Simulator
 
 if __name__ == "__m5_main__":
-
-    cpu = HW0TimingSimpleCPU()
-    cache = HW0MESITwoLevelCache()
-    memory = HW0DDR3_1600_8x8()
-    board = HW0RISCVBoard(
+    cpu = SingleCycleCPU()
+    cache = MESITwoLevelCache()
+    memory = DDR3()
+    board = RISCVBoard(
         clk_freq="2GHz", processor=cpu, cache_hierarchy=cache, memory=memory
     )
-    workload = HelloWorldWorkload()
-    board.set_workload(workload)
-    simulator = Simulator(board=board, full_system=False)
-    simulator.run()
+    board.set_workload(obtain_resource("hello_world_workload"))
 
-    print("Finished simulation.")
+    simulator = Simulator(board=board)
+    simulator.run()
+    print(f"Simulation finished.")
 ```
 
 ## Invoking gem5
@@ -274,9 +241,7 @@ As discussed earlier, gem5 has a modified internal python interpreter.
 Please note that passing your configuration scripts to python will result in numerous confusing errors.
 You will need to pass your configuration script to the gem5 binary to run your simulation.
 To do that you will need to use the command line.
-Now, open a terminal and run the command bellow.
-**Remember**: We initially named our configuration script as `run.py`.
-If you have not done so, use any name you gave your configuration script instead of `run.py` in the command line.
+Now, open a terminal and run the command below.
 
 ```shell
 gem5 run.py
@@ -284,45 +249,39 @@ gem5 run.py
 
 After running this command in the terminal, you will see an output like below:
 
-```shell
+```text
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/arch/riscv/isa.cc:279: info: RVV enabled, VLEN = 256 bits, ELEN = 64 bits
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/base/remote_gdb.cc:418: warn: Sockets disabled, not accepting gdb connections
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 version [DEVELOP-FOR-22.1]
-gem5 compiled Nov 22 2022 23:54:40
-gem5 started Jan 11 2023 22:17:47
-gem5 executing on codespaces-50d4d9, pid 14760
+gem5 version 24.1.0.0
+gem5 compiled Dec  9 2024 21:50:01
+gem5 started Dec 18 2024 00:14:19
+gem5 executing on c5955d84feb8, pid 1
 command line: gem5 run.py
 
-Resource 'riscv-hello' was not found locally. Downloading to '/root/.cache/gem5/riscv-hello'...
-Finished downloading resource 'riscv-hello'.
-warn: The simulate package is still in a beta state. The gem5 project does not guarantee the APIs within this package will remain consistent across upcoming releases.
-Global frequency set at 1000000000000 ticks per second
-warn: failed to generate dot output from m5out/config.dot
-warn: failed to generate dot output from m5out/config.board.cache_hierarchy.ruby_system.dot
-build/ALL/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (1024 Mbytes)
-build/ALL/base/statistics.hh:280: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
-0: board.remote_gdb: listening for remote gdb on port 7000
-build/ALL/sim/simulate.cc:197: info: Entering event queue @ 0.  Starting simulation...
-build/ALL/mem/ruby/system/Sequencer.cc:613: warn: Replacement policy updates recently became the responsibility of SLICC state machines. Make sure to setMRU() near callbacks in .sm files!
-build/ALL/sim/syscall_emul.hh:1014: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
-      Returning '/root/.cache/gem5/riscv-hello'
-build/ALL/sim/mem_state.cc:443: info: Increasing stack size by one page.
+info: Standard input is not a terminal, disabling listeners.
+info: Using config file specified by $GEM5_CONFIG
+info: Using config file at /workspaces/gem5-assignment-template/gem5-config.json
+src/sim/simulate.cc:199: info: Entering event queue @ 0.  Starting simulation...
+src/mem/ruby/system/Sequencer.cc:704: warn: Replacement policy updates recently became the responsibility of SLICC state machines. Make sure to setMRU() near callbacks in .sm files!
+src/sim/syscall_emul.hh:1117: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/workspaces/gem5-assignment-template/assignment-0/resources/riscv-hello'
+src/sim/mem_state.cc:448: info: Increasing stack size by one page.
 Hello world!
-Finished simulation.
+Simulation finished.
 ```
 
-You can see that our print statement has produced the output that we exptected.
+You can see that our print statement has produced the output that we expected.
 If you see an output like the one above, congratulations.
 You just completed your first simulation with gem5.
 
-Now, if you run `ls` in your terminal you will see the following output.
-
-```shell
-LICENSE  LICENSE.code  LICENSE.content  README.md  components  gem5  m5out  requirements.txt  run.py  util  workloads
-```
-
-You might notice that a directory named `m5out` has been created after invoking gem5.
+After running gem5, you will find there is a new directory created, named `m5out`.
 This directory includes all the simulator output files.
 You can find the statistics output under `m5out/stats.txt`.
 It includes many statistics about your simulated hardware.
@@ -334,130 +293,68 @@ Please take the time to take a look at the first 15 lines of that file and under
 
 Like every other program gem5 uses standard out `stdout` and standard error `stderr` to communicate some of it information with the user.
 However, you can tell gem5 to not dump `stdout` and `stderr` to your terminal and output those to a file.
-To do this add `-r` flag to your previous command you used to run your simulation.
+To do this add `-re` flag to your previous command you used to run your simulation.
 Make sure to add this flag before the name of your configuration script as the flag should be passed to gem5 and not your configuration script.
-Below is how the command looks like after adding `-r` flag to it.
-**Remember**: We initially named our configuration script as `run.py`.
-If you have not done so, use any name you gave your configuration script instead of `run.py` in the command line.
-
-```shell
-gem5 -r run.py
-```
-
-This is what you will see in your terminal after running the command above.
-
-```shell
-Redirecting stdout and stderr to m5out/simout
-```
-
-Now, if you look at `m5out`, you will see that there is a new file name `simout`.
-Let's print the content of that file and compare to our previous output in [Invoking gem5](#invoking-gem5).
-To do that, run the following command in your terminal.
-
-```shell
-cat m5out/simout
-```
-
-Below you can see the output after running the command above.
-
-```shell
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version [DEVELOP-FOR-22.1]
-gem5 compiled Nov 22 2022 23:54:40
-gem5 started Jan 11 2023 22:31:34
-gem5 executing on codespaces-50d4d9, pid 19657
-command line: gem5 -r run.py
-
-warn: The simulate package is still in a beta state. The gem5 project does not guarantee the APIs within this package will remain consistent across upcoming releases.
-Global frequency set at 1000000000000 ticks per second
-warn: failed to generate dot output from m5out/config.dot
-warn: failed to generate dot output from m5out/config.board.cache_hierarchy.ruby_system.dot
-build/ALL/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (1024 Mbytes)
-build/ALL/base/statistics.hh:280: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
-0: board.remote_gdb: listening for remote gdb on port 7000
-build/ALL/sim/simulate.cc:197: info: Entering event queue @ 0.  Starting simulation...
-build/ALL/mem/ruby/system/Sequencer.cc:613: warn: Replacement policy updates recently became the responsibility of SLICC state machines. Make sure to setMRU() near callbacks in .sm files!
-build/ALL/sim/syscall_emul.hh:1014: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
-      Returning '/root/.cache/gem5/riscv-hello'
-build/ALL/sim/mem_state.cc:443: info: Increasing stack size by one page.
-Hello world!
-Finished simulation.
-```
-
-You can see that apart from the date and time of simulation and the missing gem5-resrouces statement for download `riscv-hello`, the two outputs look similar.
-However, this file includes both `stdout` and `stderr`.
-You separate `stdout` and `stderr` into two files.
-To do that pass `-re` instead of `-r` to gem5.
-This is what the command will look like after passing the new flags.
-**Remember**: We initially named our configuration script as `run.py`.
-If you have not done so, use any name you gave your configuration script instead of `run.py` in the command line.
+Below is how the command looks like after adding `-re` flag to it.
 
 ```shell
 gem5 -re run.py
 ```
 
-After running the command above, this is what you will see in your terminal.
-
-```shell
-Redirecting stdout to m5out/simout
-Redirecting stderr to m5out/simerr
-```
-
-Let's print the content of `m5out/simout` and compare that to our previous output.
-To do that, run the command below in your terminal.
-
-```shell
-cat m5out/simout
-```
-
-This is what you will see after running the command above.
-
-```shell
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version [DEVELOP-FOR-22.1]
-gem5 compiled Nov 22 2022 23:54:40
-gem5 started Jan 11 2023 22:54:26
-gem5 executing on codespaces-50d4d9, pid 27736
-command line: gem5 -re run.py
-
-Global frequency set at 1000000000000 ticks per second
-Hello world!
-Finished simulation.
-```
-
-If you compare this output to our previous outputs, you can see that only a subset of our simulation output from before is printed.
-This is because after passing `-re` to gem5, `m5out/simout` will only include `stdout` from gem5.
-
-Now, let's take a look at the content of `m5out/simerr`.
+Now, if you look at `m5out`, you will see that there is a new file name `simout.txt` and `simerr.txt`.
+Let's print the content of that file and compare to our previous output in [Invoking gem5](#invoking-gem5).
 To do that, run the following command in your terminal.
 
 ```shell
-cat m5out/simerr
+cat m5out/simout.txt
 ```
 
-This is what you will see after running the command above.
+Below you can see the output after running the command above.
 
-```shell
-warn: The simulate package is still in a beta state. The gem5 project does not guarantee the APIs within this package will remain consistent across upcoming releases.
-warn: failed to generate dot output from m5out/config.dot
-warn: failed to generate dot output from m5out/config.board.cache_hierarchy.ruby_system.dot
-build/ALL/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (1024 Mbytes)
-build/ALL/base/statistics.hh:280: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
-0: board.remote_gdb: listening for remote gdb on port 7000
-build/ALL/sim/simulate.cc:197: info: Entering event queue @ 0.  Starting simulation...
-build/ALL/mem/ruby/system/Sequencer.cc:613: warn: Replacement policy updates recently became the responsibility of SLICC state machines. Make sure to setMRU() near callbacks in .sm files!
-build/ALL/sim/syscall_emul.hh:1014: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
-      Returning '/root/.cache/gem5/riscv-hello'
-build/ALL/sim/mem_state.cc:443: info: Increasing stack size by one page.
+```text
+Global frequency set at 1000000000000 ticks per second
+Redirecting stdout to m5out/simout.txt
+Redirecting stderr to m5out/simerr.txt
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 24.1.0.0
+gem5 compiled Dec  9 2024 21:50:01
+gem5 started Dec 18 2024 00:18:14
+gem5 executing on 1ef68e3397df, pid 1
+command line: gem5 -re run.py
+
+info: Standard input is not a terminal, disabling listeners.
+info: Using config file specified by $GEM5_CONFIG
+info: Using config file at /workspaces/gem5-assignment-template/gem5-config.json
+Hello world!
+Simulation finished.
+```
+
+You can see that apart from the date and time of simulation the two outputs look similar.
+
+You can also print the content of `m5out/simerr.txt` to see the rest of the output that gem5 has produced.
+
+```text
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/arch/riscv/isa.cc:279: info: RVV enabled, VLEN = 256 bits, ELEN = 64 bits
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/base/remote_gdb.cc:418: warn: Sockets disabled, not accepting gdb connections
+src/sim/simulate.cc:199: info: Entering event queue @ 0.  Starting simulation...
+src/mem/ruby/system/Sequencer.cc:704: warn: Replacement policy updates recently became the responsibility of SLICC state machines. Make sure to setMRU() near callbacks in .sm files!
+src/sim/syscall_emul.hh:1117: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/workspaces/gem5-assignment-template/assignment-0/resources/riscv-hello'
+src/sim/mem_state.cc:448: info: Increasing stack size by one page.
 ```
 
 In this file you can see the rest of gem5's output.
 It includes warning and whatever gem5 has outputted to `stderr`.
-If you combine `m5out/simout` and `m5out/simerr` the result looks similar to what gem5 prints to the terminal without any flags.
+
+Note that there are a number of warnings.
+You can safely ignore the DRAM device capacity, legacy stats, sockets disabled, and replacement policy updates warnings.
+You should be aware of the readlink warning which means that the simulation you are running will *not* be deterministic like most gem5 simulations since you are actively accessing host files.
+All of the `info` blocks are just for your information and can be safely ignored.
 
 ### Changing the output directory
 
@@ -469,18 +366,12 @@ This means you have to put `--outdir=[path to your desired directory]` before th
 This is what an example command with `--outdir` will look like.
 
 ```shell
-gem5 --outdir=test-run0 run.py
+gem5 --outdir=test run.py
 ```
 
-After running the command above, you will see that a directory with the name `test-run0` has been created.
-Let's confirm that by running `ls`.
-This is what you will see in your terminal after running `ls`.
+After running the command above, you will see that a directory with the name `test` has been created.
 
-```shell
-LICENSE  LICENSE.code  LICENSE.content  README.md  components  gem5  m5out  requirements.txt  run.py  test-run0  util  workloads
-```
-
-If you look at the content of `test-run0`, you will see that it includes all the simulator outputs that you could find in `m5out` before.
+If you look at the content of `test`, you will see that it includes all the simulator outputs that you could find in `m5out` before.
 
 ### Passing input arguments to configuration script
 
@@ -489,7 +380,7 @@ This way you will not need to create a configuration script for every system you
 You can pass your input arguments to your configuraion script following the path to your configuration script.
 gem5 will then capture that part of the command line and pass it to your configuration script.
 You will then have to parse that part of the command line to read your input arguments from the command line.
-Below is how you can invoke gem5 with the flags we discussed before and input arguments to your conifuration script.
+Below is how you can invoke gem5 with the flags we discussed before and input arguments to your configuration script.
 
 ```shell
 gem5 [-re] {path to your configuration script} [input arguments to your configuration script]
@@ -500,23 +391,36 @@ It is a feature rich python package that allows you to parse the command line.
 
 ## Submission
 
-Although this assignment has a deadline, you can always complete this assignment.
-I highly recommend you complete this assignment as soon as you can.
-I hope that it can prepare you for the next assignments.
+You will submit this assignment via GitHub Classroom.
 
-There will be no gradescope submission for this assignment.
+1. Accept the assignment by clicking on the link provided in the announcement.
+2. Create a Codespace for the assignment on your repository.
+3. Fill out the `questions.md` file.
+4. Commit your changes.
+
+Make sure you include both your runscript, an explanation of how to use your script, and the questions to the questions in the `questions.md` file.
+
+### Explanation of how to use your script
+
+Include a detailed explanation of how to use your script and how you use your script to generate your answers (this will be more applicable in future assignments).
+Make sure that all paths are relative to this directory (`assignment-0/`).
+The code included in the "Example command to run the script" section should be able to be copied and pasted into a terminal and run without modification.
+
+- You should include a sentence or two which describes what the script (or scripts) do under "Explanation of the script" in `questions.md`.
+- You should include the path to the script under "Script to run" in `questions.md`.
+- You should include any parameters that need to be passed to the script under "Parameters to script (if any)" in `questions.md`.
+- You should include the command used to gather data under "Command used to gather data" in `questions.md`.
+  - Make sure this can by copy-pasted and run in your codespace without modification.
+  - If you need other files to run your script, make sure to include those files when you commit your changes.
 
 ## Grading
 
-This assignment is not graded and there are no rubrics for it.
+- **50 points** `run.py` script located at `assignment-0/run.py`
+- **25 points** for the `questions.md` file located at `assignment-0/questions.md`
+- **25 points** for explanation of how to use your script located at `assignment-0/questions.md`
 
 ## Academic misconduct reminder
 
-You are required to work on this assignment **individually**. You may discuss high level concepts with others in the class but all the work must be completed by your team and your team only.
+You are required to work on this assignment **individually**. You may discuss high level concepts with others in the class but all the work must be completed by you.
 
-Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don’t create a public fork and instead create a private repository to store your work.
-
-## Hints
-
-- Start early and ask questions on Piazza and in discussion.
-- If you need help, come to office hours for the TA, or post your questions on Piazza.
+Remember, DO NOT POST YOUR CODE PUBLICLY ON GITHUB! Any code found on GitHub that is not the base template you are given will be reported to SJA. If you want to sidestep this problem entirely, don't create a public fork and instead create a private repository to store your work.
