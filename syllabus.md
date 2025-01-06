@@ -52,9 +52,13 @@ Please suggest a meeting time when you email me for an appointment.
 
 #### ECS 154B
 
-**Zhantong Qiu** (<ztqiu@ucdavis.edu>)
+**Kaustav Goswami** (<kggoswami@ucdavis.edu>)
 
-*Office Hours*: Thursday, 2:00 pm - 3:00 pm, Kemper 3106.
+*In-person Office Hours*: Monday, 4:00 PM -- 5:00 PM, Kemper 55 (There will be a zoom link however, priority will be given to in-person attendees only.)
+
+*Online Office Hours*: Friday 10:00 AM -- 11:00 AM, online-only
+
+Zoom Link: https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09
 
 ## Class Resources
 
