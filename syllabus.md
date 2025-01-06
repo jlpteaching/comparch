@@ -46,11 +46,9 @@ Please suggest a meeting time when you email me for an appointment.
 
 #### ECS 201A
 
-**Kaustav Goswami** (<kggoswami@ucdavis.edu>)
+**Leonardo Redivo** (<lredivo@ucdavis.edu>)
 
-*Office Hours Time*: Thursdays, 4:00 pm - 5:00 pm, Kemper 3106, [zoom (attend only, priority given to in-person attendees)](https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09)
-
-*Office Hours Zoom*: Fridays, 10:00 am - 11:00 am, [zoom only](https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRiUT09)
+*Office Hours Time*: Wednesdays, 11:00 am - 12:00 pm, Kemper 3106
 
 #### ECS 154B
 
