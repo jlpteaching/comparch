@@ -109,12 +109,12 @@ from components import RISCVBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
 
 ### Instantiate an object of the model
 
-In this step we will create an object of each model. We will first create a `processor` and name it **cpu**, then we will create a `cache hierachy` and name it **cache**, then we will create a `memory` and name it **memory**, and then we will create a `board` and name it **board**.
+In this step we will create an object of each model. We will first create a `processor` and name it **cpu**, then we will create a `cache hierarchy` and name it **cache**, then we will create a `memory` and name it **memory**, and then we will create a `board` and name it **board**.
 We will need **cpu, cache, and memory** to create a board. Here is the code that does that for us.
 
 ```python
 if __name__ == "__m5_main__":
-    cpu = TimingSimpleCPU()
+    cpu = SingleCycleCPU()
     cache = MESITwoLevelCache()
     memory = DDR3()
     board = RISCVBoard(
