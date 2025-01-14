@@ -71,16 +71,16 @@ You can find the source for this website on [GitHub]({{ site.github.owner_url }}
 If you find any errors or have ideas for improving the website, please [open an issue]({{ site.github.owner_url }}/issues) on GitHub.
 Helpful contributions can be rewarded with [extra credit]({{'/extra-credit' | relative_url}}).
 
-### Gradescope
+### Grading platforms
 
-We will use Gradescope ([ECS154B]({{ site.data.course.gradescope_154b }}) and [ECS201A]({{ site.data.course.gradescope_201a }})) for all assignments including lab submissions and returning quizzes, the midterm, and the final.
+We will use github for all assignments and Gradescope for the midterm, and the final.
 Gradescope gives you a graded PDF version of your test, along with a rubric, immediately after we're done grading.
-You will receive an email from Gradescope to make your account early in the quarter.
+You will receive an email from Gradescope to make your account during the quarter.
 
-All lab assignments will be autograded by Gradescope.
-When you upload your code to Gradescope, a set of tests will be run on it and your grade *will be immediately available*.
-You may submit your code any number of times.
+All lab assignments will be manually graded via PR on your private github repository.
+You may submit your code (via commits) any number of times.
 Only the final submission will be accepted as the grade for your assignment.
+Your final commit time will be considered as the final submission time.
 However, if you submit after the deadline, the [late policy](#late-projects) applies.
 
 ### Online discussions
@@ -96,7 +96,7 @@ Through asking and answering questions on Discord, you improve your understandin
 ### Regrade Requests
 
 Regrade requests must be made within one week of the return of the assignment or test.
-Regrade requests can be made through Gradescope.
+Regrade requests can be made through Gradescope or continuing the comment thread on the PR in Github.
 *Please be sure to read the rubric and the comments on your assignment before submitting a regrade request.*
 **Do not make regrade requests that simply ask for more points.
 Regrades will only be accepted in the case of a grading error.**
