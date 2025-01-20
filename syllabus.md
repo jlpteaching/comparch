@@ -95,8 +95,10 @@ Through asking and answering questions on Discord, you improve your understandin
 
 ### Regrade Requests
 
-Regrade requests must be made within one week of the return of the assignment or test.
-Regrade requests can be made through Gradescope or continuing the comment thread on the PR in Github.
+Regrade requests must be made within two week of the return of the assignment.
+gem5 assignment regrade requests have to be made by continuing the comment thread on the PR in Github.
+**The TAs needs to be notified about the request during their office hours, otherwise the requests will be ignored.**
+
 *Please be sure to read the rubric and the comments on your assignment before submitting a regrade request.*
 **Do not make regrade requests that simply ask for more points.
 Regrades will only be accepted in the case of a grading error.**
