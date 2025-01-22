@@ -279,13 +279,13 @@ All together, the labs are worth 40% of your final grade.
 
 Labs are due at midnight (11:59 PM) on the date listed below.
 
-- [Assignment 1]({{"/modules/gem5/assignment0/" | relative_url}}) Due {{ site.data.course.dates.gem5_0 }}.
+- [Assignment 0]({{"/modules/gem5/assignment0/" | relative_url}}) Due {{ site.data.course.dates.gem5_0 }}.
 - [Assignment 1]({{"/modules/gem5/assignment1/" | relative_url}}) Due {{ site.data.course.dates.gem5_1 }}.
 - [Assignment 2]({{"/modules/gem5/assignment2/" | relative_url}}) Due {{ site.data.course.dates.gem5_2 }}.
 - [Assignment 3]({{"/modules/gem5/assignment3/" | relative_url}}) Due {{ site.data.course.dates.gem5_3 }}.
 - [Assignment 4]({{"/modules/gem5/assignment4/" | relative_url}}) Due {{ site.data.course.dates.gem5_4 }}.
 - [Assignment 5]({{"/modules/gem5/assignment5/" | relative_url}}) Due {{ site.data.course.dates.gem5_5 }}.
-- [Assignment 5]({{"/modules/gem5/assignment6/" | relative_url}}) Due {{ site.data.course.dates.gem5_6 }}.
+- [Assignment 6]({{"/modules/gem5/assignment6/" | relative_url}}) Due {{ site.data.course.dates.gem5_6 }}.
 
 #### Late Projects
 
