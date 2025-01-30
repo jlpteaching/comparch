@@ -393,7 +393,7 @@ The details of the configurations and the performance results are shown below.
 | Core Type | Width | ROB Size | Number of Integer Registers | Number of Floating Point Registers |
 |-----------|-------|----------|-----------------------------|------------------------------------|
 | little    | 4     | 32       | 64                          | 64                                 |
-| big       | 8     | 192      | 256                         | 256                                |
+| big       | 12    | 284      | 512                         | 512                                |
 
 > Note: There's a bug in gem5's out-of-order model such that when running with small widths sometimes there's an assertion failure.
 > Therefore, we have set the width to 4 for the "little" core.
