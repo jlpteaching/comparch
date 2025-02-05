@@ -62,6 +62,14 @@ Zoom Link: https://ucdavis.zoom.us/j/8037622306?pwd=b3UwMG5SemIvRlJJOFBka3ZqNXRi
 
 ## Class Resources
 
+## Discussion Notes
+
+* 01/06 -
+* 01/13 https://ucdavis.box.com/s/c853hcpxw3s4gv7t69fuwqutlw6yvf28
+* 01/20 -
+* 01/27
+* 02/03 https://ucdavis.box.com/s/8hoc1b85ag4y9jvzhterzgmfrksjf6lo
+
 ### Online material
 
 All of the material for this course is online.
