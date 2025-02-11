@@ -6,9 +6,9 @@ Title: Improving Blocked Matrix-Multiply Performance
 
 **Due on *{{ site.data.course.dates.gem5_4 }}* 11:59 pm (PST)**: See [Submission](#submission) for details.
 
-GitHub Classroom link for 154B: [{{ site.data.course.154b_assignment3_invitation_link }}]({{ site.data.course.154b_assignment3_invitation_link }})
+GitHub Classroom link for 154B: [{{ site.data.course.154b_assignment4_invitation_link }}]({{ site.data.course.154b_assignment4_invitation_link }})
 
-GitHub Classroom link for 201A: [{{ site.data.course.201a_assignment3_invitation_link }}]({{ site.data.course.201a_assignment3_invitation_link }})
+GitHub Classroom link for 201A: [{{ site.data.course.201a_assignment4_invitation_link }}]({{ site.data.course.201a_assignment4_invitation_link }})
 
 ## Table of Contents
 
