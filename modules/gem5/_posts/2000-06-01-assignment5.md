@@ -73,7 +73,7 @@ modes.
 
 The system you are simulating looks something like the picture below:
 
-![System under simulation](images/system.png)
+![System under simulation]({{ 'img/system-assign5.png' | relative_url }})
 
 ## Step I: A comparison between syscall emulation and full system
 
