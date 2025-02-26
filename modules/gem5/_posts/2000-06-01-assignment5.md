@@ -6,6 +6,10 @@ Title: Virtual Memory Translation Cache Designs
 
 **Due on *{{ site.data.course.dates.gem5_5 }}* 11:59 pm (PST)**: See [Submission](#submission) for details
 
+GitHub Classroom link for 154B: [{{ site.data.course.154b_assignment5_invitation_link }}]({{ site.data.course.154b_assignment5_invitation_link }})
+
+GitHub Classroom link for 201A: [{{ site.data.course.201a_assignment5_invitation_link }}]({{ site.data.course.201a_assignment5_invitation_link }})
+
 ## Table of Contents
 
 - [Introduction](#introduction)
