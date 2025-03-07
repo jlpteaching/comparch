@@ -46,7 +46,7 @@ In the first implementation, we will assign each thread subsequent items in the 
 In other words, the first item will be summed by the first thread, the second item by the second thread, the third item by the third thread, and so on.
 If we have more items than threads (of course we will! There will be more than just 4-16 items!), then a particular thread will be responsible for summing items that are `thread_id = item (mod num_thread)`
 
-![algorithm 1 visualization](images/parallel-alg-1.png)
+![algorithm 1 visualization]({{ 'img/assignment6/parallel-alg-1.png' | relative_url }})
 
 In this picture, each thread is represented as a different color.
 The iterations shown are the different iterations of the loop below (and in `sum_1` in `parallel.cpp`).
@@ -99,7 +99,7 @@ To improve this (think about what kind of locality this is... see [Question 1](#
 We can split the array into several contiguous chunks equal to the number of threads and then assign each thread to one of those chunks.
 This is shown visually below with the code as well.
 
-![algorithm 2 visualization](images/parallel-alg-2.png)
+![algorithm 2 visualization]({{ 'img/assignment6/parallel-alg-2.png' | relative_url }})
 
 ```c++
 size_t chunk_size = (length+threads-1)/threads;
@@ -135,7 +135,7 @@ While this is a bit of serialization (remember Amhahl!), we hope that the work f
 
 You can see this implementation visually and in the code below.
 
-![algorithm 3 visualization](images/parallel-alg-3.png)
+![algorithm 3 visualization]({{ 'img/assignment6/parallel-alg-3.png' | relative_url }})
 
 ```c++
 for (int i=tid; i < length; i += threads) {
@@ -152,7 +152,7 @@ This implementation is a straightforward combination of the optimizations in imp
 We use chunking and then split up the results and use different addresses.
 See the code below.
 
-![algorithm 4 visualization](images/parallel-alg-4.png)
+![algorithm 4 visualization]({{ 'img/assignment6/parallel-alg-4.png' | relative_url }})
 
 ```c++
 size_t chunk_size = (length+threads-1)/threads;
@@ -174,7 +174,7 @@ So, what we're going to do is make sure that the data that is accessed frequentl
 Since we know that each integer is 4B, we are going to space out our accesses by 16 integers ($$ 16 \times 4 = 64 $$).
 See the code based on implementation 3 below.
 
-![algorithm 5 visualization](images/parallel-alg-5.png)
+![algorithm 5 visualization]({{ 'img/assignment6/parallel-alg-5.png' | relative_url }})
 
 ```c++
 for (int i=tid; i < length; i += threads) {
@@ -189,7 +189,7 @@ The names for these workloads are getting a little out of control, this one is n
 
 And finally, we can combine implementation 5 with blocking.
 
-![algorithm 3 visualization](images/parallel-alg-6.png)
+![algorithm 3 visualization]({{ 'img/assignment6/parallel-alg-6.png' | relative_url }})
 
 ```c++
 size_t chunk_size = (length+threads-1)/threads;
