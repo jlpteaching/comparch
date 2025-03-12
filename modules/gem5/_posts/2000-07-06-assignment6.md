@@ -338,7 +338,7 @@ This stat has the same format as the `Fwd_GETS` described above.
 To dig into why we're seeing the performance results on the real hardware, with gem5 we can look at more extreme systems.
 Instead of just using 4 or 8 cores, we will use 16!
 Moreover, we will use `32768` for the size of the array.
-All of the workloads provided in `resources.json` that you get with `obtain_resource` have these paraemters set to 32768 and 16.
+All of the workloads provided in `resources.json` that you get with `obtain_resource` have these parameters set to 32768 and 16.
 
 For 16 cores, run *each algorithm* and save the stats output.
 I strongly recommend using `--outdir` and using easy-to-understand names.
@@ -347,6 +347,22 @@ Alternatively, you can set the output directory programatically in your run scri
 The following questions will ask you to consult these outputs and use data to back up your answers.
 
 ### Question 4
+
+Run gem5 with both 16 cores and with 1 core. 
+The workload you can get with `obtain_resource` has its parameters set to 32768 and 16 so, to run with 16 cores, you can run:
+
+```python
+   workload = obtain_resource(f"<algorithm>")
+   board.set_workload(workload)
+```
+
+To run the workload with one core, run:
+
+```python
+   workload = obtain_resource(f"<algorithm>")
+   workload.set_parameter("arguments", [32768, 1])
+   board.set_workload(workload)
+```
 
 (a) What is the speedup of algorithm 1 and speedup of algorithm 6 on *16 cores* compared to *1 core* as estimated by gem5?
 
