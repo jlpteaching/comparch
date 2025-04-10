@@ -12,3 +12,4 @@
 10. Select your classroom
 11. Click on the settings tab
 12. Click "enable" for codespaces
+13. Go to your organization's settings -> codespaces -> general and select "Codespace ownership" as "Organization ownership"
